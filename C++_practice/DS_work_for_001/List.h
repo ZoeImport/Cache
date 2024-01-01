@@ -1,11 +1,13 @@
 #ifndef _LIST_H_
-#define  _LIST_H_
+#define _LIST_H_
 
 #include <iostream>
 #include <stdexcept>
 #include <vector>
 
-template <typename T> class Node {
+template <typename T>
+class Node
+{
 public:
   T data;
   Node *next;
@@ -13,7 +15,9 @@ public:
   Node(const T &newData) : data(newData), next(nullptr) {}
 };
 
-template <typename T> class LinkedList {
+template <typename T>
+class LinkedList
+{
 private:
   Node<T> *head;
 
@@ -22,35 +26,44 @@ public:
 
   ~LinkedList() { clear(); }
 
-  // åœ¨é“¾è¡¨æœ«å°¾æ·»åŠ å…ƒç´ 
-  void append(const T &value) {
+  // ÔÚÁ´±íÄ©Î²Ìí¼ÓÔªËØ
+  void append(const T &value)
+  {
     Node<T> *newNode = new Node<T>(value);
 
-    if (head == nullptr) {
+    if (head == nullptr)
+    {
       head = newNode;
-    } else {
+    }
+    else
+    {
       Node<T> *current = head;
-      while (current->next != nullptr) {
+      while (current->next != nullptr)
+      {
         current = current->next;
       }
       current->next = newNode;
     }
   }
 
-  // åœ¨é“¾è¡¨å¼€å¤´æ’å…¥å…ƒç´ 
-  void prepend(const T &value) {
+  // ÔÚÁ´±í¿ªÍ·²åÈëÔªËØ
+  void prepend(const T &value)
+  {
     Node<T> *newNode = new Node<T>(value);
     newNode->next = head;
     head = newNode;
   }
 
-  // åˆ é™¤æŒ‡å®šå€¼çš„å…ƒç´ 
-  void remove(const T &value) {
-    if (head == nullptr) {
+  // É¾³ıÖ¸¶¨ÖµµÄÔªËØ
+  void remove(const T &value)
+  {
+    if (head == nullptr)
+    {
       return;
     }
 
-    if (head->data == value) {
+    if (head->data == value)
+    {
       Node<T> *temp = head;
       head = head->next;
       delete temp;
@@ -58,22 +71,27 @@ public:
     }
 
     Node<T> *current = head;
-    while (current->next != nullptr && current->next->data != value) {
+    while (current->next != nullptr && current->next->data != value)
+    {
       current = current->next;
     }
 
-    if (current->next != nullptr) {
+    if (current->next != nullptr)
+    {
       Node<T> *temp = current->next;
       current->next = current->next->next;
       delete temp;
     }
   }
 
-  // æŸ¥æ‰¾æŒ‡å®šå€¼çš„å…ƒç´ ï¼Œå¹¶è¿”å›å…¶åœ°å€
-  Node<T> *find(const T &value) const {
+  // ²éÕÒÖ¸¶¨ÖµµÄÔªËØ£¬²¢·µ»ØÆäµØÖ·
+  Node<T> *find(const T &value) const
+  {
     Node<T> *current = head;
-    while (current != nullptr) {
-      if (current->data == value) {
+    while (current != nullptr)
+    {
+      if (current->data == value)
+      {
         return current;
       }
       current = current->next;
@@ -81,18 +99,22 @@ public:
     return nullptr;
   }
 
-  // ä¿®æ”¹æŒ‡å®šå€¼çš„å…ƒç´ 
-  void modify(const T &oldValue, const T &newValue) {
+  // ĞŞ¸ÄÖ¸¶¨ÖµµÄÔªËØ
+  void modify(const T &oldValue, const T &newValue)
+  {
     Node<T> *nodeToModify = find(oldValue);
-    if (nodeToModify != nullptr) {
+    if (nodeToModify != nullptr)
+    {
       nodeToModify->data = newValue;
     }
   }
 
-  // æ¸…ç©ºé“¾è¡¨
-  void clear() {
+  // Çå¿ÕÁ´±í
+  void clear()
+  {
     Node<T> *current = head;
-    while (current != nullptr) {
+    while (current != nullptr)
+    {
       Node<T> *temp = current;
       current = current->next;
       delete temp;
@@ -100,24 +122,27 @@ public:
     head = nullptr;
   }
 
-  // æ‰“å°é“¾è¡¨å…ƒç´ 
-  void print() const {
+  // ´òÓ¡Á´±íÔªËØ
+  void print() const
+  {
     Node<T> *current = head;
-    while (current != nullptr) {
+    while (current != nullptr)
+    {
       std::cout << current->data << " ";
       current = current->next;
     }
   }
 
-   std::vector<T>& forEach(std::vector<T>&arr) const {
+  std::vector<T> &forEach(std::vector<T> &arr) const
+  {
     Node<T> *current = head;
-    while (current != nullptr) {
+    while (current != nullptr)
+    {
       arr.emplace_back(current->data);
       current = current->next;
     }
     return arr;
   }
 };
-
 
 #endif

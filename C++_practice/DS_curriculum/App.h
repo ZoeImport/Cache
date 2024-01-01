@@ -9,23 +9,25 @@
 
 /*
     appHeaderFile
-    åŒ…æ‹¬:
-        æŒ‰åå­—æŸ¥è¯¢
-        æŒ‰ç”µè¯å·ç æŸ¥è¯¢
+    °üÀ¨:
+        °´Ãû×Ö²éÑ¯
+        °´µç»°ºÅÂë²éÑ¯
 */
 
 int menuMsgOut();
 template <typename tableType>
 UserInfo searchByPhoneNumber(tableType &hashTable, std::string &phoneNumber);
 template <typename tableType>
-UserInfo searchByPhoneNumber(tableType &hashTable, std::string &phoneNumber) {
+UserInfo searchByPhoneNumber(tableType &hashTable, std::string &phoneNumber)
+{
   auto index = strToInt(phoneNumber);
   return hashTable[index];
 }
 template <typename tableType>
 UserInfo searchByUserName(tableType &hashTable, std::string &userName);
 template <typename tableType>
-UserInfo searchByUserName(tableType &hashTable, std::string &userName) {
+UserInfo searchByUserName(tableType &hashTable, std::string &userName)
+{
   auto index = strToInt(userName);
   return hashTable[index];
 }
@@ -39,9 +41,11 @@ tableType &initHashTableByPhoneNumber(std::ifstream &ifs, tableType &hashTable,
 template <typename tableType>
 tableType &
 initHashTableByPhoneNumber(std::ifstream &ifs, tableType &hashTable,
-                           std::vector<UserInfo> &user_info_list_phoneNumber) {
+                           std::vector<UserInfo> &user_info_list_phoneNumber)
+{
   readUserInfo(ifs, user_info_list_phoneNumber);
-  for (auto atom : user_info_list_phoneNumber) {
+  for (auto atom : user_info_list_phoneNumber)
+  {
     hashTable[strToInt(atom.getPhoneNumber())] = atom;
   }
   return hashTable;
@@ -52,19 +56,58 @@ tableType &initHashTableByUserName(std::ifstream &ifs, tableType &hashTable,
 template <typename tableType>
 tableType &
 initHashTableByUserName(std::ifstream &ifs, tableType &hashTable,
-                        std::vector<UserInfo> &user_info_list_userName) {
+                        std::vector<UserInfo> &user_info_list_userName)
+{
   readUserInfo(ifs, user_info_list_userName);
-  for (auto atom : user_info_list_userName) {
+  for (auto atom : user_info_list_userName)
+  {
     hashTable[strToInt(atom.getUserName())] = atom;
   }
   return hashTable;
 }
 
+template<typename tableType>
+int insertInfo(std::string filePath,tableType& tableByPhoneNumber,tableType& tableByUserName)
+{
+  std::ofstream ofs(filePath, std::ios::app);
+  if (!ofs.is_open())
+  {
+    std::cout << "file open error!" << std::endl;
+    return 1;
+  }
+
+  std::string info;
+  std::string phoneNumer;
+  info += "PN:";
+  std::cout << "ÇëÊäÈëµç»°ºÅÂë" << std::endl;
+  std::cin >> phoneNumer;
+  info += phoneNumer;
+  info += "#NM:";
+  std::string userName;
+  std::cout << "ÇëÊäÈëÓÃ»§Ãû" << std::endl;
+  std::cin >> userName;
+  info += userName;
+  info += "#AD:";
+  std::string address;
+  std::cout << "ÇëÊäÈëµØÖ·ĞÅÏ¢" << std::endl;
+  std::cin >> address;
+  info += address;
+  ofs << info<<'\n';
+  UserInfo userinfo(phoneNumer,userName,address);
+  tableByPhoneNumber[strToInt(phoneNumer)] = userinfo;
+  tableByUserName[strToInt(userName)] = userinfo;
+  ofs.close();
+  return 0;
+}
+
 // int AppFunction(std::string filePath);
 // int AppFunctionOpen(std::string filePath);
 
-template <typename tableType> int APP(std::string filePath);
-template <typename tableType> int APP(std::string filePath) {
+template <typename tableType>
+int APP(std::string filePath);
+template <typename tableType>
+int APP(std::string filePath)
+{
   tableType hashTableByPhoneNumber;
   tableType hashTableByUserName;
   std::vector<UserInfo> user_info_list_phoneNumber;
@@ -81,25 +124,31 @@ template <typename tableType> int APP(std::string filePath) {
   ifs_phoneNumber.close();
   ifs_userName.close();
   menuMsgOut();
-  do {
+  do
+  {
     std::cin >> menuChoose;
-    switch (menuChoose) {
+    switch (menuChoose)
+    {
     case 0:
-      std::cout << "æ­£åœ¨é€€å‡ºç”µè¯å·ç æŸ¥è¯¢ç³»ç»Ÿ..." << std::endl;
+      std::cout << "ÕıÔÚÍË³öµç»°ºÅÂë²éÑ¯ÏµÍ³..." << std::endl;
       break;
     case 1:
       std::cin >> inputInfo;
-      std::cout << "ç”µè¯å·ç :" << inputInfo << " | æŸ¥è¯¢ä¿¡æ¯ï¼š "
+      std::cout << "µç»°ºÅÂë:" << inputInfo << " | ²éÑ¯ĞÅÏ¢£º "
                 << searchByPhoneNumber<tableType>(hashTableByPhoneNumber,
                                                   inputInfo);
       break;
     case 2:
       std::cin >> inputInfo;
-      std::cout << "ç”¨æˆ·åç§°:" << inputInfo << " | æŸ¥è¯¢ä¿¡æ¯ï¼š "
+      std::cout << "ÓÃ»§Ãû³Æ:" << inputInfo << " | ²éÑ¯ĞÅÏ¢£º "
                 << searchByUserName<tableType>(hashTableByUserName, inputInfo);
       break;
+    case 3:
+      insertInfo<tableType>(filePath,hashTableByPhoneNumber,hashTableByUserName);
+     
+  break;
     default:
-      std::cout << "é”™è¯¯å‚æ•°è¯·é‡æ–°è¾“å…¥..." << std::endl;
+      std::cout << "´íÎó²ÎÊıÇëÖØĞÂÊäÈë..." << std::endl;
     }
     // if (!menuChoose)
     //   break;

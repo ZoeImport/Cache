@@ -6,56 +6,69 @@
 #include <stdexcept>
 #include <vector>
 
-// è®¢å•æ ˆå¤´æ–‡ä»¶
+// ¶©µ¥Õ»Í·ÎÄ¼ş
 
-template <typename T> class Stack {
+template <typename T>
+class Stack
+{
 public:
-  // å¢åŠ å…ƒç´ 
+  // Ôö¼ÓÔªËØ
   void push(const T &value) { data.push_back(value); }
 
-  // åˆ é™¤å…ƒç´ 
-  void pop() {
-    if (empty()) {
+  // É¾³ıÔªËØ
+  void pop()
+  {
+    if (empty())
+    {
       throw std::out_of_range("Stack is empty");
     }
     data.pop_back();
   }
 
-  // è·å–æ ˆé¡¶å…ƒç´ 
-  T &top() {
-    if (empty()) {
+  // »ñÈ¡Õ»¶¥ÔªËØ
+  T &top()
+  {
+    if (empty())
+    {
       throw std::out_of_range("Stack is empty");
     }
     return data.back();
   }
 
-  // æ ˆæ˜¯å¦ä¸ºç©º
+  // Õ»ÊÇ·ñÎª¿Õ
   bool empty() const { return data.empty(); }
 
-  // è·å–æ ˆçš„å¤§å°
+  // »ñÈ¡Õ»µÄ´óĞ¡
   size_t size() const { return data.size(); }
 
-  // æŸ¥æ‰¾å…ƒç´ ï¼ˆè¿”å›ç´¢å¼•ï¼‰
-  int find(const T &value) const {
-    for (int i = data.size() - 1; i >= 0; --i) {
-      if (data[i] == value) {
+  // ²éÕÒÔªËØ£¨·µ»ØË÷Òı£©
+  int find(const T &value) const
+  {
+    for (int i = data.size() - 1; i >= 0; --i)
+    {
+      if (data[i] == value)
+      {
         return i;
       }
     }
-    return -1; // æœªæ‰¾åˆ°
+    return -1; // Î´ÕÒµ½
   }
 
-  // ä¿®æ”¹å…ƒç´ 
-  void modify(int index, const T &value) {
-    if (index < 0 || index >= data.size()) {
+  // ĞŞ¸ÄÔªËØ
+  void modify(int index, const T &value)
+  {
+    if (index < 0 || index >= data.size())
+    {
       throw std::out_of_range("Index out of range");
     }
     data[index] = value;
   }
 
-  // æ‰“å°æ ˆä¸­å…ƒç´ 
-  void print() const {
-    for (const auto &element : data) {
+  // ´òÓ¡Õ»ÖĞÔªËØ
+  void print() const
+  {
+    for (const auto &element : data)
+    {
       std::cout << element << " ";
     }
     std::cout << std::endl;

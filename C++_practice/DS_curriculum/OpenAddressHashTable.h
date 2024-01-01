@@ -7,7 +7,8 @@
 #include <utility>
 #include <vector>
 
-class OpenAddressHashTable {
+class OpenAddressHashTable
+{
 public:
   OpenAddressHashTable() : table(TABLE_SIZE){};
   int hashFunction(int Key);

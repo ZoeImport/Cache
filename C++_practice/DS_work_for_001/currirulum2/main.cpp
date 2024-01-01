@@ -7,7 +7,7 @@
 
 using namespace std;
 
-// èŠ‚ç‚¹ç±»å‹ï¼šå‘ç”µç«™ã€å˜ç”µç«™ã€ç”¨æˆ·
+// ½ÚµãÀàĞÍ£º·¢µçÕ¾¡¢±äµçÕ¾¡¢ÓÃ»§
 enum NodeType
 {
   GENERATOR,
@@ -15,7 +15,7 @@ enum NodeType
   USER
 };
 
-// å›¾çš„èŠ‚ç‚¹
+// Í¼µÄ½Úµã
 struct Node
 {
   int id;
@@ -24,7 +24,7 @@ struct Node
   Node(int _id, NodeType _type) : id(_id), type(_type) {}
 };
 
-// å›¾çš„è¾¹
+// Í¼µÄ±ß
 struct Edge
 {
   int from;
@@ -34,7 +34,7 @@ struct Edge
   Edge(int _from, int _to, double _cost) : from(_from), to(_to), cost(_cost) {}
 };
 
-// å›¾ç±»
+// Í¼Àà
 class Graph
 {
 public:
@@ -51,7 +51,7 @@ public:
   {
     edges.emplace_back(from, to, cost);
     adjacencyList[from].emplace_back(from, to, cost);
-    adjacencyList[to].emplace_back(to, from, cost); // æ— å‘å›¾éœ€è¦åŒå‘è¾¹
+    adjacencyList[to].emplace_back(to, from, cost); // ÎŞÏòÍ¼ĞèÒªË«Ïò±ß
   }
 
   void printAdjacencyList()
@@ -188,34 +188,34 @@ int main()
 {
   Graph powerNetwork;
 
-  // æ·»åŠ èŠ‚ç‚¹
-  powerNetwork.addNode(0, GENERATOR);  // å‘ç”µç«™ A
-  powerNetwork.addNode(1, GENERATOR);  // å‘ç”µç«™ B
-  powerNetwork.addNode(2, SUBSTATION); // å˜ç”µç«™ C
-  powerNetwork.addNode(3, SUBSTATION); // å˜ç”µç«™ D
-  powerNetwork.addNode(4, USER);       // ç”¨æˆ· E
-  powerNetwork.addNode(5, USER);       // ç”¨æˆ· F
-  powerNetwork.addNode(6, USER);       // ç”¨æˆ· G
+  // Ìí¼Ó½Úµã
+  powerNetwork.addNode(0, GENERATOR);  // ·¢µçÕ¾ A
+  powerNetwork.addNode(1, GENERATOR);  // ·¢µçÕ¾ B
+  powerNetwork.addNode(2, SUBSTATION); // ±äµçÕ¾ C
+  powerNetwork.addNode(3, SUBSTATION); // ±äµçÕ¾ D
+  powerNetwork.addNode(4, USER);       // ÓÃ»§ E
+  powerNetwork.addNode(5, USER);       // ÓÃ»§ F
+  powerNetwork.addNode(6, USER);       // ÓÃ»§ G
 
-  // æ·»åŠ è¾¹
-  powerNetwork.addEdge(0, 2, 5.0); // A -> C, æˆæœ¬ 5.0
-  powerNetwork.addEdge(0, 3, 8.0); // A -> D, æˆæœ¬ 8.0
-  powerNetwork.addEdge(1, 2, 6.0); // B -> C, æˆæœ¬ 6.0
-  powerNetwork.addEdge(1, 3, 7.0); // B -> D, æˆæœ¬ 7.0
-  powerNetwork.addEdge(2, 4, 4.0); // C -> E, æˆæœ¬ 4.0
-  powerNetwork.addEdge(2, 5, 2.0); // C -> F, æˆæœ¬ 2.0
-  powerNetwork.addEdge(3, 6, 3.0); // D -> G, æˆæœ¬ 3.0
+  // Ìí¼Ó±ß
+  powerNetwork.addEdge(0, 2, 5.0); // A -> C, ³É±¾ 5.0
+  powerNetwork.addEdge(0, 3, 8.0); // A -> D, ³É±¾ 8.0
+  powerNetwork.addEdge(1, 2, 6.0); // B -> C, ³É±¾ 6.0
+  powerNetwork.addEdge(1, 3, 7.0); // B -> D, ³É±¾ 7.0
+  powerNetwork.addEdge(2, 4, 4.0); // C -> E, ³É±¾ 4.0
+  powerNetwork.addEdge(2, 5, 2.0); // C -> F, ³É±¾ 2.0
+  powerNetwork.addEdge(3, 6, 3.0); // D -> G, ³É±¾ 3.0
 
-  // è¾“å‡ºé‚»æ¥åˆ—è¡¨
+  // Êä³öÁÚ½ÓÁĞ±í
   powerNetwork.printAdjacencyList();
 
-  // è¾“å‡ºå›¾çš„æ·±åº¦ä¼˜å…ˆæœç´¢åºåˆ—
+  // Êä³öÍ¼µÄÉî¶ÈÓÅÏÈËÑË÷ĞòÁĞ
   powerNetwork.DFS(0);
 
-  // è¾“å‡ºå›¾çš„å¹¿åº¦ä¼˜å…ˆæœç´¢åºåˆ—
+  // Êä³öÍ¼µÄ¹ã¶ÈÓÅÏÈËÑË÷ĞòÁĞ
   powerNetwork.BFS(0);
 
-  // è¾“å‡ºæœ€å°ç”Ÿæˆæ ‘çš„æˆæœ¬
+  // Êä³ö×îĞ¡Éú³ÉÊ÷µÄ³É±¾
   double minimumSpanningTreeCost = powerNetwork.findMinimumSpanningTreeCost();
   cout << "Minimum Spanning Tree Cost: " << minimumSpanningTreeCost << endl;
 

@@ -4,6 +4,6 @@
 #include <vector>
 
 void menuMsg();
-int showListAsc(LinkedList<ClothesOrder>*&list);
-int appFunction(LinkedList<ClothesOrder>*& list);
-int initOrderList(LinkedList<ClothesOrder>*& list);
+int showListAsc(LinkedList<ClothesOrder> *&list);
+int appFunction(LinkedList<ClothesOrder> *&list);
+int initOrderList(LinkedList<ClothesOrder> *&list);

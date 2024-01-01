@@ -6,13 +6,14 @@
 #include <ostream>
 #include <string>
 
-// ËÆ¢ÂçïÂØπË±°
+// ∂©µ•∂‘œÛ
 
-class ClothesOrder {
+class ClothesOrder
+{
 public:
-  ClothesOrder():id(0){};
-  ClothesOrder(int id, std::string tradeName="", std::string buyer="",
-               std::string timeDate="", int price=0)
+  ClothesOrder() : id(0){};
+  ClothesOrder(int id, std::string tradeName = "", std::string buyer = "",
+               std::string timeDate = "", int price = 0)
       : id(id), tradeName(tradeName), buyer(buyer), timeDate(timeDate),
         price(price){};
   void setId(int id);
@@ -27,8 +28,9 @@ public:
   std::string getBuyer();
   static int orderCount;
   friend std::ostream &operator<<(std::ostream &cout, ClothesOrder &order);
-  bool operator==(const ClothesOrder& order);
-  bool operator!=(const ClothesOrder& order);
+  bool operator==(const ClothesOrder &order);
+  bool operator!=(const ClothesOrder &order);
+
 private:
   int id;
   std::string tradeName;
@@ -37,11 +39,11 @@ private:
   int price;
 };
 
-// ÈáçËΩΩ<<ËøêÁÆóÁ¨¶
+// ÷ÿ‘ÿ<<‘ÀÀ„∑˚
 std::ostream &operator<<(std::ostream &cout, ClothesOrder &order);
-int insertOrder(LinkedList<ClothesOrder>*&list);
-bool ModifyOrder(LinkedList<ClothesOrder>*&list);
-bool deleteOrder(LinkedList<ClothesOrder>*&list);
-ClothesOrder searchOrder(LinkedList<ClothesOrder>*&list);
+int insertOrder(LinkedList<ClothesOrder> *&list);
+bool ModifyOrder(LinkedList<ClothesOrder> *&list);
+bool deleteOrder(LinkedList<ClothesOrder> *&list);
+ClothesOrder searchOrder(LinkedList<ClothesOrder> *&list);
 
 #endif

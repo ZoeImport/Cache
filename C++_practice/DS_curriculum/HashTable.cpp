@@ -3,51 +3,61 @@
 #include <string>
 #include <vector>
 
-
-
-int HashTable::hashFUnction(int key){
-    return key%TableSize;
+int HashTable::hashFUnction(int key)
+{
+  return key % TableSize;
 }
-int HashTable::insert(int key,const UserInfo& value){
-    int index=hashFUnction(key);
-    for (auto &atom :table[index]) {
-        if(atom.first==key)atom.second=value;
-        return 2;
-    }
-    table[index].emplace_back(key,value);
-    return 1;
+int HashTable::insert(int key, const UserInfo &value)
+{
+  int index = hashFUnction(key);
+  for (auto &atom : table[index])
+  {
+    if (atom.first == key)
+      atom.second = value;
+    return 2;
+  }
+  table[index].emplace_back(key, value);
+  return 1;
 }
-UserInfo HashTable::get(int key){
-    int index=hashFUnction(key);
-    for (auto& atom :table[index]) {
-        if(atom.first==key)return atom.second;
-    }
-    return UserInfo();
-}
-
-
-UserInfo& HashTable::operator[](int key){
-    int index=hashFUnction(key);
-    for (auto& atom :table[index]) {
-        if (atom.first==key) {
-            return atom.second;
-        }
-    }
-
-    table[index].emplace_back(key,UserInfo());
-    return table[index].back().second;
+UserInfo HashTable::get(int key)
+{
+  int index = hashFUnction(key);
+  for (auto &atom : table[index])
+  {
+    if (atom.first == key)
+      return atom.second;
+  }
+  return UserInfo();
 }
 
-std::vector<UserInfo> HashTable::getAllUserInfo(){
-    std::vector<UserInfo> allUsers;
-
-    for (const auto& bucket : table) {
-        for (const auto& pair : bucket) {
-            allUsers.push_back(pair.second);
-        }
+UserInfo &HashTable::operator[](int key)
+{
+  int index = hashFUnction(key);
+  for (auto &atom : table[index])
+  {
+    if (atom.first == key)
+    {
+      return atom.second;
     }
+  }
 
-    return allUsers;
+  table[index].emplace_back(key, UserInfo());
+  return table[index].back().second;
+}
+
+std::vector<UserInfo> HashTable::getAllUserInfo()
+{
+  std::vector<UserInfo> allUsers;
+
+  for (const auto &bucket : table)
+  {
+    for (const auto &pair : bucket)
+    {
+      allUsers.push_back(pair.second);
+    }
+  }
+
+  return allUsers;
 }
 
 // UserInfo& HashTable::operator[](std::string key){

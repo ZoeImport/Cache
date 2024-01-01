@@ -53,7 +53,7 @@ void insertionSort(int arr[], int n)
     int key = arr[i];
     int j = i - 1;
 
-    // ç§»åŠ¨å…ƒç´ ï¼Œä¸ºå½“å‰å…ƒç´ æ‰¾åˆ°åˆé€‚çš„ä½ç½®
+    // ÒÆ¶¯ÔªËØ£¬Îªµ±Ç°ÔªËØÕÒµ½ºÏÊÊµÄÎ»ÖÃ
     while (j >= 0 && arr[j] > key)
     {
       arr[j + 1] = arr[j];

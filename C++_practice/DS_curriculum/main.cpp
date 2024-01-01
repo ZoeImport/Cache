@@ -10,8 +10,9 @@
 // #include "App.cpp"
 
 using namespace std;
-int main() {
-  string filePath("../user_info.txt"); // 鐢ㄦ埛淇℃伅鏂囦欢璺緞
+int main()
+{
+  string filePath("../user_info.txt"); // 用户信息文件路径
   //  AppFunction(filePath);
   // AppFunctionOpen(filePath);
   APP<OpenAddressHashTable>(filePath);

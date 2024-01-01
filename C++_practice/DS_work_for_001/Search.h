@@ -4,7 +4,9 @@
 #include <iostream>
 #include <vector>
 
-template <typename T> class TreeNode {
+template <typename T>
+class TreeNode
+{
 public:
   T data;
   TreeNode<T> *left;
@@ -13,40 +15,54 @@ public:
   TreeNode(T value) : data(value), left(nullptr), right(nullptr) {}
 };
 
-template <typename T> class BinarySearchTree {
+template <typename T>
+class BinarySearchTree
+{
 private:
   TreeNode<T> *root;
 
-  TreeNode<T> *insert(TreeNode<T> *node, T value) {
-    if (node == nullptr) {
+  TreeNode<T> *insert(TreeNode<T> *node, T value)
+  {
+    if (node == nullptr)
+    {
       return new TreeNode<T>(value);
     }
 
-    if (value < node->data) {
+    if (value < node->data)
+    {
       node->left = insert(node->left, value);
-    } else if (value > node->data) {
+    }
+    else if (value > node->data)
+    {
       node->right = insert(node->right, value);
     }
 
     return node;
   }
 
-  void inOrderTraversal(TreeNode<T> *node) {
-    if (node != nullptr) {
+  void inOrderTraversal(TreeNode<T> *node)
+  {
+    if (node != nullptr)
+    {
       inOrderTraversal(node->left);
       std::cout << node->data << " ";
       inOrderTraversal(node->right);
     }
   }
 
-  TreeNode<T> *search(TreeNode<T> *node, T value) {
-    if (node == nullptr || node->data == value) {
+  TreeNode<T> *search(TreeNode<T> *node, T value)
+  {
+    if (node == nullptr || node->data == value)
+    {
       return node;
     }
 
-    if (value < node->data) {
+    if (value < node->data)
+    {
       return search(node->left, value);
-    } else {
+    }
+    else
+    {
       return search(node->right, value);
     }
   }
@@ -56,7 +72,8 @@ public:
 
   void insert(T value) { root = insert(root, value); }
 
-  void inOrderTraversal() {
+  void inOrderTraversal()
+  {
     inOrderTraversal(root);
     std::cout << std::endl;
   }
@@ -65,13 +82,16 @@ public:
 };
 
 template <typename T>
-int linearSearch(const std::vector<T>& arr, T target) {
-    for (size_t i = 0; i < arr.size(); ++i) {
-        if (arr[i] == target) {
-            return i;  // è¿”å›žæ‰¾åˆ°çš„å…ƒç´ çš„ç´¢å¼•
-        }
+int linearSearch(const std::vector<T> &arr, T target)
+{
+  for (size_t i = 0; i < arr.size(); ++i)
+  {
+    if (arr[i] == target)
+    {
+      return i; // ·µ»ØÕÒµ½µÄÔªËØµÄË÷Òý
     }
-    return -1;  // æœªæ‰¾åˆ°è¿”å›ž-1
+  }
+  return -1; // Î´ÕÒµ½·µ»Ø-1
 }
 
 #endif

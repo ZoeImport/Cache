@@ -6,17 +6,49 @@
 #include <iostream>
 #include <string>
 
-int menuMsgOut() {
+int menuMsgOut()
+{
   std::cout << "==========================" << std::endl;
-  std::cout << "<æ¬¢è¿Žä½¿ç”¨ç”µè¯å·ç æŸ¥è¯¢ç³»ç»Ÿ>" << std::endl;
+  std::cout << "<»¶Ó­Ê¹ÓÃµç»°ºÅÂë²éÑ¯ÏµÍ³>" << std::endl;
   std::cout << "==========================" << std::endl;
-  std::cout << " è¾“å…¥å¯¹åº”æŒ‰é”®è¿›è¡Œæ“ä½œï¼š" << std::endl;
-  std::cout << " 1:è¾“å…¥ç”µè¯å·ç è¿›è¡ŒæŸ¥è¯¢" << std::endl;
-  std::cout << " 2:è¾“å…¥ç”¨æˆ·åç§°è¿›è¡ŒæŸ¥è¯¢" << std::endl;
-  std::cout << " 0:é€€å‡ºç”µè¯å·ç æŸ¥è¯¢ç³»ç»Ÿ" << std::endl;
+  std::cout << " ÊäÈë¶ÔÓ¦°´¼ü½øÐÐ²Ù×÷£º" << std::endl;
+  std::cout << " 1:ÊäÈëµç»°ºÅÂë½øÐÐ²éÑ¯" << std::endl;
+  std::cout << " 2:ÊäÈëÓÃ»§Ãû³Æ½øÐÐ²éÑ¯" << std::endl;
+  std::cout << " 3:Ôö¼ÓÓÃ»§µç»°¼ÇÂ¼ÐÅÏ¢" << std::endl;
+  std::cout << " 0:ÍË³öµç»°ºÅÂë²éÑ¯ÏµÍ³" << std::endl;
   std::cout << "======================" << std::endl;
   return 0;
 }
+
+// int insertInfoToFile(std::string filePath,HashTable& table)
+// {
+//   std::ofstream ofs(filePath, std::ios::app);
+//   if (!ofs.is_open())
+//   {
+//     std::cout << "file open error!" << std::endl;
+//     return 1;
+//   }
+
+//   std::string info;
+//   std::string phoneNumer;
+//   info += "PN:";
+//   std::cout << "ÇëÊäÈëµç»°ºÅÂë" << std::endl;
+//   std::cin >> phoneNumer;
+//   info += phoneNumer;
+//   info += "#NM:";
+//   std::string userName;
+//   std::cout << "ÇëÊäÈëÓÃ»§Ãû" << std::endl;
+//   std::cin >> userName;
+//   info += userName;
+//   info += "#AD:";
+//   std::string address;
+//   std::cout << "ÇëÊäÈëµØÖ·ÐÅÏ¢" << std::endl;
+//   std::cin >> address;
+//   info += address;
+//   ofs << info<<'\n';
+//   // ofs.close();
+//   return 0;
+// }
 // template <typename tableType>
 // tableType &
 // initHashTableByPhoneNumber(std::ifstream &ifs, tableType &hashTable,
@@ -67,23 +99,23 @@ int menuMsgOut() {
 //     std::cin >> menuChoose;
 //     switch (menuChoose) {
 //     case 0:
-//       std::cout << "æ­£åœ¨é€€å‡ºç”µè¯å·ç æŸ¥è¯¢ç³»ç»Ÿ..." << std::endl;
+//       std::cout << "ÕýÔÚÍË³öµç»°ºÅÂë²éÑ¯ÏµÍ³..." << std::endl;
 //       break;
 //     case 1:
 //       std::cin >> inputInfo;
-//       std::cout << "ç”µè¯å·ç :" << inputInfo << " | æŸ¥è¯¢ä¿¡æ¯ï¼š "
+//       std::cout << "µç»°ºÅÂë:" << inputInfo << " | ²éÑ¯ÐÅÏ¢£º "
 //                 <<
 //                 searchByPhoneNumber<HashTable,UserInfo>(hashTableByPhoneNumber,
 //                 inputInfo);
 //       break;
 //     case 2:
 //       std::cin >> inputInfo;
-//       std::cout << "ç”¨æˆ·åç§°:" << inputInfo << " | æŸ¥è¯¢ä¿¡æ¯ï¼š "
+//       std::cout << "ÓÃ»§Ãû³Æ:" << inputInfo << " | ²éÑ¯ÐÅÏ¢£º "
 //                 << searchByUserName<HashTable,UserInfo>(hashTableByUserName,
 //                 inputInfo);
 //       break;
 //     default:
-//       std::cout << "é”™è¯¯å‚æ•°è¯·é‡æ–°è¾“å…¥..." << std::endl;
+//       std::cout << "´íÎó²ÎÊýÇëÖØÐÂÊäÈë..." << std::endl;
 //     }
 //     // if (!menuChoose)
 //     //   break;
@@ -115,24 +147,24 @@ int menuMsgOut() {
 //     std::cin >> menuChoose;
 //     switch (menuChoose) {
 //     case 0:
-//       std::cout << "æ­£åœ¨é€€å‡ºç”µè¯å·ç æŸ¥è¯¢ç³»ç»Ÿ..." << std::endl;
+//       std::cout << "ÕýÔÚÍË³öµç»°ºÅÂë²éÑ¯ÏµÍ³..." << std::endl;
 //       break;
 //     case 1:
 //       std::cin >> inputInfo;
-//       std::cout << "ç”µè¯å·ç :" << inputInfo << " | æŸ¥è¯¢ä¿¡æ¯ï¼š "
+//       std::cout << "µç»°ºÅÂë:" << inputInfo << " | ²éÑ¯ÐÅÏ¢£º "
 //                 <<
 //                 searchByPhoneNumber<OpenAddressHashTable,UserInfo>(hashTableByPhoneNumber,
 //                 inputInfo);
 //       break;
 //     case 2:
 //       std::cin >> inputInfo;
-//       std::cout << "ç”¨æˆ·åç§°:" << inputInfo << " | æŸ¥è¯¢ä¿¡æ¯ï¼š "
+//       std::cout << "ÓÃ»§Ãû³Æ:" << inputInfo << " | ²éÑ¯ÐÅÏ¢£º "
 //                 <<
 //                 searchByUserName<OpenAddressHashTable,UserInfo>(hashTableByUserName,
 //                 inputInfo);
 //       break;
 //     default:
-//       std::cout << "é”™è¯¯å‚æ•°è¯·é‡æ–°è¾“å…¥..." << std::endl;
+//       std::cout << "´íÎó²ÎÊýÇëÖØÐÂÊäÈë..." << std::endl;
 //     }
 //     // if (!menuChoose)
 //     //   break;
@@ -161,21 +193,21 @@ int menuMsgOut() {
 //     std::cin >> menuChoose;
 //     switch (menuChoose) {
 //     case 0:
-//       std::cout << "æ­£åœ¨é€€å‡ºç”µè¯å·ç æŸ¥è¯¢ç³»ç»Ÿ..." << std::endl;
+//       std::cout << "ÕýÔÚÍË³öµç»°ºÅÂë²éÑ¯ÏµÍ³..." << std::endl;
 //       break;
 //     case 1:
 //       std::cin >> inputInfo;
-//       std::cout << "ç”µè¯å·ç :" << inputInfo << " | æŸ¥è¯¢ä¿¡æ¯ï¼š "
+//       std::cout << "µç»°ºÅÂë:" << inputInfo << " | ²éÑ¯ÐÅÏ¢£º "
 //                 << searchByPhoneNumber<tableType>(hashTableByPhoneNumber,
 //                                                   inputInfo);
 //       break;
 //     case 2:
 //       std::cin >> inputInfo;
-//       std::cout << "ç”¨æˆ·åç§°:" << inputInfo << " | æŸ¥è¯¢ä¿¡æ¯ï¼š "
+//       std::cout << "ÓÃ»§Ãû³Æ:" << inputInfo << " | ²éÑ¯ÐÅÏ¢£º "
 //                 << searchByUserName<tableType>(hashTableByUserName, inputInfo);
 //       break;
 //     default:
-//       std::cout << "é”™è¯¯å‚æ•°è¯·é‡æ–°è¾“å…¥..." << std::endl;
+//       std::cout << "´íÎó²ÎÊýÇëÖØÐÂÊäÈë..." << std::endl;
 //     }
 //     // if (!menuChoose)
 //     //   break;

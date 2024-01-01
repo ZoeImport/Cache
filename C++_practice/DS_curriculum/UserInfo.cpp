@@ -6,25 +6,31 @@
 #include <vector>
 
 std::string UserInfo::getPhoneNumber() const { return this->PhoneNumber; }
-void UserInfo::setPhoneNumber(const std::string &PhoneNumber) {
+void UserInfo::setPhoneNumber(const std::string &PhoneNumber)
+{
   this->PhoneNumber = PhoneNumber;
 }
 std::string UserInfo::getUserName() const { return this->UserName; }
-void UserInfo::setUserName(const std::string &UserName) {
+void UserInfo::setUserName(const std::string &UserName)
+{
   this->UserName = UserName;
 }
 std::string UserInfo::getAddress() const { return this->address; }
-void UserInfo::setAddress(const std::string &address) {
+void UserInfo::setAddress(const std::string &address)
+{
   this->address = address;
 }
 
 std::string readUserInfo(std::ifstream &ifs,
-                         std::vector<UserInfo> &user_infos) {
+                         std::vector<UserInfo> &user_infos)
+{
   std::string line;
-  if (!ifs.is_open()) {
+  if (!ifs.is_open())
+  {
     return "file can not be opened !!!";
   }
-  while (std::getline(ifs, line)) {
+  while (std::getline(ifs, line))
+  {
     auto index_PN = line.find("PN:");
     auto index_NM = line.find("NM:");
     auto index_AD = line.find("AD:");
@@ -38,27 +44,32 @@ std::string readUserInfo(std::ifstream &ifs,
                             : " read info successfully !!!";
 }
 
-std::ostream &operator<<(std::ostream &cout, const UserInfo &user_info) {
+std::ostream &operator<<(std::ostream &cout, const UserInfo &user_info)
+{
   cout << "PhoneNumber: " << user_info.getPhoneNumber()
        << "|UserName: " << user_info.getUserName()
        << "|Address: " << user_info.getAddress() << std::endl;
   return cout;
 }
 
-bool UserInfo::isEmpty(){
-  return this->getPhoneNumber()==""&&this->getUserName()==""&&this->getAddress()=="";
+bool UserInfo::isEmpty()
+{
+  return this->getPhoneNumber() == "" && this->getUserName() == "" && this->getAddress() == "";
 }
 
-int strToInt(std::string str) {
+int strToInt(std::string str)
+{
   int uniqueInteger = 0;
-    std::unordered_set<char> uniqueChars;
-    for (char ch : str) {
-        // åˆ¤æ–­å­—ç¬¦æ˜¯å¦å·²ç»å‡ºç°è¿‡
-        if (uniqueChars.find(ch) == uniqueChars.end()) {
-            // å­—ç¬¦ç¬¬ä¸€æ¬¡å‡ºç°ï¼Œå°†å…¶ASCIIå€¼ç´¯åŠ 
-            uniqueInteger += static_cast<int>(ch);
-            uniqueChars.insert(ch);
-        }
+  std::unordered_set<char> uniqueChars;
+  for (char ch : str)
+  {
+    // ÅĞ¶Ï×Ö·ûÊÇ·ñÒÑ¾­³öÏÖ¹ı
+    if (uniqueChars.find(ch) == uniqueChars.end())
+    {
+      // ×Ö·ûµÚÒ»´Î³öÏÖ£¬½«ÆäASCIIÖµÀÛ¼Ó
+      uniqueInteger += static_cast<int>(ch);
+      uniqueChars.insert(ch);
     }
-    return uniqueInteger;
+  }
+  return uniqueInteger;
 }
