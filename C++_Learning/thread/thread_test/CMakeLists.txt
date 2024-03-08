@@ -1,0 +1,3 @@
+cmake_minimum_required(VERSION 3.28)
+project(condition_variable)
+add_executable(condition_variable condition_variable.cpp)
