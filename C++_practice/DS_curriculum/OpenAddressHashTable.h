@@ -7,9 +7,11 @@
 #include <utility>
 #include <vector>
 
+
 class OpenAddressHashTable
 {
 public:
+  
   OpenAddressHashTable() : table(TABLE_SIZE){};
   int hashFunction(int Key);
   int insert(int Key, UserInfo &Value);
