@@ -312,6 +312,19 @@ lCode_longestPalindrome/fast:
 .PHONY : lCode_longestPalindrome/fast
 
 #=============================================================================
+# Target rules for targets named lCode_majorityElement
+
+# Build rule for target.
+lCode_majorityElement: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lCode_majorityElement
+.PHONY : lCode_majorityElement
+
+# fast build rule for target.
+lCode_majorityElement/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_majorityElement.dir/build.make CMakeFiles/lCode_majorityElement.dir/build
+.PHONY : lCode_majorityElement/fast
+
+#=============================================================================
 # Target rules for targets named lCode_merge
 
 # Build rule for target.
@@ -349,6 +362,19 @@ lCode_removeDuplicates: cmake_check_build_system
 lCode_removeDuplicates/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_removeDuplicates.dir/build.make CMakeFiles/lCode_removeDuplicates.dir/build
 .PHONY : lCode_removeDuplicates/fast
+
+#=============================================================================
+# Target rules for targets named lCode_removeDuplicates2
+
+# Build rule for target.
+lCode_removeDuplicates2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lCode_removeDuplicates2
+.PHONY : lCode_removeDuplicates2
+
+# fast build rule for target.
+lCode_removeDuplicates2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_removeDuplicates2.dir/build.make CMakeFiles/lCode_removeDuplicates2.dir/build
+.PHONY : lCode_removeDuplicates2/fast
 
 #=============================================================================
 # Target rules for targets named lCode_removeElement
@@ -788,6 +814,30 @@ lCode_longestPalindrome.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_longestPalindrome.dir/build.make CMakeFiles/lCode_longestPalindrome.dir/lCode_longestPalindrome.cpp.s
 .PHONY : lCode_longestPalindrome.cpp.s
 
+lCode_majorityElement.o: lCode_majorityElement.cpp.o
+.PHONY : lCode_majorityElement.o
+
+# target to build an object file
+lCode_majorityElement.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_majorityElement.dir/build.make CMakeFiles/lCode_majorityElement.dir/lCode_majorityElement.cpp.o
+.PHONY : lCode_majorityElement.cpp.o
+
+lCode_majorityElement.i: lCode_majorityElement.cpp.i
+.PHONY : lCode_majorityElement.i
+
+# target to preprocess a source file
+lCode_majorityElement.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_majorityElement.dir/build.make CMakeFiles/lCode_majorityElement.dir/lCode_majorityElement.cpp.i
+.PHONY : lCode_majorityElement.cpp.i
+
+lCode_majorityElement.s: lCode_majorityElement.cpp.s
+.PHONY : lCode_majorityElement.s
+
+# target to generate assembly for a file
+lCode_majorityElement.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_majorityElement.dir/build.make CMakeFiles/lCode_majorityElement.dir/lCode_majorityElement.cpp.s
+.PHONY : lCode_majorityElement.cpp.s
+
 lCode_merge.o: lCode_merge.cpp.o
 .PHONY : lCode_merge.o
 
@@ -859,6 +909,30 @@ lCode_removeDuplicates.s: lCode_removeDuplicates.cpp.s
 lCode_removeDuplicates.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_removeDuplicates.dir/build.make CMakeFiles/lCode_removeDuplicates.dir/lCode_removeDuplicates.cpp.s
 .PHONY : lCode_removeDuplicates.cpp.s
+
+lCode_removeDuplicates2.o: lCode_removeDuplicates2.cpp.o
+.PHONY : lCode_removeDuplicates2.o
+
+# target to build an object file
+lCode_removeDuplicates2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_removeDuplicates2.dir/build.make CMakeFiles/lCode_removeDuplicates2.dir/lCode_removeDuplicates2.cpp.o
+.PHONY : lCode_removeDuplicates2.cpp.o
+
+lCode_removeDuplicates2.i: lCode_removeDuplicates2.cpp.i
+.PHONY : lCode_removeDuplicates2.i
+
+# target to preprocess a source file
+lCode_removeDuplicates2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_removeDuplicates2.dir/build.make CMakeFiles/lCode_removeDuplicates2.dir/lCode_removeDuplicates2.cpp.i
+.PHONY : lCode_removeDuplicates2.cpp.i
+
+lCode_removeDuplicates2.s: lCode_removeDuplicates2.cpp.s
+.PHONY : lCode_removeDuplicates2.s
+
+# target to generate assembly for a file
+lCode_removeDuplicates2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_removeDuplicates2.dir/build.make CMakeFiles/lCode_removeDuplicates2.dir/lCode_removeDuplicates2.cpp.s
+.PHONY : lCode_removeDuplicates2.cpp.s
 
 lCode_removeElement.o: lCode_removeElement.cpp.o
 .PHONY : lCode_removeElement.o
@@ -1027,9 +1101,11 @@ help:
 	@echo "... lCode_lengthOfLongestSubstring"
 	@echo "... lCode_longestCommonPrefix"
 	@echo "... lCode_longestPalindrome"
+	@echo "... lCode_majorityElement"
 	@echo "... lCode_merge"
 	@echo "... lCode_minCostClimbingStairs"
 	@echo "... lCode_removeDuplicates"
+	@echo "... lCode_removeDuplicates2"
 	@echo "... lCode_removeElement"
 	@echo "... lCode_reverse"
 	@echo "... lCode_reverseString"
@@ -1081,6 +1157,9 @@ help:
 	@echo "... lCode_longestPalindrome.o"
 	@echo "... lCode_longestPalindrome.i"
 	@echo "... lCode_longestPalindrome.s"
+	@echo "... lCode_majorityElement.o"
+	@echo "... lCode_majorityElement.i"
+	@echo "... lCode_majorityElement.s"
 	@echo "... lCode_merge.o"
 	@echo "... lCode_merge.i"
 	@echo "... lCode_merge.s"
@@ -1090,6 +1169,9 @@ help:
 	@echo "... lCode_removeDuplicates.o"
 	@echo "... lCode_removeDuplicates.i"
 	@echo "... lCode_removeDuplicates.s"
+	@echo "... lCode_removeDuplicates2.o"
+	@echo "... lCode_removeDuplicates2.i"
+	@echo "... lCode_removeDuplicates2.s"
 	@echo "... lCode_removeElement.o"
 	@echo "... lCode_removeElement.i"
 	@echo "... lCode_removeElement.s"

@@ -13,9 +13,11 @@
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_lengthOfLongestSubstring.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_longestCommonPrefix.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_longestPalindrome.dir
+/home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_majorityElement.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_merge.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_minCostClimbingStairs.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_removeDuplicates.dir
+/home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_removeDuplicates2.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_removeElement.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_reverse.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_reverseString.dir
