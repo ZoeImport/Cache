@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/zoe/Learning/Notes/leetcodeDir/lCode_findMaxConsecutiveOnes.cpp" "CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o" "gcc" "CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o.d"
+  "/home/zoeImport/Learning/QingShu/leetcodeDir/lCode_findMaxConsecutiveOnes.cpp" "CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o" "gcc" "CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

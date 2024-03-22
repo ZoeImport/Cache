@@ -1,5 +1,5 @@
 CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o: \
- /home/zoe/Learning/Notes/leetcodeDir/lCode_findMaxConsecutiveOnes.cpp \
+ /home/zoeImport/Learning/QingShu/leetcodeDir/lCode_findMaxConsecutiveOnes.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/13.2.1/iostream \
  /usr/include/c++/13.2.1/bits/requires_hosted.h \
  /usr/include/c++/13.2.1/x86_64-pc-linux-gnu/bits/c++config.h \

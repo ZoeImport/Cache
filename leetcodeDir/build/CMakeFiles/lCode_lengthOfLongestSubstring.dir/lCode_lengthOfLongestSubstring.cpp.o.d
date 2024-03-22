@@ -1,5 +1,5 @@
 CMakeFiles/lCode_lengthOfLongestSubstring.dir/lCode_lengthOfLongestSubstring.cpp.o: \
- /home/zoe/Learning/Notes/leetcodeDir/lCode_lengthOfLongestSubstring.cpp \
+ /home/zoeImport/Learning/QingShu/leetcodeDir/lCode_lengthOfLongestSubstring.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/13.2.1/algorithm \
  /usr/include/c++/13.2.1/bits/stl_algobase.h \
  /usr/include/c++/13.2.1/x86_64-pc-linux-gnu/bits/c++config.h \

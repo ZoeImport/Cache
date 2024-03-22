@@ -1,5 +1,5 @@
 CMakeFiles/lCode_arrayPairSum.dir/lCode_arrayPairSum.cpp.o: \
- /home/zoe/Learning/Notes/leetcodeDir/lCode_arrayPairSum.cpp \
+ /home/zoeImport/Learning/QingShu/leetcodeDir/lCode_arrayPairSum.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/13.2.1/algorithm \
  /usr/include/c++/13.2.1/bits/stl_algobase.h \
  /usr/include/c++/13.2.1/x86_64-pc-linux-gnu/bits/c++config.h \

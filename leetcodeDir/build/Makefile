@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zoe/Learning/Notes/leetcodeDir
+CMAKE_SOURCE_DIR = /home/zoeImport/Learning/QingShu/leetcodeDir
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zoe/Learning/Notes/leetcodeDir/build
+CMAKE_BINARY_DIR = /home/zoeImport/Learning/QingShu/leetcodeDir/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zoe/Learning/Notes/leetcodeDir/build/CMakeFiles /home/zoe/Learning/Notes/leetcodeDir/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles /home/zoeImport/Learning/QingShu/leetcodeDir/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zoe/Learning/Notes/leetcodeDir/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -221,6 +221,19 @@ lCode_convert/fast:
 .PHONY : lCode_convert/fast
 
 #=============================================================================
+# Target rules for targets named lCode_countSubstrings
+
+# Build rule for target.
+lCode_countSubstrings: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lCode_countSubstrings
+.PHONY : lCode_countSubstrings
+
+# fast build rule for target.
+lCode_countSubstrings/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_countSubstrings.dir/build.make CMakeFiles/lCode_countSubstrings.dir/build
+.PHONY : lCode_countSubstrings/fast
+
+#=============================================================================
 # Target rules for targets named lCode_diagonalTraversalForMatrix
 
 # Build rule for target.
@@ -299,6 +312,19 @@ lCode_longestPalindrome/fast:
 .PHONY : lCode_longestPalindrome/fast
 
 #=============================================================================
+# Target rules for targets named lCode_merge
+
+# Build rule for target.
+lCode_merge: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lCode_merge
+.PHONY : lCode_merge
+
+# fast build rule for target.
+lCode_merge/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_merge.dir/build.make CMakeFiles/lCode_merge.dir/build
+.PHONY : lCode_merge/fast
+
+#=============================================================================
 # Target rules for targets named lCode_minCostClimbingStairs
 
 # Build rule for target.
@@ -312,6 +338,19 @@ lCode_minCostClimbingStairs/fast:
 .PHONY : lCode_minCostClimbingStairs/fast
 
 #=============================================================================
+# Target rules for targets named lCode_removeDuplicates
+
+# Build rule for target.
+lCode_removeDuplicates: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lCode_removeDuplicates
+.PHONY : lCode_removeDuplicates
+
+# fast build rule for target.
+lCode_removeDuplicates/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_removeDuplicates.dir/build.make CMakeFiles/lCode_removeDuplicates.dir/build
+.PHONY : lCode_removeDuplicates/fast
+
+#=============================================================================
 # Target rules for targets named lCode_removeElement
 
 # Build rule for target.
@@ -323,6 +362,19 @@ lCode_removeElement: cmake_check_build_system
 lCode_removeElement/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_removeElement.dir/build.make CMakeFiles/lCode_removeElement.dir/build
 .PHONY : lCode_removeElement/fast
+
+#=============================================================================
+# Target rules for targets named lCode_reverse
+
+# Build rule for target.
+lCode_reverse: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lCode_reverse
+.PHONY : lCode_reverse
+
+# fast build rule for target.
+lCode_reverse/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_reverse.dir/build.make CMakeFiles/lCode_reverse.dir/build
+.PHONY : lCode_reverse/fast
 
 #=============================================================================
 # Target rules for targets named lCode_reverseString
@@ -568,6 +620,30 @@ lCode_convert.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_convert.dir/build.make CMakeFiles/lCode_convert.dir/lCode_convert.cpp.s
 .PHONY : lCode_convert.cpp.s
 
+lCode_countSubstrings.o: lCode_countSubstrings.cpp.o
+.PHONY : lCode_countSubstrings.o
+
+# target to build an object file
+lCode_countSubstrings.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_countSubstrings.dir/build.make CMakeFiles/lCode_countSubstrings.dir/lCode_countSubstrings.cpp.o
+.PHONY : lCode_countSubstrings.cpp.o
+
+lCode_countSubstrings.i: lCode_countSubstrings.cpp.i
+.PHONY : lCode_countSubstrings.i
+
+# target to preprocess a source file
+lCode_countSubstrings.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_countSubstrings.dir/build.make CMakeFiles/lCode_countSubstrings.dir/lCode_countSubstrings.cpp.i
+.PHONY : lCode_countSubstrings.cpp.i
+
+lCode_countSubstrings.s: lCode_countSubstrings.cpp.s
+.PHONY : lCode_countSubstrings.s
+
+# target to generate assembly for a file
+lCode_countSubstrings.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_countSubstrings.dir/build.make CMakeFiles/lCode_countSubstrings.dir/lCode_countSubstrings.cpp.s
+.PHONY : lCode_countSubstrings.cpp.s
+
 lCode_diagonalTraversalForMatrix.o: lCode_diagonalTraversalForMatrix.cpp.o
 .PHONY : lCode_diagonalTraversalForMatrix.o
 
@@ -712,6 +788,30 @@ lCode_longestPalindrome.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_longestPalindrome.dir/build.make CMakeFiles/lCode_longestPalindrome.dir/lCode_longestPalindrome.cpp.s
 .PHONY : lCode_longestPalindrome.cpp.s
 
+lCode_merge.o: lCode_merge.cpp.o
+.PHONY : lCode_merge.o
+
+# target to build an object file
+lCode_merge.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_merge.dir/build.make CMakeFiles/lCode_merge.dir/lCode_merge.cpp.o
+.PHONY : lCode_merge.cpp.o
+
+lCode_merge.i: lCode_merge.cpp.i
+.PHONY : lCode_merge.i
+
+# target to preprocess a source file
+lCode_merge.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_merge.dir/build.make CMakeFiles/lCode_merge.dir/lCode_merge.cpp.i
+.PHONY : lCode_merge.cpp.i
+
+lCode_merge.s: lCode_merge.cpp.s
+.PHONY : lCode_merge.s
+
+# target to generate assembly for a file
+lCode_merge.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_merge.dir/build.make CMakeFiles/lCode_merge.dir/lCode_merge.cpp.s
+.PHONY : lCode_merge.cpp.s
+
 lCode_minCostClimbingStairs.o: lCode_minCostClimbingStairs.cpp.o
 .PHONY : lCode_minCostClimbingStairs.o
 
@@ -736,6 +836,30 @@ lCode_minCostClimbingStairs.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_minCostClimbingStairs.dir/build.make CMakeFiles/lCode_minCostClimbingStairs.dir/lCode_minCostClimbingStairs.cpp.s
 .PHONY : lCode_minCostClimbingStairs.cpp.s
 
+lCode_removeDuplicates.o: lCode_removeDuplicates.cpp.o
+.PHONY : lCode_removeDuplicates.o
+
+# target to build an object file
+lCode_removeDuplicates.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_removeDuplicates.dir/build.make CMakeFiles/lCode_removeDuplicates.dir/lCode_removeDuplicates.cpp.o
+.PHONY : lCode_removeDuplicates.cpp.o
+
+lCode_removeDuplicates.i: lCode_removeDuplicates.cpp.i
+.PHONY : lCode_removeDuplicates.i
+
+# target to preprocess a source file
+lCode_removeDuplicates.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_removeDuplicates.dir/build.make CMakeFiles/lCode_removeDuplicates.dir/lCode_removeDuplicates.cpp.i
+.PHONY : lCode_removeDuplicates.cpp.i
+
+lCode_removeDuplicates.s: lCode_removeDuplicates.cpp.s
+.PHONY : lCode_removeDuplicates.s
+
+# target to generate assembly for a file
+lCode_removeDuplicates.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_removeDuplicates.dir/build.make CMakeFiles/lCode_removeDuplicates.dir/lCode_removeDuplicates.cpp.s
+.PHONY : lCode_removeDuplicates.cpp.s
+
 lCode_removeElement.o: lCode_removeElement.cpp.o
 .PHONY : lCode_removeElement.o
 
@@ -759,6 +883,30 @@ lCode_removeElement.s: lCode_removeElement.cpp.s
 lCode_removeElement.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_removeElement.dir/build.make CMakeFiles/lCode_removeElement.dir/lCode_removeElement.cpp.s
 .PHONY : lCode_removeElement.cpp.s
+
+lCode_reverse.o: lCode_reverse.cpp.o
+.PHONY : lCode_reverse.o
+
+# target to build an object file
+lCode_reverse.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_reverse.dir/build.make CMakeFiles/lCode_reverse.dir/lCode_reverse.cpp.o
+.PHONY : lCode_reverse.cpp.o
+
+lCode_reverse.i: lCode_reverse.cpp.i
+.PHONY : lCode_reverse.i
+
+# target to preprocess a source file
+lCode_reverse.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_reverse.dir/build.make CMakeFiles/lCode_reverse.dir/lCode_reverse.cpp.i
+.PHONY : lCode_reverse.cpp.i
+
+lCode_reverse.s: lCode_reverse.cpp.s
+.PHONY : lCode_reverse.s
+
+# target to generate assembly for a file
+lCode_reverse.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lCode_reverse.dir/build.make CMakeFiles/lCode_reverse.dir/lCode_reverse.cpp.s
+.PHONY : lCode_reverse.cpp.s
 
 lCode_reverseString.o: lCode_reverseString.cpp.o
 .PHONY : lCode_reverseString.o
@@ -872,14 +1020,18 @@ help:
 	@echo "... lCode_48"
 	@echo "... lCode_arrayPairSum"
 	@echo "... lCode_convert"
+	@echo "... lCode_countSubstrings"
 	@echo "... lCode_diagonalTraversalForMatrix"
 	@echo "... lCode_findMaxConsecutiveOnes"
 	@echo "... lCode_findMedianSortedArrays"
 	@echo "... lCode_lengthOfLongestSubstring"
 	@echo "... lCode_longestCommonPrefix"
 	@echo "... lCode_longestPalindrome"
+	@echo "... lCode_merge"
 	@echo "... lCode_minCostClimbingStairs"
+	@echo "... lCode_removeDuplicates"
 	@echo "... lCode_removeElement"
+	@echo "... lCode_reverse"
 	@echo "... lCode_reverseString"
 	@echo "... lCode_reverseWords"
 	@echo "... lCode_set0matrix"
@@ -908,6 +1060,9 @@ help:
 	@echo "... lCode_convert.o"
 	@echo "... lCode_convert.i"
 	@echo "... lCode_convert.s"
+	@echo "... lCode_countSubstrings.o"
+	@echo "... lCode_countSubstrings.i"
+	@echo "... lCode_countSubstrings.s"
 	@echo "... lCode_diagonalTraversalForMatrix.o"
 	@echo "... lCode_diagonalTraversalForMatrix.i"
 	@echo "... lCode_diagonalTraversalForMatrix.s"
@@ -926,12 +1081,21 @@ help:
 	@echo "... lCode_longestPalindrome.o"
 	@echo "... lCode_longestPalindrome.i"
 	@echo "... lCode_longestPalindrome.s"
+	@echo "... lCode_merge.o"
+	@echo "... lCode_merge.i"
+	@echo "... lCode_merge.s"
 	@echo "... lCode_minCostClimbingStairs.o"
 	@echo "... lCode_minCostClimbingStairs.i"
 	@echo "... lCode_minCostClimbingStairs.s"
+	@echo "... lCode_removeDuplicates.o"
+	@echo "... lCode_removeDuplicates.i"
+	@echo "... lCode_removeDuplicates.s"
 	@echo "... lCode_removeElement.o"
 	@echo "... lCode_removeElement.i"
 	@echo "... lCode_removeElement.s"
+	@echo "... lCode_reverse.o"
+	@echo "... lCode_reverse.i"
+	@echo "... lCode_reverse.s"
 	@echo "... lCode_reverseString.o"
 	@echo "... lCode_reverseString.i"
 	@echo "... lCode_reverseString.s"

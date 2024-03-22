@@ -1,15 +1,25 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 namespace lCode {
     string convert(string s, int numRows) {
+        if(numRows==1)return s;
         string ans;
-        
-        
-
-
+        int len=s.length();
+        if (numRows>len) return s;
+        vector<string> mat(numRows);
+        auto index=0,flag=1;
+        for (auto i=0;i<len;++i) {
+          mat[index].push_back(s[i]);
+          index+=flag;
+          if(index==numRows-1||index==0)flag=-flag;
+        }
+        for (auto &str : mat) {
+          ans+=str;
+        }
         return ans;
     }
 }

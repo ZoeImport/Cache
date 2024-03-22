@@ -1,5 +1,5 @@
 CMakeFiles/lCode_reverseString.dir/lCode_reverseString.cpp.o: \
- /home/zoe/Learning/Notes/leetcodeDir/lCode_reverseString.cpp \
+ /home/zoeImport/Learning/QingShu/leetcodeDir/lCode_reverseString.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/13.2.1/any \
  /usr/include/c++/13.2.1/initializer_list \
  /usr/include/c++/13.2.1/x86_64-pc-linux-gnu/bits/c++config.h \

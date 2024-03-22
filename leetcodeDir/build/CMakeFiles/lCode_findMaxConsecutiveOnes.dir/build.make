@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zoe/Learning/Notes/leetcodeDir
+CMAKE_SOURCE_DIR = /home/zoeImport/Learning/QingShu/leetcodeDir
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zoe/Learning/Notes/leetcodeDir/build
+CMAKE_BINARY_DIR = /home/zoeImport/Learning/QingShu/leetcodeDir/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/lCode_findMaxConsecutiveOnes.dir/depend.make
@@ -70,18 +70,18 @@ include CMakeFiles/lCode_findMaxConsecutiveOnes.dir/progress.make
 include CMakeFiles/lCode_findMaxConsecutiveOnes.dir/flags.make
 
 CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o: CMakeFiles/lCode_findMaxConsecutiveOnes.dir/flags.make
-CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o: /home/zoe/Learning/Notes/leetcodeDir/lCode_findMaxConsecutiveOnes.cpp
+CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o: /home/zoeImport/Learning/QingShu/leetcodeDir/lCode_findMaxConsecutiveOnes.cpp
 CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o: CMakeFiles/lCode_findMaxConsecutiveOnes.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/zoe/Learning/Notes/leetcodeDir/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o -MF CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o.d -o CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o -c /home/zoe/Learning/Notes/leetcodeDir/lCode_findMaxConsecutiveOnes.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o -MF CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o.d -o CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o -c /home/zoeImport/Learning/QingShu/leetcodeDir/lCode_findMaxConsecutiveOnes.cpp
 
 CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zoe/Learning/Notes/leetcodeDir/lCode_findMaxConsecutiveOnes.cpp > CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zoeImport/Learning/QingShu/leetcodeDir/lCode_findMaxConsecutiveOnes.cpp > CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.i
 
 CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zoe/Learning/Notes/leetcodeDir/lCode_findMaxConsecutiveOnes.cpp -o CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zoeImport/Learning/QingShu/leetcodeDir/lCode_findMaxConsecutiveOnes.cpp -o CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.s
 
 # Object files for target lCode_findMaxConsecutiveOnes
 lCode_findMaxConsecutiveOnes_OBJECTS = \
@@ -93,7 +93,7 @@ lCode_findMaxConsecutiveOnes_EXTERNAL_OBJECTS =
 lCode_findMaxConsecutiveOnes: CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o
 lCode_findMaxConsecutiveOnes: CMakeFiles/lCode_findMaxConsecutiveOnes.dir/build.make
 lCode_findMaxConsecutiveOnes: CMakeFiles/lCode_findMaxConsecutiveOnes.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/zoe/Learning/Notes/leetcodeDir/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable lCode_findMaxConsecutiveOnes"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable lCode_findMaxConsecutiveOnes"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lCode_findMaxConsecutiveOnes.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -105,6 +105,6 @@ CMakeFiles/lCode_findMaxConsecutiveOnes.dir/clean:
 .PHONY : CMakeFiles/lCode_findMaxConsecutiveOnes.dir/clean
 
 CMakeFiles/lCode_findMaxConsecutiveOnes.dir/depend:
-	cd /home/zoe/Learning/Notes/leetcodeDir/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zoe/Learning/Notes/leetcodeDir /home/zoe/Learning/Notes/leetcodeDir /home/zoe/Learning/Notes/leetcodeDir/build /home/zoe/Learning/Notes/leetcodeDir/build /home/zoe/Learning/Notes/leetcodeDir/build/CMakeFiles/lCode_findMaxConsecutiveOnes.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/zoeImport/Learning/QingShu/leetcodeDir/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zoeImport/Learning/QingShu/leetcodeDir /home/zoeImport/Learning/QingShu/leetcodeDir /home/zoeImport/Learning/QingShu/leetcodeDir/build /home/zoeImport/Learning/QingShu/leetcodeDir/build /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_findMaxConsecutiveOnes.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/lCode_findMaxConsecutiveOnes.dir/depend
 

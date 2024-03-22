@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/zoe/Learning/Notes/leetcodeDir/lCode_set0matrix.cpp" "CMakeFiles/lCode_set0matrix.dir/lCode_set0matrix.cpp.o" "gcc" "CMakeFiles/lCode_set0matrix.dir/lCode_set0matrix.cpp.o.d"
+  "/home/zoeImport/Learning/QingShu/leetcodeDir/lCode_set0matrix.cpp" "CMakeFiles/lCode_set0matrix.dir/lCode_set0matrix.cpp.o" "gcc" "CMakeFiles/lCode_set0matrix.dir/lCode_set0matrix.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
