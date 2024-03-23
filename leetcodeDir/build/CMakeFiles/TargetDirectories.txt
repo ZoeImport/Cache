@@ -5,6 +5,7 @@
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_2Varr.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_48.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_arrayPairSum.dir
+/home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_canJump.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_convert.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_countSubstrings.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_diagonalTraversalForMatrix.dir
@@ -14,6 +15,8 @@
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_longestCommonPrefix.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_longestPalindrome.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_majorityElement.dir
+/home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_maxProfit.dir
+/home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_maxProfit2.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_merge.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_minCostClimbingStairs.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_removeDuplicates.dir
@@ -22,6 +25,7 @@
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_reverse.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_reverseString.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_reverseWords.dir
+/home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_rotate.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_set0matrix.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/lCode_twoSum.dir
 /home/zoeImport/Learning/QingShu/leetcodeDir/build/CMakeFiles/edit_cache.dir

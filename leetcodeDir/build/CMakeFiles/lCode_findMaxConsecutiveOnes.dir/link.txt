@@ -1,1 +1,1 @@
-/usr/bin/c++ -rdynamic CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o -o lCode_findMaxConsecutiveOnes 
+/usr/bin/c++ -rdynamic CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o -o lCode_findMaxConsecutiveOnes

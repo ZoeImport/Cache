@@ -1,1 +1,1 @@
-/usr/bin/c++ -rdynamic CMakeFiles/lCode_longestPalindrome.dir/lCode_longestPalindrome.cpp.o -o lCode_longestPalindrome 
+/usr/bin/c++ -rdynamic CMakeFiles/lCode_longestPalindrome.dir/lCode_longestPalindrome.cpp.o -o lCode_longestPalindrome
