@@ -324,6 +324,19 @@ lCode_isPalindrome/fast:
 .PHONY : lCode_isPalindrome/fast
 
 #=============================================================================
+# Target rules for targets named lCode_isSubsequence
+
+# Build rule for target.
+lCode_isSubsequence: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 lCode_isSubsequence
+.PHONY : lCode_isSubsequence
+
+# fast build rule for target.
+lCode_isSubsequence/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_isSubsequence.dir\build.make CMakeFiles/lCode_isSubsequence.dir/build
+.PHONY : lCode_isSubsequence/fast
+
+#=============================================================================
 # Target rules for targets named lCode_jump2
 
 # Build rule for target.
@@ -335,6 +348,19 @@ lCode_jump2: cmake_check_build_system
 lCode_jump2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_jump2.dir\build.make CMakeFiles/lCode_jump2.dir/build
 .PHONY : lCode_jump2/fast
+
+#=============================================================================
+# Target rules for targets named lCode_lengthOfLastWord
+
+# Build rule for target.
+lCode_lengthOfLastWord: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 lCode_lengthOfLastWord
+.PHONY : lCode_lengthOfLastWord
+
+# fast build rule for target.
+lCode_lengthOfLastWord/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_lengthOfLastWord.dir\build.make CMakeFiles/lCode_lengthOfLastWord.dir/build
+.PHONY : lCode_lengthOfLastWord/fast
 
 #=============================================================================
 # Target rules for targets named lCode_lengthOfLongestSubstring
@@ -387,6 +413,19 @@ lCode_majorityElement: cmake_check_build_system
 lCode_majorityElement/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_majorityElement.dir\build.make CMakeFiles/lCode_majorityElement.dir/build
 .PHONY : lCode_majorityElement/fast
+
+#=============================================================================
+# Target rules for targets named lCode_maxArea
+
+# Build rule for target.
+lCode_maxArea: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 lCode_maxArea
+.PHONY : lCode_maxArea
+
+# fast build rule for target.
+lCode_maxArea/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_maxArea.dir\build.make CMakeFiles/lCode_maxArea.dir/build
+.PHONY : lCode_maxArea/fast
 
 #=============================================================================
 # Target rules for targets named lCode_maxProfit
@@ -569,6 +608,19 @@ lCode_set0matrix: cmake_check_build_system
 lCode_set0matrix/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_set0matrix.dir\build.make CMakeFiles/lCode_set0matrix.dir/build
 .PHONY : lCode_set0matrix/fast
+
+#=============================================================================
+# Target rules for targets named lCode_strStr
+
+# Build rule for target.
+lCode_strStr: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 lCode_strStr
+.PHONY : lCode_strStr
+
+# fast build rule for target.
+lCode_strStr/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_strStr.dir\build.make CMakeFiles/lCode_strStr.dir/build
+.PHONY : lCode_strStr/fast
 
 #=============================================================================
 # Target rules for targets named lCode_twoSum
@@ -967,6 +1019,30 @@ lCode_isPalindrome.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_isPalindrome.dir\build.make CMakeFiles/lCode_isPalindrome.dir/lCode_isPalindrome.cpp.s
 .PHONY : lCode_isPalindrome.cpp.s
 
+lCode_isSubsequence.obj: lCode_isSubsequence.cpp.obj
+.PHONY : lCode_isSubsequence.obj
+
+# target to build an object file
+lCode_isSubsequence.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_isSubsequence.dir\build.make CMakeFiles/lCode_isSubsequence.dir/lCode_isSubsequence.cpp.obj
+.PHONY : lCode_isSubsequence.cpp.obj
+
+lCode_isSubsequence.i: lCode_isSubsequence.cpp.i
+.PHONY : lCode_isSubsequence.i
+
+# target to preprocess a source file
+lCode_isSubsequence.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_isSubsequence.dir\build.make CMakeFiles/lCode_isSubsequence.dir/lCode_isSubsequence.cpp.i
+.PHONY : lCode_isSubsequence.cpp.i
+
+lCode_isSubsequence.s: lCode_isSubsequence.cpp.s
+.PHONY : lCode_isSubsequence.s
+
+# target to generate assembly for a file
+lCode_isSubsequence.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_isSubsequence.dir\build.make CMakeFiles/lCode_isSubsequence.dir/lCode_isSubsequence.cpp.s
+.PHONY : lCode_isSubsequence.cpp.s
+
 lCode_jump2.obj: lCode_jump2.cpp.obj
 .PHONY : lCode_jump2.obj
 
@@ -990,6 +1066,30 @@ lCode_jump2.s: lCode_jump2.cpp.s
 lCode_jump2.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_jump2.dir\build.make CMakeFiles/lCode_jump2.dir/lCode_jump2.cpp.s
 .PHONY : lCode_jump2.cpp.s
+
+lCode_lengthOfLastWord.obj: lCode_lengthOfLastWord.cpp.obj
+.PHONY : lCode_lengthOfLastWord.obj
+
+# target to build an object file
+lCode_lengthOfLastWord.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_lengthOfLastWord.dir\build.make CMakeFiles/lCode_lengthOfLastWord.dir/lCode_lengthOfLastWord.cpp.obj
+.PHONY : lCode_lengthOfLastWord.cpp.obj
+
+lCode_lengthOfLastWord.i: lCode_lengthOfLastWord.cpp.i
+.PHONY : lCode_lengthOfLastWord.i
+
+# target to preprocess a source file
+lCode_lengthOfLastWord.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_lengthOfLastWord.dir\build.make CMakeFiles/lCode_lengthOfLastWord.dir/lCode_lengthOfLastWord.cpp.i
+.PHONY : lCode_lengthOfLastWord.cpp.i
+
+lCode_lengthOfLastWord.s: lCode_lengthOfLastWord.cpp.s
+.PHONY : lCode_lengthOfLastWord.s
+
+# target to generate assembly for a file
+lCode_lengthOfLastWord.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_lengthOfLastWord.dir\build.make CMakeFiles/lCode_lengthOfLastWord.dir/lCode_lengthOfLastWord.cpp.s
+.PHONY : lCode_lengthOfLastWord.cpp.s
 
 lCode_lengthOfLongestSubstring.obj: lCode_lengthOfLongestSubstring.cpp.obj
 .PHONY : lCode_lengthOfLongestSubstring.obj
@@ -1086,6 +1186,30 @@ lCode_majorityElement.s: lCode_majorityElement.cpp.s
 lCode_majorityElement.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_majorityElement.dir\build.make CMakeFiles/lCode_majorityElement.dir/lCode_majorityElement.cpp.s
 .PHONY : lCode_majorityElement.cpp.s
+
+lCode_maxArea.obj: lCode_maxArea.cpp.obj
+.PHONY : lCode_maxArea.obj
+
+# target to build an object file
+lCode_maxArea.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_maxArea.dir\build.make CMakeFiles/lCode_maxArea.dir/lCode_maxArea.cpp.obj
+.PHONY : lCode_maxArea.cpp.obj
+
+lCode_maxArea.i: lCode_maxArea.cpp.i
+.PHONY : lCode_maxArea.i
+
+# target to preprocess a source file
+lCode_maxArea.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_maxArea.dir\build.make CMakeFiles/lCode_maxArea.dir/lCode_maxArea.cpp.i
+.PHONY : lCode_maxArea.cpp.i
+
+lCode_maxArea.s: lCode_maxArea.cpp.s
+.PHONY : lCode_maxArea.s
+
+# target to generate assembly for a file
+lCode_maxArea.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_maxArea.dir\build.make CMakeFiles/lCode_maxArea.dir/lCode_maxArea.cpp.s
+.PHONY : lCode_maxArea.cpp.s
 
 lCode_maxProfit.obj: lCode_maxProfit.cpp.obj
 .PHONY : lCode_maxProfit.obj
@@ -1423,6 +1547,30 @@ lCode_set0matrix.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_set0matrix.dir\build.make CMakeFiles/lCode_set0matrix.dir/lCode_set0matrix.cpp.s
 .PHONY : lCode_set0matrix.cpp.s
 
+lCode_strStr.obj: lCode_strStr.cpp.obj
+.PHONY : lCode_strStr.obj
+
+# target to build an object file
+lCode_strStr.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_strStr.dir\build.make CMakeFiles/lCode_strStr.dir/lCode_strStr.cpp.obj
+.PHONY : lCode_strStr.cpp.obj
+
+lCode_strStr.i: lCode_strStr.cpp.i
+.PHONY : lCode_strStr.i
+
+# target to preprocess a source file
+lCode_strStr.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_strStr.dir\build.make CMakeFiles/lCode_strStr.dir/lCode_strStr.cpp.i
+.PHONY : lCode_strStr.cpp.i
+
+lCode_strStr.s: lCode_strStr.cpp.s
+.PHONY : lCode_strStr.s
+
+# target to generate assembly for a file
+lCode_strStr.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_strStr.dir\build.make CMakeFiles/lCode_strStr.dir/lCode_strStr.cpp.s
+.PHONY : lCode_strStr.cpp.s
+
 lCode_twoSum.obj: lCode_twoSum.cpp.obj
 .PHONY : lCode_twoSum.obj
 
@@ -1471,11 +1619,14 @@ help:
 	@echo ... lCode_findMedianSortedArrays
 	@echo ... lCode_hIndex
 	@echo ... lCode_isPalindrome
+	@echo ... lCode_isSubsequence
 	@echo ... lCode_jump2
+	@echo ... lCode_lengthOfLastWord
 	@echo ... lCode_lengthOfLongestSubstring
 	@echo ... lCode_longestCommonPrefix
 	@echo ... lCode_longestPalindrome
 	@echo ... lCode_majorityElement
+	@echo ... lCode_maxArea
 	@echo ... lCode_maxProfit
 	@echo ... lCode_maxProfit2
 	@echo ... lCode_merge
@@ -1490,6 +1641,7 @@ help:
 	@echo ... lCode_romanToInt
 	@echo ... lCode_rotate
 	@echo ... lCode_set0matrix
+	@echo ... lCode_strStr
 	@echo ... lCode_twoSum
 	@echo ... lCode_1.obj
 	@echo ... lCode_1.i
@@ -1539,9 +1691,15 @@ help:
 	@echo ... lCode_isPalindrome.obj
 	@echo ... lCode_isPalindrome.i
 	@echo ... lCode_isPalindrome.s
+	@echo ... lCode_isSubsequence.obj
+	@echo ... lCode_isSubsequence.i
+	@echo ... lCode_isSubsequence.s
 	@echo ... lCode_jump2.obj
 	@echo ... lCode_jump2.i
 	@echo ... lCode_jump2.s
+	@echo ... lCode_lengthOfLastWord.obj
+	@echo ... lCode_lengthOfLastWord.i
+	@echo ... lCode_lengthOfLastWord.s
 	@echo ... lCode_lengthOfLongestSubstring.obj
 	@echo ... lCode_lengthOfLongestSubstring.i
 	@echo ... lCode_lengthOfLongestSubstring.s
@@ -1554,6 +1712,9 @@ help:
 	@echo ... lCode_majorityElement.obj
 	@echo ... lCode_majorityElement.i
 	@echo ... lCode_majorityElement.s
+	@echo ... lCode_maxArea.obj
+	@echo ... lCode_maxArea.i
+	@echo ... lCode_maxArea.s
 	@echo ... lCode_maxProfit.obj
 	@echo ... lCode_maxProfit.i
 	@echo ... lCode_maxProfit.s
@@ -1596,6 +1757,9 @@ help:
 	@echo ... lCode_set0matrix.obj
 	@echo ... lCode_set0matrix.i
 	@echo ... lCode_set0matrix.s
+	@echo ... lCode_strStr.obj
+	@echo ... lCode_strStr.i
+	@echo ... lCode_strStr.s
 	@echo ... lCode_twoSum.obj
 	@echo ... lCode_twoSum.i
 	@echo ... lCode_twoSum.s

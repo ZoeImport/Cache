@@ -78,11 +78,14 @@ all: CMakeFiles/lCode_findMaxConsecutiveOnes.dir/all
 all: CMakeFiles/lCode_findMedianSortedArrays.dir/all
 all: CMakeFiles/lCode_hIndex.dir/all
 all: CMakeFiles/lCode_isPalindrome.dir/all
+all: CMakeFiles/lCode_isSubsequence.dir/all
 all: CMakeFiles/lCode_jump2.dir/all
+all: CMakeFiles/lCode_lengthOfLastWord.dir/all
 all: CMakeFiles/lCode_lengthOfLongestSubstring.dir/all
 all: CMakeFiles/lCode_longestCommonPrefix.dir/all
 all: CMakeFiles/lCode_longestPalindrome.dir/all
 all: CMakeFiles/lCode_majorityElement.dir/all
+all: CMakeFiles/lCode_maxArea.dir/all
 all: CMakeFiles/lCode_maxProfit.dir/all
 all: CMakeFiles/lCode_maxProfit2.dir/all
 all: CMakeFiles/lCode_merge.dir/all
@@ -97,6 +100,7 @@ all: CMakeFiles/lCode_reverseWords.dir/all
 all: CMakeFiles/lCode_romanToInt.dir/all
 all: CMakeFiles/lCode_rotate.dir/all
 all: CMakeFiles/lCode_set0matrix.dir/all
+all: CMakeFiles/lCode_strStr.dir/all
 all: CMakeFiles/lCode_twoSum.dir/all
 .PHONY : all
 
@@ -121,11 +125,14 @@ clean: CMakeFiles/lCode_findMaxConsecutiveOnes.dir/clean
 clean: CMakeFiles/lCode_findMedianSortedArrays.dir/clean
 clean: CMakeFiles/lCode_hIndex.dir/clean
 clean: CMakeFiles/lCode_isPalindrome.dir/clean
+clean: CMakeFiles/lCode_isSubsequence.dir/clean
 clean: CMakeFiles/lCode_jump2.dir/clean
+clean: CMakeFiles/lCode_lengthOfLastWord.dir/clean
 clean: CMakeFiles/lCode_lengthOfLongestSubstring.dir/clean
 clean: CMakeFiles/lCode_longestCommonPrefix.dir/clean
 clean: CMakeFiles/lCode_longestPalindrome.dir/clean
 clean: CMakeFiles/lCode_majorityElement.dir/clean
+clean: CMakeFiles/lCode_maxArea.dir/clean
 clean: CMakeFiles/lCode_maxProfit.dir/clean
 clean: CMakeFiles/lCode_maxProfit2.dir/clean
 clean: CMakeFiles/lCode_merge.dir/clean
@@ -140,6 +147,7 @@ clean: CMakeFiles/lCode_reverseWords.dir/clean
 clean: CMakeFiles/lCode_romanToInt.dir/clean
 clean: CMakeFiles/lCode_rotate.dir/clean
 clean: CMakeFiles/lCode_set0matrix.dir/clean
+clean: CMakeFiles/lCode_strStr.dir/clean
 clean: CMakeFiles/lCode_twoSum.dir/clean
 .PHONY : clean
 
@@ -560,13 +568,39 @@ CMakeFiles/lCode_isPalindrome.dir/clean:
 .PHONY : CMakeFiles/lCode_isPalindrome.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/lCode_isSubsequence.dir
+
+# All Build rule for target.
+CMakeFiles/lCode_isSubsequence.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_isSubsequence.dir\build.make CMakeFiles/lCode_isSubsequence.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_isSubsequence.dir\build.make CMakeFiles/lCode_isSubsequence.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=33,34 "Built target lCode_isSubsequence"
+.PHONY : CMakeFiles/lCode_isSubsequence.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/lCode_isSubsequence.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\QingShu\leetcodeDir\build\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/lCode_isSubsequence.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\QingShu\leetcodeDir\build\CMakeFiles 0
+.PHONY : CMakeFiles/lCode_isSubsequence.dir/rule
+
+# Convenience name for target.
+lCode_isSubsequence: CMakeFiles/lCode_isSubsequence.dir/rule
+.PHONY : lCode_isSubsequence
+
+# clean rule for target.
+CMakeFiles/lCode_isSubsequence.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_isSubsequence.dir\build.make CMakeFiles/lCode_isSubsequence.dir/clean
+.PHONY : CMakeFiles/lCode_isSubsequence.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/lCode_jump2.dir
 
 # All Build rule for target.
 CMakeFiles/lCode_jump2.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_jump2.dir\build.make CMakeFiles/lCode_jump2.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_jump2.dir\build.make CMakeFiles/lCode_jump2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=33,34 "Built target lCode_jump2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=35,36 "Built target lCode_jump2"
 .PHONY : CMakeFiles/lCode_jump2.dir/all
 
 # Build rule for subdir invocation for target.
@@ -586,13 +620,39 @@ CMakeFiles/lCode_jump2.dir/clean:
 .PHONY : CMakeFiles/lCode_jump2.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/lCode_lengthOfLastWord.dir
+
+# All Build rule for target.
+CMakeFiles/lCode_lengthOfLastWord.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_lengthOfLastWord.dir\build.make CMakeFiles/lCode_lengthOfLastWord.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_lengthOfLastWord.dir\build.make CMakeFiles/lCode_lengthOfLastWord.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=37,38 "Built target lCode_lengthOfLastWord"
+.PHONY : CMakeFiles/lCode_lengthOfLastWord.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/lCode_lengthOfLastWord.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\QingShu\leetcodeDir\build\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/lCode_lengthOfLastWord.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\QingShu\leetcodeDir\build\CMakeFiles 0
+.PHONY : CMakeFiles/lCode_lengthOfLastWord.dir/rule
+
+# Convenience name for target.
+lCode_lengthOfLastWord: CMakeFiles/lCode_lengthOfLastWord.dir/rule
+.PHONY : lCode_lengthOfLastWord
+
+# clean rule for target.
+CMakeFiles/lCode_lengthOfLastWord.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_lengthOfLastWord.dir\build.make CMakeFiles/lCode_lengthOfLastWord.dir/clean
+.PHONY : CMakeFiles/lCode_lengthOfLastWord.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/lCode_lengthOfLongestSubstring.dir
 
 # All Build rule for target.
 CMakeFiles/lCode_lengthOfLongestSubstring.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_lengthOfLongestSubstring.dir\build.make CMakeFiles/lCode_lengthOfLongestSubstring.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_lengthOfLongestSubstring.dir\build.make CMakeFiles/lCode_lengthOfLongestSubstring.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=35,36 "Built target lCode_lengthOfLongestSubstring"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=39,40 "Built target lCode_lengthOfLongestSubstring"
 .PHONY : CMakeFiles/lCode_lengthOfLongestSubstring.dir/all
 
 # Build rule for subdir invocation for target.
@@ -618,7 +678,7 @@ CMakeFiles/lCode_lengthOfLongestSubstring.dir/clean:
 CMakeFiles/lCode_longestCommonPrefix.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_longestCommonPrefix.dir\build.make CMakeFiles/lCode_longestCommonPrefix.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_longestCommonPrefix.dir\build.make CMakeFiles/lCode_longestCommonPrefix.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=37,38 "Built target lCode_longestCommonPrefix"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=41,42 "Built target lCode_longestCommonPrefix"
 .PHONY : CMakeFiles/lCode_longestCommonPrefix.dir/all
 
 # Build rule for subdir invocation for target.
@@ -644,7 +704,7 @@ CMakeFiles/lCode_longestCommonPrefix.dir/clean:
 CMakeFiles/lCode_longestPalindrome.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_longestPalindrome.dir\build.make CMakeFiles/lCode_longestPalindrome.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_longestPalindrome.dir\build.make CMakeFiles/lCode_longestPalindrome.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=39,40 "Built target lCode_longestPalindrome"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=43,44 "Built target lCode_longestPalindrome"
 .PHONY : CMakeFiles/lCode_longestPalindrome.dir/all
 
 # Build rule for subdir invocation for target.
@@ -670,7 +730,7 @@ CMakeFiles/lCode_longestPalindrome.dir/clean:
 CMakeFiles/lCode_majorityElement.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_majorityElement.dir\build.make CMakeFiles/lCode_majorityElement.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_majorityElement.dir\build.make CMakeFiles/lCode_majorityElement.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=41,42 "Built target lCode_majorityElement"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=45,46 "Built target lCode_majorityElement"
 .PHONY : CMakeFiles/lCode_majorityElement.dir/all
 
 # Build rule for subdir invocation for target.
@@ -690,13 +750,39 @@ CMakeFiles/lCode_majorityElement.dir/clean:
 .PHONY : CMakeFiles/lCode_majorityElement.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/lCode_maxArea.dir
+
+# All Build rule for target.
+CMakeFiles/lCode_maxArea.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_maxArea.dir\build.make CMakeFiles/lCode_maxArea.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_maxArea.dir\build.make CMakeFiles/lCode_maxArea.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=47,48 "Built target lCode_maxArea"
+.PHONY : CMakeFiles/lCode_maxArea.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/lCode_maxArea.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\QingShu\leetcodeDir\build\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/lCode_maxArea.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\QingShu\leetcodeDir\build\CMakeFiles 0
+.PHONY : CMakeFiles/lCode_maxArea.dir/rule
+
+# Convenience name for target.
+lCode_maxArea: CMakeFiles/lCode_maxArea.dir/rule
+.PHONY : lCode_maxArea
+
+# clean rule for target.
+CMakeFiles/lCode_maxArea.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_maxArea.dir\build.make CMakeFiles/lCode_maxArea.dir/clean
+.PHONY : CMakeFiles/lCode_maxArea.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/lCode_maxProfit.dir
 
 # All Build rule for target.
 CMakeFiles/lCode_maxProfit.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_maxProfit.dir\build.make CMakeFiles/lCode_maxProfit.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_maxProfit.dir\build.make CMakeFiles/lCode_maxProfit.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=43,44 "Built target lCode_maxProfit"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=49,50 "Built target lCode_maxProfit"
 .PHONY : CMakeFiles/lCode_maxProfit.dir/all
 
 # Build rule for subdir invocation for target.
@@ -722,7 +808,7 @@ CMakeFiles/lCode_maxProfit.dir/clean:
 CMakeFiles/lCode_maxProfit2.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_maxProfit2.dir\build.make CMakeFiles/lCode_maxProfit2.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_maxProfit2.dir\build.make CMakeFiles/lCode_maxProfit2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=45,46 "Built target lCode_maxProfit2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=51,52 "Built target lCode_maxProfit2"
 .PHONY : CMakeFiles/lCode_maxProfit2.dir/all
 
 # Build rule for subdir invocation for target.
@@ -748,7 +834,7 @@ CMakeFiles/lCode_maxProfit2.dir/clean:
 CMakeFiles/lCode_merge.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_merge.dir\build.make CMakeFiles/lCode_merge.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_merge.dir\build.make CMakeFiles/lCode_merge.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=47,48 "Built target lCode_merge"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=53,54 "Built target lCode_merge"
 .PHONY : CMakeFiles/lCode_merge.dir/all
 
 # Build rule for subdir invocation for target.
@@ -774,7 +860,7 @@ CMakeFiles/lCode_merge.dir/clean:
 CMakeFiles/lCode_minCostClimbingStairs.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_minCostClimbingStairs.dir\build.make CMakeFiles/lCode_minCostClimbingStairs.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_minCostClimbingStairs.dir\build.make CMakeFiles/lCode_minCostClimbingStairs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=49,50 "Built target lCode_minCostClimbingStairs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=55,56 "Built target lCode_minCostClimbingStairs"
 .PHONY : CMakeFiles/lCode_minCostClimbingStairs.dir/all
 
 # Build rule for subdir invocation for target.
@@ -800,7 +886,7 @@ CMakeFiles/lCode_minCostClimbingStairs.dir/clean:
 CMakeFiles/lCode_productExceptSelf.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_productExceptSelf.dir\build.make CMakeFiles/lCode_productExceptSelf.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_productExceptSelf.dir\build.make CMakeFiles/lCode_productExceptSelf.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=51,52 "Built target lCode_productExceptSelf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=57,58 "Built target lCode_productExceptSelf"
 .PHONY : CMakeFiles/lCode_productExceptSelf.dir/all
 
 # Build rule for subdir invocation for target.
@@ -826,7 +912,7 @@ CMakeFiles/lCode_productExceptSelf.dir/clean:
 CMakeFiles/lCode_removeDuplicates.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_removeDuplicates.dir\build.make CMakeFiles/lCode_removeDuplicates.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_removeDuplicates.dir\build.make CMakeFiles/lCode_removeDuplicates.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=53,54 "Built target lCode_removeDuplicates"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=59,60 "Built target lCode_removeDuplicates"
 .PHONY : CMakeFiles/lCode_removeDuplicates.dir/all
 
 # Build rule for subdir invocation for target.
@@ -852,7 +938,7 @@ CMakeFiles/lCode_removeDuplicates.dir/clean:
 CMakeFiles/lCode_removeDuplicates2.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_removeDuplicates2.dir\build.make CMakeFiles/lCode_removeDuplicates2.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_removeDuplicates2.dir\build.make CMakeFiles/lCode_removeDuplicates2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=55,56 "Built target lCode_removeDuplicates2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=61,62 "Built target lCode_removeDuplicates2"
 .PHONY : CMakeFiles/lCode_removeDuplicates2.dir/all
 
 # Build rule for subdir invocation for target.
@@ -878,7 +964,7 @@ CMakeFiles/lCode_removeDuplicates2.dir/clean:
 CMakeFiles/lCode_removeElement.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_removeElement.dir\build.make CMakeFiles/lCode_removeElement.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_removeElement.dir\build.make CMakeFiles/lCode_removeElement.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=57,58 "Built target lCode_removeElement"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=63,64 "Built target lCode_removeElement"
 .PHONY : CMakeFiles/lCode_removeElement.dir/all
 
 # Build rule for subdir invocation for target.
@@ -904,7 +990,7 @@ CMakeFiles/lCode_removeElement.dir/clean:
 CMakeFiles/lCode_reverse.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_reverse.dir\build.make CMakeFiles/lCode_reverse.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_reverse.dir\build.make CMakeFiles/lCode_reverse.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=59,60 "Built target lCode_reverse"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=65,66 "Built target lCode_reverse"
 .PHONY : CMakeFiles/lCode_reverse.dir/all
 
 # Build rule for subdir invocation for target.
@@ -930,7 +1016,7 @@ CMakeFiles/lCode_reverse.dir/clean:
 CMakeFiles/lCode_reverseString.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_reverseString.dir\build.make CMakeFiles/lCode_reverseString.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_reverseString.dir\build.make CMakeFiles/lCode_reverseString.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=61,62 "Built target lCode_reverseString"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=67,68 "Built target lCode_reverseString"
 .PHONY : CMakeFiles/lCode_reverseString.dir/all
 
 # Build rule for subdir invocation for target.
@@ -956,7 +1042,7 @@ CMakeFiles/lCode_reverseString.dir/clean:
 CMakeFiles/lCode_reverseWords.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_reverseWords.dir\build.make CMakeFiles/lCode_reverseWords.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_reverseWords.dir\build.make CMakeFiles/lCode_reverseWords.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=63,64 "Built target lCode_reverseWords"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=69,70 "Built target lCode_reverseWords"
 .PHONY : CMakeFiles/lCode_reverseWords.dir/all
 
 # Build rule for subdir invocation for target.
@@ -982,7 +1068,7 @@ CMakeFiles/lCode_reverseWords.dir/clean:
 CMakeFiles/lCode_romanToInt.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_romanToInt.dir\build.make CMakeFiles/lCode_romanToInt.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_romanToInt.dir\build.make CMakeFiles/lCode_romanToInt.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=65,66 "Built target lCode_romanToInt"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=71,72 "Built target lCode_romanToInt"
 .PHONY : CMakeFiles/lCode_romanToInt.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1008,7 +1094,7 @@ CMakeFiles/lCode_romanToInt.dir/clean:
 CMakeFiles/lCode_rotate.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_rotate.dir\build.make CMakeFiles/lCode_rotate.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_rotate.dir\build.make CMakeFiles/lCode_rotate.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=67,68 "Built target lCode_rotate"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=73,74 "Built target lCode_rotate"
 .PHONY : CMakeFiles/lCode_rotate.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1034,7 +1120,7 @@ CMakeFiles/lCode_rotate.dir/clean:
 CMakeFiles/lCode_set0matrix.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_set0matrix.dir\build.make CMakeFiles/lCode_set0matrix.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_set0matrix.dir\build.make CMakeFiles/lCode_set0matrix.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=69,70 "Built target lCode_set0matrix"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=75,76 "Built target lCode_set0matrix"
 .PHONY : CMakeFiles/lCode_set0matrix.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1054,13 +1140,39 @@ CMakeFiles/lCode_set0matrix.dir/clean:
 .PHONY : CMakeFiles/lCode_set0matrix.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/lCode_strStr.dir
+
+# All Build rule for target.
+CMakeFiles/lCode_strStr.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_strStr.dir\build.make CMakeFiles/lCode_strStr.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_strStr.dir\build.make CMakeFiles/lCode_strStr.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=77,78 "Built target lCode_strStr"
+.PHONY : CMakeFiles/lCode_strStr.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/lCode_strStr.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\QingShu\leetcodeDir\build\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/lCode_strStr.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\QingShu\leetcodeDir\build\CMakeFiles 0
+.PHONY : CMakeFiles/lCode_strStr.dir/rule
+
+# Convenience name for target.
+lCode_strStr: CMakeFiles/lCode_strStr.dir/rule
+.PHONY : lCode_strStr
+
+# clean rule for target.
+CMakeFiles/lCode_strStr.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_strStr.dir\build.make CMakeFiles/lCode_strStr.dir/clean
+.PHONY : CMakeFiles/lCode_strStr.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/lCode_twoSum.dir
 
 # All Build rule for target.
 CMakeFiles/lCode_twoSum.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_twoSum.dir\build.make CMakeFiles/lCode_twoSum.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lCode_twoSum.dir\build.make CMakeFiles/lCode_twoSum.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=71,72 "Built target lCode_twoSum"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=E:\QingShu\leetcodeDir\build\CMakeFiles --progress-num=79,80 "Built target lCode_twoSum"
 .PHONY : CMakeFiles/lCode_twoSum.dir/all
 
 # Build rule for subdir invocation for target.

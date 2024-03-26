@@ -14,11 +14,14 @@ E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_findMaxConsecutiveOnes.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_findMedianSortedArrays.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_hIndex.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_isPalindrome.dir
+E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_isSubsequence.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_jump2.dir
+E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_lengthOfLastWord.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_lengthOfLongestSubstring.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_longestCommonPrefix.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_longestPalindrome.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_majorityElement.dir
+E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_maxArea.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_maxProfit.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_maxProfit2.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_merge.dir
@@ -33,6 +36,7 @@ E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_reverseWords.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_romanToInt.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_rotate.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_set0matrix.dir
+E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_strStr.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/lCode_twoSum.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/edit_cache.dir
 E:/QingShu/leetcodeDir/build/CMakeFiles/rebuild_cache.dir
