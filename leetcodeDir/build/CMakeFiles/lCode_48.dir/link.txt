@@ -1,3 +1,1 @@
-C:\Users\Administrator\scoop\apps\cmake\3.27.7\bin\cmake.exe -E rm -f CMakeFiles\lCode_48.dir/objects.a
-C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\lCode_48.dir/objects.a @CMakeFiles\lCode_48.dir\objects1.rsp
-C:\msys64\mingw64\bin\c++.exe -Wl,--whole-archive CMakeFiles\lCode_48.dir/objects.a -Wl,--no-whole-archive -o lCode_48.exe -Wl,--out-implib,liblCode_48.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\lCode_48.dir\linkLibs.rsp
+/usr/bin/c++ -rdynamic CMakeFiles/lCode_48.dir/lCode_48.cpp.o -o lCode_48 

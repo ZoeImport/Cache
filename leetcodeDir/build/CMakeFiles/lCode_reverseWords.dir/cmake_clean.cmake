@@ -1,10 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/lCode_reverseWords.dir/lCode_reverseWords.cpp.obj"
-  "CMakeFiles/lCode_reverseWords.dir/lCode_reverseWords.cpp.obj.d"
-  "lCode_reverseWords.exe"
-  "lCode_reverseWords.exe.manifest"
+  "CMakeFiles/lCode_reverseWords.dir/lCode_reverseWords.cpp.o"
+  "CMakeFiles/lCode_reverseWords.dir/lCode_reverseWords.cpp.o.d"
+  "lCode_reverseWords"
   "lCode_reverseWords.pdb"
-  "liblCode_reverseWords.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

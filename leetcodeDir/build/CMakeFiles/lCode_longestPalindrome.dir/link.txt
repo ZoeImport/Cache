@@ -1,3 +1,1 @@
-C:\Users\Administrator\scoop\apps\cmake\3.27.7\bin\cmake.exe -E rm -f CMakeFiles\lCode_longestPalindrome.dir/objects.a
-C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\lCode_longestPalindrome.dir/objects.a @CMakeFiles\lCode_longestPalindrome.dir\objects1.rsp
-C:\msys64\mingw64\bin\c++.exe -Wl,--whole-archive CMakeFiles\lCode_longestPalindrome.dir/objects.a -Wl,--no-whole-archive -o lCode_longestPalindrome.exe -Wl,--out-implib,liblCode_longestPalindrome.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\lCode_longestPalindrome.dir\linkLibs.rsp
+/usr/bin/c++ -rdynamic CMakeFiles/lCode_longestPalindrome.dir/lCode_longestPalindrome.cpp.o -o lCode_longestPalindrome 

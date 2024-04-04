@@ -8,11 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "E:/QingShu/leetcodeDir/lCode_2Varr.cpp" "CMakeFiles/lCode_2Varr.dir/lCode_2Varr.cpp.obj" "gcc" "CMakeFiles/lCode_2Varr.dir/lCode_2Varr.cpp.obj.d"
+  "/home/zoe/QingShu/leetcodeDir/lCode_2Varr.cpp" "CMakeFiles/lCode_2Varr.dir/lCode_2Varr.cpp.o" "gcc" "CMakeFiles/lCode_2Varr.dir/lCode_2Varr.cpp.o.d"
   )
 
-# Targets to which this target links which contain Fortran sources.
-set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
+# Targets to which this target links.
+set(CMAKE_TARGET_LINKED_INFO_FILES
   )
 
 # Fortran module output directory.

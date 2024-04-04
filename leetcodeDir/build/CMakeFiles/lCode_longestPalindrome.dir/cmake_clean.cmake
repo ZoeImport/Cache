@@ -1,10 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/lCode_longestPalindrome.dir/lCode_longestPalindrome.cpp.obj"
-  "CMakeFiles/lCode_longestPalindrome.dir/lCode_longestPalindrome.cpp.obj.d"
-  "lCode_longestPalindrome.exe"
-  "lCode_longestPalindrome.exe.manifest"
+  "CMakeFiles/lCode_longestPalindrome.dir/lCode_longestPalindrome.cpp.o"
+  "CMakeFiles/lCode_longestPalindrome.dir/lCode_longestPalindrome.cpp.o.d"
+  "lCode_longestPalindrome"
   "lCode_longestPalindrome.pdb"
-  "liblCode_longestPalindrome.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

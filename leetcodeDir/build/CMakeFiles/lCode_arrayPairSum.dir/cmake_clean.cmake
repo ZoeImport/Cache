@@ -1,10 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/lCode_arrayPairSum.dir/lCode_arrayPairSum.cpp.obj"
-  "CMakeFiles/lCode_arrayPairSum.dir/lCode_arrayPairSum.cpp.obj.d"
-  "lCode_arrayPairSum.exe"
-  "lCode_arrayPairSum.exe.manifest"
+  "CMakeFiles/lCode_arrayPairSum.dir/lCode_arrayPairSum.cpp.o"
+  "CMakeFiles/lCode_arrayPairSum.dir/lCode_arrayPairSum.cpp.o.d"
+  "lCode_arrayPairSum"
   "lCode_arrayPairSum.pdb"
-  "liblCode_arrayPairSum.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

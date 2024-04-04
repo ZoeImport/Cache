@@ -1,10 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/lCode_longestCommonPrefix.dir/lCode_longestCommonPrefix.cpp.obj"
-  "CMakeFiles/lCode_longestCommonPrefix.dir/lCode_longestCommonPrefix.cpp.obj.d"
-  "lCode_longestCommonPrefix.exe"
-  "lCode_longestCommonPrefix.exe.manifest"
+  "CMakeFiles/lCode_longestCommonPrefix.dir/lCode_longestCommonPrefix.cpp.o"
+  "CMakeFiles/lCode_longestCommonPrefix.dir/lCode_longestCommonPrefix.cpp.o.d"
+  "lCode_longestCommonPrefix"
   "lCode_longestCommonPrefix.pdb"
-  "liblCode_longestCommonPrefix.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

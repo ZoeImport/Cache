@@ -1,10 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.obj"
-  "CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.obj.d"
-  "lCode_findMaxConsecutiveOnes.exe"
-  "lCode_findMaxConsecutiveOnes.exe.manifest"
+  "CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o"
+  "CMakeFiles/lCode_findMaxConsecutiveOnes.dir/lCode_findMaxConsecutiveOnes.cpp.o.d"
+  "lCode_findMaxConsecutiveOnes"
   "lCode_findMaxConsecutiveOnes.pdb"
-  "liblCode_findMaxConsecutiveOnes.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.
