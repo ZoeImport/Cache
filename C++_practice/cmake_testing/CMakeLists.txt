@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.20)
 project(calc)
 add_executable(calc main.cpp)
 set(CALC_LIB CALC)
