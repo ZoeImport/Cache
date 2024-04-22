@@ -9,6 +9,7 @@
 #include <opencv2/core/types.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
+#include <opencv2/objdetect.hpp>
 #include <opencv2/videoio.hpp>
 #include <string>
 #include <vector>
@@ -190,7 +191,7 @@ void singlePic2HSVBytarckBar() {
 
   cvtColor(imgresize, imgHSV, COLOR_BGR2HSV);
 
-  namedWindow("tarckBars", (640, 200));
+  namedWindow("tarckBars", (200));
   createTrackbar("hmin bar", "tarckBars", &hmin, 180);
   createTrackbar("smin bar", "tarckBars", &smin, 180);
   createTrackbar("vmin bar", "tarckBars", &vmin, 255);
@@ -250,8 +251,7 @@ void shapeDetect() {
         objectType = "Tri";
         break;
       case 4: {
-        auto aspRatio =
-            (float)boundRect[index].width / boundRect[index].height;
+        auto aspRatio = (float)boundRect[index].width / boundRect[index].height;
         if ((aspRatio > 0.95) || (aspRatio < 1.05)) {
           objectType = "Square";
           break;
@@ -282,6 +282,94 @@ void shapeDetect() {
   // }
 }
 
+void faceDetect() {
+  string path = "pictures/person.jpg";
+  string xmlPath = "resources/haarcascade_frontalface_default.xml";
+  Mat img = imread(path);
+  CascadeClassifier faceCascade;
+  faceCascade.load(xmlPath);
+  if (faceCascade.empty()) {
+    cout << "faceCascade empty" << endl;
+  }
+  vector<Rect> faces;
+  faceCascade.detectMultiScale(img, faces, 1.1, 10);
+
+  for (auto rect : faces) {
+    rectangle(img, {rect.tl(), rect.br()}, Scalar(0, 100, 20), 10);
+  }
+  imshow("girl", img);
+  waitKey(0);
+}
+
+void faceDetectByCamera() {
+  VideoCapture cap(0);
+  Mat img;
+  string xmlPath = "resources/haarcascade_frontalface_default.xml";
+  CascadeClassifier faceCascade;
+  faceCascade.load(xmlPath);
+  if (faceCascade.empty()) {
+    cout << "faceCascade empty" << endl;
+  }
+  while (1) {
+    cap.read(img);
+    vector<Rect> faces;
+    faceCascade.detectMultiScale(img, faces, 1.1, 10);
+
+    for (auto rect : faces) {
+      rectangle(img, {rect.tl(), rect.br()}, Scalar(0, 100, 20), 10);
+    }
+
+    imshow("title", img);
+    waitKey(1);
+  }
+}
+
+void CameraDetectColor() {
+
+  int hmin = 0, smin = 110, vmin = 153;
+  int hmax = 20, smax = 240, vmax = 255;
+  Mat imgHSV, mask, imgresize;
+  VideoCapture cap(0);
+  Mat img, outimg;
+  namedWindow("tarckBars", (200));
+  createTrackbar("hmin bar", "tarckBars", &hmin, 180);
+  createTrackbar("smin bar", "tarckBars", &smin, 180);
+  createTrackbar("vmin bar", "tarckBars", &vmin, 255);
+  createTrackbar("hmax bar", "tarckBars", &hmax, 255);
+  createTrackbar("smax bar", "tarckBars", &smax, 255);
+  createTrackbar("vmax bar", "tarckBars", &vmax, 255);
+  // 0 0 0 72 255 255
+  while (1) {
+    cap.read(img);
+    cvtColor(img, imgHSV, COLOR_BGR2HSV);
+    Scalar lower(hmin, smin, vmin);
+    Scalar upper(hmax, smax, vmax);
+    inRange(imgHSV, lower, upper, mask);
+    resize(mask, outimg, Size(), 2, 2);
+    imshow("mask", outimg);
+    waitKey(1);
+    cout << hmin << " " << smin << " " << vmin << " " << hmax << " " << smax
+         << " " << vmax << " " << endl;
+  }
+}
+
+void drawByCamera() {
+  Mat img, imgHSV, mask, outimg;
+  vector<vector<int>> colors = {{71, 47, 64}, {255, 71, 255}};
+  VideoCapture cap(0);
+  Scalar lower(71, 47, 64);
+  Scalar upper(255, 71, 255);
+  // resize(mask, outimg, Size(), 2, 2);
+  while (1) {
+    cap.read(img);
+    cvtColor(img, imgHSV, COLOR_BGR2HSV);
+    inRange(imgHSV, lower, upper, mask);
+    resize(mask, outimg, Size(), 3, 3);
+    imshow("color", outimg);
+    waitKey(1);
+  }
+}
+
 int main() {
   // singlePic();
   // pics2Vid();
@@ -290,6 +378,9 @@ int main() {
   // singlePicButCanny();
   // singlePicResize();
   // singleWrapImage();
-  shapeDetect();
+  // shapeDetect();
   // singlePic2HSVBytarckBar();
+  // faceDetect();
+  // CameraDetectColor();
+  drawByCamera();
 }
