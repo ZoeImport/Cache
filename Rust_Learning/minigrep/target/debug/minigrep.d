@@ -1,1 +1,1 @@
-/home/zoe/QingShu/Rust_Learning/minigrep/target/debug/minigrep: /home/zoe/QingShu/Rust_Learning/minigrep/src/lib.rs /home/zoe/QingShu/Rust_Learning/minigrep/src/main.rs
+E:\QingShu\Rust_Learning\minigrep\target\debug\minigrep.exe: E:\QingShu\Rust_Learning\minigrep\src\lib.rs E:\QingShu\Rust_Learning\minigrep\src\main.rs
