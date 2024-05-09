@@ -1,0 +1,10 @@
+/home/zoe/QingShu/Rust_Learning/webserver/target/debug/deps/libcolored-8177a2e0c9719580.rmeta: /home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/lib.rs /home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/color.rs /home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/control.rs /home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/error.rs /home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/style.rs /home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/customcolors.rs
+
+/home/zoe/QingShu/Rust_Learning/webserver/target/debug/deps/colored-8177a2e0c9719580.d: /home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/lib.rs /home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/color.rs /home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/control.rs /home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/error.rs /home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/style.rs /home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/customcolors.rs
+
+/home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/lib.rs:
+/home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/color.rs:
+/home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/control.rs:
+/home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/error.rs:
+/home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/style.rs:
+/home/zoe/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/colored-2.1.0/src/customcolors.rs:
