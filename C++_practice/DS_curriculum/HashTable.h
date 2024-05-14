@@ -1,15 +1,14 @@
 #ifndef _HASH_TABLE_CHINING
 #define _HASH_TABLE_CHINING
 
+#include "UserInfo.h"
 #include <fstream>
 #include <list>
+#include <string>
 #include <utility>
 #include <vector>
-#include <string>
-#include "UserInfo.h"
 
-class HashTable
-{
+class HashTable {
 public:
   HashTable() : table(TableSize){};
   int hashFUnction(int index);
@@ -24,7 +23,9 @@ private:
   std::vector<std::list<std::pair<int, UserInfo>>> table;
 };
 
-// HashTable& initHashTableByPhoneNumber(std::ifstream& ifs, HashTable &hashTable,std::vector<UserInfo>& user_info_list);
-// HashTable& initHashTableByUserName(std::ifstream& ifs, HashTable &hashTable,std::vector<UserInfo>& user_info_list);
+// HashTable& initHashTableByPhoneNumber(std::ifstream& ifs, HashTable
+// &hashTable,std::vector<UserInfo>& user_info_list); HashTable&
+// initHashTableByUserName(std::ifstream& ifs, HashTable
+// &hashTable,std::vector<UserInfo>& user_info_list);
 
 #endif
