@@ -1619,25 +1619,6 @@ rsync -a bar/ me@server:/home/me/ # -a：标记实现目录复制等。比 scp -
 >
 > Ps：在国内无法进行google搜索的情况下需要使用科学上网的方法
 
-##### proxychains
-
-***描述：终端中的代理软件，可以通过proxychains+部分命令实现科学上网***
-
-> ```shell
-> proxychains	curl cip.cc
-> ```
->
-> ***使用方式：***
->
-> ​	通过对proxychains的配置文件进行编辑，其中基础的包括：proxychains的运行模式，以及代理所使用的协议，IP端口（部分还需要有账号密码）
->
-> ​	常规的例如clash的默认端口为127.0.0.1：7890端口，且无代理的用户密码，就可以直接写入
->
-> ```shell
-> http	127.0.0.1：7890	
-> ```
->
-> Ps：proxychains的配置文件地址为/etc/proxychains.conf
 
 ##### code
 
@@ -1675,6 +1656,31 @@ rsync -a bar/ me@server:/home/me/ # -a：标记实现目录复制等。比 scp -
 > 使用说明：
 >
 > ​	colorls与ls的相关选项大部分相同，同时增加了颜色以及git状态查询，还以进行目录树显示，由于命令较长，所以可以与alias结合使用
+
+
+### 网络工具
+
+##### proxychains
+
+***描述：终端中的代理软件，可以通过proxychains+部分命令实现科学上网***
+
+> ```shell
+> proxychains	curl cip.cc
+> ```
+>
+> ***使用方式：***
+>
+> ​	通过对proxychains的配置文件进行编辑，其中基础的包括：proxychains的运行模式，以及代理所使用的协议，IP端口（部分还需要有账号密码）
+>
+> ​	常规的例如clash的默认端口为127.0.0.1：7890端口，且无代理的用户密码，就可以直接写入
+>
+> ```shell
+> http	127.0.0.1：7890	
+> ```
+>
+> Ps：proxychains的配置文件地址为/etc/proxychains.conf
+
+##### iptables
 
 
 
