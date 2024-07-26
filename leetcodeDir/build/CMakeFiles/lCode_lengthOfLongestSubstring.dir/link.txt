@@ -1,1 +1,1 @@
-/usr/bin/c++ -rdynamic CMakeFiles/lCode_lengthOfLongestSubstring.dir/lCode_lengthOfLongestSubstring.cpp.o -o lCode_lengthOfLongestSubstring 
+/usr/sbin/c++ -rdynamic CMakeFiles/lCode_lengthOfLongestSubstring.dir/lCode_lengthOfLongestSubstring.cpp.o -o lCode_lengthOfLongestSubstring

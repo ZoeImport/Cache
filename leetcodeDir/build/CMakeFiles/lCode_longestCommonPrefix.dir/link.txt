@@ -1,1 +1,1 @@
-/usr/bin/c++ -rdynamic CMakeFiles/lCode_longestCommonPrefix.dir/lCode_longestCommonPrefix.cpp.o -o lCode_longestCommonPrefix 
+/usr/sbin/c++ -rdynamic CMakeFiles/lCode_longestCommonPrefix.dir/lCode_longestCommonPrefix.cpp.o -o lCode_longestCommonPrefix
