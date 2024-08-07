@@ -1,1 +1,1 @@
-/usr/bin/c++ -rdynamic CMakeFiles/lCode_diagonalTraversalForMatrix.dir/lCode_diagonalTraversalForMatrix.cpp.o -o lCode_diagonalTraversalForMatrix 
+/usr/sbin/c++ -rdynamic CMakeFiles/lCode_diagonalTraversalForMatrix.dir/lCode_diagonalTraversalForMatrix.cpp.o -o lCode_diagonalTraversalForMatrix

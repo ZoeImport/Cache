@@ -1,1 +1,1 @@
-/usr/bin/c++ -rdynamic CMakeFiles/lCode_48.dir/lCode_48.cpp.o -o lCode_48 
+/usr/sbin/c++ -rdynamic CMakeFiles/lCode_48.dir/lCode_48.cpp.o -o lCode_48

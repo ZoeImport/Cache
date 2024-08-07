@@ -1,1 +1,1 @@
-/usr/bin/c++ -rdynamic CMakeFiles/lCode_twoSum.dir/lCode_twoSum.cpp.o -o lCode_twoSum 
+/usr/sbin/c++ -rdynamic CMakeFiles/lCode_twoSum.dir/lCode_twoSum.cpp.o -o lCode_twoSum
