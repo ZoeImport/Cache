@@ -1,1 +1,0 @@
-/usr/bin/c++ -rdynamic CMakeFiles/objectOriented.dir/Point.cpp.o CMakeFiles/objectOriented.dir/Student.cpp.o CMakeFiles/objectOriented.dir/Teacher.cpp.o CMakeFiles/objectOriented.dir/main.cpp.o -o objectOriented 

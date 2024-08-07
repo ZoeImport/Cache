@@ -1,1 +1,0 @@
-/usr/bin/c++ -rdynamic CMakeFiles/gdb_learn.dir/gdb.cpp.o -o gdb_learn 

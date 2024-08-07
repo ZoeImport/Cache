@@ -1,3 +1,0 @@
-/home/zoe/Learning/Notes/C++_NewBegin/gdb_learn/build/CMakeFiles/gdb_learn.dir
-/home/zoe/Learning/Notes/C++_NewBegin/gdb_learn/build/CMakeFiles/edit_cache.dir
-/home/zoe/Learning/Notes/C++_NewBegin/gdb_learn/build/CMakeFiles/rebuild_cache.dir

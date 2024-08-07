@@ -1,3 +1,0 @@
-/home/zoe/Learning/Notes/C++_NewBegin/Template/build/CMakeFiles/template.dir
-/home/zoe/Learning/Notes/C++_NewBegin/Template/build/CMakeFiles/edit_cache.dir
-/home/zoe/Learning/Notes/C++_NewBegin/Template/build/CMakeFiles/rebuild_cache.dir
