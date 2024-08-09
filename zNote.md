@@ -3442,15 +3442,55 @@ HEAD
 
 需要注意的是，`HEAD`指向的特定提交是相对于当前所在的分支而言的。如果你切换到不同的分支，`HEAD`会自动更新为该分支的最新提交。因此，使用`HEAD`指向的特定提交时要确保你在正确的分支上。
 
-### 小结
+### commit type
 
->  步骤
+> **feat**: 增加新功能（feature）。
 >
->  初始化：本地建库（即文件夹），git init
->  添加到仓库：代码文件放入本地库，git add .
->  提交： git commit -m “注释内容”，提交到仓库
->  新建远程仓库并关联：在Github上设置好SSH密钥后，新建一个远程仓库， git remote add origin <url>关联
->  推送：git push (-u) origin master，把本地仓库的代码推送到远程仓库Gihub上
+> - 示例: `feat: add user login functionality`
+>
+> **fix**: 修复错误（bug fix）。
+>
+> - 示例: `fix: correct the typo in the user login page`
+>
+> **docs**: 仅仅修改文档（documentation）。
+>
+> - 示例: `docs: update API documentation`
+>
+> **style**: 代码格式（空格、分号等），不影响代码逻辑。
+>
+> - 示例: `style: reformat the code in user.js`
+>
+> **refactor**: 代码重构，既不是新增功能，也不是修复 bug。
+>
+> - 示例: `refactor: optimize the user authentication module`
+>
+> **perf**: 提升性能的代码更改（performance improvement）。
+>
+> - 示例: `perf: improve the query performance in user module`
+>
+> **test**: 添加测试或修改测试代码。
+>
+> - 示例: `test: add unit tests for the login function`
+>
+> **chore**: 杂项任务，不涉及代码更改的功能或修复。
+>
+> - 示例: `chore: update the dependencies`
+>
+> **build**: 影响构建系统或外部依赖的更改（例如：webpack、npm）。
+>
+> - 示例: `build: update the webpack configuration`
+>
+> **ci**: 持续集成相关的更改（例如：Travis, Circle, GitLab CI）。
+>
+> - 示例: `ci: add CI configuration for GitHub Actions`
+>
+> **revert**: 回退先前的提交。
+>
+> - 示例: `revert: revert commit abc123`
+>
+> **merge**: 合并分支。
+>
+> - 示例: `merge: merge branch 'feature-xyz' into 'main'`
 
 ## make
 
