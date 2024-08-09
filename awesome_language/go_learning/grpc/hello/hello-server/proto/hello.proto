@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// set name about package split by ';'
+// first value is path that go_code would be generated
+// second value is package name for generated go_code
+option go_package = ".;service";
+
+service SayHi{
+    rpc SayHi(HelloRequest)returns (HelloResponse){};
+}
+
+message HelloRequest{
+    string requestName = 1;
+}
+
+
+message HelloResponse{
+    string responseName = 1;
+}
