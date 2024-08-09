@@ -1,10 +1,10 @@
-# 👋Welcome🎉
+# :open_hands: Welcome🎉
 
 :star:[**仓库链接**](https://github.com/zzll37/QingShu):heart:
 
-## 📇目录
+## :page_facing_up: 目录
 
-### 💻<a href="#linux">Linux</a>
+### :computer:<a href="#linux">Linux</a>
 
 - <a href="#shell">***Shell***</a>
 - <a href="#archLinux">***ArchLinux***</a>
@@ -12,42 +12,42 @@
 - <a href="#baseTool">***基本工具***</a>
 - <a href="#awesomeTool">***有趣的拓展工具***</a>
 
-### <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Farm-Fresh_database_yellow.png" alt="Database" style="zoom:90%;" /><a href="#database">Database</a>
+### :classical_building:<a href="#database">Database</a>
 
 - <a href="#mysql">***mysql***</a>
 
-### <img src="https://golang.org/doc/gopher/frontpage.png" alt="Gopher" style="zoom:8%;" /><a href="#go">**GO**</a>
+### :runner:<a href="#go">**GO**</a>
 
 - <a href="#baseGrammer-go">***Base Grammer***</a>
 
-### <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++" style="zoom:8%;" /><a href="#c++">C++</a>
+### 🚗<a href="#c++">C++</a>
 
 - <a href="#baseGrammer-c++">***Base Grammer***</a>
 - <a href="#compiler-c++">***Compiler***</a>
 - <a href="#build-c++">***Build***</a>
 
-### <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Cloud-icon.svg" alt="cloud" style="zoom:5%;" /><a href="#cloud">Cloud</a>
+### :cloud:<a href="#cloud">Cloud</a>
 
 - <a href="#docker">***Docker***</a>
 - <a href="#minikube">***Minikube***</a>
 - <a href="#kubectl">**Kubectl**</a>
 
-### <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Avatar_toolbox.png" style="zoom:10%;" /><a href="#toolbox">ToolBox</a>
+### :school_satchel:<a href="#toolbox">ToolBox</a>
 
 - <a href="#git">***Git***</a>
 - <a href="#make">***Make***</a>
 - <a href="#gdb">***GDB***</a>
 
-### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Font_Awesome_5_solid_gift.svg/240px-Font_Awesome_5_solid_gift.svg.png" style="zoom:12%;" /><a href="#awesomeLanguage">Awesome Lanage</a>
+### :gift:<a href="#awesomeLanguage">Awesome Lanage</a>
 
 - <a href="#python">***Python***</a>
 
-### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Ancient-columns_-_Delapouite_-_game-icons.svg/240px-Ancient-columns_-_Delapouite_-_game-icons.svg.png" style="zoom:15%;" /><a href="#ancientScience">Ancient Science</a>
+### :building_construction:<a href="#ancientScience">Ancient Science</a>
 
 - <a href="#zhouyi">***周易***</a>
 - <a href="#qimendunjia">***奇门遁甲***</a>
 
-## :walking:Bye bye:smile:													👆give me a star ?✅ 
+## :walking:Bye bye:smile:													:+1:give me a star ?✅ 
 
 ------
 
