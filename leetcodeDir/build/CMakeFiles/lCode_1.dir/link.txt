@@ -1,1 +1,0 @@
-/usr/sbin/c++ -rdynamic CMakeFiles/lCode_1.dir/lCode_1.cpp.o -o lCode_1

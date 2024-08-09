@@ -1,61 +1,17 @@
 # 👋Welcome🎉
 
-:star:[**仓库链接**](https://github.com/zzll37/QingShu):heart:
+[Github]: https://github.com/zzll37/QingShu	""🔗仓库链接""
 
 ## 📇目录
 
-### 💻<a href="#linux">Linux</a>
+- ### <a href="#Linux">💻Linux</a>
 
-- <a href="#shell">***Shell***</a>
-- <a href="#archLinux">***ArchLinux***</a>
-- <a href="#baseLinux">***基本操作***</a>
-- <a href="#baseTool">***基本工具***</a>
-- <a href="#awesomeTool">***有趣的拓展工具***</a>
-
-### <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Farm-Fresh_database_yellow.png" alt="Database" style="zoom:90%;" /><a href="#database">Database</a>
-
-- <a href="#mysql">***mysql***</a>
-
-### <img src="https://golang.org/doc/gopher/frontpage.png" alt="Gopher" style="zoom:8%;" /><a href="#go">**GO**</a>
-
-- <a href="#baseGrammer-go">***Base Grammer***</a>
-
-### <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++" style="zoom:8%;" /><a href="#c++">C++</a>
-
-- <a href="#baseGrammer-c++">***Base Grammer***</a>
-- <a href="#compiler-c++">***Compiler***</a>
-- <a href="#build-c++">***Build***</a>
-
-### <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Cloud-icon.svg" alt="cloud" style="zoom:5%;" /><a href="#cloud">Cloud</a>
-
-- <a href="#docker">***Docker***</a>
-- <a href="#minikube">***Minikube***</a>
-- <a href="#kubectl">**Kubectl**</a>
-
-### <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Avatar_toolbox.png" style="zoom:10%;" /><a href="#toolbox">ToolBox</a>
-
-- <a href="#git">***Git***</a>
-- <a href="#make">***Make***</a>
-- <a href="#gdb">***GDB***</a>
-
-### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Font_Awesome_5_solid_gift.svg/240px-Font_Awesome_5_solid_gift.svg.png" style="zoom:12%;" /><a href="#awesomeLanguage">Awesome Lanage</a>
-
-- <a href="#python">***Python***</a>
-
-### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Ancient-columns_-_Delapouite_-_game-icons.svg/240px-Ancient-columns_-_Delapouite_-_game-icons.svg.png" style="zoom:15%;" /><a href="#ancientScience">Ancient Science</a>
-
-- <a href="#zhouyi">***周易***</a>
-- <a href="#qimendunjia">***奇门遁甲***</a>
-
-## :walking:Bye bye:smile:													👆give me a star ?✅ 
-
-------
-
-
+  - <a href="#Shell">Shell</a>
+  - <a></a>
 
 # <a id="Linux">Linux</a>
 
-## <a id="shell">Shell</a>
+## Shell
 
 ### 数值计算方式
 
@@ -175,7 +131,7 @@ echo "string demo 001" | cut -d " " -f 2
 | `${变量名%chars*}`         | 从 string 字符串右边第一次出现 chars* 的位置开始，<br>截取 chars* 左边的所有字符。 |
 | `${变量名%%chars*}`        | 从 string 字符串右边最后一次出现 chars* 的位置开始，<br>截取 chars* 左边的所有字符 |
 
-## <a id="archLinux">Arch Linux</a>
+## Arch Linux
 
 ### pacman包管理器
 
@@ -431,7 +387,7 @@ shutdown -h now
 
 
 
-## <a id="baseLinux">基础命令与权限控制</a>
+## 基础命令与权限控制
 
 #### cd 
 
@@ -779,7 +735,7 @@ ln [参数] [source][dest]
 > - -u<uid> 　修改用户ID。
 > - -U 　解除密码锁定。
 
-## <a id="baseTool">基础工具</a>
+## 基础工具
 
 ### grub
 
@@ -1226,7 +1182,7 @@ ln [参数] [source][dest]
 
 
 
-## <a id="awesomeTool">有趣的拓展工具</a>
+## 有趣的拓展工具
 
 
 
@@ -1765,9 +1721,9 @@ rsync foo.txt me@server:/home/me/ # 最基础的复制文件。与 scp 的操作
 rsync -a bar/ me@server:/home/me/ # -a：标记实现目录复制等。比 scp -r 能更好的处理符号链接等情况
 ```
 
-# <a id="database">Database</a>
+# Database
 
-## <a id="mysql">mysql</a>
+## mysql
 
 ### 数据类型
 
@@ -2298,9 +2254,9 @@ set[session|global] transaction isolation level [read uncommitted|read committed
 
 
 
-# <a id="go">Go</a>
+# Go
 
-## <a id="baseGrammer-go">BaseCrammer</a>
+## BaseCrammer
 
 ### 变量
 
@@ -2787,9 +2743,9 @@ func doubleScore(score *Score) {
 
 
 
-# <a id="c++">C++</a>
+# C++
 
-## <a id="baseGrammer-c++">BaseGrammer</a>
+## BaseGrammer
 
 ### C++11
 
@@ -2997,7 +2953,7 @@ export class my_class;
 //以上，使用`export`关键字将模块中的`my_function`函数和`my_class`类导出到外部
 ```
 
-## <a id="compiler-c++">Compiler</a>
+## 编译
 
 ### gcc/g++
 
@@ -3071,7 +3027,7 @@ export class my_class;
 > 
 >
 
-## <a id="build-c++">Build</a>
+## 构建
 
 ### Cmake(跨平台构建工具)
 
@@ -3104,9 +3060,9 @@ export class my_class;
 > #此处的PRIVATE代表只会依赖于这一个文件
 > ```
 
-# <a id="cloud">Cloud</a>
+# Cloud
 
-## <a id="docker">Docker</a>
+## docker
 
 ***介绍：Docker 是一个开源平台，支持开发人员构建、部署、运行、更新和管理*容器*，这些容器是标准化的可执行组件，结合了应用源代码以及在任何环境中运行该代码所需的操作系统 (OS) 库和依赖项。***
 
@@ -3158,7 +3114,7 @@ export class my_class;
 
 
 
-## <a id="minikube">Minikube</a>
+## minikube
 
 ***desc:适用于学习以及开发环境的小型kubernet集群***
 
@@ -3208,7 +3164,7 @@ minikube start --driver=docker --container-runtime=docker
 >
 > 😭
 
-## <a id="kubectl">Kubectl</a>
+## kubectl
 
 ***desc:kubenetes的控制工具***
 
@@ -3236,9 +3192,9 @@ minikube start --driver=docker --container-runtime=docker
 
 > 对进入节点的网络进行路由
 
-# <a id="toolbox">Toolbox</a>
+# Toolbox
 
-## <a id="git">Git</a>
+## Git
 
 ### BaseGrammer
 
@@ -3547,11 +3503,11 @@ HEAD
 >
 > - 示例: `merge: merge branch 'feature-xyz' into 'main'`
 
-## <a id="make">Make</a>
+## make
 
 ***make：利用makefile进行自动化目标生成***
 
-## <a id="gdb">GDB</a>
+## GDB
 
 ***描述：开源命令行调试器(GNU debugger)***
 
@@ -3576,9 +3532,9 @@ HEAD
 > info			i				#查看相关信息
 > ```
 
-# <a id="awesomeLanguage">Awesome-Language</a>
+# Awesome-Language
 
-## <a id="python">Python</a>
+## Python
 
 ### BaseGrammer
 
@@ -4011,9 +3967,9 @@ while True:
 ​    cv2.waitKey(1)
 ```
 
-# <a id="ancientScience">古代科学</a>
+# 古代科学
 
-## <a id="zhouyi">周易</a>
+## 周易
 
 ### 序卦传
 
@@ -4023,7 +3979,7 @@ while True:
 
 ***泽山咸,雷风恒,天山遁,雷天大壮,火地晋,地火明夷,风火家人,火泽睽,水山蹇,雷水解,山泽损,风雷益,泽天夬,天风姤,泽地萃,地风生,泽水困,水风井,泽火革,火风鼎,震为雷,艮为山,风山渐,雷泽归妹,雷火丰,火山旅,巽为风,兑为泽,风水涣,水泽节,风泽中孚,雷山小过,水火既济,火水未济***
 
-## <a id="qimendunjia">奇门遁甲</a>
+## 奇门遁甲
 
 ### 烟波钓叟赋
 
