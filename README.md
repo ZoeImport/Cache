@@ -1,16 +1,19 @@
+<a name="top"></a>
+
 # :open_hands: Welcome🎉
 
 :star:[**仓库链接**](https://github.com/zzll37/QingShu):heart:
 
 ## :page_facing_up: 目录
 
+
 ### :computer:<a href="#linux">Linux</a>
 
 - <a href="#shell">***Shell***</a>
 - <a href="#archLinux">***ArchLinux***</a>
-- <a href="#baseLinux">***基本操作***</a>
-- <a href="#baseTool">***基本工具***</a>
-- <a href="#awesomeTool">***有趣的拓展工具***</a>
+- <a href="#baseLinux">***BaseLinux***</a>
+- <a href="#baseTool">***BaseTool***</a>
+- <a href="#awesomeTool">***AwesomeTool***</a>
 
 ### :classical_building:<a href="#database">Database</a>
 
@@ -53,9 +56,10 @@
 
 
 
-# <a id="Linux">Linux</a>
+# <a id="linux">Linux</a> <span style="float: right;">[🔝](#top)</span>
 
-## <a id="shell">Shell</a>
+## <a id="shell">Shell</a> <span style="float: right;">[🔝](#top)</span>
+
 
 ### 数值计算方式
 
@@ -175,7 +179,7 @@ echo "string demo 001" | cut -d " " -f 2
 | `${变量名%chars*}`         | 从 string 字符串右边第一次出现 chars* 的位置开始，<br>截取 chars* 左边的所有字符。 |
 | `${变量名%%chars*}`        | 从 string 字符串右边最后一次出现 chars* 的位置开始，<br>截取 chars* 左边的所有字符 |
 
-## <a id="archLinux">Arch Linux</a>
+## <a id="archLinux">Arch Linux</a> <span style="float: right;">[🔝](#top)</span>
 
 ### pacman包管理器
 
@@ -431,7 +435,8 @@ shutdown -h now
 
 
 
-## <a id="baseLinux">基础命令与权限控制</a>
+## <a id="baseLinux">BaseLinux</a> <span style="float: right;">[🔝](#top)</span>
+
 
 #### cd 
 
@@ -779,7 +784,7 @@ ln [参数] [source][dest]
 > - -u<uid> 　修改用户ID。
 > - -U 　解除密码锁定。
 
-## <a id="baseTool">基础工具</a>
+## <a id="baseTool">BaseTool</a> <span style="float: right;">[🔝](#top)</span>
 
 ### grub
 
@@ -1226,7 +1231,8 @@ ln [参数] [source][dest]
 
 
 
-## <a id="awesomeTool">有趣的拓展工具</a>
+## <a id="awesomeTool">AwesomeTool</a> <span style="float: right;">[🔝](#top)</span>
+
 
 
 
@@ -1382,8 +1388,7 @@ ln [参数] [source][dest]
 > ​	colorls与ls的相关选项大部分相同，同时增加了颜色以及git状态查询，还以进行目录树显示，由于命令较长，所以可以与alias结合使用
 
 
-### 网络工具
-
+### 网络工具 
 ##### proxychains
 
 ***描述：终端中的代理软件，可以通过proxychains+部分命令实现科学上网***
@@ -1765,9 +1770,11 @@ rsync foo.txt me@server:/home/me/ # 最基础的复制文件。与 scp 的操作
 rsync -a bar/ me@server:/home/me/ # -a：标记实现目录复制等。比 scp -r 能更好的处理符号链接等情况
 ```
 
-# <a id="database">Database</a>
+# <a id="database">Database</a> <span style="float: right;">[🔝](#top)</span>
 
-## <a id="mysql">mysql</a>
+
+## <a id="mysql">mysql</a> <span style="float: right;">[🔝](#top)</span>
+
 
 ### 数据类型
 
@@ -1991,7 +1998,7 @@ grants 权限列表 on 数据库名,表名 to 'user'@'host';#授予权限
 revoke 权限列表 on 数据库名,表名 from 'user'@'host';#撤销权限
 ```
 
-### 函数
+### 函数    [🔝](#top) ⬆️
 
 #### 字符串函数
 
@@ -2222,7 +2229,7 @@ from student left join stu_course on student.id = stu_course.stu_id left join co
 
 
 
-### 事务
+### 事务   
 
 ***一组操作的集合，要么同时成功，要么同时失败***
 
@@ -2298,9 +2305,9 @@ set[session|global] transaction isolation level [read uncommitted|read committed
 
 
 
-# <a id="go">Go</a>
+# <a id="go">Go</a> <span style="float: right;">[🔝](#top)</span>
 
-## <a id="baseGrammer-go">BaseCrammer</a>
+## <a id="baseGrammer-go">BaseCrammer</a> <span style="float: right;">[🔝](#top)</span>
 
 ### 变量
 
@@ -2787,9 +2794,10 @@ func doubleScore(score *Score) {
 
 
 
-# <a id="c++">C++</a>
+# <a id="c++">C++</a> <span style="float: right;">[🔝](#top)</span>
 
-## <a id="baseGrammer-c++">BaseGrammer</a>
+## <a id="baseGrammer-c++">BaseGrammer</a> <span style="float: right;">[🔝](#top)</span>
+
 
 ### C++11
 
@@ -2997,7 +3005,8 @@ export class my_class;
 //以上，使用`export`关键字将模块中的`my_function`函数和`my_class`类导出到外部
 ```
 
-## <a id="compiler-c++">Compiler</a>
+## <a id="compiler-c++">Compiler</a> <span style="float: right;">[🔝](#top)</span>
+
 
 ### gcc/g++
 
@@ -3071,7 +3080,8 @@ export class my_class;
 > 
 >
 
-## <a id="build-c++">Build</a>
+## <a id="build-c++">Build</a> <span style="float: right;">[🔝](#top)</span>
+
 
 ### Cmake(跨平台构建工具)
 
@@ -3104,9 +3114,11 @@ export class my_class;
 > #此处的PRIVATE代表只会依赖于这一个文件
 > ```
 
-# <a id="cloud">Cloud</a>
+# <a id="cloud">Cloud</a> <span style="float: right;">[🔝](#top)</span>
 
-## <a id="docker">Docker</a>
+
+## <a id="docker">Docker</a> <span style="float: right;">[🔝](#top)</span>
+
 
 ***介绍：Docker 是一个开源平台，支持开发人员构建、部署、运行、更新和管理*容器*，这些容器是标准化的可执行组件，结合了应用源代码以及在任何环境中运行该代码所需的操作系统 (OS) 库和依赖项。***
 
@@ -3158,7 +3170,8 @@ export class my_class;
 
 
 
-## <a id="minikube">Minikube</a>
+## <a id="minikube">Minikube</a> <span style="float: right;">[🔝](#top)</span>
+
 
 ***desc:适用于学习以及开发环境的小型kubernet集群***
 
@@ -3208,7 +3221,7 @@ minikube start --driver=docker --container-runtime=docker
 >
 > 😭
 
-## <a id="kubectl">Kubectl</a>
+## <a id="kubectl">Kubectl</a> <span style="float: right;">[🔝](#top)</span>
 
 ***desc:kubenetes的控制工具***
 
@@ -3236,9 +3249,11 @@ minikube start --driver=docker --container-runtime=docker
 
 > 对进入节点的网络进行路由
 
-# <a id="toolbox">Toolbox</a>
+# <a id="toolbox">Toolbox</a> <span style="float: right;">[🔝](#top)</span>
 
-## <a id="git">Git</a>
+
+## <a id="git">Git</a> <span style="float: right;">[🔝](#top)</span>
+
 
 ### BaseGrammer
 
@@ -3547,11 +3562,13 @@ HEAD
 >
 > - 示例: `merge: merge branch 'feature-xyz' into 'main'`
 
-## <a id="make">Make</a>
+## <a id="make">Make</a> <span style="float: right;">[🔝](#top)</span>
+
 
 ***make：利用makefile进行自动化目标生成***
 
-## <a id="gdb">GDB</a>
+## <a id="gdb">GDB</a> <span style="float: right;">[🔝](#top)</span>
+
 
 ***描述：开源命令行调试器(GNU debugger)***
 
@@ -3576,9 +3593,11 @@ HEAD
 > info			i				#查看相关信息
 > ```
 
-# <a id="awesomeLanguage">Awesome-Language</a>
+# <a id="awesomeLanguage">Awesome-Language</a> <span style="float: right;">[🔝](#top)</span>
 
-## <a id="python">Python</a>
+
+## <a id="python">Python</a> <span style="float: right;">[🔝](#top)</span>
+
 
 ### BaseGrammer
 
@@ -3821,7 +3840,7 @@ def fun(var_1 :int) ->str:
 
 ******
 
-### 利用爬虫建立IP池
+### 利用爬虫建立IP池  
 
 #### 具体流程
 
@@ -3893,8 +3912,8 @@ do
 	fi
 done<IP_pool.txt
 ```
-
-### OpenCv库
+ 
+### OpenCv库  
 
 ***使用案例一：常规图形绘画及颜色配置***
 
@@ -4011,9 +4030,11 @@ while True:
 ​    cv2.waitKey(1)
 ```
 
-# <a id="ancientScience">古代科学</a>
+# <a id="ancientScience">Ancient Science</a> <span style="float: right;">[🔝](#top)</span>
 
-## <a id="zhouyi">周易</a>
+
+## <a id="zhouyi">周易</a> <span style="float: right;">[🔝](#top)</span>
+
 
 ### 序卦传
 
@@ -4023,7 +4044,8 @@ while True:
 
 ***泽山咸,雷风恒,天山遁,雷天大壮,火地晋,地火明夷,风火家人,火泽睽,水山蹇,雷水解,山泽损,风雷益,泽天夬,天风姤,泽地萃,地风生,泽水困,水风井,泽火革,火风鼎,震为雷,艮为山,风山渐,雷泽归妹,雷火丰,火山旅,巽为风,兑为泽,风水涣,水泽节,风泽中孚,雷山小过,水火既济,火水未济***
 
-## <a id="qimendunjia">奇门遁甲</a>
+## <a id="qimendunjia">奇门遁甲</a> <span style="float: right;">[🔝](#top)</span>
+
 
 ### 烟波钓叟赋
 
@@ -4486,7 +4508,7 @@ while True:
 
 #### 基础
 
-### 二十四节气
+### 二十四节气 
 
 > ****
 >
