@@ -2,8 +2,9 @@ package go_answer_test
 
 import (
 	"fmt"
-	go_answer "leetcode_answer_go"
 	"testing"
+
+	go_answer "leetcode_answer_go"
 )
 
 func TestPrintfndromeNumber(t *testing.T) {
@@ -35,4 +36,13 @@ func TestMyAtoi(t *testing.T) {
 
 func TestIntToRoman(t *testing.T) {
 	fmt.Println(go_answer.IntToRoamn(3749))
+}
+
+func TestAddDigits(t *testing.T) {
+	fmt.Println(8 ^ 3)
+}
+
+func TestSubProductAdd(t *testing.T) {
+	res := go_answer.SubtractProductAndSum(234)
+	fmt.Println(res)
 }
