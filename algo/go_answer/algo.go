@@ -280,3 +280,22 @@ func SubtractProductAndSum(n int) int {
 func toLowerCase(s string) string {
 	return strings.ToLower(s)
 }
+
+func transpose(matrix [][]int) [][]int {
+	col, row := len(matrix), len(matrix[0])
+	result := make([][]int, row)
+	for i := range row {
+		result[i] = make([]int, col)
+		for j := range result[i] {
+			result[i][j] = -1
+		}
+	}
+
+	for i, cols := range matrix {
+		for j, v := range cols {
+			result[j][i] = v
+		}
+	}
+
+	return result
+}
