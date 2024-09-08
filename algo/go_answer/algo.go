@@ -299,3 +299,49 @@ func transpose(matrix [][]int) [][]int {
 
 	return result
 }
+
+func MaxScore(s string) int {
+	length := len(s)
+	result := 0
+	ans := 0
+	for index := 1; index < length; index++ {
+		for _, v := range s[:index] {
+			if v-'0' == 0 {
+				ans++
+			}
+		}
+
+		for _, v2 := range s[index:] {
+			if v2-'1' == 0 {
+				ans++
+			}
+		}
+		if ans > result {
+			result = ans
+		}
+		ans = 0
+	}
+	return result
+}
+
+func maxScore2(str string) int {
+	m := func(a, b int) int {
+		if a > b {
+			return a
+		}
+		return b
+	}
+
+	score := int('1'-str[0]) + strings.Count(str[1:], "1")
+	result := score
+
+	for _, v := range str[1 : len(str)-1] {
+		if v == '0' {
+			score++
+		} else {
+			score--
+		}
+		result = m(score, result)
+	}
+	return result
+}
