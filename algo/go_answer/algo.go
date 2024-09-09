@@ -360,3 +360,85 @@ func search(nums []int, target int) int {
     }
     return -1
 }
+
+func sortedSquares(nums []int) []int {
+    l,r:=0,len(nums)-1
+    i:=r
+    res:=make([]int,len(nums))
+   
+    for l<=r {
+        if (nums[l]*nums[l])>(nums[r]*nums[r]){
+            res[i]=nums[l]*nums[l]
+            l++
+            i--
+        }else {
+            res[i]=nums[r]*nums[r]
+            r--
+            i--
+        }
+    }
+    return res
+}
+
+func minSubArrayLen(target int, nums []int) int {
+    min:=func(a,b int)int{
+        if a>b{
+            return b
+        }
+        return a
+    }
+    
+    length:=len(nums)
+    res:=length+1
+    l,r:=0,0
+    sub:= -99
+    sum:=0
+    for r=0;r<length;r++{
+        sum+=nums[r]
+        for sum>=target {
+            sub=r-l+1
+            sum-=nums[l]
+            l++
+            res=min(res,sub)
+        }
+        
+    }
+    if res==length+1{
+        return 0
+    }
+    return res
+}
+
+
+func searchInsert(nums []int, target int) int {
+    l,r:=0,len(nums)-1
+    
+    for l<=r{
+        mid:=l+(r-l)>>1
+        if target>nums[mid]{
+            l=mid+1
+        }else if target<nums[mid]{
+            r=mid-1
+        }else {
+            return mid
+        }
+    }
+    
+    return r+1
+}
+
+func peakIndexInMountainArray(arr []int) int {
+    l,r,ans:=0,len(arr)-1,0
+    
+    for l<=r{
+        mid:=l+(r-l)>>1
+        if arr[mid]>arr[mid+1]{
+            ans=mid
+            r=mid-1
+        }else{
+            l=mid+1
+        }
+    }
+    return ans
+   
+}
