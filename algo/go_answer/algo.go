@@ -442,3 +442,29 @@ func peakIndexInMountainArray(arr []int) int {
     return ans
    
 }
+
+func searchRange(nums []int, target int) []int {
+
+    binSearch:=func(nums []int,target int)int{
+        l,r:=0,len(nums)-1
+        for l<=r {
+            mid:=l+(r-l)>>1
+            if nums[mid]>=target{
+                r=mid -1
+            }else{
+                l=mid+1
+            }
+        }
+        return l
+    }
+
+    length:=len(nums)
+
+    l:=binSearch(nums,target)
+    if l>=length||nums[l]!=target{
+        return []int{-1,-1}    
+    }
+    r:=binSearch(nums,target+1)
+    return []int{l,r-1}
+}
+
