@@ -468,3 +468,74 @@ func searchRange(nums []int, target int) []int {
     return []int{l,r-1}
 }
 
+func removeDuplicates(nums []int) int {
+   s,f:=0,0
+   length:=len(nums)
+   
+   for f<length{
+       if nums[f]!=nums[s]{
+          s++
+          nums[s]=nums[f] 
+       }
+       f++
+   }
+   return s+1
+}
+
+
+func moveZeroes(nums []int)  {
+   s,f:=0,0
+   length:=len(nums)
+   
+   for f<length{
+       if nums[f]!=0{
+           nums[s],nums[f]=nums[f],nums[s] 
+           s++
+       }
+       f++
+   }
+}
+
+
+func backspaceCompare(s string, t string) bool {
+    sl,tl,sks,skt:=len(s)-1,len(t)-1,0,0
+    for sl>=0 || tl>=0{
+        for sl>=0{
+            if s[sl]=='#'{
+                sks++
+                sl--
+            }else if sks>0{
+                sks--
+                sl--
+            }else{
+                break
+            }
+        }
+        
+        for tl>=0{
+            if t[tl]=='#'{
+                skt++
+                tl--
+            }else if skt>0{
+                skt--
+                tl--
+            }else{
+                break
+            }
+        }
+        
+        if sl>=0&&tl>=0{
+            if s[sl]!=t[tl]{
+                return false
+            }
+        }else if sl>=0 || tl>=0{
+            return false
+        }
+        
+        sl--
+        tl--
+        
+    }
+    
+    return true
+}
