@@ -539,3 +539,125 @@ func backspaceCompare(s string, t string) bool {
     
     return true
 }
+
+func spiralOrder(matrix [][]int) []int {
+
+	min := func(a, b int) int {
+		if a > b {
+			return b
+		}
+		return a
+	}
+
+	i, j := 0, 0
+	stx, sty := 0, 0
+	offset := 1
+
+	rows := len(matrix)
+	col := len(matrix[0])
+	if rows == 1 {
+		return matrix[0]
+	}
+	if col == 1 {
+		tmp := make([]int, 0, rows)
+		for t := range rows {
+			tmp = append(tmp, matrix[t][0])
+		}
+		return tmp
+	}
+
+	minV := min(rows, col)
+	rd := minV / 2
+
+	res := make([]int, 0, col*rows)
+
+	for r := 0; r < rd; r++ {
+		for i, j = stx, sty; j < col-offset; j++ {
+			res = append(res, matrix[i][j])
+		}
+		for ; i < rows-offset; i++ {
+			res = append(res, matrix[i][j])
+		}
+		for ; j > offset-1; j-- {
+			res = append(res, matrix[i][j])
+		}
+		for ; i > offset-1; i-- {
+			res = append(res, matrix[i][j])
+		}
+		offset++
+		stx++
+		sty++
+	}
+	offset = col - rows
+	rest := false
+
+	if minV%2==0 {
+		rest = false
+	} else {
+		rest = true
+	}
+
+	i++
+	j++
+	if rest {
+		if offset > 0   {
+			for _ = range offset + 1 {
+				res = append(res, matrix[i][j])
+				j++
+			}
+		} else if offset < 0   {
+			for _ = range ((-1) * offset) + 1 {
+				res = append(res, matrix[i][j])
+				i++
+			}
+		} else if (col*rows)%2 != 0 {
+			res = append(res, matrix[rows/2][col/2])
+		}
+	}
+	return res
+}
+
+func generateMatrix(n int) [][]int {
+    
+    if n==0{
+        return [][]int{} 
+    }
+    
+    stx,sty:=0,0
+    i,j:=0,0
+    offset:=1
+    
+    res:=make([][]int,n)
+    for t:= range res{
+        res[t]=make([]int,n)
+    }
+
+    count:=1
+    cent:=n/2
+    
+    for r:=0;r<cent;r++ {
+        for i,j=stx,sty;j<n-offset;j++{
+            res[i][j]=count
+            count++
+        }
+        for ;i<n-offset;i++{
+            res[i][j]=count
+            count++
+        }
+        for ;j>offset-1;j--{
+            res[i][j]=count
+            count++
+        }
+        for ;i>offset-1;i--{
+            res[i][j]=count
+            count++
+        }
+        offset++
+        stx++
+        sty++
+    }         
+    if n%2!=0{
+        res[cent][cent]=n*n
+    }
+    return res
+}
