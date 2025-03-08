@@ -1,4 +1,8 @@
 **/build/
 **/.vscode/
 **/.idea/
+.venv
 package/
+*.tar
+
+toy/clash-metacubexd/config.yaml
