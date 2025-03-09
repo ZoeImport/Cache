@@ -4,5 +4,3 @@
 .venv
 package/
 *.tar
-
-toy/clash-metacubexd/config.yaml
