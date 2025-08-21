@@ -160,11 +160,102 @@ func clientRequestToPython() {
 	log.Printf("Go service received response from Python: %s", body)
 }
 
-func main() {
-	go startGoServer("certs/ca.crt", "certs/go-server.crt", "certs/go-server.key", ":8000")
-	// 简单起见，我们在这里也实现了 Go 服务作为客户端的部分
-	// 实际项目中，这部分会由 Python 客户端调用 Go 动态库来完成
+// This function handles loading the TLS credentials for both client and server roles.
+func loadTLSCredentials(caCertPath, serviceCertPath, serviceKeyPath string) (*tls.Config, *tls.Config, error) {
+	// 1. Load the service's certificate and key.
+	cert, err := tls.LoadX509KeyPair(serviceCertPath, serviceKeyPath)
+	if err != nil {
+		return nil, nil, fmt.Errorf("failed to load key pair: %v", err)
+	}
 
-	//clientRequestToPython()
+	// 2. Load the CA certificate to trust others.
+	caCert, err := os.ReadFile(caCertPath)
+	if err != nil {
+		return nil, nil, fmt.Errorf("failed to read CA certificate: %v", err)
+	}
+	caCertPool := x509.NewCertPool()
+	if ok := caCertPool.AppendCertsFromPEM(caCert); !ok {
+		return nil, nil, fmt.Errorf("failed to append CA certificate to pool")
+	}
+
+	// 3. Create the TLS config for the server role.
+	serverTLSConfig := &tls.Config{
+		Certificates: []tls.Certificate{cert},
+		ClientCAs:    caCertPool,
+		ClientAuth:   tls.RequireAndVerifyClientCert,
+	}
+
+	// 4. Create the TLS config for the client role.
+	clientTLSConfig := &tls.Config{
+		Certificates: []tls.Certificate{cert},
+		RootCAs:      caCertPool,
+	}
+
+	return serverTLSConfig, clientTLSConfig, nil
+}
+
+var ch chan struct{}
+
+// startServer launches the service in server mode.
+func startServer(serviceName, listenAddr string, tlsConfig *tls.Config) {
+	server := &http.Server{
+		Addr:      listenAddr,
+		TLSConfig: tlsConfig,
+		Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			log.Printf("%s server: Received a request from client.", serviceName)
+			io.WriteString(w, "Hello from the Go server!")
+			ch <- struct{}{}
+		}),
+	}
+
+	log.Printf("Starting %s server on %s...", serviceName, listenAddr)
+	if err := server.ListenAndServeTLS("", ""); err != nil {
+		log.Fatalf("Failed to start %s server: %v", serviceName, err)
+	}
+}
+
+// makeRequest acts as the service's client, making an outbound request.
+func makeRequest(clientName, targetURL string, tlsConfig *tls.Config) {
+	client := &http.Client{
+		Transport: &http.Transport{
+			TLSClientConfig: tlsConfig,
+		},
+	}
+
+	log.Printf("%s client: Making a request to %s...", clientName, targetURL)
+	resp, err := client.Get(targetURL)
+	if err != nil {
+		log.Fatalf("❌ %s client: Request failed: %v", clientName, err)
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatalf("❌ %s client: Failed to read response body: %v", clientName, err)
+	}
+	log.Printf("✅ %s client: Received response from %s: %s", clientName, targetURL, body)
+}
+
+func main() {
+	ch = make(chan struct{}, 1)
+	// Configure and start the Go service as a server.
+	goServerTLSConfig, goClientTLSConfig, err := loadTLSCredentials(
+		"certs/ca.crt",
+		"certs/go-server.crt",
+		"certs/go-server.key",
+	)
+	if err != nil {
+		log.Fatalf("Failed to load Go service TLS credentials: %v", err)
+	}
+	go startServer("Go Service", ":8000", goServerTLSConfig)
+
+	// Wait for the Go server to start.
+	<-ch
+
+	// Now, the Go service acts as a client and makes a request to the Python service.
+	// The Python service is expected to be running on port 8001.
+	makeRequest("Go Service", "https://localhost:8001", goClientTLSConfig)
+
+	// Keep the main function alive to serve requests from Python.
 	select {}
 }
