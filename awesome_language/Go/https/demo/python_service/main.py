@@ -53,7 +53,7 @@ def client_request_to_go():
     # 释放 Go 代码中分配的内存
     # 注意：这里需要确保 Go 库中提供了 free 函数
     # 为了简化，我们忽略这一步，但在生产环境中非常重要
-    auth_lib.FreeString(response_ptr)
+    # auth_lib.FreeString(response_ptr)
     print(f"Python service received response from Go: {response_str}")
 
 if __name__ == "__main__":

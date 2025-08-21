@@ -34,8 +34,8 @@ openssl req -x509 -new -nodes -keyout certs/ca.key -sha256 -days 365 -out certs/
 # 2. 生成 Go 服务的证书和私钥
 ```shell
 openssl genrsa -out certs/go-server.key 2048
-openssl req -new -key certs/go-server.key -out certs/go-server.csr -subj "/CN=go-service"
-openssl x509 -req -in certs/go-server.csr -CA certs/ca.crt -CAkey certs/ca.key -CAcreateserial -out certs/go-server.crt -days 365 -sha256
+openssl req -new -key certs/go-server.key -out certs/go-server.csr -config openssl_go.cnf
+openssl x509 -req -in certs/go-server.csr -CA certs/ca.crt -CAkey certs/ca.key -CAcreateserial -out certs/go-server.crt -days 365 -sha256 -extfile ../certs/openssl.cnf -extensions v3_req
 ```
 # 3. 生成 Python 服务的证书和私钥
 ```shell
