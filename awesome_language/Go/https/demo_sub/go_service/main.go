@@ -181,8 +181,8 @@ func loadTLSCredentials(caCertPath, serviceCertPath, serviceKeyPath string) (*tl
 	// 3. Create the TLS config for the server role.
 	serverTLSConfig := &tls.Config{
 		Certificates: []tls.Certificate{cert},
-		ClientCAs:    caCertPool,
-		ClientAuth:   tls.RequireAndVerifyClientCert,
+		//ClientCAs:    caCertPool,
+		//ClientAuth:   tls.RequireAndVerifyClientCert,
 	}
 
 	// 4. Create the TLS config for the client role.

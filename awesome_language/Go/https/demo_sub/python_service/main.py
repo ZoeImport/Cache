@@ -12,8 +12,8 @@ def start_python_server():
 
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     context.load_cert_chain(
-        certfile="../certs/mock-server.crt",
-        keyfile="../certs/mock-server.key"
+        certfile="certs/python-server.crt",
+        keyfile="certs/python-server.key"
     )
     context.load_verify_locations(cafile="certs/ca.crt")
     context.verify_mode = ssl.CERT_REQUIRED
