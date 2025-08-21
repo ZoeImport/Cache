@@ -4,3 +4,8 @@
 .venv
 package/
 *.tar
+
+*.crt
+*.key
+*.srl
+*.csr
