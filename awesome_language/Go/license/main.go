@@ -1,8 +1,9 @@
-package main
+package license
 
 import (
 	"context"
 	"crypto"
+	"crypto/hmac"
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/sha256"
@@ -13,7 +14,6 @@ import (
 	"encoding/pem"
 	"fmt"
 	"os"
-	"os/exec"
 	"strings"
 	"time"
 
@@ -23,14 +23,14 @@ import (
 	"k8s.io/client-go/rest"
 )
 
-// LicenseContent 定义License数据结构
-type LicenseContent struct {
-	MachineID string    `json:"machine_id"`
+// Content defines the license data structure
+type Content struct {
+	ClusterID string    `json:"cluster_id"`
 	Expiry    time.Time `json:"expiry"`
-	UUID      string    `json:"uuid"` // 用于哈希链的唯一ID
+	Seed      string    `json:"seed"` // Used to generate the HMAC key
 }
 
-// DailyLog 定义每日打卡记录
+// DailyLog defines a single daily log entry
 type DailyLog struct {
 	Date         string `json:"date"`
 	PreviousHash string `json:"previous_hash"`
@@ -44,50 +44,22 @@ const (
 	logFile        = "license_log.dat"
 )
 
-// GetClusterID 使用 client-go 库获取集群的唯一 UID
-func GetClusterID(ctx context.Context) (string, error) {
-	// 创建一个 in-cluster 配置，它会自动使用 Pod 挂载的 Service Account Token
-	config, err := rest.InClusterConfig()
-	if err != nil {
-		return "", fmt.Errorf("failed to create in-cluster config: %w", err)
-	}
-
-	// 创建客户端集
-	clientSet, err := kubernetes.NewForConfig(config)
-	if err != nil {
-		return "", fmt.Errorf("failed to create Kubernetes clientSet: %w", err)
-	}
-
-	// 使用 clientSet 获取 kube-system 命名空间
-	namespace, err := clientSet.CoreV1().Namespaces().Get(ctx, "kube-system", metav1.GetOptions{})
-	if err != nil {
-		return "", fmt.Errorf("failed to get kube-system namespace: %w", err)
-	}
-
-	// 返回命名空间的 UID
-	return string(namespace.ObjectMeta.UID), nil
-}
-
-// GenerateKeys 生成公私钥文件
+// GenerateKeys generates public and private key files
 func GenerateKeys() error {
 	privateKey, err := rsa.GenerateKey(rand.Reader, 2048)
 	if err != nil {
 		return fmt.Errorf("failed to generate private key: %w", err)
 	}
 
-	// 保存私钥
 	privatePEM := pem.EncodeToMemory(&pem.Block{
-		Type:  "RSA PRIVATE KEY",
-		Bytes: x509.MarshalPKCS1PrivateKey(privateKey),
+		Type: "RSA PRIVATE KEY", Bytes: x509.MarshalPKCS1PrivateKey(privateKey),
 	})
 	if err := os.WriteFile(privateKeyFile, privatePEM, 0600); err != nil {
 		return fmt.Errorf("failed to write private key file: %w", err)
 	}
 
-	// 保存公钥
 	publicPEM := pem.EncodeToMemory(&pem.Block{
-		Type:  "RSA PUBLIC KEY",
-		Bytes: x509.MarshalPKCS1PublicKey(&privateKey.PublicKey),
+		Type: "RSA PUBLIC KEY", Bytes: x509.MarshalPKCS1PublicKey(&privateKey.PublicKey),
 	})
 	if err := os.WriteFile(publicKeyFile, publicPEM, 0644); err != nil {
 		return fmt.Errorf("failed to write public key file: %w", err)
@@ -97,8 +69,8 @@ func GenerateKeys() error {
 	return nil
 }
 
-// GenerateLicense 根据机器唯一标识生成加密的License并保存到文件
-func GenerateLicense(machineID string, expirationTime time.Time) error {
+// GenerateLicense creates a signed license and saves it to a file
+func GenerateLicense(clusterID string, expirationTime time.Time) error {
 	privateKeyPEM, err := os.ReadFile(privateKeyFile)
 	if err != nil {
 		return fmt.Errorf("failed to read private key file: %w", err)
@@ -108,10 +80,8 @@ func GenerateLicense(machineID string, expirationTime time.Time) error {
 		return err
 	}
 
-	licenseData := LicenseContent{
-		MachineID: machineID,
-		Expiry:    expirationTime,
-		UUID:      uuid.New().String(),
+	licenseData := Content{
+		ClusterID: clusterID, Expiry: expirationTime, Seed: uuid.New().String(), // Generate a unique seed for this license
 	}
 	jsonData, err := json.Marshal(licenseData)
 	if err != nil {
@@ -136,8 +106,8 @@ func GenerateLicense(machineID string, expirationTime time.Time) error {
 	return nil
 }
 
-// VerifyLicense 校验License的有效性
-func VerifyLicense() (bool, error) {
+// VerifyLicense verifies the license validity, including the HMAC hash chain
+func VerifyLicense(clusterID string) (bool, error) {
 	licenseString, err := os.ReadFile(licenseFile)
 	if err != nil {
 		return false, fmt.Errorf("failed to read license file: %w", err)
@@ -163,42 +133,42 @@ func VerifyLicense() (bool, error) {
 	if err != nil {
 		return false, err
 	}
+
 	hashed := sha256.Sum256(jsonData)
 	if err := rsa.VerifyPKCS1v15(publicKey, crypto.SHA256, hashed[:], signature); err != nil {
 		return false, fmt.Errorf("signature verification failed: %w", err)
 	}
 
-	var licenseData LicenseContent
+	var licenseData Content
 	if err := json.Unmarshal(jsonData, &licenseData); err != nil {
 		return false, err
 	}
 
-	currentMachineID, err := getMachineIDInLinux()
-	if err != nil {
-		return false, fmt.Errorf("failed to get current machine id: %w", err)
-	}
-
-	if licenseData.MachineID != currentMachineID {
-		return false, fmt.Errorf("machine ID mismatch: expected %s, got %s", licenseData.MachineID, currentMachineID)
+	if licenseData.ClusterID != clusterID {
+		return false, fmt.Errorf("cluster ID mismatch: expected %s, got %s", licenseData.ClusterID, clusterID)
 	}
 
 	if time.Now().After(licenseData.Expiry) {
 		return false, fmt.Errorf("license expired")
 	}
 
-	if err := verifyAndLogDaily(licenseData.UUID); err != nil {
+	// Verify and log the daily hash chain
+	if err := verifyAndLogDaily(licenseData); err != nil {
 		return false, fmt.Errorf("daily log verification failed: %w", err)
 	}
 
 	return true, nil
 }
 
-// verifyAndLogDaily 每日哈希链验证和记录
-func verifyAndLogDaily(licenseUUID string) error {
+// verifyAndLogDaily verifies the HMAC hash chain and logs a new entry
+func verifyAndLogDaily(licenseData Content) error {
 	content, err := os.ReadFile(logFile)
 	if err != nil && !os.IsNotExist(err) {
 		return err
 	}
+
+	// Generate the HMAC key from the license data
+	key := sha256.Sum256([]byte(licenseData.ClusterID + licenseData.Seed))
 
 	currentDate := time.Now().Format("2006-01-02")
 	var logs []DailyLog
@@ -207,6 +177,8 @@ func verifyAndLogDaily(licenseUUID string) error {
 			return fmt.Errorf("invalid log file content: %w", err)
 		}
 	}
+
+	previousHash := hex.EncodeToString(key[:])
 
 	if len(logs) > 0 {
 		lastLog := logs[len(logs)-1]
@@ -220,36 +192,42 @@ func verifyAndLogDaily(licenseUUID string) error {
 			return nil
 		}
 
-		previousHash := licenseUUID
-		for _, log := range logs {
-			expectedHash := sha256.Sum256([]byte(log.Date + previousHash))
-			if hex.EncodeToString(expectedHash[:]) != log.CurrentHash {
-				return fmt.Errorf("hash chain integrity compromised at date: %s", log.Date)
+		// Verify the existing chain
+		for _, logEntry := range logs {
+			mac := hmac.New(sha256.New, key[:])
+			mac.Write([]byte(logEntry.Date + previousHash))
+			expectedHash := hex.EncodeToString(mac.Sum(nil))
+
+			if expectedHash != logEntry.CurrentHash {
+				return fmt.Errorf("hash chain integrity compromised at date: %s", logEntry.Date)
 			}
-			previousHash = log.CurrentHash
+			previousHash = logEntry.CurrentHash
 		}
 
-		sum256 := sha256.Sum256([]byte(currentDate + previousHash))
+		// Append new log entry
+		mac := hmac.New(sha256.New, key[:])
+		mac.Write([]byte(currentDate + previousHash))
 		newLog := DailyLog{
-			Date:         currentDate,
-			PreviousHash: previousHash,
-			CurrentHash:  hex.EncodeToString(sum256[:]),
+			Date: currentDate, PreviousHash: previousHash, CurrentHash: hex.EncodeToString(mac.Sum(nil)),
 		}
 		logs = append(logs, newLog)
 	} else {
-		firstHash := sha256.Sum256([]byte(currentDate + licenseUUID))
+		// First log entry
+		mac := hmac.New(sha256.New, key[:])
+		mac.Write([]byte(currentDate + previousHash))
 		logs = append(logs, DailyLog{
-			Date:         currentDate,
-			PreviousHash: licenseUUID,
-			CurrentHash:  hex.EncodeToString(firstHash[:]),
+			Date: currentDate, PreviousHash: previousHash, CurrentHash: hex.EncodeToString(mac.Sum(nil)),
 		})
 	}
 
-	newContent, _ := json.MarshalIndent(logs, "", "  ")
+	newContent, err := json.MarshalIndent(logs, "", "  ")
+	if err != nil {
+		return fmt.Errorf("failed to marshal logs: %w", err)
+	}
 	return os.WriteFile(logFile, newContent, 0644)
 }
 
-// parsePrivateKey 从 PEM 格式解析私钥
+// --- Utility functions ---
 func parsePrivateKey(pemStr string) (*rsa.PrivateKey, error) {
 	block, _ := pem.Decode([]byte(pemStr))
 	if block == nil {
@@ -262,7 +240,6 @@ func parsePrivateKey(pemStr string) (*rsa.PrivateKey, error) {
 	return key, nil
 }
 
-// parsePublicKey 从 PEM 格式解析公钥
 func parsePublicKey(pemStr string) (*rsa.PublicKey, error) {
 	block, _ := pem.Decode([]byte(pemStr))
 	if block == nil {
@@ -275,57 +252,64 @@ func parsePublicKey(pemStr string) (*rsa.PublicKey, error) {
 	return pub, nil
 }
 
-// getMachineIDInLinux 使用 dmidecode 获取 CPU 和主板序列号
-func getMachineIDInLinux() (string, error) {
-	cmd := exec.Command("sudo", "dmidecode", "-t", "processor")
-	out, err := cmd.Output()
+// GetClusterID fetches the cluster UID using client-go
+func GetClusterID(ctx context.Context) (string, error) {
+	config, err := rest.InClusterConfig()
 	if err != nil {
-		return "", fmt.Errorf("failed to run dmidecode -t processor: %w", err)
-	}
-	cpuID := parseDmiOutput(string(out), "ID:")
-	cmd = exec.Command("sudo", "dmidecode", "-t", "baseboard")
-	out, err = cmd.Output()
-	if err != nil {
-		return "", fmt.Errorf("failed to run dmidecode -t baseboard: %w", err)
-	}
-	boardID := parseDmiOutput(string(out), "Serial Number:")
-
-	if cpuID == "" || boardID == "" {
-		return "", fmt.Errorf("failed to extract hardware IDs from dmidecode output")
+		return "", fmt.Errorf("failed to create in-cluster config: %w", err)
 	}
 
-	return fmt.Sprintf("%s-%s", cpuID, boardID), nil
+	clientset, err := kubernetes.NewForConfig(config)
+	if err != nil {
+		return "", fmt.Errorf("failed to create Kubernetes clientset: %w", err)
+	}
+
+	namespace, err := clientset.CoreV1().Namespaces().Get(ctx, "kube-system", metav1.GetOptions{})
+	if err != nil {
+		return "", fmt.Errorf("failed to get kube-system namespace: %w", err)
+	}
+
+	return string(namespace.ObjectMeta.UID), nil
 }
 
-// parseDmiOutput 解析 dmidecode 的输出，提取指定关键词后的值
-func parseDmiOutput(output, key string) string {
-	lines := strings.Split(output, "\n")
-	for _, line := range lines {
-		if strings.Contains(line, key) {
-			value := strings.TrimSpace(strings.Split(line, key)[1])
-			return strings.ReplaceAll(value, " ", "")
-		}
-	}
-	return ""
-}
-
-func main() {
-	// 在客户部署环境，只需运行 VerifyLicense：
-	fmt.Println("\n--- Verifying License for the first time ---")
-	valid, err := VerifyLicense()
-	if err != nil {
-		fmt.Println("License validation failed:", err)
-	} else {
-		fmt.Println("License is valid:", valid)
-	}
-
-	// 模拟第二天运行，进行每日打卡校验
-	fmt.Println("\n--- Simulating verification on a new day ---")
-	time.Sleep(2 * time.Second) // 模拟时间流逝
-	valid, err = VerifyLicense()
-	if err != nil {
-		fmt.Println("License validation failed:", err)
-	} else {
-		fmt.Println("License is valid:", valid)
-	}
-}
+//
+//func main() {
+//	// --- License Generation (Run this only on the license server) ---
+//	fmt.Println("--- Running License Generation ---")
+//	if err := GenerateKeys(); err != nil {
+//		log.Fatalf("Error generating keys: %v", err)
+//	}
+//
+//	//clusterID, err := GetClusterID(context.Background())
+//	//if err != nil {
+//	//	log.Fatalf("Error getting cluster ID: %v", err)
+//	//}
+//
+//	clusterID := "3e3e6f57-2150-4d00-9f8b-7dd1c1262668"
+//
+//	if err := GenerateLicense(clusterID, time.Now().Add(time.Hour*24*365)); err != nil {
+//		log.Fatalf("Error generating license: %v", err)
+//	}
+//	fmt.Println("-------------------------------------")
+//
+//	// --- License Verification (Run this on the customer's machine inside a Pod) ---
+//	fmt.Println("--- Running License Verification ---")
+//	// The program would automatically get the ClusterID here
+//
+//	currentClusterID := "sample-cluster-uid-12345"
+//
+//	// Simulate daily checks
+//	for i := 0; i < 3; i++ {
+//		fmt.Printf("Verifying license on day %d...\n", i+1)
+//		isValid, err := VerifyLicense(currentClusterID)
+//		if err != nil {
+//			log.Fatalf("License validation failed: %v", err)
+//		}
+//		if !isValid {
+//			log.Fatalf("License is invalid.")
+//		}
+//		fmt.Printf("License is valid.\n")
+//		// Simulate time passing to trigger a new daily log entry
+//		time.Sleep(1 * time.Second)
+//	}
+//}
