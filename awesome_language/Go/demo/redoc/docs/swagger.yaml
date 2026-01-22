@@ -1,0 +1,65 @@
+basePath: /api/v1
+definitions:
+  main.Detail:
+    properties:
+      id:
+        description: 字段ID
+        example: 100
+        type: integer
+      name:
+        description: 字段名称
+        example: Nested Item
+        type: string
+    type: object
+  main.UserResponse:
+    properties:
+      code:
+        description: 状态码
+        example: 200
+        type: integer
+      data:
+        allOf:
+        - $ref: '#/definitions/main.Detail'
+        description: 嵌套的详细数据，此处即是您提到的复杂嵌套类型
+      message:
+        description: 消息提示
+        example: Success
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: 这是一个使用 Gin 和 Swaggo 生成的 Go 接口文档示例，并使用 ReDoc 展示。
+  title: Go 嵌套 API 文档示例 (ReDoc 集成)
+  version: "1.0"
+paths:
+  /users/{id}:
+    get:
+      consumes:
+      - application/json
+      description: 根据用户 ID 获取用户详细信息，包含复杂嵌套结构。
+      parameters:
+      - description: 用户 ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功响应，包含嵌套数据
+          schema:
+            $ref: '#/definitions/main.UserResponse'
+        "400":
+          description: 请求参数错误
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: 获取用户详细信息
+      tags:
+      - users
+schemes:
+- http
+swagger: "2.0"

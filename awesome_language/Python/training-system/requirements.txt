@@ -1,0 +1,10 @@
+hydra-core
+SQLAlchemy
+psycopg2-binary
+pydantic
+mlflow
+transformers
+datasets
+trl
+peft
+bitsandbytes

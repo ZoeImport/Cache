@@ -1,0 +1,11 @@
+defaults:
+  - _self_
+  - model: qwen_1.5b  # 适配 GTX 1650
+  - db: postgres_local
+  - train: default_train
+
+project_name: "1650_learning_loop"
+
+mlflow:
+  uri: "http://localhost:5000"
+  experiment_name: "qwen_1.5b_tuning"
