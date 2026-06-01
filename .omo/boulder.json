@@ -1,0 +1,137 @@
+{
+  "active_plan": "/home/zoe/CodeSpace/love-story/.omo/plans/ai-ml-compendium-execution.md",
+  "started_at": "2026-06-01T09:55:27.593Z",
+  "session_ids": [
+    "opencode:ses_17d891ac1ffelMGf0nmZQwAVJC",
+    "opencode:ses_17d60e32cffeKrneVfMbOCkB0B",
+    "opencode:ses_17d60d473ffef5gfdXSTfrph11",
+    "opencode:ses_17d60c13fffey7S0eOBP2tKQHG",
+    "opencode:ses_17d60b20effeDXZgAPn93QhEU4",
+    "opencode:ses_17d609f2effewKEzWo4dTNjvVR",
+    "opencode:ses_17d5cef50ffelC3w4Arr6KvWCh"
+  ],
+  "plan_name": "ai-ml-compendium-execution",
+  "worktree_path": null,
+  "session_origins": {
+    "opencode:ses_17d891ac1ffelMGf0nmZQwAVJC": "direct",
+    "opencode:ses_17d60e32cffeKrneVfMbOCkB0B": "appended",
+    "opencode:ses_17d60d473ffef5gfdXSTfrph11": "appended",
+    "opencode:ses_17d60c13fffey7S0eOBP2tKQHG": "appended",
+    "opencode:ses_17d60b20effeDXZgAPn93QhEU4": "appended",
+    "opencode:ses_17d609f2effewKEzWo4dTNjvVR": "appended",
+    "opencode:ses_17d5cef50ffelC3w4Arr6KvWCh": "appended"
+  },
+  "task_sessions": {
+    "todo:1": {
+      "task_key": "todo:1",
+      "task_label": "1",
+      "task_title": "**项目初始化 — 创建 AI 文档体系骨架**",
+      "session_id": "opencode:ses_17d61a250ffe2YAOb1RKRw5lNo",
+      "agent": "Sisyphus-Junior",
+      "category": "writing",
+      "updated_at": "2026-06-01T09:58:28.183Z",
+      "started_at": "2026-06-01T09:58:20.263Z",
+      "status": "completed",
+      "ended_at": "2026-06-01T09:58:28.183Z",
+      "elapsed_ms": 7920
+    },
+    "todo:2": {
+      "task_key": "todo:2",
+      "task_label": "2",
+      "task_title": "**Vol 1/Ch 1: AI 世界全景图 — intro-to-ai-world.md**",
+      "session_id": "opencode:ses_17d609f2effewKEzWo4dTNjvVR",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-low",
+      "started_at": "2026-06-01T10:02:13.861Z",
+      "status": "completed",
+      "updated_at": "2026-06-01T10:02:36.395Z",
+      "ended_at": "2026-06-01T10:02:36.395Z",
+      "elapsed_ms": 22534
+    },
+    "todo:5": {
+      "task_key": "todo:5",
+      "task_label": "5",
+      "task_title": "**Vol 1/Ch 4: 数据可视化入门 — visualization.md**",
+      "session_id": "opencode:ses_17d5cef50ffelC3w4Arr6KvWCh",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-high",
+      "updated_at": "2026-06-01T10:05:16.087Z",
+      "started_at": "2026-06-01T10:05:05.135Z",
+      "status": "completed",
+      "ended_at": "2026-06-01T10:05:16.087Z",
+      "elapsed_ms": 10952
+    }
+  },
+  "schema_version": 2,
+  "works": {
+    "ai-ml-compendium-execution-legacy": {
+      "work_id": "ai-ml-compendium-execution-legacy",
+      "active_plan": "/home/zoe/CodeSpace/love-story/.omo/plans/ai-ml-compendium-execution.md",
+      "plan_name": "ai-ml-compendium-execution",
+      "started_at": "2026-06-01T09:55:27.593Z",
+      "updated_at": "2026-06-01T10:05:16.087Z",
+      "session_ids": [
+        "opencode:ses_17d891ac1ffelMGf0nmZQwAVJC",
+        "opencode:ses_17d60e32cffeKrneVfMbOCkB0B",
+        "opencode:ses_17d60d473ffef5gfdXSTfrph11",
+        "opencode:ses_17d60c13fffey7S0eOBP2tKQHG",
+        "opencode:ses_17d60b20effeDXZgAPn93QhEU4",
+        "opencode:ses_17d609f2effewKEzWo4dTNjvVR",
+        "opencode:ses_17d5cef50ffelC3w4Arr6KvWCh"
+      ],
+      "session_origins": {
+        "opencode:ses_17d891ac1ffelMGf0nmZQwAVJC": "direct",
+        "opencode:ses_17d60e32cffeKrneVfMbOCkB0B": "appended",
+        "opencode:ses_17d60d473ffef5gfdXSTfrph11": "appended",
+        "opencode:ses_17d60c13fffey7S0eOBP2tKQHG": "appended",
+        "opencode:ses_17d60b20effeDXZgAPn93QhEU4": "appended",
+        "opencode:ses_17d609f2effewKEzWo4dTNjvVR": "appended",
+        "opencode:ses_17d5cef50ffelC3w4Arr6KvWCh": "appended"
+      },
+      "worktree_path": null,
+      "task_sessions": {
+        "todo:1": {
+          "task_key": "todo:1",
+          "task_label": "1",
+          "task_title": "**项目初始化 — 创建 AI 文档体系骨架**",
+          "session_id": "opencode:ses_17d61a250ffe2YAOb1RKRw5lNo",
+          "agent": "Sisyphus-Junior",
+          "category": "writing",
+          "updated_at": "2026-06-01T09:58:28.183Z",
+          "started_at": "2026-06-01T09:58:20.263Z",
+          "status": "completed",
+          "ended_at": "2026-06-01T09:58:28.183Z",
+          "elapsed_ms": 7920
+        },
+        "todo:2": {
+          "task_key": "todo:2",
+          "task_label": "2",
+          "task_title": "**Vol 1/Ch 1: AI 世界全景图 — intro-to-ai-world.md**",
+          "session_id": "opencode:ses_17d609f2effewKEzWo4dTNjvVR",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-low",
+          "started_at": "2026-06-01T10:02:13.861Z",
+          "status": "completed",
+          "updated_at": "2026-06-01T10:02:36.395Z",
+          "ended_at": "2026-06-01T10:02:36.395Z",
+          "elapsed_ms": 22534
+        },
+        "todo:5": {
+          "task_key": "todo:5",
+          "task_label": "5",
+          "task_title": "**Vol 1/Ch 4: 数据可视化入门 — visualization.md**",
+          "session_id": "opencode:ses_17d5cef50ffelC3w4Arr6KvWCh",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "updated_at": "2026-06-01T10:05:16.087Z",
+          "started_at": "2026-06-01T10:05:05.135Z",
+          "status": "completed",
+          "ended_at": "2026-06-01T10:05:16.087Z",
+          "elapsed_ms": 10952
+        }
+      }
+    }
+  },
+  "active_work_id": "ai-ml-compendium-execution-legacy",
+  "updated_at": "2026-06-01T10:05:16.087Z"
+}
