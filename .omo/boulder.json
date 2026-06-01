@@ -13,7 +13,12 @@
     "opencode:ses_17d5ab2d2ffe5wLe5fkcCOUQvS",
     "opencode:ses_17d5aa3ecffe8ebwOU6UUqNlPs",
     "opencode:ses_17d5a93a8ffekmJWt2yXtVYoQy",
-    "opencode:ses_17d5a8517ffeNO4VYIQfFmuaks"
+    "opencode:ses_17d5a8517ffeNO4VYIQfFmuaks",
+    "opencode:ses_17d54e28affeY4ptGmaq77EQYU",
+    "opencode:ses_17d54d5a4ffeowPu11CEtTX6GJ",
+    "opencode:ses_17d54c78fffe9XhfCaQ95a833U",
+    "opencode:ses_17d54b957ffecUejPrVJlNBJrF",
+    "opencode:ses_17d54a955ffewgIafRIzPzxIkd"
   ],
   "plan_name": "ai-ml-compendium-execution",
   "worktree_path": null,
@@ -29,7 +34,12 @@
     "opencode:ses_17d5ab2d2ffe5wLe5fkcCOUQvS": "appended",
     "opencode:ses_17d5aa3ecffe8ebwOU6UUqNlPs": "appended",
     "opencode:ses_17d5a93a8ffekmJWt2yXtVYoQy": "appended",
-    "opencode:ses_17d5a8517ffeNO4VYIQfFmuaks": "appended"
+    "opencode:ses_17d5a8517ffeNO4VYIQfFmuaks": "appended",
+    "opencode:ses_17d54e28affeY4ptGmaq77EQYU": "appended",
+    "opencode:ses_17d54d5a4ffeowPu11CEtTX6GJ": "appended",
+    "opencode:ses_17d54c78fffe9XhfCaQ95a833U": "appended",
+    "opencode:ses_17d54b957ffecUejPrVJlNBJrF": "appended",
+    "opencode:ses_17d54a955ffewgIafRIzPzxIkd": "appended"
   },
   "task_sessions": {
     "todo:1": {
@@ -83,6 +93,19 @@
       "updated_at": "2026-06-01T10:11:28.920Z",
       "ended_at": "2026-06-01T10:11:28.920Z",
       "elapsed_ms": 328762
+    },
+    "todo:12": {
+      "task_key": "todo:12",
+      "task_label": "12",
+      "task_title": "**Vol 3/Ch 1: 线性模型 — linear-models.md**",
+      "session_id": "opencode:ses_17d54a955ffewgIafRIzPzxIkd",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-high",
+      "started_at": "2026-06-01T10:16:09.595Z",
+      "status": "completed",
+      "updated_at": "2026-06-01T10:16:55.935Z",
+      "ended_at": "2026-06-01T10:16:55.934Z",
+      "elapsed_ms": 46339
     }
   },
   "schema_version": 2,
@@ -92,7 +115,7 @@
       "active_plan": "/home/zoe/CodeSpace/love-story/.omo/plans/ai-ml-compendium-execution.md",
       "plan_name": "ai-ml-compendium-execution",
       "started_at": "2026-06-01T09:55:27.593Z",
-      "updated_at": "2026-06-01T10:11:28.920Z",
+      "updated_at": "2026-06-01T10:16:55.935Z",
       "session_ids": [
         "opencode:ses_17d891ac1ffelMGf0nmZQwAVJC",
         "opencode:ses_17d60e32cffeKrneVfMbOCkB0B",
@@ -105,7 +128,12 @@
         "opencode:ses_17d5ab2d2ffe5wLe5fkcCOUQvS",
         "opencode:ses_17d5aa3ecffe8ebwOU6UUqNlPs",
         "opencode:ses_17d5a93a8ffekmJWt2yXtVYoQy",
-        "opencode:ses_17d5a8517ffeNO4VYIQfFmuaks"
+        "opencode:ses_17d5a8517ffeNO4VYIQfFmuaks",
+        "opencode:ses_17d54e28affeY4ptGmaq77EQYU",
+        "opencode:ses_17d54d5a4ffeowPu11CEtTX6GJ",
+        "opencode:ses_17d54c78fffe9XhfCaQ95a833U",
+        "opencode:ses_17d54b957ffecUejPrVJlNBJrF",
+        "opencode:ses_17d54a955ffewgIafRIzPzxIkd"
       ],
       "session_origins": {
         "opencode:ses_17d891ac1ffelMGf0nmZQwAVJC": "direct",
@@ -119,7 +147,12 @@
         "opencode:ses_17d5ab2d2ffe5wLe5fkcCOUQvS": "appended",
         "opencode:ses_17d5aa3ecffe8ebwOU6UUqNlPs": "appended",
         "opencode:ses_17d5a93a8ffekmJWt2yXtVYoQy": "appended",
-        "opencode:ses_17d5a8517ffeNO4VYIQfFmuaks": "appended"
+        "opencode:ses_17d5a8517ffeNO4VYIQfFmuaks": "appended",
+        "opencode:ses_17d54e28affeY4ptGmaq77EQYU": "appended",
+        "opencode:ses_17d54d5a4ffeowPu11CEtTX6GJ": "appended",
+        "opencode:ses_17d54c78fffe9XhfCaQ95a833U": "appended",
+        "opencode:ses_17d54b957ffecUejPrVJlNBJrF": "appended",
+        "opencode:ses_17d54a955ffewgIafRIzPzxIkd": "appended"
       },
       "worktree_path": null,
       "task_sessions": {
@@ -174,10 +207,23 @@
           "updated_at": "2026-06-01T10:11:28.920Z",
           "ended_at": "2026-06-01T10:11:28.920Z",
           "elapsed_ms": 328762
+        },
+        "todo:12": {
+          "task_key": "todo:12",
+          "task_label": "12",
+          "task_title": "**Vol 3/Ch 1: 线性模型 — linear-models.md**",
+          "session_id": "opencode:ses_17d54a955ffewgIafRIzPzxIkd",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "started_at": "2026-06-01T10:16:09.595Z",
+          "status": "completed",
+          "updated_at": "2026-06-01T10:16:55.935Z",
+          "ended_at": "2026-06-01T10:16:55.934Z",
+          "elapsed_ms": 46339
         }
       }
     }
   },
   "active_work_id": "ai-ml-compendium-execution-legacy",
-  "updated_at": "2026-06-01T10:11:28.920Z"
+  "updated_at": "2026-06-01T10:16:55.935Z"
 }

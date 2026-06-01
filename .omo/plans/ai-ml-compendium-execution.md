@@ -461,7 +461,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 2）
   - **Blocked By**: Task 1
 
-- [ ] 12. **Vol 3/Ch 1: 线性模型 — linear-models.md**
+- [x] 12. **Vol 3/Ch 1: 线性模型 — linear-models.md**
 
   **What to do**:
   - 线性回归：最小二乘法（◄ 来自 MLE 推导）
@@ -483,7 +483,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: YES（Wave 3）
   - **Blocked By**: Task 7（线性代数）, Task 8（概率论MLE）
 
-- [ ] 13. **Vol 3/Ch 2: 模型评估与验证 — model-evaluation.md**
+- [x] 13. **Vol 3/Ch 2: 模型评估与验证 — model-evaluation.md**
 
   **What to do**:
   - 过拟合 vs 欠拟合：核心直觉 + 可视化
@@ -499,7 +499,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 3）
   - **Blocked By**: Task 12（线性模型）
 
-- [ ] 14. **Vol 3/Ch 3: 树模型与集成学习 — tree-and-ensemble.md**
+- [x] 14. **Vol 3/Ch 3: 树模型与集成学习 — tree-and-ensemble.md**
 
   **What to do**:
   - 决策树：信息增益、基尼系数（◄ 来自信息论）
@@ -517,7 +517,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: YES（Wave 3）
   - **Blocked By**: Task 12（线性模型作为前置概念）
 
-- [ ] 15. **Vol 3/Ch 4: SVM 与核方法 — svm-and-kernel.md**
+- [x] 15. **Vol 3/Ch 4: SVM 与核方法 — svm-and-kernel.md**
 
   **What to do**:
   - 最大间隔分类器（几何直观 + 数学推导）
@@ -535,7 +535,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: YES（Wave 3）
   - **Blocked By**: Task 12
 
-- [ ] 16. **Vol 3/Ch 5: 无监督学习 — unsupervised-learning.md**
+- [x] 16. **Vol 3/Ch 5: 无监督学习 — unsupervised-learning.md**
 
   **What to do**:
   - K-Means 聚类（EM 思想的雏形）
@@ -550,7 +550,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 3）
   - **Blocked By**: Task 7（SVD 数学基础）, Task 12
 
-- [ ] 17. **Vol 3/Ch 6: ML 项目模板 — ml-project-template.py**
+- [x] 17. **Vol 3/Ch 6: ML 项目模板 — ml-project-template.py**
 
   **What to do**:
   - 创建可复用的完整 ML 项目模板
