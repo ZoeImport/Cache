@@ -9,3 +9,13 @@ package/
 *.key
 *.srl
 *.csr
+
+# AI/ML 文档体系 - 缓存及临时文件
+__pycache__/
+*.pyc
+*.pyo
+wandb/
+.ipynb_checkpoints/
+.trash/
+.mypy_cache/
+.pytest_cache/

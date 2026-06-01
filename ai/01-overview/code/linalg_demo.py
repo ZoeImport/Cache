@@ -253,9 +253,9 @@ def plot_decision_boundary(knn_model, X, y, title: str, save_path: str = None):
     plt.scatter(X[:, 0], X[:, 1], c=y, cmap=cmap_bold,
                 edgecolor='black', s=40)
     plt.title(title)
-    plt.xlabel("特征 1（Feature 1）")
-    plt.ylabel("特征 2（Feature 2）")
-    plt.colorbar(label="类别（Class）")
+    plt.xlabel("Feature 1")
+    plt.ylabel("Feature 2")
+    plt.colorbar(label="Class")
 
     if save_path:
         plt.savefig(save_path, dpi=100, bbox_inches='tight')

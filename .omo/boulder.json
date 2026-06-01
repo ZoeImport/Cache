@@ -18,7 +18,12 @@
     "opencode:ses_17d54d5a4ffeowPu11CEtTX6GJ",
     "opencode:ses_17d54c78fffe9XhfCaQ95a833U",
     "opencode:ses_17d54b957ffecUejPrVJlNBJrF",
-    "opencode:ses_17d54a955ffewgIafRIzPzxIkd"
+    "opencode:ses_17d54a955ffewgIafRIzPzxIkd",
+    "opencode:ses_17d500849ffewHcqMrmTO3uP2l",
+    "opencode:ses_17d4ff754ffea2Uc1h9QIqrdWU",
+    "opencode:ses_17d4fe4b8ffeODYBkieQ9PGzCw",
+    "opencode:ses_17d4fd23effe1oTJH137D5g9rM",
+    "opencode:ses_17d4fbb34ffeWzln0zyaURdmX3"
   ],
   "plan_name": "ai-ml-compendium-execution",
   "worktree_path": null,
@@ -39,7 +44,12 @@
     "opencode:ses_17d54d5a4ffeowPu11CEtTX6GJ": "appended",
     "opencode:ses_17d54c78fffe9XhfCaQ95a833U": "appended",
     "opencode:ses_17d54b957ffecUejPrVJlNBJrF": "appended",
-    "opencode:ses_17d54a955ffewgIafRIzPzxIkd": "appended"
+    "opencode:ses_17d54a955ffewgIafRIzPzxIkd": "appended",
+    "opencode:ses_17d500849ffewHcqMrmTO3uP2l": "appended",
+    "opencode:ses_17d4ff754ffea2Uc1h9QIqrdWU": "appended",
+    "opencode:ses_17d4fe4b8ffeODYBkieQ9PGzCw": "appended",
+    "opencode:ses_17d4fd23effe1oTJH137D5g9rM": "appended",
+    "opencode:ses_17d4fbb34ffeWzln0zyaURdmX3": "appended"
   },
   "task_sessions": {
     "todo:1": {
@@ -106,6 +116,15 @@
       "updated_at": "2026-06-01T10:16:55.935Z",
       "ended_at": "2026-06-01T10:16:55.934Z",
       "elapsed_ms": 46339
+    },
+    "todo:18": {
+      "task_key": "todo:18",
+      "task_label": "18",
+      "task_title": "**Vol 4/Ch 1: 感知机与 MLP — perceptron-and-mlp.md**",
+      "session_id": "opencode:ses_17d4fbb34ffeWzln0zyaURdmX3",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-high",
+      "updated_at": "2026-06-01T10:17:30.708Z"
     }
   },
   "schema_version": 2,
@@ -115,7 +134,7 @@
       "active_plan": "/home/zoe/CodeSpace/love-story/.omo/plans/ai-ml-compendium-execution.md",
       "plan_name": "ai-ml-compendium-execution",
       "started_at": "2026-06-01T09:55:27.593Z",
-      "updated_at": "2026-06-01T10:16:55.935Z",
+      "updated_at": "2026-06-01T10:17:30.708Z",
       "session_ids": [
         "opencode:ses_17d891ac1ffelMGf0nmZQwAVJC",
         "opencode:ses_17d60e32cffeKrneVfMbOCkB0B",
@@ -133,7 +152,12 @@
         "opencode:ses_17d54d5a4ffeowPu11CEtTX6GJ",
         "opencode:ses_17d54c78fffe9XhfCaQ95a833U",
         "opencode:ses_17d54b957ffecUejPrVJlNBJrF",
-        "opencode:ses_17d54a955ffewgIafRIzPzxIkd"
+        "opencode:ses_17d54a955ffewgIafRIzPzxIkd",
+        "opencode:ses_17d500849ffewHcqMrmTO3uP2l",
+        "opencode:ses_17d4ff754ffea2Uc1h9QIqrdWU",
+        "opencode:ses_17d4fe4b8ffeODYBkieQ9PGzCw",
+        "opencode:ses_17d4fd23effe1oTJH137D5g9rM",
+        "opencode:ses_17d4fbb34ffeWzln0zyaURdmX3"
       ],
       "session_origins": {
         "opencode:ses_17d891ac1ffelMGf0nmZQwAVJC": "direct",
@@ -152,7 +176,12 @@
         "opencode:ses_17d54d5a4ffeowPu11CEtTX6GJ": "appended",
         "opencode:ses_17d54c78fffe9XhfCaQ95a833U": "appended",
         "opencode:ses_17d54b957ffecUejPrVJlNBJrF": "appended",
-        "opencode:ses_17d54a955ffewgIafRIzPzxIkd": "appended"
+        "opencode:ses_17d54a955ffewgIafRIzPzxIkd": "appended",
+        "opencode:ses_17d500849ffewHcqMrmTO3uP2l": "appended",
+        "opencode:ses_17d4ff754ffea2Uc1h9QIqrdWU": "appended",
+        "opencode:ses_17d4fe4b8ffeODYBkieQ9PGzCw": "appended",
+        "opencode:ses_17d4fd23effe1oTJH137D5g9rM": "appended",
+        "opencode:ses_17d4fbb34ffeWzln0zyaURdmX3": "appended"
       },
       "worktree_path": null,
       "task_sessions": {
@@ -220,10 +249,19 @@
           "updated_at": "2026-06-01T10:16:55.935Z",
           "ended_at": "2026-06-01T10:16:55.934Z",
           "elapsed_ms": 46339
+        },
+        "todo:18": {
+          "task_key": "todo:18",
+          "task_label": "18",
+          "task_title": "**Vol 4/Ch 1: 感知机与 MLP — perceptron-and-mlp.md**",
+          "session_id": "opencode:ses_17d4fbb34ffeWzln0zyaURdmX3",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "updated_at": "2026-06-01T10:17:30.708Z"
         }
       }
     }
   },
   "active_work_id": "ai-ml-compendium-execution-legacy",
-  "updated_at": "2026-06-01T10:16:55.935Z"
+  "updated_at": "2026-06-01T10:17:30.708Z"
 }

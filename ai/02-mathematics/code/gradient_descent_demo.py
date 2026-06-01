@@ -116,8 +116,8 @@ def gradient_descent(x: np.ndarray, y: np.ndarray, w_init: float, b_init: float,
 def plot_loss_curve(history: dict, lr: float, ax: plt.Axes):
     """绘制损失曲线"""
     ax.plot(history["loss"], lw=2)
-    ax.set_xlabel("Iteration / 迭代次数")
-    ax.set_ylabel("MSE Loss / 损失")
+    ax.set_xlabel("Iteration")
+    ax.set_ylabel("MSE Loss")
     ax.set_title(f"Loss Curve (lr={lr}) / 损失曲线")
     ax.grid(True, alpha=0.3)
 
@@ -158,9 +158,9 @@ def plot_parameter_trajectory(history: dict, w_true: float, b_true: float,
             label="End / 终点")
     ax.plot(w_true, b_true, "y*", markersize=12, label="Truth / 真实值")
 
-    ax.set_xlabel("w (weight / 权重)")
-    ax.set_ylabel("b (bias / 偏置)")
-    ax.set_title("Parameter Trajectory / 参数轨迹")
+    ax.set_xlabel("w (weight)")
+    ax.set_ylabel("b (bias)")
+    ax.set_title("Parameter Trajectory")
     ax.legend(fontsize=8)
     ax.grid(True, alpha=0.3)
 
@@ -185,8 +185,8 @@ def plot_lr_comparison(x: np.ndarray, y: np.ndarray, lrs: list[float],
         # 损失曲线
         ax_loss = axes[0, idx]
         ax_loss.plot(history["loss"], color=colors[idx], lw=2)
-        ax_loss.set_xlabel("Iteration / 迭代次数")
-        ax_loss.set_ylabel("Loss / 损失")
+        ax_loss.set_xlabel("Iteration")
+        ax_loss.set_ylabel("Loss")
         ax_loss.set_title(f"Loss Curve (lr={lr})")
 
         # 在损失曲线上标注最终损失
