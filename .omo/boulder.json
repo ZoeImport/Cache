@@ -8,7 +8,12 @@
     "opencode:ses_17d60c13fffey7S0eOBP2tKQHG",
     "opencode:ses_17d60b20effeDXZgAPn93QhEU4",
     "opencode:ses_17d609f2effewKEzWo4dTNjvVR",
-    "opencode:ses_17d5cef50ffelC3w4Arr6KvWCh"
+    "opencode:ses_17d5cef50ffelC3w4Arr6KvWCh",
+    "opencode:ses_17d5ac08bffe24Yjo32uqFrMIU",
+    "opencode:ses_17d5ab2d2ffe5wLe5fkcCOUQvS",
+    "opencode:ses_17d5aa3ecffe8ebwOU6UUqNlPs",
+    "opencode:ses_17d5a93a8ffekmJWt2yXtVYoQy",
+    "opencode:ses_17d5a8517ffeNO4VYIQfFmuaks"
   ],
   "plan_name": "ai-ml-compendium-execution",
   "worktree_path": null,
@@ -19,7 +24,12 @@
     "opencode:ses_17d60c13fffey7S0eOBP2tKQHG": "appended",
     "opencode:ses_17d60b20effeDXZgAPn93QhEU4": "appended",
     "opencode:ses_17d609f2effewKEzWo4dTNjvVR": "appended",
-    "opencode:ses_17d5cef50ffelC3w4Arr6KvWCh": "appended"
+    "opencode:ses_17d5cef50ffelC3w4Arr6KvWCh": "appended",
+    "opencode:ses_17d5ac08bffe24Yjo32uqFrMIU": "appended",
+    "opencode:ses_17d5ab2d2ffe5wLe5fkcCOUQvS": "appended",
+    "opencode:ses_17d5aa3ecffe8ebwOU6UUqNlPs": "appended",
+    "opencode:ses_17d5a93a8ffekmJWt2yXtVYoQy": "appended",
+    "opencode:ses_17d5a8517ffeNO4VYIQfFmuaks": "appended"
   },
   "task_sessions": {
     "todo:1": {
@@ -60,6 +70,19 @@
       "status": "completed",
       "ended_at": "2026-06-01T10:05:16.087Z",
       "elapsed_ms": 10952
+    },
+    "todo:7": {
+      "task_key": "todo:7",
+      "task_label": "7",
+      "task_title": "**Vol 2/Ch 1: 线性代数 — linear-algebra.md**",
+      "session_id": "opencode:ses_17d5a8517ffeNO4VYIQfFmuaks",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-high",
+      "started_at": "2026-06-01T10:06:00.158Z",
+      "status": "completed",
+      "updated_at": "2026-06-01T10:11:28.920Z",
+      "ended_at": "2026-06-01T10:11:28.920Z",
+      "elapsed_ms": 328762
     }
   },
   "schema_version": 2,
@@ -69,7 +92,7 @@
       "active_plan": "/home/zoe/CodeSpace/love-story/.omo/plans/ai-ml-compendium-execution.md",
       "plan_name": "ai-ml-compendium-execution",
       "started_at": "2026-06-01T09:55:27.593Z",
-      "updated_at": "2026-06-01T10:05:16.087Z",
+      "updated_at": "2026-06-01T10:11:28.920Z",
       "session_ids": [
         "opencode:ses_17d891ac1ffelMGf0nmZQwAVJC",
         "opencode:ses_17d60e32cffeKrneVfMbOCkB0B",
@@ -77,7 +100,12 @@
         "opencode:ses_17d60c13fffey7S0eOBP2tKQHG",
         "opencode:ses_17d60b20effeDXZgAPn93QhEU4",
         "opencode:ses_17d609f2effewKEzWo4dTNjvVR",
-        "opencode:ses_17d5cef50ffelC3w4Arr6KvWCh"
+        "opencode:ses_17d5cef50ffelC3w4Arr6KvWCh",
+        "opencode:ses_17d5ac08bffe24Yjo32uqFrMIU",
+        "opencode:ses_17d5ab2d2ffe5wLe5fkcCOUQvS",
+        "opencode:ses_17d5aa3ecffe8ebwOU6UUqNlPs",
+        "opencode:ses_17d5a93a8ffekmJWt2yXtVYoQy",
+        "opencode:ses_17d5a8517ffeNO4VYIQfFmuaks"
       ],
       "session_origins": {
         "opencode:ses_17d891ac1ffelMGf0nmZQwAVJC": "direct",
@@ -86,7 +114,12 @@
         "opencode:ses_17d60c13fffey7S0eOBP2tKQHG": "appended",
         "opencode:ses_17d60b20effeDXZgAPn93QhEU4": "appended",
         "opencode:ses_17d609f2effewKEzWo4dTNjvVR": "appended",
-        "opencode:ses_17d5cef50ffelC3w4Arr6KvWCh": "appended"
+        "opencode:ses_17d5cef50ffelC3w4Arr6KvWCh": "appended",
+        "opencode:ses_17d5ac08bffe24Yjo32uqFrMIU": "appended",
+        "opencode:ses_17d5ab2d2ffe5wLe5fkcCOUQvS": "appended",
+        "opencode:ses_17d5aa3ecffe8ebwOU6UUqNlPs": "appended",
+        "opencode:ses_17d5a93a8ffekmJWt2yXtVYoQy": "appended",
+        "opencode:ses_17d5a8517ffeNO4VYIQfFmuaks": "appended"
       },
       "worktree_path": null,
       "task_sessions": {
@@ -128,10 +161,23 @@
           "status": "completed",
           "ended_at": "2026-06-01T10:05:16.087Z",
           "elapsed_ms": 10952
+        },
+        "todo:7": {
+          "task_key": "todo:7",
+          "task_label": "7",
+          "task_title": "**Vol 2/Ch 1: 线性代数 — linear-algebra.md**",
+          "session_id": "opencode:ses_17d5a8517ffeNO4VYIQfFmuaks",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "started_at": "2026-06-01T10:06:00.158Z",
+          "status": "completed",
+          "updated_at": "2026-06-01T10:11:28.920Z",
+          "ended_at": "2026-06-01T10:11:28.920Z",
+          "elapsed_ms": 328762
         }
       }
     }
   },
   "active_work_id": "ai-ml-compendium-execution-legacy",
-  "updated_at": "2026-06-01T10:05:16.087Z"
+  "updated_at": "2026-06-01T10:11:28.920Z"
 }

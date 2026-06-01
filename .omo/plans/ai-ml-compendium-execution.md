@@ -377,7 +377,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: YES（Wave 1）
   - **Blocked By**: Task 1
 
-- [ ] 7. **Vol 2/Ch 1: 线性代数 — linear-algebra.md**
+- [x] 7. **Vol 2/Ch 1: 线性代数 — linear-algebra.md**
 
   **What to do**:
   - 向量与向量空间（几何直观 + 数学定义）
@@ -401,7 +401,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: YES（Wave 2）
   - **Blocked By**: Task 1, Task 3（Python/NumPy 基础）
 
-- [ ] 8. **Vol 2/Ch 2: 概率论 — probability.md**
+- [x] 8. **Vol 2/Ch 2: 概率论 — probability.md**
 
   **What to do**:
   - 概率分布：正态、伯努利、二项、多项分布
@@ -416,7 +416,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 2）
   - **Blocked By**: Task 1
 
-- [ ] 9. **Vol 2/Ch 3: 微积分与优化 — calculus-and-optimization.md**
+- [x] 9. **Vol 2/Ch 3: 微积分与优化 — calculus-and-optimization.md**
 
   **What to do**:
   - 偏导数与梯度（几何意义可视化）
@@ -431,7 +431,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 2）
   - **Blocked By**: Task 1
 
-- [ ] 10. **Vol 2/Ch 4: 信息论 — information-theory.md**
+- [x] 10. **Vol 2/Ch 4: 信息论 — information-theory.md**
 
   **What to do**:
   - 自信息与熵 Entropy（直观理解+数学定义）
@@ -446,7 +446,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 2）
   - **Blocked By**: Task 1
 
-- [ ] 11. **Vol 2/Ch 5: 统计学基础 — statistics-basics.md**
+- [x] 11. **Vol 2/Ch 5: 统计学基础 — statistics-basics.md**
 
   **What to do**:
   - 偏差-方差权衡（过拟合的理论解释，含推导）
