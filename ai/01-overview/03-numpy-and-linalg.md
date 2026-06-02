@@ -21,7 +21,6 @@
 
 ```python
 import numpy as np
-
 # 从 Python 列表创建
 a = np.array([1, 2, 3])           # 1D: shape (3,)
 b = np.array([[1, 2], [3, 4]])    # 2D: shape (2, 2)
@@ -47,6 +46,7 @@ randint = np.random.randint(0, 10, size=(2, 3))  # 随机整数
 **shape** 定义了数组在每个维度上的大小，**reshape** 可以在不改变数据的前提下重新编排维度，**axis** 则指定了操作沿哪个方向进行。
 
 ```python
+# !OC: not truely result, no enough explain 
 arr = np.arange(12)                # shape (12,)
 arr_2d = arr.reshape(3, 4)         # shape (3, 4)
 arr_3d = arr.reshape(2, 3, 2)      # shape (2, 3, 2)
@@ -65,14 +65,32 @@ print(arr_2d.sum(axis=1))          # 每行求和: [ 6 22 38]
 
 ```python
 # Python 循环版本 —— 慢
+import numpy as np
+
+# Python 循环版本 —— 慢
 def py_square(x):
     result = []
+    # !OC: 【反模式优化】在 Python 中，通过 range(len(x)) 配合下标 x[i] 循环是典型反模式，
+    # 破坏了 Pythonic 的迭代哲学（导致不必要的下标寻址开销）。
+    # 如果必须用纯 Python 循环，应直接遍历元素：`for item in x:`；
+    # 此外，频繁调用 `list.append()` 会导致列表在内存中多次动态扩容，带来额外开销。
     for i in range(len(x)):
         result.append(x[i] ** 2)
     return result
 
+# 纯 Python 进阶优化版（补充学习方向）
+def py_square_advanced(x):
+    # !OC: 【进阶写法】如果面试或特定场景被限制只能用纯 Python 且追求最高效率，
+    # 应当使用列表推导式（List Comprehension）：`return [item ** 2 for item in x]`。
+    # 它的底层循环是用 C 语言实现的，且能提前预分配内存空间，速度明显快于声明空列表再 append。
+    return [item ** 2 for item in x]
+
 # NumPy 向量化版本 —— 快约 50-100x
 def np_square(x):
+    # !OC: 【底层原理剖析】这是业界标准的向量化（Vectorization）写法。
+    # 当 x 是 np.ndarray 时，`x ** 2` 根本没有走 Python 解释器的循环，
+    # 而是直接在底层的连续 C 内存块上运行。现代 CPU 会激活 SIMD（单指令多数据流）硬件加速，
+    # 实现“一条 CPU 指令同时处理 4 个或 8 个数字的平方”，完成降维打击级的提速。
     return x ** 2
 ```
 
@@ -95,6 +113,7 @@ def np_square(x):
 3. 其中一个维度不存在（视为 1）
 
 ```
+# !OC: 看不懂这个是什么意思为什么是(3,)? 这是个什么
 Shape A:       (3,)           (3, 1)          (3, 1)           (2, 1, 3)
 Shape B:       (1,)    →      (1, 4)    →     (4,)       →     (5, 4, 3)
 Result:        (3,)           (3, 4)          (3, 4)           (5, 4, 3)
