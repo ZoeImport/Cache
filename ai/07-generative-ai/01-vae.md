@@ -1,9 +1,16 @@
 # 第1章 变分自编码器 (VAE)
 # Chapter 1: Variational Autoencoder (VAE)
 
-> **变分自编码器 (VAE)** 是生成模型领域的基石方法，首次将**概率推断**与**深度学习**有机结合。与标准自编码器将输入压缩为确定性的潜在编码不同，VAE 将输入编码为**概率分布**（均值和方差），从而能够生成全新的数据样本。VAE 的核心是**重参数化技巧 (Reparameterization Trick)** 和**证据下界 (ELBO)** 的推导。本章还介绍了 VQ-VAE——一种将潜在空间离散化的扩展，有效解决了 VAE 的后验崩塌问题。
+> **变分（variational /ˌveəriˈeɪʃənl/）自编码器（autoencoder /ˈɔːtoʊənˈkoʊdər/） (VAE)** 是生成模型领域的基石方法，首次将**概率推断**与**深度学习**有机结合。与标准自编码器（encoder /ɪnˈkoʊdər/）将输入压缩为确定性的潜在（latent /ˈleɪtənt/）编码不同，VAE 将输入编码为**概率分布**（均值和方差），从而能够生成全新的数据样本。VAE 的核（kernel /ˈkɜːrnl/）心是**重参数（parameter /pəˈræmɪtər/）化技巧 (Reparameterization Trick)** 和**证据下界 (ELBO)** 的推导。本章还介绍了 VQ-VAE——一种将潜在空间离散化的扩展，有效解决了 VAE 的后验崩塌问题。
+> > **时间线**:
+> > - **2013**: Kingma & Welling 提出 VAE（变分自编码器）
+> > - **2014**: Goodfellow et al. 提出 GAN
+> > - **2017**: van den Oord et al. 提出 VQ-VAE
+> > - **2020**: Ho, Jain & Abbeel 提出 DDPM
+> > - **2021**: Song, Meng & Ermon 提出 DDIM
+> - **2022**: Rombach et al. 提出 Stable Diffusion
 >
-> **The Variational Autoencoder (VAE)** is a cornerstone of generative modeling, being the first method to organically combine **probabilistic inference** with **deep learning**. Unlike standard autoencoders that compress inputs into deterministic latent codes, VAEs encode inputs into **probability distributions** (means and variances), enabling the generation of novel data samples. At the heart of VAEs are the **Reparameterization Trick** and the derivation of the **Evidence Lower Bound (ELBO)**. This chapter also introduces VQ-VAE — an extension that discretizes the latent space, effectively addressing the posterior collapse problem.
+> **The Variational Autoencoder (VAE)** is a cornerstone of generative modeling, being the first method to organically combine **probabilistic inference（/ˈɪnfərəns/）** with **deep learning**. Unlike standard autoencoders that compress inputs into deterministic latent codes, VAEs encode inputs into **probability distributions** (means and variances), enabling the generation of novel data samples. At the heart of VAEs are the **Reparameterization Trick** and the derivation of the **Evidence Lower Bound (ELBO)**. This chapter also introduces VQ-VAE — an extension that discretizes the latent space, effectively addressing the posterior collapse problem.
 
 **前置知识 (Prerequisites):** 概率论（高斯分布、条件概率、KL 散度）、变分推断基础、标准自编码器、PyTorch 基础
 **依赖库 (Dependencies):** `torch>=2.1.0`, `torchvision>=0.16.0`, `numpy>=1.24.0`, `matplotlib>=3.7.0`
@@ -27,7 +34,7 @@
 
 ### 1.1 标准自编码器回顾 (Standard Autoencoder Review)
 
-标准自编码器由一个编码器和一个解码器组成：
+标准自编码器由一个编码器和一个解码器（decoder /diːˈkoʊdər/）组成：
 
 $$ z = f_\phi(x), \quad \hat{x} = g_\theta(z) $$
 
@@ -170,7 +177,7 @@ $$ \begin{aligned}
 
 其中：
 - $\mathbb{E}_{z \sim q_\phi(z|x)} \left[ \log p_\theta(x|z) \right]$: **重建项 (Reconstruction Term)** — 衡量解码器从 $z$ 重建 $x$ 的能力
-- $\text{KL}(q_\phi(z|x) \parallel p(z))$: **KL 正则项 (KL Regularization Term)** — 约束 $q_\phi(z|x)$ 接近先验 $p(z)$
+- $\text{KL}(q_\phi(z|x) \parallel p(z))$: **KL 正则项 (KL Regularization（/ˌreɡjələraɪˈzeɪʃən/） Term)** — 约束 $q_\phi(z|x)$ 接近先验 $p(z)$
 
 **推导过程:**
 
@@ -190,7 +197,7 @@ $$ \begin{aligned}
 
 $$ z \sim \mathcal{N}(\mu_\phi(x), \sigma_\phi^2(x)) $$
 
-这个采样操作是**随机的 (stochastic)**，梯度无法通过采样节点回传。如果我们直接把 $z$ 写成 $\mu + \sigma \cdot \epsilon$ 的形式，这个操作就是可微的。
+这个采样操作是**随机（stochastic /stəˈkæstɪk/）的 (stochastic)**，梯度（gradient /ˈɡreɪdiənt/）无法通过采样节点回传。如果我们直接把 $z$ 写成 $\mu + \sigma \cdot \epsilon$ 的形式，这个操作就是可微的。
 
 **错误方式 (采样不可微):**
 ```
@@ -260,7 +267,7 @@ $$ \mathcal{L}_{\text{VAE}} = -\text{ELBO} = \underbrace{-\mathbb{E}_{z \sim q_\
 
 对于不同的数据类型，重建损失有不同的形式：
 
-**二值数据 (Binary Data):** 使用伯努利似然，即二元交叉熵
+**二值数据 (Binary Data):** 使用伯努利似然，即二元交叉熵（entropy /ˈentrəpi/）
 
 $$ -\log p_\theta(x|z) = -\sum_{i} \left[ x_i \log \hat{x}_i + (1 - x_i) \log (1 - \hat{x}_i) \right] $$
 
@@ -318,7 +325,7 @@ $$ \begin{aligned}
 
 ### 6.2 VQ-VAE 的核心思想 (Core Idea of VQ-VAE)
 
-**VQ-VAE (Vector Quantized VAE)** 使用**离散的潜在空间**，通过**向量量化 (Vector Quantization)** 将编码器输出映射到最近邻的嵌入向量。
+**VQ-VAE (Vector Quantized VAE)** 使用**离散的潜在空间**，通过**向量量化（quantize /ˈkwɒntaɪz/） (Vector Quantization)** 将编码器输出映射到最近邻的嵌入（embedding /ɪmˈbedɪŋ/）向量。
 
 **架构:**
 
@@ -448,3 +455,10 @@ Final Results
 | `generated_samples.png` | 从先验 $\mathcal{N}(0, I)$ 采样生成的 25 张图像 |
 | `reconstructions.png` | 原始图像与重建图像的对比 |
 | `loss_curves.png` | 训练过程中的损失曲线（Total / Recon / KL） |
+
+## 参考文献 (References)
+
+1. **Kingma, D. P. & Welling, M.** (2014). Auto-encoding variational bayes. *ICLR*.
+2. **Goodfellow, I. et al.** (2014). Generative adversarial nets. *NeurIPS*.
+3. **Ho, J., Jain, A. & Abbeel, P.** (2020). Denoising diffusion probabilistic models. *NeurIPS*.
+4. **Rombach, R. et al.** (2022). High-resolution image synthesis with latent diffusion models. *CVPR*.

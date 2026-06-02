@@ -1,7 +1,11 @@
 # 第5章 循环神经网络与序列模型
 # Chapter 5: Recurrent Neural Networks and Sequence Models
 
-> **序列数据无处不在：文本、语音、时间序列、基因序列……RNN 是第一个真正为序列建模而设计的神经网络架构。** 本章推导 RNN 的核心机制——循环计算图与随时间反向传播（BPTT），并深入 LSTM 的门控机制如何解决长程依赖问题。最后，我们分析 RNN 的固有瓶颈，并以此为桥梁引出注意力机制（Attention），为后续 Transformer 的学习做好铺垫。
+> **序列数据无处不在：文本、语音、时间序列、基因序列……RNN 是第一个真正为序列建模而设计的神经网络架构。** 本章推导 RNN 的核（kernel /ˈkɜːrnl/）心机制——循环计算图与随时间反向传播（backpropagation /ˌbækprəpəˈɡeɪʃən/）（BPTT），并深入 LSTM 的门控机制如何解决长程依赖问题。最后，我们分析 RNN 的固有瓶颈，并以此为桥梁引出注意力（attention /əˈtenʃən/）机制（Attention），为后续 Transformer（/trænsˈfɔːrmər/） 的学习做好铺垫。
+> > **时间线**:
+> > - **1982**: Hopfield 提出 Hopfield 网络
+> > - **1990**: Elman 提出简单循环网络（SRN）
+> - **1997**: Hochreiter & Schmidhuber 发表 LSTM
 >
 > **Sequential data is everywhere: text, speech, time series, gene sequences... RNN is the first neural architecture truly designed for sequence modeling.** This chapter derives RNN's core mechanism — the recurrent computation graph and Backpropagation Through Time (BPTT) — and dives into how LSTM's gating mechanism solves long-term dependency problems. Finally, we analyze RNN's inherent bottleneck, building a bridge to the Attention mechanism that follows in Volume 5.
 
@@ -18,7 +22,7 @@
    - 1.2 [RNN 基本公式](#12-rnn-基本公式)
    - 1.3 [展开的计算图 (Unrolled Graph)](#13-展开的计算图-unrolled-graph)
    - 1.4 [随时间反向传播 (BPTT)](#14-随时间反向传播-bptt)
-   - 1.5 [梯度消失与梯度爆炸](#15-梯度消失与梯度爆炸)
+   - 1.5 [梯度（gradient /ˈɡreɪdiənt/）消失与梯度爆炸](#15-梯度消失与梯度爆炸)
 
 2. [LSTM (Long Short-Term Memory)](#2-lstm-long-short-term-memory)
    - 2.1 [核心思想：信息高速公路](#21-核心思想信息高速公路)
@@ -34,7 +38,7 @@
    - 3.2 [GRU 公式推导](#32-gru-公式推导)
    - 3.3 [LSTM vs GRU](#33-lstm-vs-gru)
 
-4. [编码器-解码器架构 (Encoder-Decoder Architecture)](#4-编码器-解码器架构-encoder-decoder-architecture)
+4. [编码器（encoder /ɪnˈkoʊdər/）-解码器（decoder /diːˈkoʊdər/）架构 (Encoder-Decoder Architecture)](#4-编码器-解码器架构-encoder-decoder-architecture)
    - 4.1 [固定维度的上下文向量](#41-固定维度的上下文向量)
    - 4.2 [编码器-解码器的信息瓶颈](#42-编码器-解码器的信息瓶颈)
 
@@ -71,7 +75,7 @@ $$ h_t = \tanh(W_{hh} h_{t-1} + W_{xh} x_t + b_h) $$
 $$ y_t = W_{hy} h_t + b_y $$
 
 其中：
-- $x_t \in \mathbb{R}^{d}$ — 在时间步 $t$ 的输入向量（如词嵌入）
+- $x_t \in \mathbb{R}^{d}$ — 在时间步 $t$ 的输入向量（如词嵌入（embedding /ɪmˈbedɪŋ/））
 - $h_{t-1} \in \mathbb{R}^{d_h}$ — 上一个时间步的隐藏状态
 - $h_t \in \mathbb{R}^{d_h}$ — 当前时间步的隐藏状态
 - $W_{hh} \in \mathbb{R}^{d_h \times d_h}$ — **循环权重矩阵**（RNN 的核心——连接前后时间步）
@@ -80,7 +84,7 @@ $$ y_t = W_{hy} h_t + b_y $$
 - $b_h, b_y$ — 偏置项
 - $\tanh$ — 激活函数（将值压缩到 $(-1, 1)$，给非线性以稳定梯度）
 
-> **关键观察**：$W_{hh}$ 在所有时间步**共享**。这意味着无论序列多长，RNN 都在使用同一组参数处理每一个时间步——这就是"循环"的含义。
+> **关键观察**：$W_{hh}$ 在所有时间步**共享**。这意味着无论序列多长，RNN 都在使用同一组参数（parameter /pəˈræmɪtər/）处理每一个时间步——这就是"循环"的含义。
 
 ### 1.3 展开的计算图 (Unrolled Graph)
 
@@ -451,3 +455,9 @@ Attention 机制的核心思想非常直观：
 - Sutskever, Vinyals & Le (2014). "Sequence to Sequence Learning with Neural Networks." — Seq2Seq 经典
 - Bengio, Simard & Frasconi (1994). "Learning long-term dependencies with gradient descent is difficult." — 梯度消失的理论分析
 - Olah (2015). "Understanding LSTM Networks." — 可视化 LSTM 的优秀博文
+
+## 参考文献 (References)
+
+1. **Hochreiter, S. & Schmidhuber, J.** (1997). Long Short-Term Memory. *Neural Computation*, 9(8), 1735–1780.
+2. **Cho, K. et al.** (2014). Learning phrase representations using RNN encoder-decoder. *EMNLP*.
+3. **Sutskever, I., Vinyals, O. & Le, Q. V.** (2014). Sequence to sequence learning with neural networks. *NeurIPS*.

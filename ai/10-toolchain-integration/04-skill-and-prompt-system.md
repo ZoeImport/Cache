@@ -1,7 +1,7 @@
 # 第4章 技能与提示词系统
 # Chapter 4: Skill & Prompt System
 
-> **Skills are the modular units of AI capability. A skill bundles a specialized prompt with tool permissions and execution constraints, turning a general-purpose LLM into a domain-specific agent. This chapter covers how skills are defined, loaded, injected into prompts, and composed into multi-agent workflows.**
+> **Skills are the modular units of AI capability. A skill bundles a specialized prompt with tool permissions and execution constraints, turning a general-purpose LLM into a domain-specific agent（/ˈeɪdʒənt/）. This chapter covers how skills are defined, loaded, injected into prompts, and composed into multi-agent workflows.**
 >
 > **技能是 AI 能力的模块化单元。一个技能将专用提示词与工具权限和执行约束捆绑在一起，将通用 LLM 转变为特定领域的智能体。本章涵盖技能的定义、加载、注入到提示词中，以及编排多智能体工作流。**
 
@@ -289,7 +289,7 @@ Context window: large  ( 32768 tokens)
 
 ### 3.2 窗口管理策略 (Window Management Strategies)
 
-三种核心策略，各有适用场景：
+三种核（kernel /ˈkɜːrnl/）心策略，各有适用场景：
 
 #### 策略一：滑动窗口 (Sliding Window)
 
@@ -326,7 +326,7 @@ Input:  [A][B][C][D][E][F][G][H]  +  Query: "deploy the app"
         [C](deploy related) [G](deploy related) + [H](current)
 ```
 
-**适用场景:** 知识库问答、多轮复杂推理。
+**适用场景:** 知识库问答、多轮复杂推理（inference /ˈɪnfərəns/）。
 
 ### 3.3 Cache-Aware Prompt Ordering
 

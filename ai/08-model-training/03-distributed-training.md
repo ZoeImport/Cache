@@ -1,7 +1,7 @@
 # 第3章 分布式训练
 # Chapter 3: Distributed Training
 
-> **随着模型规模增长到万亿参数，单卡训练已不可行。分布式训练通过将计算和内存分摊到多卡，使超大模型训练成为现实。本章介绍 DDP、模型并行 (Tensor/Pipeline)、FSDP 和 DeepSpeed ZeRO 四大范式。**
+> **随着模型规模增长到万亿参数（parameter /pəˈræmɪtər/），单卡训练已不可行。分布式训练通过将计算和内存分摊到多卡，使超大模型训练成为现实。本章介绍 DDP、模型并行 (Tensor（/ˈtensər/）/Pipeline)、FSDP 和 DeepSpeed ZeRO 四大范式。**
 > **As models grow to trillions of parameters, single-GPU training is infeasible. Distributed training spreads computation and memory across accelerators. This chapter covers DDP, Model Parallelism (Tensor/Pipeline), FSDP, and DeepSpeed ZeRO.**
 
 **前置:** 训练循环 (Ch2), PyTorch `nn.Module` | **依赖:** `torch>=2.1.0`, `torch.distributed`, `DeepSpeed` (opt)
@@ -10,13 +10,13 @@
 
 ## 1. 分布式训练概览 | Overview
 
-核心问题：**如何将大模型的计算和存储分摊到多卡？**
+核（kernel /ˈkɜːrnl/）心问题：**如何将大模型的计算和存储分摊到多卡？**
 
 | 范式 | 核心思想 | 单机扩展 | 跨机扩展 |
 |---|---|---|---|
 | **DDP** | 每卡完整模型，分摊 Batch | ★★★ | ★★★ |
 | **模型并行** | 切分模型到多卡 | ★★ | ★★ |
-| **FSDP / ZeRO** | 分片优化器/梯度/参数 | ★★★ | ★★★ |
+| **FSDP / ZeRO** | 分片优化器/梯度（gradient /ˈɡreɪdiənt/）/参数 | ★★★ | ★★★ |
 
 **选型:** 模型能塞进单卡→DDP；放不下→FSDP/ZeRO；层数极深→Pipeline；单层超大→Tensor。
 
@@ -140,7 +140,7 @@ ZeRO (Zero Redundancy Optimizer) 由 Microsoft 提出，与 FSDP 目标一致：
 
 | 阶段 | 分片内容 | 显存节省 | 通信量 |
 |---|---|---|---|
-| **ZeRO-1** | 优化器状态 (momentum+variance) | 4× | ≈ DDP |
+| **ZeRO-1** | 优化器状态 (momentum（/məˈmentəm/）+variance) | 4× | ≈ DDP |
 | **ZeRO-2** | + 梯度 (Gradients) | 8× | ≈ DDP |
 | **ZeRO-3** | + 参数 (Parameters) | 与 GPU 数成反比 | +1.5× |
 

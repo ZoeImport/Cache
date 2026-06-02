@@ -2,6 +2,11 @@
 # Chapter 1: Perceptron & Multi-Layer Perceptron — Where Neural Networks Begin
 
 > **从生物神经元到人工神经网络，感知机是这一切的起点。** 1958 年 Frank Rosenblatt 提出的感知机 (Perceptron) 是第一个具有学习能力的人工神经网络模型。虽然它只能解决线性可分问题，但它奠定了所有后续神经网络的基础。**多层感知机 (MLP)** 通过引入隐藏层和非线性激活函数，突破了单层感知机的局限，成为现代深度学习的基石。
+> > **时间线**:
+> > - **1943**: McCulloch & Pitts 提出人工神经元数学模型（MCP 模型）
+> > - **1958**: Rosenblatt 在 *Psychological Review* 发表感知机
+> > - **1986**: Rumelhart, Hinton & Williams 在 *Nature* 发表反向传播算法
+> - **1989**: Cybenko 证明万能近似定理
 >
 > **From biological neurons to artificial neural networks, the Perceptron is where it all began.** Proposed by Frank Rosenblatt in 1958, the Perceptron was the first artificial neural network with learning capability. While it could only solve linearly separable problems, it laid the foundation for all subsequent neural networks. The **Multi-Layer Perceptron (MLP)** breaks through the limitations of single-layer perceptrons by introducing hidden layers and non-linear activation functions, becoming the cornerstone of modern deep learning.
 
@@ -21,7 +26,7 @@
    - 1.3 [实现与决策边界](#13-实现与决策边界-implementation--decision-boundary)
    - 1.4 [XOR 问题](#14-xor-问题-the-xor-problem)
 2. [激活函数 (Activation Functions)](#2-激活函数-activation-functions)
-   - 2.1 [Sigmoid](#21-sigmoid)
+   - 2.1 [Sigmoid（/ˈsɪɡmɔɪd/）](#21-sigmoid)
    - 2.2 [Tanh (双曲正切)](#22-tanh-双曲正切-hyperbolic-tangent)
    - 2.3 [ReLU](#23-relu)
    - 2.4 [GELU](#24-gelu)
@@ -39,7 +44,7 @@
 
 ### 1.1 算法描述 (Algorithm Description)
 
-感知机是一个**二分类线性模型**。给定输入向量 $\mathbf{x} \in \mathbb{R}^d$，感知机计算：
+感知机是一个**二分类（classification /ˌklæsɪfɪˈkeɪʃən/）线性模型**。给定输入向量 $\mathbf{x} \in \mathbb{R}^d$，感知机计算：
 
 $$ \hat{y} = \text{sign}(\mathbf{w}^T \mathbf{x} + b) = \begin{cases} +1 & \text{if } \mathbf{w}^T \mathbf{x} + b \geq 0 \\ -1 & \text{if } \mathbf{w}^T \mathbf{x} + b < 0 \end{cases} $$
 
@@ -220,7 +225,7 @@ XOR 准确率 (XOR Accuracy): 50.0%
   原因: XOR 不是线性可分的 (XOR is not linearly separable)
 ```
 
-感知机在 XOR 上仅达到 **50% 准确率**（相当于随机猜测），且 100 轮迭代后仍未收敛。这正是 Minsky & Papert 所指出的：**单层感知机只能解决线性可分问题**。
+感知机在 XOR 上仅达到 **50% 准确率**（相当于随机（stochastic /stəˈkæstɪk/）猜测），且 100 轮迭代后仍未收敛。这正是 Minsky & Papert 所指出的：**单层感知机只能解决线性可分问题**。
 
 ![XOR 问题可视化](code/output/xor_problem.png)
 
@@ -242,7 +247,7 @@ $$ \sigma'(z) = \sigma(z) \cdot (1 - \sigma(z)) = \frac{e^{-z}}{(1 + e^{-z})^2} 
 - **范围:** $(0, 1)$ — 适合表示概率
 - **对称性:** $\sigma(-z) = 1 - \sigma(z)$
 - **中心:** $\sigma(0) = 0.5$
-- **梯度消失：** $|z| > 4$ 时导数几乎为 0
+- **梯度（gradient /ˈɡreɪdiənt/）消失：** $|z| > 4$ 时导数几乎为 0
 
 ```python
 def sigmoid(z):
@@ -333,7 +338,7 @@ $$ \text{GELU}(z) \approx 0.5 \cdot z \cdot \left(1 + \tanh\left(\sqrt{\frac{2}{
 **性质:**
 - **平滑近似 ReLU:** 在 $z=0$ 处可导，而非 ReLU 的不可导点
 - **负值保留：** 允许小的负梯度，避免神经元死亡
-- **现状：** BERT、GPT、ViT 等现代 Transformer 模型的默认选择
+- **现状：** BERT、GPT、ViT 等现代 Transformer（/trænsˈfɔːrmər/） 模型的默认选择
 
 ```python
 def gelu(z):
@@ -441,7 +446,7 @@ GELU 在 $z < 0$ 时仍有非零（负）输出，这一点与 ReLU 不同——
 
 ### 3.1 前向传播 (Forward Pass)
 
-MLP 的核心计算是**逐层**的**线性变换 + 非线性激活**：
+MLP 的核（kernel /ˈkɜːrnl/）心计算是**逐层**的**线性变换 + 非线性激活**：
 
 $$ \mathbf{z}^{(l)} = \mathbf{W}^{(l)} \mathbf{a}^{(l-1)} + \mathbf{b}^{(l)} $$
 
@@ -543,7 +548,7 @@ Section 3.1: Layer-by-Layer Forward Pass
     a2 (relu) = σ(z2) = [+0.000000]
 ```
 
-**层次化计算验证：** 输入 $\mathbf{x} = [0.5, -0.3]$ 经过第一层线性变换得到 $\mathbf{z}^{(1)} = [0.3186, 0.0011, -0.1499, 0.5313]$，ReLU 将负值清零得到 $\mathbf{a}^{(1)} = [0.3186, 0.0011, 0.0000, 0.5313]$。第二层线性组合后得到标量输出 $z^{(2)} = -0.2803$，再经 ReLU 得最终输出 $0$。
+**层次化计算验证：** 输入 $\mathbf{x} = [0.5, -0.3]$ 经过第一层线性变换得到 $\mathbf{z}^{(1)} = [0.3186, 0.0011, -0.1499, 0.5313]$，ReLU 将负值清零得到 $\mathbf{a}^{(1)} = [0.3186, 0.0011, 0.0000, 0.5313]$。第二层线性组合后得到标量（scalar /ˈskeɪlər/）输出 $z^{(2)} = -0.2803$，再经 ReLU 得最终输出 $0$。
 
 ### 3.2 为什么需要深度？(Why Depth?)
 
@@ -557,7 +562,7 @@ Section 3.1: Layer-by-Layer Forward Pass
 第三层 (Layer 3): 组合部件为高级概念（形状、物体）
 ```
 
-> **关键洞察：** 深度网络之所以有效，不是因为单层更有表达力，而是因为**层次化组合**允许网络用更少的参数表示更复杂的函数。这就是所谓的 **"深度"的优势**。
+> **关键洞察：** 深度网络之所以有效，不是因为单层更有表达力，而是因为**层次化组合**允许网络用更少的参数（parameter /pəˈræmɪtər/）表示更复杂的函数。这就是所谓的 **"深度"的优势**。
 
 **数学直觉:**
 
@@ -603,7 +608,7 @@ XOR MLP 预测结果 (未经训练 / Untrained):
    1    1 |  0.52613        0      ✗
 ```
 
-> **关键观察：** 未经训练的 MLP 输出 ≈ 0.5（随机猜测），这与单层感知机类似。但关键区别在于：MLP 有了隐藏层，**权重可被训练**来学习 XOR 的决策边界。这是第 2 章（反向传播）的任务。
+> **关键观察：** 未经训练的 MLP 输出 ≈ 0.5（随机猜测），这与单层感知机类似。但关键区别在于：MLP 有了隐藏层，**权重可被训练**来学习 XOR 的决策边界。这是第 2 章（反向传播（backpropagation /ˌbækprəpəˈɡeɪʃən/））的任务。
 
 ---
 
@@ -694,7 +699,7 @@ $$
 | 第 2 章 (反向传播) | 训练 MLP 的核心算法——链式法则 + 梯度下降 |
 | 第 3 章 (CNN) | MLP 特化处理网格结构数据（图像） |
 | 第 4 章 (RNN/Transformer) | MLP 特化处理序列数据 |
-| 第 5 章 (训练技巧) | 初始化、正则化、归一化——让 MLP 训练更稳定 |
+| 第 5 章 (训练技巧) | 初始化、正则化（regularization /ˌreɡjələraɪˈzeɪʃən/）、归一化（normalization /ˌnɔːrmələˈzeɪʃən/）——让 MLP 训练更稳定 |
 
 ### 动手练习
 
@@ -710,3 +715,16 @@ $$
 ---
 
 *Last updated: 2026-06-01*
+
+## 参考文献 (References)
+
+1. **Rosenblatt, F.** (1958). The perceptron: A probabilistic model. *Psychological Review*, 65(6), 386–408.
+2. **Rumelhart, D. E., Hinton, G. E. & Williams, R. J.** (1986). Learning representations by back-propagating errors. *Nature*, 323(6088), 533–536.
+3. **Cybenko, G.** (1989). Approximation by superpositions of a sigmoidal function. *Math. Control Signals Systems*, 2(4), 303–314.
+
+## 参考文献 (References)
+
+1. **Rosenblatt, F.** (1958). The perceptron. *Psychological Review*, 65(6), 386–408.
+2. **Rumelhart, D. E., Hinton, G. E. & Williams, R. J.** (1986). Learning representations by back-propagating errors. *Nature*, 323(6088), 533–536.
+3. **Cybenko, G.** (1989). Approximation by superpositions of a sigmoidal function. *Math. Control Signals Systems*, 2(4), 303–314.
+

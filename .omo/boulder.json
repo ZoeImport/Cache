@@ -214,7 +214,7 @@
       "active_plan": "/home/zoe/CodeSpace/love-story/.omo/plans/ai-ml-compendium-execution.md",
       "plan_name": "ai-ml-compendium-execution",
       "started_at": "2026-06-01T09:55:27.593Z",
-      "updated_at": "2026-06-02T03:07:03.103Z",
+      "updated_at": "2026-06-02T03:08:21.068Z",
       "session_ids": [
         "opencode:ses_17d891ac1ffelMGf0nmZQwAVJC",
         "opencode:ses_17d60e32cffeKrneVfMbOCkB0B",
@@ -419,9 +419,15 @@
           "ended_at": "2026-06-02T03:07:03.103Z",
           "elapsed_ms": 4257047
         }
-      }
+      },
+      "ended_at": "2026-06-02T03:08:21.068Z",
+      "elapsed_ms": 61973475,
+      "status": "completed"
     }
   },
   "active_work_id": "ai-ml-compendium-execution-legacy",
-  "updated_at": "2026-06-02T03:07:03.103Z"
+  "updated_at": "2026-06-02T03:08:21.068Z",
+  "status": "completed",
+  "ended_at": "2026-06-02T03:08:21.068Z",
+  "elapsed_ms": 61973475
 }

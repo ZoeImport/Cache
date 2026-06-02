@@ -1,6 +1,6 @@
 # 04 — 数据可视化基础（Data Visualization for Machine Learning）
 
-> "一图胜千言"——在机器学习中，可视化是理解数据、诊断模型、沟通结果的核心技能。本章以 **Matplotlib** 为主线，覆盖 ML 全流程中的高频图表类型和实用技巧。
+> "一图胜千言"——在机器学习中，可视化是理解数据、诊断模型、沟通结果的核（kernel /ˈkɜːrnl/）心技能。本章以 **Matplotlib** 为主线，覆盖 ML 全流程中的高频图表类型和实用技巧。
 >
 > "A picture is worth a thousand words" — In ML, visualization is essential for understanding data, diagnosing models, and communicating results. This chapter covers Matplotlib's core API and ML-focused chart types.
 
@@ -89,11 +89,11 @@ fig.savefig("output.png",
             facecolor="white")   # 背景色（默认透明）
 ```
 
-| 参数 | 作用 |
+| 参数（parameter /pəˈræmɪtər/） | 作用 |
 |:---|:---|
 | `dpi` | 输出分辨率，印刷级 ≥300，屏幕用 150 |
 | `bbox_inches="tight"` | 自动裁剪周围空白区域 |
-| `transparent=True` | 透明背景（适合嵌入演示文稿） |
+| `transparent=True` | 透明背景（适合嵌入（embedding /ɪmˈbedɪŋ/）演示文稿） |
 
 ---
 
@@ -120,13 +120,13 @@ fig.savefig("line_curve.png", dpi=150, bbox_inches="tight")
 ![Loss Curve](./code/line_curve.png)
 
 > **诊断要点**：
-> - 两条曲线差距大 → **过拟合**（Overfitting）
+> - 两条曲线差距大 → **过拟合（overfitting /ˈoʊvərˈfɪtɪŋ/）**（Overfitting）
 > - 验证集不再下降 → **早停**（Early Stopping）
 > - 损失震荡剧烈 → **学习率过大**（Learning rate too high）
 
 ### 3.2 散点图（Scatter Plot）— 特征分布
 
-散点图展示两个特征之间的关系，常用于分类问题的数据探索。
+散点图展示两个特征之间的关系，常用于分类（classification /ˌklæsɪfɪˈkeɪʃən/）问题的数据探索。
 
 ```python
 fig, ax = plt.subplots(figsize=(7, 6))
@@ -139,7 +139,7 @@ ax.legend(); ax.grid(True, alpha=0.3)
 
 ![Scatter Plot](./code/scatter.png)
 
-> 散点图可以快速判断：类别是否线性可分？是否存在异常点？特征是否需归一化？
+> 散点图可以快速判断：类别是否线性可分？是否存在异常点？特征是否需归一化（normalization /ˌnɔːrmələˈzeɪʃən/）？
 
 ### 3.3 条形图（Bar Chart）— 模型对比
 
@@ -219,7 +219,7 @@ fig.colorbar(im, ax=ax, label="Pearson r")
 
 ### 4.1 ROC 曲线与 AUC
 
-**ROC 曲线**（Receiver Operating Characteristic）从左上到右下绘制**真正率（TPR）** vs **假正率（FPR）**，对角线对应随机猜测（AUC = 0.5）。**AUC**（Area Under the Curve）衡量模型区分正负类的能力。
+**ROC 曲线**（Receiver Operating Characteristic）从左上到右下绘制**真正率（TPR）** vs **假正率（FPR）**，对角线对应随机（stochastic /stəˈkæstɪk/）猜测（AUC = 0.5）。**AUC**（Area Under the Curve）衡量模型区分正负类的能力。
 
 | AUC 范围 | 含义 |
 |:---|:---|
@@ -260,7 +260,7 @@ ax2.set_title("After Min-Max Normalization")
 
 ![Normalization](./code/normalization.png)
 
-> **归一化必要性**：基于距离的模型（KNN、SVM、K-Means）和梯度下降方法（神经网络）对特征尺度敏感。决策树和随机森林则不受影响。
+> **归一化必要性**：基于距离的模型（KNN、SVM、K-Means）和梯度（gradient /ˈɡreɪdiənt/）下降方法（神经网络）对特征尺度敏感。决策树和随机森林则不受影响。
 
 ### 4.3 学习曲线（Learning Curve）
 
@@ -268,8 +268,8 @@ ax2.set_title("After Min-Max Normalization")
 
 | 模式 | 诊断 |
 |:---|:---|
-| 训练精度低 + 测试精度低 | **高偏差**（欠拟合）→ 增加模型复杂度 |
-| 训练精度高 + 测试精度低 | **高方差**（过拟合）→ 增加数据/正则化 |
+| 训练精度低 + 测试精度低 | **高偏差**（欠拟合（underfitting /ˈʌndərˈfɪtɪŋ/））→ 增加模型复杂度 |
+| 训练精度高 + 测试精度低 | **高方差**（过拟合）→ 增加数据/正则化（regularization /ˌreɡjələraɪˈzeɪʃən/） |
 
 ---
 

@@ -1,7 +1,7 @@
 # 第6章 ML项目模板 — 可复用的机器学习管道
 # Chapter 6: ML Project Template — A Reusable Machine Learning Pipeline
 
-> **在真实项目中，ML 工作流不仅仅是训练一个模型。** 你需要加载数据、清理特征、划分数据集、尝试多种模型、评估效果、保存最佳模型，最后还要能加载它进行推理。将这些步骤组织成可复用的管道，是每个 ML 工程师的核心能力。
+> **在真实项目中，ML 工作流不仅仅是训练一个模型。** 你需要加载数据、清理特征、划分数据集、尝试多种模型、评估效果、保存最佳模型，最后还要能加载它进行推理（inference /ˈɪnfərəns/）。将这些步骤组织成可复用的管道，是每个 ML 工程师的核（kernel /ˈkɜːrnl/）心能力。
 >
 > **In real projects, ML workflows go far beyond just training a model.** You need to load data, clean features, split datasets, try multiple models, evaluate performance, save the best model, and finally load it for inference. Organizing these steps into a reusable pipeline is a core skill for every ML engineer.
 
@@ -95,7 +95,7 @@ def load_data(
 **功能 (Purpose):**
 提供统一的入口来加载数据，无论是本地 CSV 文件还是 sklearn 内置数据集。
 
-**参数说明 (Parameters):**
+**参数（parameter /pəˈræmɪtər/）说明 (Parameters):**
 
 | 参数 | 类型 | 说明 |
 |---|---|---|
@@ -151,7 +151,7 @@ X_test_proc  = pre.transform(X_test)     # 只用 transform！
 |---|---|---|
 | `SimpleImputer` | `impute_strategy` | 处理缺失值 ('mean', 'median', 'most_frequent') |
 | `StandardScaler` | `scale` | Z-score 标准化 (均值为0，方差为1) |
-| `LabelEncoder` | 自动 | 将分类标签编码为整数 |
+| `LabelEncoder` | 自动 | 将分类（classification /ˌklæsɪfɪˈkeɪʃən/）标签编码为整数 |
 
 **便捷函数 (Convenience Function):**
 
@@ -177,14 +177,14 @@ def split_data(
 **分层策略 (Stratification Strategy):**
 
 - **分类任务 (Classification):** 按标签比例分层，确保每个子集的类别分布与原始数据一致
-- **回归任务 (Regression):** 使用 `pd.qcut()` 将目标值分桶后按桶分层
+- **回归（regression /rɪˈɡreʃən/）任务 (Regression):** 使用 `pd.qcut()` 将目标值分桶后按桶分层
 
 **为什么需要验证集？(Why a Validation Set?)**
 
 | 数据集 | 用途 |
 |---|---|
 | **训练集 (Train)** | 模型学习参数 |
-| **验证集 (Validation)** | 模型选择、超参数调优、早停 |
+| **验证集 (Validation)** | 模型选择、超参数（hyperparameter /ˈhaɪpərpəˈræmɪtər/）调优、早停 |
 | **测试集 (Test)** | 最终评估，**只在最后一刻使用一次** |
 
 ```python

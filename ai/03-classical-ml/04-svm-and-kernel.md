@@ -1,6 +1,10 @@
 # 04 — SVM & Kernel Methods / 支持向量机与核方法
 
-> 支持向量机（Support Vector Machine, SVM）是经典机器学习的巅峰之一。它的核心思想简洁而优美：**找到一个能将两类数据分开且间隔最大的超平面**。而核技巧（Kernel Trick）更让 SVM 能够在不显式计算高维映射的情况下处理非线性分类问题——这一思想深刻影响了后来的核方法（Kernel Methods）乃至高斯过程（Gaussian Processes）。
+> 支持向量机（Support Vector Machine, SVM）是经典机器学习的巅峰之一。它的核（kernel /ˈkɜːrnl/）心思想简洁而优美：**找到一个能将两类数据分开且间隔最大的超平面**。而核技巧（Kernel Trick）更让 SVM 能够在不显式计算高维映射的情况下处理非线性分类（classification /ˌklæsɪfɪˈkeɪʃən/）问题——这一思想深刻影响了后来的核方法（Kernel Methods）乃至高斯过程（Gaussian Processes）。
+> > **时间线**:
+> > - **1963**: Vapnik & Chervonenkis 提出线性支持向量机基本思想
+> > - **1992**: Boser, Guyon & Vapnik 引入核技巧（Kernel Trick）
+> - **1995**: Cortes & Vapnik 正式发表 SVM（支持向量机）
 
 ---
 
@@ -79,7 +83,7 @@ $$
 \min_{w, b} \frac{1}{2} \|w\|^2 \quad \text{s.t.} \quad y_i (w^T \mathbf{x}_i + b) \geq 1, \; \forall i
 $$
 
-> 这里的约束条件将函数间隔归一化为 1。因为缩放 $w$ 和 $b$ 不会改变超平面本身，我们可以固定 $\hat{\gamma} = 1$ 来简化问题。
+> 这里的约束条件将函数间隔归一化（normalization /ˌnɔːrmələˈzeɪʃən/）为 1。因为缩放 $w$ 和 $b$ 不会改变超平面本身，我们可以固定 $\hat{\gamma} = 1$ 来简化问题。
 
 ---
 
@@ -138,14 +142,14 @@ $$
 
 ### 2.4 软间隔（Soft Margin）
 
-当数据不可分时，我们引入**松弛变量（Slack Variable）** $\xi_i \geq 0$ 和惩罚参数 $C$：
+当数据不可分时，我们引入**松弛变量（Slack Variable）** $\xi_i \geq 0$ 和惩罚参数（parameter /pəˈræmɪtər/） $C$：
 
 $$
 \min_{w, b, \xi} \frac{1}{2} \|w\|^2 + C \sum_{i=1}^n \xi_i, \quad \text{s.t.} \quad y_i (w^T \mathbf{x}_i + b) \geq 1 - \xi_i
 $$
 
-- $C$ 越大 → 对误分类的惩罚越重 → 决策边界越复杂（可能过拟合）
-- $C$ 越小 → 允许更多误分类 → 决策边界更平滑（可能欠拟合）
+- $C$ 越大 → 对误分类的惩罚越重 → 决策边界越复杂（可能过拟合（overfitting /ˈoʊvərˈfɪtɪŋ/））
+- $C$ 越小 → 允许更多误分类 → 决策边界更平滑（可能欠拟合（underfitting /ˈʌndərˈfɪtɪŋ/））
 
 ---
 
@@ -199,7 +203,7 @@ $$
 | **线性核（Linear）** | $K(\mathbf{x}_i, \mathbf{x}_j) = \mathbf{x}_i^T \mathbf{x}_j$ | 无 | 相当于无映射，用于线性可分数据 |
 | **多项式核（Polynomial）** | $K(\mathbf{x}_i, \mathbf{x}_j) = (\mathbf{x}_i^T \mathbf{x}_j + c)^d$ | $d$（次数）, $c$（偏置） | 有限维映射，$d$ 控制复杂度 |
 | **RBF 核（高斯核）** | $K(\mathbf{x}_i, \mathbf{x}_j) = \exp(-\gamma \|\mathbf{x}_i - \mathbf{x}_j\|^2)$ | $\gamma$ | 映射到无穷维，最常用 |
-| **Sigmoid 核** | $K(\mathbf{x}_i, \mathbf{x}_j) = \tanh(\kappa \mathbf{x}_i^T \mathbf{x}_j + \theta)$ | $\kappa, \theta$ | 类似两层神经网络的激活 |
+| **Sigmoid（/ˈsɪɡmɔɪd/） 核** | $K(\mathbf{x}_i, \mathbf{x}_j) = \tanh(\kappa \mathbf{x}_i^T \mathbf{x}_j + \theta)$ | $\kappa, \theta$ | 类似两层神经网络的激活 |
 
 ### 3.4 RBF 核详解
 
@@ -252,7 +256,7 @@ $$
 
 - **核感知机（Kernel Perceptron）**
 - **核 PCA（Kernel PCA）**
-- **核岭回归（Kernel Ridge Regression）**
+- **核岭回归（regression /rɪˈɡreʃən/）（Kernel Ridge Regression）**
 - **核 K-means（Kernel K-means）**
 
 > 核技巧是"将线性算法推广到非线性"的通用框架。
@@ -281,7 +285,7 @@ $$
 
 ### 4.3 有趣的联系
 
-- **SVM 使用 hinge loss + 最大间隔**；神经网络通常使用 cross-entropy loss
+- **SVM 使用 hinge loss + 最大间隔**；神经网络通常使用 cross-entropy（/ˈentrəpi/） loss
 - **现代深度学习中的"权重衰减（Weight Decay）"** 本质上就是 SVM 的最大间隔思想的延续
 - **最后一个隐藏层的输出**可以看作神经网络学习的特征表示 $\phi(\mathbf{x})$，而输出层则类似于线性 SVM
 
@@ -320,3 +324,9 @@ $$
 ---
 
 *配套代码：[`svm_demo.py`](./code/svm_demo.py) — SVM 核函数对比实验，RBF 参数 $\gamma$ 的影响可视化，支持向量标注*
+
+## 参考文献 (References)
+
+1. **Vapnik, V. & Chervonenkis, A.** (1963). On the uniform convergence of relative frequencies. *Doklady Akademii Nauk USSR*. — VC 维理论。
+2. **Cortes, C. & Vapnik, V.** (1995). Support-vector networks. *Machine Learning*, 20(3), 273–297. — 正式提出 SVM。
+3. **Boser, B. E., Guyon, I. M. & Vapnik, V. N.** (1992). A training algorithm for optimal margin classifiers. *COLT*, 144–152. — 核技巧的引入。

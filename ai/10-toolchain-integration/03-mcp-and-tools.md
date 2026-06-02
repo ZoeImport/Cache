@@ -5,7 +5,7 @@
 >
 > **MCP（Model Context Protocol）是连接 LLM 与外部世界的标准化接口。可以把它想象成"AI 工具的 USB-C"——一个通用协议，任何 LLM 都可以用它调用任何工具，任何工具也可以向任何 LLM 暴露自身。**
 
-**前置知识 (Prerequisites):** 了解 Tool Calling（第 9.3 节）、了解 Agent Harness（第 10.2 节）
+**前置知识 (Prerequisites):** 了解 Tool Calling（第 9.3 节）、了解 Agent（/ˈeɪdʒənt/） Harness（第 10.2 节）
 **配套代码 (Code):** `code/custom_mcp_server.py`
 
 ---
@@ -26,7 +26,7 @@
 
 MCP 由 Anthropic 于 2024 年 11 月提出，是一个开放标准协议，定义了 LLM 与外部工具和服务之间的通信方式。它解决了 AI 工具生态中的"碎片化"问题——在此之前，每个 LLM 平台都有自己的工具调用格式（OpenAI Function Calling、Anthropic Tool Use、Google Function Declaration），开发者需要为每个平台编写适配代码。
 
-**核心架构 (Core Architecture):**
+**核（kernel /ˈkɜːrnl/）心架构 (Core Architecture):**
 
 ```
 +------------------+     JSON-RPC      +------------------+     LLM API      +---------------+
@@ -74,7 +74,7 @@ MCP 协议基于 JSON-RPC 2.0，定义了以下核心方法：
 | 方法 | 方向 | 描述 |
 |------|------|------|
 | `tools/list` | Server -> Client | 列出所有可用工具及其 schema |
-| `tools/call` | Client -> Server | 调用指定工具，传入参数 |
+| `tools/call` | Client -> Server | 调用指定工具，传入参数（parameter /pəˈræmɪtər/） |
 | `tools/notify` | Server -> Client | 工具状态变更通知（可选） |
 
 **请求/响应示例 (Request/Response Example):**

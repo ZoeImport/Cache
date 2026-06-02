@@ -1,11 +1,11 @@
 # 第2章 RAG — 检索增强生成
 # Chapter 2: Retrieval-Augmented Generation
 
-> **RAG (Retrieval-Augmented Generation) is a paradigm that equips LLMs with external knowledge by combining a retrieval system with a generative model.** Instead of relying solely on parametric memory, RAG fetches relevant documents from a knowledge base at inference time and conditions the generation on them. This chapter covers the standard RAG pipeline, text chunking strategies, vector databases, and advanced variants like HyDE, RAPTOR, and Self-RAG.
+> **RAG (Retrieval-Augmented Generation) is a paradigm that equips LLMs with external knowledge by combining a retrieval system with a generative model.** Instead of relying solely on parametric memory, RAG fetches relevant documents from a knowledge base at inference（/ˈɪnfərəns/） time and conditions the generation on them. This chapter covers the standard RAG pipeline, text chunking strategies, vector databases, and advanced variants like HyDE, RAPTOR, and Self-RAG.
 >
-> **RAG（检索增强生成）是一种通过将检索系统与生成模型相结合，为 LLM 配备外部知识的范式。** RAG 不依赖纯参数化记忆，而是在推理时从知识库中检索相关文档，并基于这些文档进行生成。本章涵盖标准 RAG 流程、文本分割策略、向量数据库以及 HyDE、RAPTOR、Self-RAG 等高级变体。
+> **RAG（检索增强生成）是一种通过将检索系统与生成模型相结合，为 LLM 配备外部知识的范式。** RAG 不依赖纯参数（parameter /pəˈræmɪtər/）化记忆，而是在推理时从知识库中检索相关文档，并基于这些文档进行生成。本章涵盖标准 RAG 流程、文本分割策略、向量数据库以及 HyDE、RAPTOR、Self-RAG 等高级变体。
 
-**前置知识 (Prerequisites):** 了解 Transformer 和 LLM 基本原理
+**前置知识 (Prerequisites):** 了解 Transformer（/trænsˈfɔːrmər/） 和 LLM 基本原理
 **依赖库 (Dependencies):** `langchain`, `chromadb`, `sentence-transformers`, `faiss-cpu` (code)
 **配套代码 (Code):** 本章无独立代码文件
 
@@ -35,7 +35,7 @@
 
 ### 1.2 RAG 的解决思路 (The RAG Solution)
 
-RAG 的核心思想是：**不让模型凭记忆回答，而是先查资料，再作答。**
+RAG 的核（kernel /ˈkɜːrnl/）心思想是：**不让模型凭记忆回答，而是先查资料，再作答。**
 
 ```
 Query ──► Retriever ──► [Doc₁, Doc₂, ..., Docₖ]
@@ -77,7 +77,7 @@ Vector Embeddings
 Vector Database
 ```
 
-**核心公式 (Core Formula):** 嵌入函数 $f: \text{text} \rightarrow \mathbb{R}^d$ 将文本映射到 $d$ 维向量空间。每个文档块 $c_i$ 被映射为向量 $\mathbf{v}_i = f(c_i)$。
+**核心公式 (Core Formula):** 嵌入（embedding /ɪmˈbedɪŋ/）函数 $f: \text{text} \rightarrow \mathbb{R}^d$ 将文本映射到 $d$ 维向量空间。每个文档块 $c_i$ 被映射为向量 $\mathbf{v}_i = f(c_i)$。
 
 ### 2.2 检索 (Retrieval)
 
@@ -97,7 +97,7 @@ $$
 |---|---|---|
 | 余弦相似度 | $\frac{\mathbf{a} \cdot \mathbf{b}}{\|\mathbf{a}\| \|\mathbf{b}\|}$ | 对向量长度不敏感，最常用 |
 | 欧氏距离 | $\|\mathbf{a} - \mathbf{b}\|_2$ | 对向量长度敏感 |
-| 内积 | $\mathbf{a} \cdot \mathbf{b}$ | 需要归一化后使用 |
+| 内积 | $\mathbf{a} \cdot \mathbf{b}$ | 需要归一化（normalization /ˌnɔːrmələˈzeɪʃən/）后使用 |
 
 **Top-k 的选择 (Choice of k):** $k$ 通常在 3–10 之间。$k$ 过小可能遗漏相关信息，$k$ 过大则引入噪声并消耗更多 LLM 上下文窗口。
 
@@ -131,7 +131,7 @@ $$
 
 ## 3. 文本分割 (Text Chunking)
 
-文本分割是将原始文档切分为适合检索的块。这是 RAG 系统中**最容易被忽视但影响最大的超参数**。
+文本分割是将原始文档切分为适合检索的块。这是 RAG 系统中**最容易被忽视但影响最大的超参数（hyperparameter /ˈhaɪpərpəˈræmɪtər/）**。
 
 ### 3.1 固定大小分割 (Fixed-Size Chunking)
 
@@ -249,7 +249,7 @@ Search starts at top layer, descends greedily.
 |---|---|---|---|---|
 | HNSW | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐⭐ |
 | IVF (倒排文件) | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ |
-| PQ (乘积量化) | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ | ⭐ |
+| PQ (乘积量化（quantize /ˈkwɒntaɪz/）) | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ | ⭐ |
 | DiskANN | ⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ |
 
 ---

@@ -1,7 +1,7 @@
 # 第6章 终章：回顾与进阶之路
 # Chapter 6: Conclusion & Roadmap
 
-> **You made it.** Ten volumes. From your first Python `print("hello world")` to building agent harnesses that call MCP tools. This is the last chapter, but it is not the end. It is a launching pad.
+> **You made it.** Ten volumes. From your first Python `print("hello world")` to building agent（/ˈeɪdʒənt/） harnesses that call MCP tools. This is the last chapter, but it is not the end. It is a launching pad.
 >
 > **你做到了。** 十卷。从你的第一行 `print("hello world")` 到构建能调用 MCP 工具的 Agent Harness。这是最后一章，但不是终点。这是一个起跳板。
 
@@ -88,13 +88,13 @@ mindmap
 
 **卷 3 (Volume 3):** 你理解了机器学习的灵魂——从数据中学习模式。决策树、SVM、聚类——这些经典算法今天仍然在生产系统中服务着数十亿用户。
 
-**卷 4 (Volume 4):** 你见证了深度学习革命的起点。反向传播是过去十年 AI 爆发的引擎。CNN 让计算机"看见"，RNN 让机器"理解序列"。
+**卷 4 (Volume 4):** 你见证了深度学习革命的起点。反向传播（backpropagation /ˌbækprəpəˈɡeɪʃən/）是过去十年 AI 爆发的引擎。CNN 让计算机"看见"，RNN 让机器"理解序列"。
 
-**卷 5 (Volume 5):** Transformer。如果你只记住一卷，记住这一卷。注意力机制（Attention Mechanism）是 2017 年之后几乎所有重大突破的基石。GPT、BERT、DALL-E、Sora——全都建立在 Transformer 之上。
+**卷 5 (Volume 5):** Transformer（/trænsˈfɔːrmər/）。如果你只记住一卷，记住这一卷。注意力（attention /əˈtenʃən/）机制（Attention Mechanism）是 2017 年之后几乎所有重大突破的基石。GPT、BERT、DALL-E、Sora——全都建立在 Transformer 之上。
 
-**卷 6 (Volume 6):** 你理解了"数据不需要标签"这个深刻思想。自监督学习让模型可以从无标注数据中学习，这是 GPT 和 BERT 成功的核心原因。
+**卷 6 (Volume 6):** 你理解了"数据不需要标签"这个深刻思想。自监督学习让模型可以从无标注数据中学习，这是 GPT 和 BERT 成功的核（kernel /ˈkɜːrnl/）心原因。
 
-**卷 7 (Volume 7):** 你站在了巨人的肩膀上。生成式 AI 不是魔术，它是大规模预训练 + 人类反馈 + 精心设计的推理策略的工程结晶。
+**卷 7 (Volume 7):** 你站在了巨人的肩膀上。生成式 AI 不是魔术，它是大规模预训练 + 人类反馈 + 精心设计的推理（inference /ˈɪnfərəns/）策略的工程结晶。
 
 **卷 8 (Volume 8):** 你看到了"炼丹"背后的工程科学。训练大模型不是魔法，是分布式系统、数值精度、内存管理和数据流水线的交响曲。
 
@@ -152,7 +152,7 @@ This is the pipeline from raw data to deployed intelligence. You now understand 
 **接下来学什么:**
 - 深入学习 ML Engineering：Kubernetes、GPU 集群、模型部署
 - 精通 MLOps：实验追踪、数据版本、模型注册表、A/B 测试
-- 掌握推理优化：量化、蒸馏、vLLM、Triton Inference Server
+- 掌握推理优化：量化（quantize /ˈkwɒntaɪz/）、蒸馏（distillation /ˌdɪstɪˈleɪʃən/）、vLLM、Triton Inference Server
 - 学习分布式系统：这是所有大规模 ML 的基础
 
 **典型职位:**
@@ -204,14 +204,14 @@ This is the pipeline from raw data to deployed intelligence. You now understand 
 | # | 论文 | 为什么重要 |
 |:--|:------|:----------|
 | 1 | **Attention Is All You Need** (Vaswani et al., 2017) | Transformer 的诞生 |
-| 2 | **ImageNet Classification with Deep CNNs** (Krizhevsky et al., 2012) | 深度学习爆发的起点 |
+| 2 | **ImageNet Classification（/ˌklæsɪfɪˈkeɪʃən/） with Deep CNNs** (Krizhevsky et al., 2012) | 深度学习爆发的起点 |
 | 3 | **Deep Residual Learning** (He et al., 2015) | ResNet，让深度成为可能 |
 | 4 | **BERT: Pre-training of Deep Bidirectional Transformers** (Devlin et al., 2018) | 预训练 + 微调范式 |
 | 5 | **Language Models are Few-Shot Learners** (Brown et al., 2020) | GPT-3，规模的力量 |
 | 6 | **Training Language Models to Follow Instructions** (Ouyang et al., 2022) | InstructGPT / RLHF |
-| 7 | **Denoising Diffusion Probabilistic Models** (Ho et al., 2020) | DDPM，图像生成的基础 |
+| 7 | **Denoising Diffusion（/dɪˈfjuːʒən/） Probabilistic Models** (Ho et al., 2020) | DDPM，图像生成的基础 |
 | 8 | **Generative Adversarial Nets** (Goodfellow et al., 2014) | GAN，生成对抗的思想 |
-| 9 | **Mastering the Game of Go with Neural Networks** (Silver et al., 2016) | AlphaGo，强化学习的里程碑 |
+| 9 | **Mastering the Game of Go with Neural Networks** (Silver et al., 2016) | AlphaGo，强化（reinforcement /ˌriːɪnˈfɔːrsmənt/）学习的里程碑 |
 | 10 | **NeRF: Representing Scenes as Neural Radiance Fields** (Mildenhall et al., 2020) | 3D 与神经渲染的结合 |
 
 找论文的地方：arXiv (arxiv.org)、Papers with Code (paperswithcode.com)、Semantic Scholar。

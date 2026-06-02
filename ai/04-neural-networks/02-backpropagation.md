@@ -1,7 +1,9 @@
 # 第2章 反向传播 — 神经网络的学习算法
 # Chapter 2: Backpropagation — The Learning Algorithm of Neural Networks
 
-> **反向传播 (Backpropagation) 是深度学习最核心的训练算法。** 它将微积分中的链式法则应用于多层神经网络，优雅地解决了"如何计算每个参数对最终误差的贡献"这一根本问题。本章从一个简单的计算图出发，逐步推导出 2 层神经网络的反向传播公式，并通过 NumPy 实现和数值梯度验证来确保推导的正确性。
+> **反向传播（backpropagation /ˌbækprəpəˈɡeɪʃən/） (Backpropagation) 是深度学习最核（kernel /ˈkɜːrnl/）心的训练算法。** 它将微积分中的链式法则应用于多层神经网络，优雅地解决了"如何计算每个参数（parameter /pəˈræmɪtər/）对最终误差的贡献"这一根本问题。本章从一个简单的计算图出发，逐步推导出 2 层神经网络的反向传播公式，并通过 NumPy 实现和数值梯度（gradient /ˈɡreɪdiənt/）验证来确保推导的正确性。
+> > **时间线**:
+> - **1986**: Rumelhart, Hinton & Williams 在 *Nature* 发表反向传播算法
 >
 > **Backpropagation is the core training algorithm of deep learning.** It applies the chain rule from calculus to multi-layer neural networks, elegantly solving the fundamental problem of "how to compute each parameter's contribution to the final error." This chapter starts from a simple computation graph, derives backpropagation for a 2-layer network step by step, and verifies correctness through NumPy implementation and numerical gradient checking.
 
@@ -35,7 +37,7 @@
 
 ### 1.1 前向传播的图形化表示 (Forward Pass Visualization)
 
-计算图是理解反向传播最直观的工具。考虑一个最简单的网络：**一个神经元 + 一个 Sigmoid + 平方误差**。
+计算图是理解反向传播最直观的工具。考虑一个最简单的网络：**一个神经元 + 一个 Sigmoid（/ˈsɪɡmɔɪd/） + 平方误差**。
 
 对于单个样本 $(x, y)$，前向计算为：
 
@@ -100,7 +102,7 @@ $$
 | $W_2, b_2$ | 第二层权重、偏置 | $(d_h, 1)$, $(1, 1)$ |
 | $z_2, \hat{y}$ | 第二层线性输出、预测 | $(N, 1)$, $(N, 1)$ |
 | $y$ | 真实标签 | $(N, 1)$ |
-| $L$ | 二元交叉熵损失 | 标量 |
+| $L$ | 二元交叉熵（entropy /ˈentrəpi/）损失 | 标量（scalar /ˈskeɪlər/） |
 
 ### 前向传播 (Forward Pass)
 
@@ -380,7 +382,7 @@ class TwoLayerNet:
 
 ### 4.3 训练与决策边界 (Training & Decision Boundary)
 
-在 sklearn 风格的 **moons 二分类数据集**上训练（200 样本，noise=0.1）：
+在 sklearn 风格的 **moons 二分类（classification /ˌklæsɪfɪˈkeɪʃən/）数据集**上训练（200 样本，noise=0.1）：
 
 ```
 Step 5: Training
@@ -425,22 +427,27 @@ Step 5: Training
 
 | 后续章节 | 联系 |
 |:---------|:-----|
-| 第 3 章 (训练技巧) | 反向传播的改进：动量、Adam、梯度裁剪 |
-| 第 4 章 (CNN) | 反向传播在卷积层中的适配（卷积转置） |
+| 第 3 章 (训练技巧) | 反向传播的改进：动量（momentum /məˈmentəm/）、Adam、梯度裁剪 |
+| 第 4 章 (CNN) | 反向传播在卷积（convolution /ˌkɒnvəˈluːʃən/）层中的适配（卷积转置） |
 | 第 5 章 (RNN) | 通过时间的反向传播 (BPTT) |
-| Transformer | 自注意力的反向传播 — 更复杂的计算图 |
+| Transformer（/trænsˈfɔːrmər/） | 自注意力（attention /əˈtenʃən/）的反向传播 — 更复杂的计算图 |
 
 ### 动手练习
 
 1. **推导练习：** 为 3 层网络（2 个隐藏层 + 1 个输出层）推导反向传播公式
 2. **代码练习：** 将隐藏层激活从 Tanh 改为 ReLU，修改 `backward()` 中的对应行，验证梯度检查仍通过
 3. **实验练习：** 在 `backpropagation.py` 中改变隐藏层神经元数（5, 10, 20, 50），观察最终准确率的变化
-4. **深入练习：** 添加 L2 正则化，推导修改后的梯度公式，验证梯度检查
+4. **深入练习：** 添加 L2 正则化（regularization /ˌreɡjələraɪˈzeɪʃən/），推导修改后的梯度公式，验证梯度检查
 
 ---
 
-> **下章预告：** 第 3 章将介绍**训练技巧 (Training Techniques)** — 权重初始化、批归一化 (Batch Normalization)、Dropout、学习率调度等让神经网络训练更稳定的实用技术。
+> **下章预告：** 第 3 章将介绍**训练技巧 (Training Techniques)** — 权重初始化、批归一化（normalization /ˌnɔːrmələˈzeɪʃən/） (Batch Normalization)、Dropout（/ˈdrɒpaʊt/）、学习率调度等让神经网络训练更稳定的实用技术。
 
 ---
 
 *Last updated: 2026-06-02*
+
+## 参考文献 (References)
+
+1. **Rumelhart, D. E., Hinton, G. E. & Williams, R. J.** (1986). Learning representations by back-propagating errors. *Nature*, 323(6088), 533–536.
+2. **LeCun, Y., Bottou, L., Bengio, Y. & Haffner, P.** (1998). Gradient-based learning applied to document recognition. *Proc. IEEE*, 86(11), 2278–2324.

@@ -1,7 +1,7 @@
 # 第2章 训练循环精讲
 # Chapter 2: Training Loop Mastery
 
-> **训练循环是深度学习中最基础、最核心的"发动机"。不论是几百万参数的小网络还是数千亿参数的大模型，其训练过程都可以抽象为一个简洁的循环：for epoch in range(epochs): for batch in loader: forward -> loss -> backward -> step -> zero_grad。本章深入讲解如何构建可复用的训练循环模板，并涵盖断点续训、梯度累积、梯度裁剪和混合精度训练等关键工程技巧，帮助你在有限的 GPU 资源下高效、稳定地训练模型。**
+> **训练循环是深度学习中最基础、最核（kernel /ˈkɜːrnl/）心的"发动机"。不论是几百万参数（parameter /pəˈræmɪtər/）的小网络还是数千亿参数的大模型，其训练过程都可以抽象为一个简洁的循环：for epoch in range(epochs): for batch in loader: forward -> loss -> backward -> step -> zero_grad。本章深入讲解如何构建可复用的训练循环模板，并涵盖断点续训、梯度（gradient /ˈɡreɪdiənt/）累积、梯度裁剪和混合精度训练等关键工程技巧，帮助你在有限的 GPU 资源下高效、稳定地训练模型。**
 >
 > **The training loop is the most fundamental "engine" in deep learning. Whether it's a million-parameter toy network or a hundred-billion-parameter LLM, the training process can be abstracted into a concise loop: `for epoch in range(epochs): for batch in loader: forward -> loss -> backward -> step -> zero_grad`. This chapter dives into building a reusable training loop template, covering checkpoint save/resume, gradient accumulation, gradient clipping, and mixed precision training (AMP) -- essential engineering techniques to train models efficiently and stably under limited GPU resources.**
 
@@ -98,7 +98,7 @@ for epoch in range(epochs):
     print(f"Epoch {epoch} | Val Loss: {val_loss/len(val_loader):.4f} | Acc: {accuracy:.2f}%")
 ```
 
-> **关键区别 (Key Difference):** `model.train()` 启用 Dropout 和 BatchNorm 的训练行为；`model.eval()` 固定它们用于推理。`torch.no_grad()` 禁用梯度计算以节省内存和加速。
+> **关键区别 (Key Difference):** `model.train()` 启用 Dropout（/ˈdrɒpaʊt/） 和 BatchNorm 的训练行为；`model.eval()` 固定它们用于推理（inference /ˈɪnfərəns/）。`torch.no_grad()` 禁用梯度计算以节省内存和加速。
 
 ---
 
@@ -108,7 +108,7 @@ for epoch in range(epochs):
 
 - **训练耗时极长**：大模型训练可能持续数天甚至数周，任何中断（硬件故障、电力波动、抢占式调度）都可能导致进度丢失。
 - **资源受限环境**：云 GPU 实例通常有最长运行时间限制。
-- **超参数调优**：需要从某个中间状态恢复以调整学习率等参数。
+- **超参数（hyperparameter /ˈhaɪpərpəˈræmɪtər/）调优**：需要从某个中间状态恢复以调整学习率等参数。
 
 ### 2.2 保存 Checkpoint
 
@@ -118,7 +118,7 @@ for epoch in range(epochs):
 |:-------------|:------------------|
 | `epoch` | 当前 epoch 编号，用于恢复后继续 |
 | `model_state_dict` | 模型参数，`model.state_dict()` |
-| `optimizer_state_dict` | 优化器状态（动量、Adam 缓存等），`optimizer.state_dict()` |
+| `optimizer_state_dict` | 优化器状态（动量（momentum /məˈmentəm/）、Adam 缓存等），`optimizer.state_dict()` |
 | `loss` | 当前损失值，用于监控 |
 | `best_metric` | 最佳验证指标，用于保存最佳模型 |
 | `scheduler_state_dict` | 学习率调度器状态（如果有） |
@@ -206,7 +206,7 @@ for epoch in range(start_epoch, epochs):
 
 **显存瓶颈 (Memory Bottleneck):** 大 batch size 有助于稳定梯度，但 GPU 显存限制了单次前向传播的 batch size。例如，单张 RTX 3090 (24 GB) 无法加载 batch size = 64 的 ImageNet 数据。
 
-**梯度累积** 通过多次前向/反向传播累积梯度，然后执行一次参数更新，模拟更大的 batch size。
+**梯度累积** 通过多次前向/反向传播（backpropagation /ˌbækprəpəˈɡeɪʃən/）累积梯度，然后执行一次参数更新，模拟更大的 batch size。
 
 ### 3.2 工作原理
 
@@ -322,7 +322,7 @@ optimizer.zero_grad()
 | 场景 (Scenario) | 建议 (Recommendation) |
 |:----------------|:---------------------|
 | RNN / LSTM | 必须使用，RNN 天然易梯度爆炸 |
-| Transformer | 建议使用，max_norm=1.0 是常见起点 |
+| Transformer（/trænsˈfɔːrmər/） | 建议使用，max_norm=1.0 是常见起点 |
 | 深层 CNN (50+ 层) | 建议使用 |
 | 浅层网络 (< 10 层) | 通常不需要 |
 | GAN 训练 | 强烈建议，防止判别器/生成器崩溃 |
@@ -360,8 +360,8 @@ with autocast():
 ```
 
 `autocast` 上下文自动为每个算子选择合适的精度：
-- **FP16:** 卷积 (conv), 线性层 (Linear), matmul, 大部分逐点操作
-- **FP32:** BatchNorm, 归约操作 (reductions), 损失函数中的 softmax
+- **FP16:** 卷积（convolution /ˌkɒnvəˈluːʃən/） (conv), 线性层 (Linear), matmul, 大部分逐点操作
+- **FP32:** BatchNorm, 归约操作 (reductions), 损失函数中的 softmax（/sɒftˈmæks/）
 
 #### `GradScaler` -- 防止梯度下溢
 

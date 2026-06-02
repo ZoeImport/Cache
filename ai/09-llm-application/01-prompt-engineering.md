@@ -3,7 +3,7 @@
 
 > **Prompt engineering is the craft of designing inputs to LLMs that reliably produce desired outputs.** As LLMs become more capable, the quality of the prompt often matters more than the model size. This chapter covers fundamental patterns, Chain-of-Thought reasoning, structured templates, system prompt design, and programmatic optimization with DSPy.
 >
-> **Prompt 工程是设计 LLM 输入以可靠产生期望输出的技艺。** 随着 LLM 能力提升，提示词的质量往往比模型规模更重要。本章涵盖基础模式、思维链推理、结构化模板、系统提示设计以及 DSPy 程序化优化。
+> **Prompt 工程是设计 LLM 输入以可靠产生期望输出的技艺。** 随着 LLM 能力提升，提示词的质量往往比模型规模更重要。本章涵盖基础模式、思维链推理（inference /ˈɪnfərəns/）、结构化模板、系统提示设计以及 DSPy 程序化优化。
 
 **前置知识 (Prerequisites):** 基础 Python, 了解 LLM 基本原理
 **依赖库 (Dependencies):** `transformers`, `torch` (code), `dspy` (optional)
@@ -78,7 +78,7 @@ Question: What is 15 * 4?
 Response:
 ```
 
-**为什么格式约束有效？** 格式规范减少了输出的熵，让模型的 token 预测集中在期望的结构上。这相当于给模型提供了一个"脚手架"。
+**为什么格式约束有效？** 格式规范减少了输出的熵（entropy /ˈentrəpi/），让模型的 token 预测集中在期望的结构上。这相当于给模型提供了一个"脚手架"。
 
 ### 1.4 Few-Shot Prompting
 
@@ -243,7 +243,7 @@ Response:
 ### 3.4 结构化 Prompt 减少幻觉的原理
 
 1. **降低输出熵** — 有限的输出格式 = 更少的 token 选择
-2. **提供认知脚手架** — 结构引导模型的注意力
+2. **提供认知脚手架** — 结构引导模型的注意力（attention /əˈtenʃən/）
 3. **分离指令和数据** — 减少指令混淆
 4. **错误边界清晰** — 解析失败可检测，不会混入答案
 
@@ -338,7 +338,7 @@ P(token) = softmax(logits / temperature)
 | 0.0 - 0.3 | 确定性高，重复性高 | 事实问答、代码生成 |
 | 0.4 - 0.7 | 平衡创造力与准确性 | 大多数通用场景 |
 | 0.8 - 1.2 | 创造力高，多样性好 | 创意写作、头脑风暴 |
-| > 1.5 | 随机性强，不稳定 | 探索性生成 |
+| > 1.5 | 随机（stochastic /stəˈkæstɪk/）性强，不稳定 | 探索性生成 |
 
 ### 5.2 Top-P (Nucleus Sampling)
 
@@ -469,7 +469,7 @@ If a question is about human health, redirect to consult a doctor.
 | Structured Prompt | 需要精确输出格式 | ☆☆ |
 | DSPy | 需要系统化优化 prompt | ☆☆☆ |
 
-**核心原则 (Core Principles):**
+**核（kernel /ˈkɜːrnl/）心原则 (Core Principles):**
 1. 先明确任务，再设计 prompt
 2. 从最简单的 zero-shot 开始
 3. 如果不够好，加格式约束

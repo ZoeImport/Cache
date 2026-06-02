@@ -1,11 +1,16 @@
 # 第4章：自回归建模与 Scaling Laws
 # Chapter 4: Autoregressive Modeling and Scaling Laws
 
-> **"Next-token prediction is all you need."** 自回归语言模型通过链式法则分解联合概率，将语言建模转化为逐词预测的序列问题。GPT 系列展示了"预测下一个词"这一简单目标如何催生出理解、推理甚至涌现能力。而 Scaling Laws 则揭示了损失、模型大小、数据量和计算量之间的幂律关系——为"越大越好"提供了理论基石。
+> **"Next-token prediction is all you need."** 自回归（regression /rɪˈɡreʃən/）语言模型通过链式法则分解联合概率，将语言建模转化为逐词预测的序列问题。GPT 系列展示了"预测下一个词"这一简单目标如何催生出理解、推理（inference /ˈɪnfərəns/）甚至涌现能力。而 Scaling Laws 则揭示了损失、模型大小、数据量和计算量之间的幂律关系——为"越大越好"提供了理论基石。
+> > **时间线**:
+> > - **2013**: Mikolov et al. 提出 Word2Vec
+> > - **2018**: Radford et al. 提出 GPT-1
+> > - **2020**: Kaplan et al. 提出 Scaling Laws
+> - **2022**: Hoffmann et al. 提出 Chinchilla Scaling Laws
 >
 > **"Next-token prediction is all you need."** Autoregressive language models factorize the joint probability via the chain rule, turning language modeling into a sequential word-by-word prediction problem. The GPT series demonstrates how the simple objective of "predicting the next token" gives rise to understanding, reasoning, and even emergent abilities. Scaling Laws reveal the power-law relationships among loss, model size, data size, and compute — providing the theoretical foundation for "bigger is better."
 
-**前置知识 (Prerequisites):** Transformer 架构（第5章第2节）、概率论链式法则（第2卷）、信息论基础
+**前置知识 (Prerequisites):** Transformer（/trænsˈfɔːrmər/） 架构（第5章第2节）、概率论链式法则（第2卷）、信息论基础
 **Code companion:** [`code/autoregressive_demo.py`](code/autoregressive_demo.py)
 
 ---
@@ -16,7 +21,7 @@
 ### 1.1 链式法则分解
 ### Chain Rule Decomposition
 
-语言模型的核心目标是计算一个 token 序列 $x_1, x_2, \ldots, x_n$ 的联合概率 $P(x_1, x_2, \ldots, x_n)$。根据概率论的**链式法则 (Chain Rule)**，联合概率可以分解为条件概率的乘积：
+语言模型的核（kernel /ˈkɜːrnl/）心目标是计算一个 token 序列 $x_1, x_2, \ldots, x_n$ 的联合概率 $P(x_1, x_2, \ldots, x_n)$。根据概率论的**链式法则 (Chain Rule)**，联合概率可以分解为条件概率的乘积：
 
 $$ P(x_1, x_2, \ldots, x_n) = \prod_{t=1}^{n} P(x_t \mid x_1, x_2, \ldots, x_{t-1}) $$
 
@@ -30,7 +35,7 @@ $$ P(x_1, x_2, \ldots, x_n) = \prod_{t=1}^{n} P(x_t \mid x_1, x_2, \ldots, x_{t-
 
 自回归语言模型的核心组件：
 
-1. **因果注意力掩码 (Causal Attention Mask)** — 每个位置 $t$ 只能关注位置 $\le t$ 的 token，$M_{ij} = 0$ 当 $i \ge j$，否则 $-\infty$。
+1. **因果注意力（attention /əˈtenʃən/）掩码 (Causal Attention Mask)** — 每个位置 $t$ 只能关注位置 $\le t$ 的 token，$M_{ij} = 0$ 当 $i \ge j$，否则 $-\infty$。
 2. **自回归生成 (Autoregressive Generation)** — 生成时反复执行"预测下一个 token → 将预测结果拼接到输入 → 继续预测"的循环。
 3. **Teacher Forcing 训练** — 训练时使用真实历史 token 而非模型自己的预测，加速收敛。
 
@@ -47,7 +52,7 @@ $$ \text{AR-LM: } P(x_t \mid x_{<t}) = \text{softmax}(W \cdot h_t) \quad \text{w
 | **理解能力** | ✅ 优秀 | ✅ 优秀（天然双向） |
 | **代表模型** | GPT 系列, LLaMA | BERT, RoBERTa |
 | **计算效率** | 生成时 O(n) 无法并行 | 单次前向即可获得所有表示 |
-| **适用场景** | 文本生成、对话、代码补全 | 分类、NER、阅读理解 |
+| **适用场景** | 文本生成、对话、代码补全 | 分类（classification /ˌklæsɪfɪˈkeɪʃən/）、NER、阅读理解 |
 
 **关键洞察：** AR 模型把"生成"作为一等公民，理解只是生成的副产品。MLM 反之。这种哲学差异导致了后续 Scaling Laws 研究的巨大不对称——AR 模型在规模扩大时展现出更丰富的涌现能力。
 
@@ -62,7 +67,7 @@ GPT (Generative Pre-trained Transformer) 系列是自回归语言模型最成功
 
 | 配置 | 数值 |
 |:----|:-----|
-| 参数量 | 117M |
+| 参数（parameter /pəˈræmɪtər/）量 | 117M |
 | Transformer 层数 | 12 |
 | 隐藏维度 | 768 |
 | 注意力头数 | 12 |
@@ -70,7 +75,7 @@ GPT (Generative Pre-trained Transformer) 系列是自回归语言模型最成功
 
 **核心贡献：** 首次证明**无监督预训练 + 有监督微调**范式在 NLP 中的有效性。在 9/12 个 benchmark 上达到 SOTA。
 
-**关键洞察：** 即使是中等规模的自回归模型，预训练学到的语言表示也远优于从头训练的随机初始化。
+**关键洞察：** 即使是中等规模的自回归模型，预训练学到的语言表示也远优于从头训练的随机（stochastic /stəˈkæstɪk/）初始化。
 
 ### 2.2 GPT-2 (2019): 零样本能力的发现
 
@@ -84,7 +89,7 @@ GPT (Generative Pre-trained Transformer) 系列是自回归语言模型最成功
 
 **核心贡献：** 首次展示**零样本 (Zero-shot) 迁移**能力——无需微调，仅通过**提示 (Prompting)** 即可完成翻译、问答、摘要等任务。
 
-**关键洞察：** 当模型规模超过 1B 参数时，自回归训练开始产生超越"语言建模"本身的通用能力。最初 OpenAI 因安全顾虑延迟发布就是意识到这个规模带来的潜在风险。
+**关键洞察：** 当模型规模超过 1B 参数时，自回归训练开始产生超越"语言建模"本身的通用能力。最初 OpenAI 因安全顾虑延迟发布就是意识到这个规模带来的潜在（latent /ˈleɪtənt/）风险。
 
 ### 2.3 GPT-3 (2020): In-Context Learning 的发现
 
@@ -97,7 +102,7 @@ GPT (Generative Pre-trained Transformer) 系列是自回归语言模型最成功
 | 训练数据 | CommonCrawl + WebText2 + Books (~570GB 文本) |
 | 训练成本 | ~$4.6M (估计) |
 
-**核心贡献：** 发现**上下文学习 (In-Context Learning, ICL)**——仅通过提供几个示例（Few-shot），无需梯度更新，模型就能"学会"执行新任务。
+**核心贡献：** 发现**上下文学习 (In-Context Learning, ICL)**——仅通过提供几个示例（Few-shot），无需梯度（gradient /ˈɡreɪdiənt/）更新，模型就能"学会"执行新任务。
 
 $$ \text{ICL: } P(y \mid x, \{(x_1, y_1), \ldots, (x_k, y_k)\}) \quad \text{without weight updates} $$
 
@@ -121,7 +126,7 @@ $$ \text{ICL: } P(y \mid x, \{(x_1, y_1), \ldots, (x_k, y_k)\}) \quad \text{with
 ### 3.1 学习的本质
 ### The Nature of Learning
 
-自回归语言模型的损失函数是交叉熵：
+自回归语言模型的损失函数是交叉熵（entropy /ˈentrəpi/）：
 
 $$ \mathcal{L} = -\frac{1}{N} \sum_{i=1}^{N} \sum_{t=1}^{n} \log P_\theta(x_t^{(i)} \mid x_{<t}^{(i)}) $$
 
@@ -324,7 +329,7 @@ Wei et al. (2022) 将涌现能力定义为：
 
 并非所有能力都是"突然涌现"的。Schaeffer et al. (2023) 指出，很多看似"涌现"的能力实际上是由于**评估指标的离散性和非线性**造成的：
 
-- **连续指标**（如 perplexity）→ 平滑改进
+- **连续指标**（如 perplexity（/pərˈpleksəti/））→ 平滑改进
 - **离散指标**（如准确率、F1）→ 看似"涌现"
 - **度量选择** → 使用 log-odds 替代准确率，很多"涌现"消失
 
@@ -379,7 +384,7 @@ graph TB
 
 1. **Scaling Laws 还会继续吗？** 当前瓶颈已经从计算量转向数据量。合成数据、多模态数据可能是下一个突破口。
 2. **涌现是真正的理解吗？** 从统计相关性到因果关系，AR-LM 还有多远？神经符号方法可能是桥梁。
-3. **更大 ≠ 更好？** 模型效率研究（MoE、蒸馏、量化）正在探索如何在有限资源下获得更大模型的性能。
+3. **更大 ≠ 更好？** 模型效率研究（MoE、蒸馏（distillation /ˌdɪstɪˈleɪʃən/）、量化（quantize /ˈkwɒntaɪz/））正在探索如何在有限资源下获得更大模型的性能。
 4. **向后兼容性** — Chinchilla 定律告诉我们，很多大模型实际上"欠训练"了。这也意味着，对于很多现有模型，增加训练数据和步数仍然能带来显著收益。
 
 ### 参考文献 (References)

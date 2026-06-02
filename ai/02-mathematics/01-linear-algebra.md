@@ -33,7 +33,7 @@ $$ \mathbf{v} = \begin{bmatrix} 3 \\ 2 \end{bmatrix} $$
 **为什么 ML 需要向量？** 在机器学习中，**每个样本（sample）就是一个向量**。例如：
 - 房价预测：`[面积, 卧室数, 楼层, 房龄]` → 4 维向量
 - 图像识别：一张 28×28 像素的灰度图 → 784 维向量
-- NLP：一个词 "apple" → 300 维词向量 (word embedding)
+- NLP：一个词 "apple" → 300 维词向量 (word embedding（/ɪmˈbedɪŋ/）)
 
 ### 1.2 数学定义 (Mathematical Definition)
 
@@ -57,7 +57,7 @@ $$ \mathbf{u} \cdot \mathbf{v} = \sum_{i=1}^{n} u_i v_i = u_1 v_1 + u_2 v_2 + \c
 - $\mathbf{u} \cdot \mathbf{v} = 0$ → 夹角 = 90° (正交/垂直)
 - $\mathbf{u} \cdot \mathbf{v} < 0$ → 夹角 > 90° (方向相反)
 
-**在 ML 中的应用:** 注意力机制 (Attention) 的核心就是计算 query 与 key 的点积来衡量相似度。
+**在 ML 中的应用:** 注意力（attention /əˈtenʃən/）机制 (Attention) 的核（kernel /ˈkɜːrnl/）心就是计算 query 与 key 的点积来衡量相似度。
 
 ### 1.4 范数 (Norm)
 
@@ -76,7 +76,7 @@ $$ \|\mathbf{v}\|_2 = \sqrt{v_1^2 + v_2^2 + \cdots + v_n^2} $$
 $$ \|\mathbf{v}\|_1 = \sum_{i=1}^{n} |v_i| $$
 
 **在 ML 中的应用:**
-- $L^2$ 范数用于权重衰减 (weight decay / ridge regression)
+- $L^2$ 范数用于权重衰减 (weight decay / ridge regression（/rɪˈɡreʃən/）)
 - $L^1$ 范数用于稀疏化 (Lasso regression)
 
 ```python
@@ -175,7 +175,7 @@ np.allclose(A @ A_inv, np.eye(2))  # True
 
 ### 2.5 行列式 (Determinant)
 
-方阵 $\mathbf{A}$ 的行列式 $\det(\mathbf{A})$ 是一个标量，衡量线性变换的**缩放因子**：
+方阵 $\mathbf{A}$ 的行列式 $\det(\mathbf{A})$ 是一个标量（scalar /ˈskeɪlər/），衡量线性变换的**缩放因子**：
 
 - $|\det(\mathbf{A})| > 1$：变换后空间被放大
 - $|\det(\mathbf{A})| < 1$：变换后空间被压缩
@@ -319,11 +319,11 @@ print(f"k={k} 近似误差: {error:.4f}")
 
 ### 5.1 为什么需要矩阵微积分?
 
-机器学习中，我们的目标函数通常是**标量函数 $f$ 对向量或矩阵参数 $\mathbf{w}$ 的求导**。这是反向传播 (backpropagation) 的数学基础。
+机器学习中，我们的目标函数通常是**标量函数 $f$ 对向量或矩阵参数（parameter /pəˈræmɪtər/） $\mathbf{w}$ 的求导**。这是反向传播（backpropagation /ˌbækprəpəˈɡeɪʃən/） (backpropagation) 的数学基础。
 
 ### 5.2 标量对向量的导数 (Gradient)
 
-给定 $f: \mathbb{R}^n \rightarrow \mathbb{R}$，梯度 $\nabla f$ 是 $n$ 维向量：
+给定 $f: \mathbb{R}^n \rightarrow \mathbb{R}$，梯度（gradient /ˈɡreɪdiənt/） $\nabla f$ 是 $n$ 维向量：
 
 $$ \nabla f(\mathbf{x}) = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{bmatrix} $$
 
@@ -388,7 +388,7 @@ $$ \nabla L(\mathbf{w}) = \frac{2}{m} \mathbf{X}^\top (\mathbf{X}\mathbf{w} - \m
 |:---|:---|:---|:---|
 | 向量 | $\mathbf{v} \in \mathbb{R}^n$ | 样本表示、词嵌入 | `np.array()` |
 | 点积 | $\mathbf{u} \cdot \mathbf{v} = \sum u_i v_i$ | 注意力机制、相似度 | `np.dot()` |
-| 范数 | $\|\mathbf{v}\|_p$ | 正则化 (L1/L2) | `np.linalg.norm()` |
+| 范数 | $\|\mathbf{v}\|_p$ | 正则化（regularization /ˌreɡjələraɪˈzeɪʃən/） (L1/L2) | `np.linalg.norm()` |
 | 矩阵乘法 | $\mathbf{C} = \mathbf{AB}$ | 神经网络前向传播 | `@`, `np.matmul()` |
 | 逆矩阵 | $\mathbf{A}^{-1}$ | 正规方程 | `np.linalg.inv()` |
 | 行列式 | $\det(\mathbf{A})$ | 特征值计算 | `np.linalg.det()` |
@@ -404,4 +404,4 @@ $$ \nabla L(\mathbf{w}) = \frac{2}{m} \mathbf{X}^\top (\mathbf{X}\mathbf{w} - \m
 
 ---
 
-> **下一章预告:** [概率论与信息论](./02-probability.md) — 不确定性、熵、KL 散度，为理解交叉熵损失和信息论打下基础。
+> **下一章预告:** [概率论与信息论](./02-probability.md) — 不确定性、熵（entropy /ˈentrəpi/）、KL 散度，为理解交叉熵损失和信息论打下基础。

@@ -6,7 +6,7 @@
 > **The data pipeline is the lifeline of deep learning training.** No matter how powerful your GPU, if data loading cannot keep up, training stalls on I/O bottlenecks. This chapter covers DataLoader tuning, streaming loading, data augmentation strategies, and HuggingFace Datasets best practices.
 
 **前置知识 (Prerequisites):** PyTorch Dataset/DataLoader 基本使用, torchvision 基础
-**核心概念 (Key Concepts):** 数据加载, 数据增强, 流式处理, 内存效率
+**核（kernel /ˈkɜːrnl/）心概念 (Key Concepts):** 数据加载, 数据增强, 流式处理, 内存效率
 
 ---
 
@@ -14,7 +14,7 @@
 
 ### 1.1 核心参数详解 (Core Parameters)
 
-PyTorch DataLoader 的配置直接影响训练吞吐量。最关键的三个参数：
+PyTorch DataLoader 的配置直接影响训练吞吐量。最关键的三个参数（parameter /pəˈræmɪtər/）：
 
 | 参数 | 作用 | 推荐值 |
 |------|------|--------|
@@ -53,7 +53,7 @@ DataLoader(dataset, batch_size=32, num_workers=16,
 
 ### 2.1 何时需要流式 (When Streaming Matters)
 
-传统随机访问要求所有数据在本地可用。当以下场景出现时，流式加载是更好的选择：
+传统随机（stochastic /stəˈkæstɪk/）访问要求所有数据在本地可用。当以下场景出现时，流式加载是更好的选择：
 
 - **超大规模数据集** (TB 级，无法全部载入内存)
 - **远程存储训练** (数据在 S3 / GCS 等云存储上)
@@ -108,7 +108,7 @@ dataset = (
 
 | 工具 | 速度 | 复杂度 | 适用场景 |
 |------|------|--------|---------|
-| `torchvision.transforms` | 快 | 低 | 标准分类任务 |
+| `torchvision.transforms` | 快 | 低 | 标准分类（classification /ˌklæsɪfɪˈkeɪʃən/）任务 |
 | `albumentations` | 极快 | 中 | 检测/分割/定位 |
 | `kornia` | GPU 加速 | 高 | 需要可微分增强 |
 
@@ -117,7 +117,7 @@ dataset = (
 | 类型 | 目的 | 典型操作 | 适用阶段 |
 |------|------|---------|---------|
 | **弱增强** | 基础泛化，不改变语义 | `RandomCrop`, `HorizontalFlip`, `ColorJitter (轻度)` | 所有任务 |
-| **强增强** | 掩膜不变性，正则化 | `RandAugment`, `Cutout`, `MixUp`, `CutMix` | 预训练 / 大模型 |
+| **强增强** | 掩膜不变性，正则化（regularization /ˌreɡjələraɪˈzeɪʃən/） | `RandAugment`, `Cutout`, `MixUp`, `CutMix` | 预训练 / 大模型 |
 
 **最佳实践栈 (Best Practice Stack)：**
 

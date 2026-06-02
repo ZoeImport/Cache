@@ -1,11 +1,16 @@
 # 第3章 扩散模型
 # Chapter 3: Diffusion Models
 
-> **扩散模型 (Diffusion Models)** 是一类受非平衡热力学启发的生成模型。它们通过逐步向数据添加噪声（前向过程），然后学习逐步去噪（反向过程）来生成数据。DDPM 奠定了扩散模型的理论基础，DDIM 实现了加速采样，而潜在扩散模型 (LDM) 让扩散模型在图像生成领域大放异彩——Stable Diffusion 正是其代表。
+> **扩散（diffusion /dɪˈfjuːʒən/）模型 (Diffusion Models)** 是一类受非平衡热力学启发的生成模型。它们通过逐步向数据添加噪声（前向过程），然后学习逐步去噪（反向过程）来生成数据。DDPM 奠定了扩散模型的理论基础，DDIM 实现了加速采样，而潜在（latent /ˈleɪtənt/）扩散模型 (LDM) 让扩散模型在图像生成领域大放异彩——Stable Diffusion 正是其代表。
+> > **时间线**:
+> > - **2015**: Sohl-Dickstein et al. 首次提出扩散模型
+> > - **2020**: Ho, Jain & Abbeel 提出 DDPM
+> > - **2021**: Song, Meng & Ermon 提出 DDIM
+> - **2022**: Rombach et al. 提出 Stable Diffusion
 >
 > **Diffusion Models** are a class of generative models inspired by non-equilibrium thermodynamics. They generate data by progressively adding noise to data (forward process) and then learning to denoise step by step (reverse process). DDPM laid the theoretical foundation, DDIM achieved accelerated sampling, and Latent Diffusion Models (LDM) brought diffusion models to the forefront of image generation — with Stable Diffusion as their flagship.
 
-**前置知识 (Prerequisites):** 概率论（高斯分布、条件概率、KL 散度）、变分推断、VAE、PyTorch 基础
+**前置知识 (Prerequisites):** 概率论（高斯分布、条件概率、KL 散度）、变分（variational /ˌveəriˈeɪʃənl/）推断、VAE、PyTorch 基础
 **依赖库 (Dependencies):** `torch>=2.0.0`, `numpy>=1.21.0`, `matplotlib>=3.4.0`
 **Code companion:** [`code/diffusion_demo.py`](code/diffusion_demo.py)
 
@@ -30,11 +35,11 @@
 
 $$ q(x_{1:T} \mid x_0) := \prod_{t=1}^{T} q(x_t \mid x_{t-1}) $$
 
-其中每一步的转移核为：
+其中每一步的转移核（kernel /ˈkɜːrnl/）为：
 
 $$ q(x_t \mid x_{t-1}) := \mathcal{N}(x_t; \sqrt{1 - \beta_t} \, x_{t-1}, \beta_t I) $$
 
-**参数：**
+**参数（parameter /pəˈræmɪtər/）：**
 - $\beta_t \in (0, 1)$: 每步的噪声调度 (noise schedule)，通常 $T = 1000$
 - $\beta_1$ 很小（$\sim 10^{-4}$），$\beta_T$ 较大（$\sim 0.02$），即**线性增长**或**余弦调度**
 - 当 $T$ 足够大且 $\beta_t$ 足够小时，$q(x_T) \approx \mathcal{N}(0, I)$
@@ -207,7 +212,7 @@ Algorithm: DDPM Training
 8:  until converged
 ```
 
-**关键洞察：** DDPM 的训练极其简洁——随机采样一个时间步，对数据加噪，然后让网络预测所加的噪声。
+**关键洞察：** DDPM 的训练极其简洁——随机（stochastic /stəˈkæstɪk/）采样一个时间步，对数据加噪，然后让网络预测所加的噪声。
 
 ### 3.4 网络架构 (Network Architecture)
 
@@ -237,7 +242,7 @@ Input: x_t (e.g., 32×32×3 image at timestep t)
             Output: ε_pred
 ```
 
-**时间步编码 (Timestep Embedding):** 使用正弦位置编码 (sinusoidal positional encoding) 将 $t$ 映射到与图像特征相同维度的向量，然后通过 **AdaGN (Adaptive Group Normalization)** 注入：
+**时间步编码 (Timestep Embedding（/ɪmˈbedɪŋ/）):** 使用正弦位置编码 (sinusoidal positional encoding) 将 $t$ 映射到与图像特征相同维度的向量，然后通过 **AdaGN (Adaptive Group Normalization（/ˌnɔːrmələˈzeɪʃən/）)** 注入：
 
 $$ \text{AdaGN}(h, t) = t_s \cdot \text{GroupNorm}(h) + t_b $$
 
@@ -353,7 +358,7 @@ Or uniform:    τ_i = i · (T/S)
 
 ### 5.3 条件生成 (Conditional Generation)
 
-LDM 通过**交叉注意力 (Cross-Attention)** 注入条件信息（文本、类别、语义图等）：
+LDM 通过**交叉注意力（attention /əˈtenʃən/） (Cross-Attention)** 注入条件信息（文本、类别、语义图等）：
 
 $$ \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d}}\right) V $$
 
@@ -365,7 +370,7 @@ V &= W_V \cdot \tau_\theta(c)
 \end{aligned}
 $$
 
-其中 $\varphi(z_t)$ 是 U-Net 的中间特征，$\tau_\theta(c)$ 是条件编码器（如 CLIP text encoder）。
+其中 $\varphi(z_t)$ 是 U-Net 的中间特征，$\tau_\theta(c)$ 是条件编码器（encoder /ɪnˈkoʊdər/）（如 CLIP text encoder）。
 
 ```
 Condition Injection via Cross-Attention:
@@ -402,10 +407,10 @@ Condition Injection via Cross-Attention:
 
 | 模型 | 特点 | 发表时间 |
 |:-----|:-----|:---------|
-| **DALL·E 2** | 扩散先验 + 解码器，文本→图像 | 2022 |
+| **DALL·E 2** | 扩散先验 + 解码器（decoder /diːˈkoʊdər/），文本→图像 | 2022 |
 | **Imagen** | 级联扩散，文本条件使用 T5-XXL | 2022 |
 | **ControlNet** | 在预训练扩散中添加空间控制条件 | 2023 |
-| **Sora** | 扩散 Transformer (DiT)，视频生成 | 2024 |
+| **Sora** | 扩散 Transformer（/trænsˈfɔːrmər/） (DiT)，视频生成 | 2024 |
 | **Flux** | 整流流 (Rectified Flow)，改进的训练和采样 | 2024 |
 
 ---
@@ -490,3 +495,9 @@ python code/diffusion_demo.py
 - Rombach et al. (2022). "High-Resolution Image Synthesis with Latent Diffusion Models." — LDM / Stable Diffusion 论文
 - Peebles & Xie (2023). "Scalable Diffusion Models with Transformers." — DiT (Diffusion Transformer)
 - Lipman et al. (2023). "Flow Matching for Generative Modeling." — Flow Matching
+
+## 参考文献 (References)
+
+1. **Ho, J., Jain, A. & Abbeel, P.** (2020). Denoising diffusion probabilistic models. *NeurIPS*.
+2. **Song, J., Meng, C. & Ermon, S.** (2021). Denoising diffusion implicit models. *ICLR*.
+3. **Rombach, R. et al.** (2022). High-resolution image synthesis with latent diffusion models. *CVPR*.

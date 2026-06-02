@@ -79,7 +79,7 @@ s.add(4)
 
 **ML 场景常见的用法**:
 - `list`: 数据集、批次 (batches)、训练循环中的索引
-- `dict`: 模型参数字典 `model.state_dict()`、超参数配置 `config`
+- `dict`: 模型参数（parameter /pəˈræmɪtər/）字典 `model.state_dict()`、超参数（hyperparameter /ˈhaɪpərpəˈræmɪtər/）配置 `config`
 - `tuple`: 图像尺寸 `(H, W, C)`、批次形状 `(batch, seq_len)`
 - `set`: 标签去重、类别集合
 
@@ -167,7 +167,7 @@ sorted(pairs, key=lambda x: x[0])   # [(1, 'c'), (2, 'b'), (3, 'a')]
 
 ### 4. 上下文管理器 (Context Managers) — `with` 语句
 
-`with` 语句自动管理资源的获取和释放，最常见于文件 I/O 和 PyTorch 的梯度管理。
+`with` 语句自动管理资源的获取和释放，最常见于文件 I/O 和 PyTorch 的梯度（gradient /ˈɡreɪdiənt/）管理。
 
 ```python
 # 文件 I/O (核心场景)
@@ -201,7 +201,7 @@ finally:
 
 ### 6. 面向对象速览 (OOP Overview)
 
-ML 中 OOP 的核心用途:
+ML 中 OOP 的核（kernel /ˈkɜːrnl/）心用途:
 - **封装模型结构**: `nn.Module` 子类
 - **封装数据集**: `Dataset` 子类
 - **封装训练逻辑**: 训练器类

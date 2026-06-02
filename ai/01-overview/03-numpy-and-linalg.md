@@ -1,6 +1,6 @@
 # 03 — NumPy 与线性代数基础（NumPy & Linear Algebra for ML）
 
-> 机器学习（Machine Learning）本质上是对数据的数学变换。**NumPy** 是 Python 生态中最核心的数值计算库（Numerical Computing Library），它为 ML 提供了高效的 **多维数组（ndarray）** 和 **线性代数（Linear Algebra）** 操作。本章从 ndarray 基础出发，深入广播机制（Broadcasting）和常用线性代数运算，最终用 NumPy 手写一个 KNN 分类器。
+> 机器学习（Machine Learning）本质上是对数据的数学变换。**NumPy** 是 Python 生态中最核（kernel /ˈkɜːrnl/）心的数值计算库（Numerical Computing Library），它为 ML 提供了高效的 **多维数组（ndarray（/ˈen diː ˌæreɪ/））** 和 **线性代数（Linear Algebra）** 操作。本章从 ndarray 基础出发，深入广播机制（Broadcasting）和常用线性代数运算，最终用 NumPy 手写一个 KNN 分类（classification /ˌklæsɪfɪˈkeɪʃən/）器。
 
 ---
 
@@ -14,7 +14,7 @@
 |:---|:---|:---|
 | 元素类型 | 任意（可混合） | **同质**（同一类型） |
 | 内存布局 | 分散的 Python 对象 | **连续内存块** |
-| 计算速度 | 慢（Python 解释器逐元素迭代） | **快**（C 语言实现，向量化） |
+| 计算速度 | 慢（Python 解释器逐元素迭代） | **快**（C 语言实现，向量化（quantize /ˈkwɒntaɪz/）） |
 | 广播（Broadcasting） | 不支持 | 原生支持 |
 
 ### 1.2 创建数组
@@ -215,7 +215,7 @@ U, S, Vt = np.linalg.svd(A)
 1. 给定一个待预测的样本点，计算它与所有训练样本的距离（通常使用欧氏距离 Euclidean Distance）
 2. 选取距离最近的 K 个邻居
 3. 对于分类任务，用 K 个邻居的标签进行**多数投票（Majority Voting）**
-4. 对于回归任务，取 K 个邻居的目标值的**均值（Mean）**
+4. 对于回归（regression /rɪˈɡreʃən/）任务，取 K 个邻居的目标值的**均值（Mean）**
 
 ### 4.2 KNN 中的 NumPy 力量
 

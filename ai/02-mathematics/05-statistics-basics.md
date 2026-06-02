@@ -1,6 +1,6 @@
 # 05 — 统计基础（Statistical Foundations for ML）
 
-> 机器学习（Machine Learning）的核心任务是从数据中学习规律，而**统计（Statistics）** 提供了描述不确定性（Uncertainty）和从样本推断总体（Inference from Samples）的理论框架。本章聚焦于 ML 中最常用的统计概念：偏差-方差权衡（Bias-Variance Tradeoff）、参数估计（Parameter Estimation）、假设检验基础（Hypothesis Testing）和 Bootstrap 重采样（Bootstrap Resampling）。**偏差-方差权衡是本章的重中之重**，它是理解过拟合（Overfitting）与欠拟合（Underfitting）的统计根源。
+> 机器学习（Machine Learning）的核（kernel /ˈkɜːrnl/）心任务是从数据中学习规律，而**统计（Statistics）** 提供了描述不确定性（Uncertainty）和从样本推断总体（Inference（/ˈɪnfərəns/） from Samples）的理论框架。本章聚焦于 ML 中最常用的统计概念：偏差-方差权衡（Bias-Variance Tradeoff）、参数（parameter /pəˈræmɪtər/）估计（Parameter Estimation）、假设检验基础（Hypothesis Testing）和 Bootstrap 重采样（Bootstrap Resampling）。**偏差-方差权衡是本章的重中之重**，它是理解过拟合（overfitting /ˈoʊvərˈfɪtɪŋ/）（Overfitting）与欠拟合（underfitting /ˈʌndərˈfɪtɪŋ/）（Underfitting）的统计根源。
 
 ---
 
@@ -81,7 +81,7 @@ Error
 
 ### 1.5 与正则化的联系
 
-**正则化（Regularization）**（如 L1/L2 正则化）的本质就是在偏差-方差权衡中主动引入**少量偏差**来换取**方差的大幅下降**：
+**正则化（regularization /ˌreɡjələraɪˈzeɪʃən/）（Regularization）**（如 L1/L2 正则化）的本质就是在偏差-方差权衡中主动引入**少量偏差**来换取**方差的大幅下降**：
 
 $$ \text{Loss} = \text{MSE} + \lambda \|\theta\|^2 $$
 
@@ -234,9 +234,9 @@ def bootstrap_ci(data, statistic=np.mean, n_bootstrap=10000, ci=95):
 
 Bootstrap 在 ML 中有直接的应用：
 
-- **Bagging（Bootstrap Aggregating）**：用 Bootstrap 生成多个训练集，训练多个模型，然后平均它们的预测。这正是**随机森林（Random Forest）** 的核心机制。
+- **Bagging（Bootstrap Aggregating）**：用 Bootstrap 生成多个训练集，训练多个模型，然后平均它们的预测。这正是**随机（stochastic /stəˈkæstɪk/）森林（Random Forest）** 的核心机制。
 - **评估模型稳定性**：Bootstrap 可以评估同一个模型在不同训练集上的预测方差。
-- **超参数选择**：Bootstrap 可以用来估计不同超参数配置下模型性能的置信区间。
+- **超参数（hyperparameter /ˈhaɪpərpəˈræmɪtər/）选择**：Bootstrap 可以用来估计不同超参数配置下模型性能的置信区间。
 
 > **从 Bootstrap 到 Bagging 的跨越**：Bootstrap 估计的是"统计量的不确定性"，Bagging 估计的是"模型预测的不确定性"。后者正是下一卷（经典机器学习）中集成方法（Ensemble Methods）的起点。
 
@@ -247,7 +247,7 @@ Bootstrap 在 ML 中有直接的应用：
 | 概念 | 要点 |
 |:---|:---|
 | **Bias-Variance Tradeoff** | 期望测试误差 = Bias² + Variance + Irreducible Error；过拟合 ↔ 高方差，欠拟合 ↔ 高偏差 |
-| **参数估计** | MLE 是核心方法；样本均值的标准误 $\text{SE} = \sigma/\sqrt{n}$；置信区间量化不确定性 |
+| **参数估计** | MLE 是核心方法；样本均值的标准误 $\text{SE} = \sigma/\sqrt{n}$；置信区间量化（quantize /ˈkwɒntaɪz/）不确定性 |
 | **假设检验** | p 值不是 $H_0$ 为真的概率；Type I = 误报，Type II = 漏报 |
 | **Bootstrap** | 有放回重采样 + B 次计算 → 任意统计量的经验分布；直接引向 Bagging/Random Forest |
 

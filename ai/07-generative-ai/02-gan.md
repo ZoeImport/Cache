@@ -2,10 +2,13 @@
 # Chapter 2: Generative Adversarial Network (GAN)
 
 > **生成对抗网络 (GAN)** 是生成模型领域的另一里程碑，由 Ian Goodfellow 于 2014 年提出。与 VAE 从概率推断出发不同，GAN 引入了一个全新的思路——**对抗训练 (Adversarial Training)**：让一个生成器 (Generator) 和一个判别器 (Discriminator) 相互博弈，在竞争中共同进步。生成器试图伪造以假乱真的数据，判别器则努力分辨真假。这一"猫鼠游戏"最终使生成器能够产生与真实数据分布几乎不可区分的高质量样本。GAN 的训练过程对应一个**极小极大博弈 (Minimax Game)**，其理论最优解是生成器完美拟合真实数据分布，而判别器无法区分真假（输出恒为 1/2）。
+> > **时间线**:
+> > - **2014**: Goodfellow et al. 在 *NeurIPS* 提出 GAN
+> - **2017**: Arjovsky et al. 提出 WGAN
 >
-> **The Generative Adversarial Network (GAN)** is another milestone in generative modeling, proposed by Ian Goodfellow in 2014. Unlike VAEs that start from probabilistic inference, GANs introduce a novel paradigm — **adversarial training**: a Generator and a Discriminator play a game against each other, improving together through competition. The Generator tries to forge data indistinguishable from real ones, while the Discriminator strives to tell real from fake. This "cat-and-mouse game" ultimately enables the Generator to produce samples nearly indistinguishable from the true data distribution. The training process of GANs corresponds to a **minimax game**, whose theoretical optimum is reached when the Generator perfectly matches the real data distribution and the Discriminator cannot tell them apart (outputs 1/2 everywhere).
+> **The Generative Adversarial Network (GAN)** is another milestone in generative modeling, proposed by Ian Goodfellow in 2014. Unlike VAEs that start from probabilistic inference（/ˈɪnfərəns/）, GANs introduce a novel paradigm — **adversarial training**: a Generator and a Discriminator play a game against each other, improving together through competition. The Generator tries to forge data indistinguishable from real ones, while the Discriminator strives to tell real from fake. This "cat-and-mouse game" ultimately enables the Generator to produce samples nearly indistinguishable from the true data distribution. The training process of GANs corresponds to a **minimax game**, whose theoretical optimum is reached when the Generator perfectly matches the real data distribution and the Discriminator cannot tell them apart (outputs 1/2 everywhere).
 
-**前置知识 (Prerequisites):** 神经网络基础、二分类交叉熵损失、梯度下降与反向传播、PyTorch 基础
+**前置知识 (Prerequisites):** 神经网络基础、二分类（classification /ˌklæsɪfɪˈkeɪʃən/）交叉熵（entropy /ˈentrəpi/）损失、梯度（gradient /ˈɡreɪdiənt/）下降与反向传播（backpropagation /ˌbækprəpəˈɡeɪʃən/）、PyTorch 基础
 **依赖库 (Dependencies):** `torch>=2.1.0`, `torchvision>=0.16.0`, `numpy>=1.24.0`, `matplotlib>=3.7.0`
 **Code companion:** [`code/gan.py`](code/gan.py)
 
@@ -27,9 +30,9 @@
 
 ### 1.1 核心思想 (Core Idea)
 
-GAN 的核心灵感来源于**博弈论中的二人零和博弈 (two-player zero-sum game)**：
+GAN 的核（kernel /ˈkɜːrnl/）心灵感来源于**博弈论中的二人零和博弈 (two-player zero-sum game)**：
 
-- **生成器 (Generator, G)**：扮演"伪造者"的角色，从一个随机噪声 $z$ 出发，生成尽可能逼真的数据 $G(z)$。目标是**骗过判别器**。
+- **生成器 (Generator, G)**：扮演"伪造者"的角色，从一个随机（stochastic /stəˈkæstɪk/）噪声 $z$ 出发，生成尽可能逼真的数据 $G(z)$。目标是**骗过判别器**。
 - **判别器 (Discriminator, D)**：扮演"鉴定专家"的角色，接收真实数据 $x$ 和假数据 $G(z)$，输出一个概率 $D(x)$ 表示样本为真的置信度。目标是**正确区分真假**。
 
 ```
@@ -66,18 +69,18 @@ Real Data x ---------------------------------------+    |
 
 $$ G: \mathcal{Z} \to \mathcal{X} $$
 
-其中 $\mathcal{Z}$ 是潜在空间（通常是低维的），$\mathcal{X}$ 是数据空间。
+其中 $\mathcal{Z}$ 是潜在（latent /ˈleɪtənt/）空间（通常是低维的），$\mathcal{X}$ 是数据空间。
 
 - 输入：随机噪声向量 $z \sim p_z(z)$，通常 $p_z = \mathcal{N}(0, I)$（标准正态分布）或均匀分布 $\mathcal{U}[-1, 1]$
 - 输出：生成样本 $G(z)$，维度与真实数据 $x$ 相同
-- 架构：可以是简单的多层感知机 (MLP)，也可以是复杂的卷积网络 (DCGAN) 或 Transformer
+- 架构：可以是简单的多层感知机 (MLP)，也可以是复杂的卷积（convolution /ˌkɒnvəˈluːʃən/）网络 (DCGAN) 或 Transformer（/trænsˈfɔːrmər/）
 
 **判别器 $D$:**
 
 $$ D: \mathcal{X} \to [0, 1] $$
 
 - 输入：真实样本 $x$ 或生成样本 $G(z)$
-- 输出：标量概率值，表示输入为真实数据的置信度
+- 输出：标量（scalar /ˈskeɪlər/）概率值，表示输入为真实数据的置信度
 - 架构：通常与生成器对称或更简单的分类网络
 
 ```
@@ -120,11 +123,11 @@ for each training iteration:
 
 | 特性 | GAN | VAE |
 |------|-----|-----|
-| **理论基础** | 博弈论、极小极大优化 | 变分推断、ELBO |
+| **理论基础** | 博弈论、极小极大优化 | 变分（variational /ˌveəriˈeɪʃənl/）推断、ELBO |
 | **训练目标** | 对抗损失（判别器引导） | 重建损失 + KL 散度 |
 | **生成质量** | 通常更清晰、更锐利 | 通常更平滑、可能模糊 |
 | **训练稳定性** | 不稳定、容易模式崩塌 | 稳定、收敛有保障 |
-| **潜在空间** | 无显式编码器（除非用 BiGAN） | 有编码器，可推断 $q(z|x)$ |
+| **潜在空间** | 无显式编码器（encoder /ɪnˈkoʊdər/）（除非用 BiGAN） | 有编码器，可推断 $q(z|x)$ |
 | **似然评估** | 无法直接计算 | 可通过 ELBO 估计 |
 
 ---
@@ -333,7 +336,7 @@ $$ \mathcal{L}_G = \mathbb{E}_z[\log(1 - D(G(z)))] $$
 | **Unrolled GAN** | 让 G "预见" D 对其更新的响应 | Unrolled GAN |
 | **WGAN / WGAN-GP** | 用 Wasserstein 距离代替 JSD，提供更平滑的梯度 | WGAN, WGAN-GP |
 | **PacGAN** | 打包多个样本输入 D | PacGAN |
-| **Spectral Normalization** | 对 D 的权重矩阵做谱归一化，保证 Lipschitz 连续性 | SNGAN |
+| **Spectral Normalization（/ˌnɔːrmələˈzeɪʃən/）** | 对 D 的权重矩阵做谱归一化，保证 Lipschitz 连续性 | SNGAN |
 
 ### 5.4 模式崩塌的检测 (Detecting Mode Collapse)
 
@@ -456,7 +459,7 @@ Backward cycle consistency:
 
 $$ \text{AdaIN}(x_i, y) = y_{s,i} \frac{x_i - \mu(x_i)}{\sigma(x_i)} + y_{b,i} $$
 
-其中 $\mu(x_i)$ 和 $\sigma(x_i)$ 是特征图的均值和标准差，$y_{s,i}$ 和 $y_{b,i}$ 是来自映射网络的风格参数。
+其中 $\mu(x_i)$ 和 $\sigma(x_i)$ 是特征图的均值和标准差，$y_{s,i}$ 和 $y_{b,i}$ 是来自映射网络的风格参数（parameter /pəˈræmɪtər/）。
 
 3. **样式混合 (Style Mixing):** 用不同潜在编码控制不同层级的特征（粗粒度特征如姿态、细粒度特征如颜色）
 
@@ -504,7 +507,7 @@ Layer ranges and their effects:
 | **DCGAN** | 用卷积层代替 MLP，提出架构设计准则 | 2016 |
 | **WGAN** | Wasserstein 距离代替 JSD，解决训练不稳定 | 2017 |
 | **WGAN-GP** | 梯度惩罚 (Gradient Penalty) 替代权重裁剪 | 2017 |
-| **SAGAN** | 引入自注意力 (Self-Attention) 机制 | 2018 |
+| **SAGAN** | 引入自注意力（attention /əˈtenʃən/） (Self-Attention) 机制 | 2018 |
 | **BigGAN** | 大规模 GAN 训练，ImageNet 256×256 生成 | 2019 |
 | **StyleGAN-XL** | 基于 StyleGAN2 的 SOTA 条件生成 | 2022 |
 
@@ -524,7 +527,7 @@ Layer ranges and their effects:
 | **批次大小** | 128 |
 | **优化器** | Adam (lr=0.0002, betas=(0.5, 0.999)) |
 | **激活函数** | G: ReLU, D: LeakyReLU(0.2) |
-| **输出函数** | G: Tanh, D: Sigmoid |
+| **输出函数** | G: Tanh, D: Sigmoid（/ˈsɪɡmɔɪd/） |
 
 ### 可视化内容 (Visualizations)
 
@@ -658,3 +661,8 @@ Final Results
 - [StyleGAN](https://arxiv.org/abs/1812.04948) - Karras et al., 2019
 - [WGAN](https://arxiv.org/abs/1701.07875) - Arjovsky et al., 2017
 - [DCGAN](https://arxiv.org/abs/1511.06434) - Radford et al., 2016
+
+## 参考文献 (References)
+
+1. **Goodfellow, I. et al.** (2014). Generative adversarial nets. *NeurIPS*.
+2. **Arjovsky, M., Chintala, S. & Bottou, L.** (2017). Wasserstein GAN. *ICML*.

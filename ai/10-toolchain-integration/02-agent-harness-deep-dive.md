@@ -1,7 +1,7 @@
 # 第2章 Agent Harness 深度解析 — 调度、工具、技能、记忆与权限
 # Chapter 2: Agent Harness Deep Dive — Scheduling, Tools, Skills, Memory & Permissions
 
-> **An agent harness is the runtime that brings an LLM-powered agent to life. It is the operating system for autonomous code agents — managing their lifecycle, tool access, skill injection, memory, and safety.**
+> **An agent（/ˈeɪdʒənt/） harness is the runtime that brings an LLM-powered agent to life. It is the operating system for autonomous code agents — managing their lifecycle, tool access, skill injection, memory, and safety.**
 >
 > **Agent Harness 是让 LLM Agent 真正"活起来"的运行时。它是自主编码代理的操作系统——管理着生命周期、工具访问、技能注入、记忆和安全性。**
 
@@ -104,7 +104,7 @@
 
 ### 2.2 任务分解 (Task Decomposition)
 
-将高层任务分解为原子子步骤是调度的核心能力。一个好的分解结果应该满足：
+将高层任务分解为原子子步骤是调度的核（kernel /ˈkɜːrnl/）心能力。一个好的分解结果应该满足：
 
 | 原则 (Principle) | 说明 (Description) | 反例 (Anti-pattern) |
 |---|---|---|
@@ -202,7 +202,7 @@ function decompose(task):
 |---|---|---|
 | **name** | 唯一标识工具 | `write_file` |
 | **description** | 告诉 LLM 什么时候用这个工具 | `Write content to a file in the workspace` |
-| **input_schema** | 定义参数结构和约束 | `{path: string, content: string}` |
+| **input_schema** | 定义参数（parameter /pəˈræmɪtər/）结构和约束 | `{path: string, content: string}` |
 
 ### 3.2 MCP 协议 (Model Context Protocol)
 

@@ -1,7 +1,10 @@
 # 第2章：完整的 Transformer 架构
 # Chapter 2: The Complete Transformer Architecture
 
-> **Transformer 不再是"Seq2Seq with Attention"——它用纯注意力机制构建了一个全新的架构范式。** Encoder 用双向自注意力理解输入，Decoder 用因果掩码 + 交叉注意力逐步生成输出。本章拆解每个组件：从多头注意力到位置编码，从残差连接到 FFN。
+> **Transformer（/trænsˈfɔːrmər/） 不再是"Seq2Seq with Attention（/əˈtenʃən/）"——它用纯注意力机制构建了一个全新的架构范式。** Encoder（/ɪnˈkoʊdər/） 用双向自注意力理解输入，Decoder（/diːˈkoʊdər/） 用因果掩码 + 交叉注意力逐步生成输出。本章拆解每个组件：从多头注意力到位置编码，从残差连接到 FFN。
+> > **时间线**:
+> > - **2017**: Vaswani et al. 在 *NeurIPS* 提出 Transformer 架构
+> - **2022**: Dao et al. 提出 FlashAttention
 >
 > **The Transformer is no longer "Seq2Seq with Attention" — it uses pure attention to build a completely new architectural paradigm.** The Encoder uses bidirectional self-attention to understand the input; the Decoder uses causal masking + cross-attention to generate output step by step. This chapter dissects every component: from Multi-Head Attention to Positional Encoding, from Residual Connections to FFN.
 
@@ -52,9 +55,9 @@ flowchart TB
 |:-----|:-----|:-----|:---------|
 | **Encoder** | $X \in \mathbb{R}^{n \times d}$ | $Z \in \mathbb{R}^{n \times d}$ | Self-Attention → Add&Norm → FFN → Add&Norm |
 | **Decoder** | $Y_{<t}$ (已生成的部分) | $P(y_t \mid Y_{<t}, X)$ | Masked Self-Attention → Cross-Attention → FFN |
-| **输出** | Decoder 最终隐藏状态 | 词汇表上的概率分布 | Linear + Softmax |
+| **输出** | Decoder 最终隐藏状态 | 词汇表上的概率分布 | Linear + Softmax（/sɒftˈmæks/） |
 
-**核心洞察：**
+**核（kernel /ˈkɜːrnl/）心洞察：**
 
 - Encoder 的 Self-Attention 是**双向的**（每个位置可以看到所有位置）——适合"理解"。
 - Decoder 的第一个 Self-Attention 是**因果的**（每个位置只能看到自己和之前的位置）——适合"生成"。
@@ -104,7 +107,7 @@ $$
 |:-----------|:-----------|
 | 一个注意力分布 | $h$ 个独立的注意力分布 |
 | 所有关系耦合在一起 | 每个头可以专注不同的关系（语法、语义、位置等） |
-| 梯度更新是"平均"的 | 每个头的梯度相对独立，学习不同的特征 |
+| 梯度（gradient /ˈɡreɪdiənt/）更新是"平均"的 | 每个头的梯度相对独立，学习不同的特征 |
 | 总计算量 $O(n^2 d)$ | 总计算量相同 $O(h \cdot n^2 \cdot d_k) = O(n^2 d)$ |
 
 > **关键**：多头注意力不增加总计算量（$h \times d_k = d_{\text{model}}$ 保持不变），但显著提升了表达能力。这是"免费午餐"——并行化带来的质变。
@@ -157,11 +160,11 @@ $$ \mu_i = \frac{1}{d} \sum_{j=1}^{d} x_{ij}, \quad \sigma_i^2 = \frac{1}{d} \su
 
 | 特性 | Layer Norm | Batch Norm |
 |:-----|:-----------|:-----------|
-| 归一化维度 | 每个 token 的特征维 | 每个特征维的 batch 维 |
+| 归一化（normalization /ˌnɔːrmələˈzeɪʃən/）维度 | 每个 token 的特征维 | 每个特征维的 batch 维 |
 | 计算方式 | 对**每个样本**单独计算 | 对**每个特征**跨 batch 计算 |
 | 依赖 batch size | 否 | 是（小 batch 不稳定） |
 | 序列长度变化 | 自然支持 | 需要特殊处理 |
-| 训练/推理一致 | 是 | 不同（训练用 batch 统计，推理用全局统计） |
+| 训练/推理（inference /ˈɪnfərəns/）一致 | 是 | 不同（训练用 batch 统计，推理用全局统计） |
 
 **Layer Norm 是 Transformer 的首选**，因为它：
 - 不受 batch 大小影响
@@ -190,7 +193,7 @@ $$ \text{Output} = x + \text{Sublayer}(\text{LayerNorm}(x)) $$
 
 ### 4.1 标准 FFN
 
-每个 token 在经过自注意力后，通过一个两层的全连接网络（position-wise，即每个位置独立共享参数）：
+每个 token 在经过自注意力后，通过一个两层的全连接网络（position-wise，即每个位置独立共享参数（parameter /pəˈræmɪtər/））：
 
 $$ \text{FFN}(x) = W_2 \cdot \text{ReLU}(W_1 x + b_1) + b_2 $$
 
@@ -218,7 +221,7 @@ $$ \text{SwiGLU}(x) = (\text{SwiGLU}_1(x) \odot \text{SwiGLU}_2(x)) \cdot W_3 $$
 
 $$ \text{FFN}_{\text{SwiGLU}}(x) = (\text{SiLU}(x W_1) \odot (x W_2)) W_3 $$
 
-其中 SiLU（Sigmoid Linear Unit）是 Swish 的变体：
+其中 SiLU（Sigmoid（/ˈsɪɡmɔɪd/） Linear Unit）是 Swish 的变体：
 
 $$ \text{SiLU}(x) = x \cdot \sigma(x) $$
 
@@ -277,7 +280,7 @@ $$
 - **兼容线性注意力**：旋转操作可以与线性注意力结合。
 
 > **一句话总结 Sinusoidal vs RoPE：**
-> Sinusoidal 把位置信息"加到"嵌入上，RoPE 把位置信息"旋到"注意力中。
+> Sinusoidal 把位置信息"加到"嵌入（embedding /ɪmˈbedɪŋ/）上，RoPE 把位置信息"旋到"注意力中。
 
 ### 5.3 ALiBi (Attention with Linear Biases)
 
@@ -340,7 +343,7 @@ $$
 
 **在训练阶段**，Masked Self-Attention 实现了**并行 teacher-forcing**：模型一次看到所有（掩码后的）位置，同时计算所有位置的预测损失。
 
-> **直觉**：Masked Self-Attention 就像"逐词填空"——你只能看到已经写出来的词，不能偷看未来的答案。这就是为什么 Decoder 被称为自回归（auto-regressive）的。
+> **直觉**：Masked Self-Attention 就像"逐词填空"——你只能看到已经写出来的词，不能偷看未来的答案。这就是为什么 Decoder 被称为自回归（regression /rɪˈɡreʃən/）（auto-regressive）的。
 
 ---
 
@@ -416,3 +419,8 @@ Decoder Output
 - Press et al. (2021). "Train Short, Test Long: Attention with Linear Biases Enables Input Length Extrapolation." — **ALiBi** 论文
 - Shazeer (2020). "GLU Variants Improve Transformer." — **SwiGLU** 的提出
 - Xiong et al. (2020). "On Layer Normalization in the Transformer Architecture." — **Pre-Norm vs Post-Norm** 的深入分析
+
+## 参考文献 (References)
+
+1. **Vaswani, A. et al.** (2017). Attention Is All You Need. *NeurIPS*.
+2. **Su, J. et al.** (2021). RoFormer: Enhanced transformer with rotary position embedding. *arXiv:2104.09864*.

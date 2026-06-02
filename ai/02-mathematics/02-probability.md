@@ -1,6 +1,6 @@
 # 02 — 概率论与机器学习（Probability Theory for ML）
 
-> 概率论（Probability Theory）是机器学习的核心语言。几乎所有 ML 算法——从线性回归的损失函数到贝叶斯推断，从随机梯度下降到生成模型——都建立在概率论的基础之上。本章从概率分布出发，逐步展开贝叶斯定理、最大似然估计（MLE）、最大后验估计（MAP）以及期望与方差等核心概念，为后续理解各类 ML 模型打下坚实的数学基础。
+> 概率论（Probability Theory）是机器学习的核（kernel /ˈkɜːrnl/）心语言。几乎所有 ML 算法——从线性回归（regression /rɪˈɡreʃən/）的损失函数到贝叶斯推断，从随机（stochastic /stəˈkæstɪk/）梯度（gradient /ˈɡreɪdiənt/）下降到生成模型——都建立在概率论的基础之上。本章从概率分布出发，逐步展开贝叶斯定理、最大似然估计（MLE）、最大后验估计（MAP）以及期望与方差等核心概念，为后续理解各类 ML 模型打下坚实的数学基础。
 
 ---
 
@@ -24,7 +24,7 @@
 
 **伯努利分布（Bernoulli Distribution）** 建模**单次二值试验**的结果，如抛一次硬币是否正面朝上。
 
-**参数**：$p \in [0, 1]$ —— 正面（$x=1$）的概率。
+**参数（parameter /pəˈræmɪtər/）**：$p \in [0, 1]$ —— 正面（$x=1$）的概率。
 
 **PMF**：
 
@@ -66,7 +66,7 @@ $$f(x \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left( -\frac{(x -
 - $\mu$ 控制分布的中心位置，$\sigma$ 控制分布的宽度（标准差，Standard Deviation）
 - **68-95-99.7 法则**：约 68% 的数据落在 $\mu \pm \sigma$ 内，95% 在 $\mu \pm 2\sigma$ 内，99.7% 在 $\mu \pm 3\sigma$ 内
 
-> **联系与区别**：伯努利和二项分布是**离散分布**，用于分类问题中的标签建模；正态分布是**连续分布**，广泛用于回归任务中的误差建模和参数初始化。
+> **联系与区别**：伯努利和二项分布是**离散分布**，用于分类（classification /ˌklæsɪfɪˈkeɪʃən/）问题中的标签建模；正态分布是**连续分布**，广泛用于回归任务中的误差建模和参数初始化。
 
 ### 1.6 类别分布 / 多项分布（Categorical / Multinomial Distribution）
 
@@ -122,7 +122,7 @@ $$P(\theta \mid \mathcal{D}) = \frac{P(\mathcal{D} \mid \theta) \, P(\theta)}{P(
 |:---|:---|:---|
 | $P(\theta)$ | **先验（Prior）** | 观测数据之前，我们对参数 $\theta$ 的信念 |
 | $P(\mathcal{D} \mid \theta)$ | **似然（Likelihood）** | 在参数 $\theta$ 下，数据 $\mathcal{D}$ 出现的概率 |
-| $P(\mathcal{D})$ | **证据（Evidence）** | 数据出现的总概率（归一化常数） |
+| $P(\mathcal{D})$ | **证据（Evidence）** | 数据出现的总概率（归一化（normalization /ˌnɔːrmələˈzeɪʃən/）常数） |
 | $P(\theta \mid \mathcal{D})$ | **后验（Posterior）** | 观测数据之后，我们对 $\theta$ 更新的信念 |
 
 > **推导**：由乘法定理，$P(\theta \cap \mathcal{D}) = P(\mathcal{D} \mid \theta) P(\theta) = P(\theta \mid \mathcal{D}) P(\mathcal{D})$，两边除以 $P(\mathcal{D})$ 即得上式。
@@ -198,7 +198,7 @@ $$\Rightarrow \quad \hat{\sigma}^2_{\text{MLE}} = \frac{1}{n} \sum_{i=1}^n (x_i 
 
 ### 4.1 从 MLE 到 MAP
 
-MLE 只关注数据拟合，但**当数据量少时，MLE 容易过拟合（Overfitting）**。MAP 引入**先验（Prior）** $P(\theta)$，结合数据的似然，最大化**后验概率**：
+MLE 只关注数据拟合，但**当数据量少时，MLE 容易过拟合（overfitting /ˈoʊvərˈfɪtɪŋ/）（Overfitting）**。MAP 引入**先验（Prior）** $P(\theta)$，结合数据的似然，最大化**后验概率**：
 
 $$\hat{\theta}_{\text{MAP}} = \arg\max_\theta P(\theta \mid \mathcal{D}) = \arg\max_\theta \frac{P(\mathcal{D} \mid \theta) P(\theta)}{P(\mathcal{D})}$$
 
@@ -228,7 +228,7 @@ MAP 的优化目标变为：
 
 $$\hat{\theta}_{\text{MAP}} = \arg\max_\theta \left[ \log P(\mathcal{D} \mid \theta) - \frac{\lambda}{2} \theta^2 \right]$$
 
-等价于最小化带 **L2 正则化（L2 Regularization）** 的负对数似然（Negative Log-Likelihood）：
+等价于最小化带 **L2 正则化（regularization /ˌreɡjələraɪˈzeɪʃən/）（L2 Regularization）** 的负对数似然（Negative Log-Likelihood）：
 
 $$\hat{\theta}_{\text{MAP}} = \arg\min_\theta \left[ -\log P(\mathcal{D} \mid \theta) + \frac{\lambda}{2} \|\theta\|^2 \right]$$
 

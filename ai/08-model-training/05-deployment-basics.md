@@ -1,7 +1,7 @@
 # 第5章 模型部署基础 — 从导出到服务化
 # Chapter 5: Model Deployment Basics — From Export to Serving
 
-> **训练完模型只是第一步，真正的挑战是如何将它部署到生产环境。** 本章涵盖模型导出（TorchScript / ONNX）、推理服务构建（FastAPI）、量化压缩（INT8 / INT4）以及 Docker 容器化的完整流程。
+> **训练完模型只是第一步，真正的挑战是如何将它部署到生产环境。** 本章涵盖模型导出（TorchScript / ONNX）、推理（inference /ˈɪnfərəns/）服务构建（FastAPI）、量化压缩（INT8 / INT4）以及 Docker 容器化的完整流程。
 >
 > **Training a model is only the first step; the real challenge is deploying it to production.** This chapter covers the complete pipeline: model export (TorchScript / ONNX), inference service (FastAPI), quantization compression (INT8 / INT4), and Docker containerization.
 
@@ -16,7 +16,7 @@
 
 1. [模型导出：TorchScript 与 ONNX (Model Export)](#1-模型导出torchscript-与-onnx-model-export)
 2. [推理服务：FastAPI (Inference Service)](#2-推理服务fastapi-inference-service)
-3. [量化：INT8 / INT4 (Quantization)](#3-量化int8--int4-quantization)
+3. [量化（quantize /ˈkwɒntaɪz/）：INT8 / INT4 (Quantization)](#3-量化int8--int4-quantization)
 4. [Docker 容器化 (Docker Containerization)](#4-docker-容器化-docker-containerization)
 5. [完整示例运行结果 (Full Demo Output)](#5-完整示例运行结果-full-demo-output)
 
@@ -79,13 +79,13 @@ torch.onnx.export(
 )
 ```
 
-关键参数 (Key arguments):
+关键参数（parameter /pəˈræmɪtər/） (Key arguments):
 
 | 参数 (Argument) | 作用 (Purpose) |
 |----------------|---------------|
 | `dynamic_axes` | 允许动态 batch 大小 (Allow dynamic batch size) |
 | `opset_version` | ONNX 算子集版本 (ONNX operator set version) |
-| `input_names` / `output_names` | 输入输出张量命名 (Name tensors for runtime lookup) |
+| `input_names` / `output_names` | 输入输出张量（tensor /ˈtensər/）命名 (Name tensors for runtime lookup) |
 
 ### 1.3 格式对比 (Format Comparison)
 

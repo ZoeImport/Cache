@@ -1,6 +1,6 @@
 # 04 — 信息论与机器学习（Information Theory for ML）
 
-> 信息论（Information Theory）由 Claude Shannon 于 1948 年创立，最初用于解决通信工程中的信息量化问题。但它的核心工具——熵（Entropy）、KL 散度（KL Divergence）、互信息（Mutual Information）——如今已经成为机器学习中不可或缺的理论基石。本章从"信息量"的直觉出发，推导出熵、KL 散度与交叉熵之间的逻辑链条，最终揭示为什么分类问题的损失函数（Cross-Entropy Loss）本质上就是一个信息论问题。
+> 信息论（Information Theory）由 Claude Shannon 于 1948 年创立，最初用于解决通信工程中的信息量化（quantize /ˈkwɒntaɪz/）问题。但它的核（kernel /ˈkɜːrnl/）心工具——熵（entropy /ˈentrəpi/）（Entropy）、KL 散度（KL Divergence）、互信息（Mutual Information）——如今已经成为机器学习中不可或缺的理论基石。本章从"信息量"的直觉出发，推导出熵、KL 散度与交叉熵之间的逻辑链条，最终揭示为什么分类（classification /ˌklæsɪfɪˈkeɪʃən/）问题的损失函数（Cross-Entropy Loss）本质上就是一个信息论问题。
 >
 > 本章的层层递进路线：**自信息 → 熵 → KL 散度 → 交叉熵 → ML 损失函数 → 互信息**
 
@@ -43,7 +43,7 @@ print(f"P=0.9  → I = {self_info(0.9):.2f} bit")    # 0.15 bit
 
 ### 1.2 熵：分布的平均不确定性
 
-**熵（Entropy）** 是自信息的期望值，它衡量一个随机变量 $X$ 的**平均不确定性**：
+**熵（Entropy）** 是自信息的期望值，它衡量一个随机（stochastic /stəˈkæstɪk/）变量 $X$ 的**平均不确定性**：
 
 $$H(X) = \mathbb{E}_{x \sim P}[I(x)] = -\sum_{x} P(x) \log P(x)$$
 
@@ -59,7 +59,7 @@ $$H(X) = -\int P(x) \log P(x) \, dx$$
 | 均匀分布（$n$ 个取值） | $H=\log n$ | 最大不确定性 |
 | 偏斜分布（接近 0 或 1） | 较小 | 比较确定 |
 
-**抛硬币的例子**：考虑一枚参数为 $p$ 的伯努利分布硬币：
+**抛硬币的例子**：考虑一枚参数（parameter /pəˈræmɪtər/）为 $p$ 的伯努利分布硬币：
 
 $$H(p) = -p\log p - (1-p)\log(1-p)$$
 
@@ -271,5 +271,5 @@ $$
 
 1. Shannon, C. E. (1948). *A Mathematical Theory of Communication*. Bell System Technical Journal.
 2. Cover, T. M. & Thomas, J. A. (2006). *Elements of Information Theory* (2nd ed.). Wiley-Interscience.
-3. MacKay, D. J. C. (2003). *Information Theory, Inference, and Learning Algorithms*. Cambridge University Press.
+3. MacKay, D. J. C. (2003). *Information Theory, Inference（/ˈɪnfərəns/）, and Learning Algorithms*. Cambridge University Press.
 4. Bishop, C. M. (2006). *Pattern Recognition and Machine Learning*. Springer.

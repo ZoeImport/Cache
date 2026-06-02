@@ -12,7 +12,7 @@
 
 ## 目录 (Table of Contents)
 
-1. [三种模式：Autocomplete vs Chat vs Agent](#1-三种模式-autocomplete-vs-chat-vs-agent)
+1. [三种模式：Autocomplete vs Chat vs Agent（/ˈeɪdʒənt/）](#1-三种模式-autocomplete-vs-chat-vs-agent)
 2. [架构演变：从 TabNine 到 Agent](#2-架构演变从-tabnine-到-agent)
 3. [LSP 集成](#3-lsp-集成)
 4. [上下文管理](#4-上下文管理)
@@ -46,9 +46,9 @@ Model task: Predict the missing line between prefix and suffix.
 Predicted: fibonacci(n-1) + fibonacci(n-2)
 ```
 
-FIM 的训练方式是在标准自回归语言建模基础上，将部分训练样本重写为 `prefix + middle + suffix` 格式（`<PRE>` 和 `<SUF>` 等特殊标记分隔），让模型学会从两侧约束中推断中间内容。GitHub Copilot 使用的 Codex 模型在 FIM 训练上的改进是这一模式成功的关键。
+FIM 的训练方式是在标准自回归（regression /rɪˈɡreʃən/）语言建模基础上，将部分训练样本重写为 `prefix + middle + suffix` 格式（`<PRE>` 和 `<SUF>` 等特殊标记分隔），让模型学会从两侧约束中推断中间内容。GitHub Copilot 使用的 Codex 模型在 FIM 训练上的改进是这一模式成功的关键。
 
-**Latency requirements:** 50-200ms per suggestion. Anything slower breaks the typing flow. This drives the need for small, quantized models or highly optimized inference stacks. Providers typically use 6B-15B parameter models for autocomplete, reserving larger models for chat.
+**Latency requirements:** 50-200ms per suggestion. Anything slower breaks the typing flow. This drives the need for small, quantized models or highly optimized inference（/ˈɪnfərəns/） stacks. Providers typically use 6B-15B parameter（/pəˈræmɪtər/） models for autocomplete, reserving larger models for chat.
 
 **Strengths:**
 - Lowest friction — zero explicit user action
@@ -88,7 +88,7 @@ Developer Query
 | **工具调用 (Tool Use)** | 无 | 有：读文件、搜索、编辑 |
 | **用户意图 (Intent)** | 隐式（打字过程） | 显式（提出问题） |
 
-Chat 模式通过工具调用（Tool Calling / Function Calling）来增强能力。当模型认为需要更多信息时，可以发出工具请求：读取某个文件、搜索项目中的符号、或检查 LSP 诊断结果。这些工具调用是 AI 编码助手区别于普通聊天机器人的核心特征。
+Chat 模式通过工具调用（Tool Calling / Function Calling）来增强能力。当模型认为需要更多信息时，可以发出工具请求：读取某个文件、搜索项目中的符号、或检查 LSP 诊断结果。这些工具调用是 AI 编码助手区别于普通聊天机器人的核（kernel /ˈkɜːrnl/）心特征。
 
 ### 1.3 Agent 模式（智能代理）
 
@@ -150,13 +150,13 @@ The evolution of coding assistants mirrors the broader trajectory of ML and LLM 
 - **Inference:** Runs entirely on-device (CPU or consumer GPU)
 - **Context:** Last few hundred tokens of the current file only
 
-TabNine 最初基于 n-gram 统计模型，后迁移至 GPT-2 风格的 Transformer。它的核心创新在于将语言模型应用于代码补全这一具体场景。当时的主要限制是模型容量小，只能捕捉局部代码模式，无法理解项目的全局结构。
+TabNine 最初基于 n-gram 统计模型，后迁移至 GPT-2 风格的 Transformer（/trænsˈfɔːrmər/）。它的核心创新在于将语言模型应用于代码补全这一具体场景。当时的主要限制是模型容量小，只能捕捉局部代码模式，无法理解项目的全局结构。
 
 ### 2.2 第二代：GitHub Copilot（2021）
 
 **Technology stack:**
 - **Model:** OpenAI Codex (GPT-3 derivative, ~12B parameters)
-- **Approach:** FIM-trained decoder-only Transformer
+- **Approach:** FIM-trained decoder（/diːˈkoʊdər/）-only Transformer
 - **Inference:** Cloud-based, NVIDIA GPU clusters
 - **Context:** Current file + neighboring files (~2-4K tokens)
 

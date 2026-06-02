@@ -35,7 +35,7 @@
 | Concept 概念 | Explanation 解释 |
 |---|---|
 | **Transfer Learning 迁移学习** | Knowledge from pretraining transfers to the new task 预训练学到的通用知识迁移到新任务 |
-| **Task Adaptation 任务适配** | Only the head needs to learn task-specific patterns 仅分类头需要学习任务特定模式 |
+| **Task Adaptation 任务适配** | Only the head needs to learn task-specific patterns 仅分类（classification /ˌklæsɪfɪˈkeɪʃən/）头需要学习任务特定模式 |
 | **Catastrophic Forgetting 灾难性遗忘** | Low LR + few epochs preserve pretrained knowledge 小学习率+少epoch保留预训练知识 |
 
 ---
@@ -94,9 +94,9 @@ New Head (Classifier)           → actively learning
 
 **Load report 加载报告**:
 
-| Key 参数 | Status 状态 | Meaning 含义 |
+| Key 参数（parameter /pəˈræmɪtər/） | Status 状态 | Meaning 含义 |
 |---|---|---|
-| `classifier.weight` | MISSING | Randomly initialized for new task 为新任务随机初始化 |
+| `classifier.weight` | MISSING | Randomly initialized for new task 为新任务随机（stochastic /stəˈkæstɪk/）初始化 |
 | `vocab_transform.weight` | UNEXPECTED | From MLM head, discarded 来自 MLM 头部，已丢弃 |
 
 ### Step 4: TrainingArguments & Trainer 训练配置
@@ -125,7 +125,7 @@ args = TrainingArguments(
 | Parameter 参数 | Reason 原因 |
 |---|---|
 | `lr=2e-5` | Small — prevents catastrophic forgetting of pretrained weights 小学习率防止灾难性遗忘 |
-| `weight_decay=0.01` | L2 regularization to prevent overfitting on small data 防止小数据过拟合 |
+| `weight_decay=0.01` | L2 regularization（/ˌreɡjələraɪˈzeɪʃən/） to prevent overfitting（/ˈoʊvərˈfɪtɪŋ/） on small data 防止小数据过拟合 |
 | `warmup_ratio=0.1` | Gradually increase LR for stable training 逐步增加学习率使训练稳定 |
 | `batch_size=8` | Small enough for CPU training 适合 CPU 训练 |
 
@@ -253,7 +253,7 @@ Set `BATCH_SIZE = 32`, `NUM_EPOCHS = 3` for production-quality results.
 | **Transfer Learning 迁移学习** | Reuse pretrained body, finetune only the head |
 | **Task-Specific Head 任务头** | `num_labels=2` classification head |
 | **Evaluation 评估** | `compute_metrics()` with accuracy & F1 |
-| **Inference 推理** | `pipeline("text-classification")` |
+| **Inference（/ˈɪnfərəns/） 推理** | `pipeline("text-classification")` |
 
 ---
 

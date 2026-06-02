@@ -1,7 +1,7 @@
 # 9.4 Agent 系统 — LLM + Tools + Loop
 # 9.4 Agent Systems — LLM + Tools + Loop
 
-> **Agent = LLM + Tools + Loop. An agent is not just a model — it is a model that perceives, thinks, acts, and learns from results.**
+> **Agent（/ˈeɪdʒənt/） = LLM + Tools + Loop. An agent is not just a model — it is a model that perceives, thinks, acts, and learns from results.**
 >
 > **Agent = LLM + Tools + Loop。Agent 不只是一個模型，而是一個能感知、思考、行動並從結果中學習的系統。**
 
@@ -15,7 +15,7 @@
 
 ## 目录 (Table of Contents)
 
-1. [Agent 核心公式 (The Agent Formula)](#1-agent-核心公式-the-agent-formula)
+1. [Agent 核（kernel /ˈkɜːrnl/）心公式 (The Agent Formula)](#1-agent-核心公式-the-agent-formula)
 2. [ReAct 循环 ⭐ (The ReAct Loop)](#2-react-循环-the-react-loop)
 3. [记忆管理 (Memory Management)](#3-记忆管理-memory-management)
 4. [任务规划 (Task Planning)](#4-任务规划-task-planning)
@@ -66,7 +66,7 @@ $$
 | 能力 (Capability) | 单纯 LLM | Agent (LLM + Tools + Loop) |
 |---|---|---|
 | 实时数据 (Real-time data) | ❌ 知识截止于训练数据 | ✅ 可查询 API/DB |
-| 精确计算 (Precise computation) | ❌ 近似推理 | ✅ 调用计算器 |
+| 精确计算 (Precise computation) | ❌ 近似推理（inference /ˈɪnfərəns/） | ✅ 调用计算器 |
 | 多步推理 (Multi-step reasoning) | ⚠️ 容易出错 | ✅ 分步验证 |
 | 外部操作 (External actions) | ❌ 只能输出文本 | ✅ 发送邮件/创建订单 |
 | 自我纠错 (Self-correction) | ❌ 无法 | ✅ 观察结果后调整 |
@@ -133,7 +133,7 @@ ReAct 循环可以用一个有限状态机来描述：
 | `START` | — | `THINK` | 收到用户输入后启动 |
 | `THINK` | 需要更多信息 | `DECIDE` | 模型判断需要调用工具 |
 | `THINK` | 已有足够信息 | `ANSWER` | 模型准备好给出最终回答 |
-| `DECIDE` | — | `EXECUTE` | 选择具体工具和参数 |
+| `DECIDE` | — | `EXECUTE` | 选择具体工具和参数（parameter /pəˈræmɪtər/） |
 | `EXECUTE` | 工具返回结果 | `THINK` | 观察结果后继续推理 |
 | `EXECUTE` | 工具出错 | `THINK` | 错误信息也作为观察输入 |
 | `ANSWER` | — | `START` | 输出最终回答，等待下一轮输入 |
@@ -258,7 +258,7 @@ def manage_short_term(messages):
 
 ### 3.3 长期记忆 (Long-term Memory)
 
-**形式:** 对话摘要或向量数据库中的嵌入。
+**形式:** 对话摘要或向量数据库中的嵌入（embedding /ɪmˈbedɪŋ/）。
 
 **两种主要方法:**
 
@@ -693,3 +693,9 @@ $$
 | **LangGraph** | 基于图的灵活编排 |
 | **AutoGen** | 多 Agent 对话协作 |
 | **CrewAI** | 基于角色的分工协作 |
+
+## 参考文献 (References)
+
+1. **Wang, L. et al.** (2023). A survey on large language model based autonomous agents. *arXiv:2308.11432*. — LLM 智能体的综述。
+2. **Sumers, T. R. et al.** (2023). Cognitive architectures for language agents. *arXiv:2309.02427*. — 语言 Agent 的认知架构探讨。
+3. **Xi, Z. et al.** (2023). The rise and potential of large language model based agents: A survey. *arXiv:2309.07864*. — LLM Agent 的全面综述。

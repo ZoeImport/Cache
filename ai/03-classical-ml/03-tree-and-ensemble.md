@@ -1,8 +1,14 @@
 # 03 — 树模型与集成学习（Tree Models & Ensemble Learning）
 
-> 树模型（Decision Trees）是机器学习中最直观、最可解释的算法之一。但单棵决策树容易过拟合、不稳定（数据微小变化会导致树结构巨变）。集成学习（Ensemble Learning）通过组合多个弱学习器来构建强学习器，有效解决了这些问题。
+> 树模型（Decision Trees）是机器学习中最直观、最可解释的算法之一。但单棵决策树容易过拟合（overfitting /ˈoʊvərˈfɪtɪŋ/）、不稳定（数据微小变化会导致树结构巨变）。集成学习（Ensemble Learning）通过组合多个弱学习器来构建强学习器，有效解决了这些问题。
+> > **时间线**:
+> > - **1963**: Vapnik & Chervonenkis 提出 VC 维理论
+> > - **1984**: Breiman 等人发表 CART（Classification and Regression Trees）
+> > - **1986**: Quinlan 提出 ID3 决策树算法
+> > - **1997**: Freund & Schapire 发表 AdaBoost 算法
+> - **2001**: Breiman 提出随机森林（Random Forest）
 >
-> 本章涵盖两大集成范式：**Bagging**（以随机森林为代表）和 **Boosting**（以 GBDT / XGBoost 为代表）。你将看到为什么随机森林能降低方差而不增偏差，以及 XGBoost 为何成为 Kaggle 竞赛和工业界表格数据的常胜将军。
+> 本章涵盖两大集成范式：**Bagging**（以随机（stochastic /stəˈkæstɪk/）森林为代表）和 **Boosting**（以 GBDT / XGBoost 为代表）。你将看到为什么随机森林能降低方差而不增偏差，以及 XGBoost 为何成为 Kaggle 竞赛和工业界表格数据的常胜将军。
 >
 > 章节路线：**决策树 → Bagging → 随机森林 → Boosting → GBDT → XGBoost → 树 vs 深度学习**
 
@@ -12,7 +18,7 @@
 
 ### 1.1 树结构
 
-决策树模拟人类做决策的过程：从根节点（Root Node）开始，根据特征值做判断，沿着分支到达内部节点（Internal Nodes），最终到达叶节点（Leaf Nodes），每个叶节点对应一个预测值（分类或回归）。
+决策树模拟人类做决策的过程：从根节点（Root Node）开始，根据特征值做判断，沿着分支到达内部节点（Internal Nodes），最终到达叶节点（Leaf Nodes），每个叶节点对应一个预测值（分类（classification /ˌklæsɪfɪˈkeɪʃən/）或回归（regression /rɪˈɡreʃən/））。
 
 ```
                     [Outlook = Sunny?]
@@ -32,11 +38,11 @@
 
 ### 1.2 如何选择分裂特征：信息增益 vs Gini 不纯度
 
-决策树的核心问题：**在每个节点，选择哪个特征、以什么阈值分裂，能使子节点最"纯"？**
+决策树的核（kernel /ˈkɜːrnl/）心问题：**在每个节点，选择哪个特征、以什么阈值分裂，能使子节点最"纯"？**
 
 #### 信息增益（Information Gain）
 
-从第 04 章的信息论我们知道，熵（Entropy）衡量不确定性。分裂后子节点的加权熵与父节点熵的差值，就是**信息增益**：
+从第 04 章的信息论我们知道，熵（entropy /ˈentrəpi/）（Entropy）衡量不确定性。分裂后子节点的加权熵与父节点熵的差值，就是**信息增益**：
 
 $$IG(D, a) = H(D) - \sum_{v \in Values(a)} \frac{|D_v|}{|D|} H(D_v)$$
 
@@ -179,7 +185,7 @@ $$\text{OOB Error} = \frac{1}{N} \sum_{i=1}^N \mathbb{I}(y_i \neq \hat{y}_i^{\te
 
 ### 3.2 Gradient Boosting 直觉
 
-Gradient Boosting 的核心思想：**每一棵新树拟合的是前面所有树的残差（Residuals）**。
+Gradient（/ˈɡreɪdiənt/） Boosting 的核心思想：**每一棵新树拟合的是前面所有树的残差（Residuals）**。
 
 **逐步推导**：
 
@@ -195,7 +201,7 @@ Gradient Boosting 的核心思想：**每一棵新树拟合的是前面所有树
 
 $$\frac{\partial}{\partial \hat{y}_i} \frac{1}{2}(y_i - \hat{y}_i)^2 = -(y_i - \hat{y}_i)$$
 
-所以拟合残差 = 沿着负梯度方向更新，等价于**梯度下降**——只不过是在函数空间而非参数空间进行的梯度下降。
+所以拟合残差 = 沿着负梯度方向更新，等价于**梯度下降**——只不过是在函数空间而非参数（parameter /pəˈræmɪtər/）空间进行的梯度下降。
 
 ```python
 # 伪代码：Gradient Boosting
@@ -224,7 +230,7 @@ $$\text{Obj} = \sum_{i=1}^n L(y_i, \hat{y}_i) + \sum_{t=1}^T \Omega(f_t)$$
 
 - $T$：叶节点数（控制树的复杂度）
 - $w_j$：叶节点权重值
-- $\gamma, \lambda$：正则化超参数
+- $\gamma, \lambda$：正则化（regularization /ˌreɡjələraɪˈzeɪʃən/）超参数（hyperparameter /ˈhaɪpərpəˈræmɪtər/）
 
 这相当于在 GBDT 基础上加了 **L2 正则化**（类似 Ridge Regression），有效防止过拟合。
 
@@ -244,7 +250,7 @@ $$L(y, \hat{y}^{(t)}) \approx L(y, \hat{y}^{(t-1)}) + g_i f_t(x_i) + \frac{1}{2}
 
 - 将连续特征分桶（如分成 100 个桶）
 - 只在桶边界上评估分裂增益
-- 支持加权分位数（Weighted Quantile Sketch），使损失大的样本获得更多"注意力"
+- 支持加权分位数（Weighted Quantile Sketch），使损失大的样本获得更多"注意力（attention /əˈtenʃən/）"
 
 此外，XGBoost 还包含：
 
@@ -328,3 +334,11 @@ GBDT / XGBoost
 | XGBoost | **更低** | 中 | ★★★ | ★★★ | ★★★★★ |
 
 > 下一章，我们将进入**无监督学习**的世界，探索聚类（K-Means, DBSCAN）和降维（PCA, t-SNE）的核心思想与实战。
+
+## 参考文献 (References)
+
+1. **Breiman, L. et al.** (1984). *Classification and Regression Trees*. Wadsworth. — CART 算法。
+2. **Quinlan, J. R.** (1986). Induction of decision trees. *Machine Learning*, 1(1), 81–106. — ID3 算法。
+3. **Freund, Y. & Schapire, R. E.** (1997). A decision-theoretic generalization of on-line learning and an application to boosting. *JCSS*, 55(1), 119–139. — AdaBoost 算法。
+4. **Breiman, L.** (2001). Random forests. *Machine Learning*, 45(1), 5–32. — 随机森林。
+5. **Chen, T. & Guestrin, C.** (2016). XGBoost: A scalable tree boosting system. *KDD*, 785–794. — XGBoost。

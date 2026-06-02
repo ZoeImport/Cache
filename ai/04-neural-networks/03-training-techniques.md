@@ -1,7 +1,12 @@
 # 03 — 训练技巧（Training Techniques）
 
-> 构建一个神经网络架构只是第一步。真正决定模型能否收敛、收敛多快、泛化多好的，是训练技巧。权重初始化决定了起点；优化器决定了行进路径；学习率调度决定了步长策略；归一化层稳定了中间特征分布；正则化手段防止了过拟合。
+> 构建一个神经网络架构只是第一步。真正决定模型能否收敛、收敛多快、泛化多好的，是训练技巧。权重初始化决定了起点；优化器决定了行进路径；学习率调度决定了步长策略；归一化（normalization /ˌnɔːrmələˈzeɪʃən/）层稳定了中间特征分布；正则化（regularization /ˌreɡjələraɪˈzeɪʃən/）手段防止了过拟合（overfitting /ˈoʊvərˈfɪtɪŋ/）。
 >
+> > **时间线**:
+> > - **2010**: Glorot & Bengio 提出 Xavier 初始化
+> > - **2013**: Kingma & Ba 提出 Adam 优化器（2015 ICLR）
+> > - **2014**: Srivastava et al. 提出 Dropout
+> - **2015**: Ioffe & Szegedy 提出 Batch Normalization
 > 本章将这五个主题串联成一条完整的"训练流水线"，每个部分都附有数学公式、直观理解和可运行的 PyTorch 代码。
 >
 > 章节路线：**权重初始化 → 优化器进化史 → 学习率调度 → 归一化 → 正则化**
@@ -14,17 +19,17 @@
 
 神经网络的训练本质是在损失曲面上进行优化。如果初始权重设置不当：
 
-- **初始化太大** → 激活值爆炸 → 梯度爆炸 → NaN
-- **初始化太小** → 激活值消失 → 梯度消失 → 参数不更新
+- **初始化太大** → 激活值爆炸 → 梯度（gradient /ˈɡreɪdiənt/）爆炸 → NaN
+- **初始化太小** → 激活值消失 → 梯度消失 → 参数（parameter /pəˈræmɪtər/）不更新
 - **初始化全零** → 所有神经元做同样计算 → 对称性无法打破
 
-核心原则：**保持前向传播和反向传播中激活值与梯度的方差稳定**。
+核（kernel /ˈkɜːrnl/）心原则：**保持前向传播和反向传播（backpropagation /ˌbækprəpəˈɡeɪʃən/）中激活值与梯度的方差稳定**。
 
 ---
 
 ### 1.2 Xavier（Glorot）初始化
 
-提出于 2010 年，假设激活函数在 0 附近近似线性（如 tanh、sigmoid）。
+提出于 2010 年，假设激活函数在 0 附近近似线性（如 tanh、sigmoid（/ˈsɪɡmɔɪd/））。
 
 核心思想：**每层输出的方差应等于输入的方差**。
 
@@ -67,7 +72,7 @@ nn.init.kaiming_uniform_(w, mode="fan_in", nonlinearity="relu")
 Meta 的 LLaMA 系列采用了更精细的初始化方案：
 
 - 基础标准差设为 `0.02`
-- 对**残差层**（每个 Transformer block 中的 attention 和 FFN 输出投影），按层数缩放：$\text{std} = \frac{0.02}{\sqrt{2n_{\text{layer}}}}$
+- 对**残差层**（每个 Transformer（/trænsˈfɔːrmər/） block 中的 attention（/əˈtenʃən/） 和 FFN 输出投影），按层数缩放：$\text{std} = \frac{0.02}{\sqrt{2n_{\text{layer}}}}$
 - 这么做是因为残差连接是**加性**的，深层残差路径会累积方差
 
 ```python
@@ -113,7 +118,7 @@ $$w_{t+1} = w_t - \eta v_{t+1}$$
 
 其中 $\beta$ 通常取 0.9。
 
-**直觉**：像一个下坡的球——在平坦区域加速，在振荡区域抵消反向分量。Momentum 能显著加速收敛并抑制震荡。
+**直觉**：像一个下坡的球——在平坦区域加速，在振荡区域抵消反向分量。Momentum（/məˈmentəm/） 能显著加速收敛并抑制震荡。
 
 ---
 
@@ -239,7 +244,7 @@ $$y_i = \gamma \hat{x}_i + \beta$$
 
 **缺点**：
 - 依赖 batch size（batch 太小则统计量不稳定）
-- 训练和推理行为不一致（训练用 batch 统计量，推理用全局移动平均）
+- 训练和推理（inference /ˈɪnfərəns/）行为不一致（训练用 batch 统计量，推理用全局移动平均）
 - 对 RNN / Transformer 不友好（序列长度变化）
 
 ### 4.2 Layer Normalization（层归一化）
@@ -281,13 +286,13 @@ $$\hat{x} = \frac{x}{\text{RMS}(x)}, \quad y = \gamma \hat{x}$$
 
 ### 5.1 Dropout
 
-训练时以概率 $p$ 随机丢弃神经元，相当于训练了 $2^N$ 个子网络的集成。
+训练时以概率 $p$ 随机（stochastic /stəˈkæstɪk/）丢弃神经元，相当于训练了 $2^N$ 个子网络的集成。
 
 $$y = \frac{1}{1-p} \cdot (m \odot Wx), \quad m_i \sim \text{Bernoulli}(1-p)$$
 
 推理时保留所有神经元，且权重乘以 $1-p$。
 
-**直觉**：防止神经元之间产生共适应（co-adaptation）。如果某个神经元过度依赖另一个神经元才会做出正确判断，Dropout 会强迫它学会**独立**解决问题。
+**直觉**：防止神经元之间产生共适应（co-adaptation）。如果某个神经元过度依赖另一个神经元才会做出正确判断，Dropout（/ˈdrɒpaʊt/） 会强迫它学会**独立**解决问题。
 
 ### 5.2 权重衰减（Weight Decay）
 
@@ -324,7 +329,7 @@ $$y_i^{\text{smooth}} = y_i (1 - \alpha) + \frac{\alpha}{K}$$
 
 ### 5.4 正则化方法对比
 
-| 方法 | 适用阶段 | 原理 | 关键超参数 |
+| 方法 | 适用阶段 | 原理 | 关键超参数（hyperparameter /ˈhaɪpərpəˈræmɪtər/） |
 |:---|:---|:---|:---|
 | **Dropout** | 训练前向 | 随机丢弃 → 集成学习 | $p$（丢弃率，通常 0.1~0.5） |
 | **Weight Decay** | 训练反向 | $L_2$ 惩罚 → 高斯先验 | $\lambda$（衰减系数，通常 1e-4） |
@@ -476,3 +481,10 @@ Final Test Accuracy by LR Schedule:
 - 数据量小时用 **Dropout + Weight Decay**；数据量大时 Weight Decay 优先
 
 > 下一章，我们将深入**Transformer 架构**，理解注意力机制如何成为现代深度学习的基石。
+## 参考文献 (References)
+
+1. **Glorot, X. & Bengio, Y.** (2010). Understanding the difficulty of training deep feedforward neural networks. *AISTATS*.
+2. **Srivastava, N. et al.** (2014). Dropout: A simple way to prevent neural networks from overfitting. *JMLR*, 15, 1929–1958.
+3. **Ioffe, S. & Szegedy, C.** (2015). Batch normalization: Accelerating deep network training. *ICML*.
+4. **Kingma, D. P. & Ba, J.** (2015). Adam: A method for stochastic optimization. *ICLR*.
+5. **Loshchilov, I. & Hutter, F.** (2019). Decoupled weight decay regularization. *ICLR*.

@@ -1,7 +1,7 @@
 # 第1章 PyTorch 深度剖析 — 从 Tensor 到编译优化
 # Chapter 1: PyTorch Deep Dive — From Tensor to Compiled Optimization
 
-> **PyTorch 是深度学习的事实标准框架。** 理解其底层机制（Tensor 存储结构、Autograd 计算图、nn.Module 系统）能帮助你写出更高效、更可维护的代码。本章从零开始剖析 PyTorch 的核心组件。
+> **PyTorch 是深度学习的事实标准框架。** 理解其底层机制（Tensor（/ˈtensər/） 存储结构、Autograd 计算图、nn.Module 系统）能帮助你写出更高效、更可维护的代码。本章从零开始剖析 PyTorch 的核（kernel /ˈkɜːrnl/）心组件。
 >
 > **PyTorch is the de-facto standard framework for deep learning.** Understanding its internals — Tensor storage/layout, Autograd computation graph, nn.Module system — helps you write more efficient and maintainable code. This chapter dissects PyTorch's core components from the ground up.
 
@@ -168,7 +168,7 @@ PyTorch 的 Autograd 通过构建**有向无环图 (DAG)** 来跟踪运算历史
 ```
 
 **前向 (Forward):** 从叶子节点到输出节点，计算并记录每个运算。
-**反向 (Backward):** 从输出节点到叶子节点，应用链式法则计算梯度。
+**反向 (Backward):** 从输出节点到叶子节点，应用链式法则计算梯度（gradient /ˈɡreɪdiənt/）。
 
 ### 2.2 链式法则 (Chain Rule)
 
@@ -244,7 +244,7 @@ print(z.requires_grad)  # False
 
 ### 3.1 核心机制 (Core Mechanism)
 
-`nn.Module` 的核心是**参数注册 (parameter registration)** 和**模块注册 (module registration)**：
+`nn.Module` 的核心是**参数（parameter /pəˈræmɪtər/）注册 (parameter registration)** 和**模块注册 (module registration)**：
 
 - `register_parameter(name, param)`: 将 `nn.Parameter` 注册为该模块的参数
 - `register_module(name, module)`: 将子模块注册（通过 `__setattr__` 自动调用）
@@ -515,7 +515,7 @@ model = torch.compile(model, mode="reduce-overhead")
 
 ### 5.3 编译效果 (Expected Speedup)
 
-对于典型的 Transformer 模型，`torch.compile` 通常能带来 **~20% 的端到端加速**，在某些计算密集操作上可达 **2-5 倍**。
+对于典型的 Transformer（/trænsˈfɔːrmər/） 模型，`torch.compile` 通常能带来 **~20% 的端到端加速**，在某些计算密集操作上可达 **2-5 倍**。
 
 ```python
 # 典型加速效果：
@@ -528,8 +528,8 @@ model = torch.compile(model, mode="reduce-overhead")
 
 **适用:**
 - 训练循环（特别是大模型）
-- 计算密集的操作（矩阵乘法、卷积）
-- 生产环境推理（预热后）
+- 计算密集的操作（矩阵乘法、卷积（convolution /ˌkɒnvəˈluːʃən/））
+- 生产环境推理（inference /ˈɪnfərəns/）（预热后）
 
 **不适用:**
 - 一次性小计算（编译开销超过收益）
@@ -555,7 +555,7 @@ print(model._torchdynamo_compiled)
 |------|----------|-----------|
 | **Storage** | 连续一维数据数组 | Tensor 的本质是 Storage 的视图 |
 | **Stride** | 维度到物理地址的映射 | 转置/切片不复制数据 |
-| **Autograd** | 前向构建 DAG，反向传播梯度 | `backward()` 累加梯度需 `zero_grad()` |
+| **Autograd** | 前向构建 DAG，反向传播（backpropagation /ˌbækprəpəˈɡeɪʃən/）梯度 | `backward()` 累加梯度需 `zero_grad()` |
 | **nn.Module** | 参数注册与递归管理 | 自定义层需继承 `nn.Module` |
 | **Dataset/DataLoader** | 数据抽象 + 批量加载 | Sampler 控制采样策略 |
 | **torch.compile** | JIT 编译 + 内核融合 | 一行代码 ~20% 加速 |

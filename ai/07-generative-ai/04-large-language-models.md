@@ -1,11 +1,14 @@
 # 第4章 大语言模型 — 预训练、对齐与推理
 # Chapter 4: Large Language Models — Pretraining, Alignment, and Inference
 
-> **大语言模型（LLM）是过去五年人工智能领域最具变革性的技术。本章从数据管道和分词开始，逐步深入到对齐技术（RLHF/DPO）、推理增强（CoT/RAG），最后剖析 KV Cache、投机解码、量化等核心系统架构——覆盖从"让模型学会说话"到"让模型说有用的话"的完整链路。**
+> **大语言模型（LLM）是过去五年人工智能领域最具变革性的技术。本章从数据管道和分词开始，逐步深入到对齐技术（RLHF/DPO）、推理增强（CoT/RAG），最后剖析 KV Cache、投机解码、量化（quantize /ˈkwɒntaɪz/）等核（kernel /ˈkɜːrnl/）心系统架构——覆盖从"让模型学会说话"到"让模型说有用的话"的完整链路。**
+> > **时间线**:
+> > - **2022**: Ouyang et al. 提出 InstructGPT（RLHF）
+> - **2023**: Rafailov et al. 提出 DPO
 >
-> **Large Language Models (LLMs) are the most transformative technology in AI over the past five years. This chapter walks through the full pipeline — from data pipelines and tokenization, through alignment techniques (RLHF/DPO) and inference enhancement (CoT/RAG), to core system architecture (KV Cache, speculative decoding, quantization) — covering the journey from "teaching a model to speak" to "making it say useful things."**
+> **Large Language Models (LLMs) are the most transformative technology in AI over the past five years. This chapter walks through the full pipeline — from data pipelines and tokenization, through alignment techniques (RLHF/DPO) and inference（/ˈɪnfərəns/） enhancement (CoT/RAG), to core system architecture (KV Cache, speculative decoding, quantization) — covering the journey from "teaching a model to speak" to "making it say useful things."**
 
-**前置知识 (Prerequisites):** Transformer 架构 (Chapter 5 of Vol 4), 自监督学习 (Vol 6), 基本的概率论
+**前置知识 (Prerequisites):** Transformer（/trænsˈfɔːrmər/） 架构 (Chapter 5 of Vol 4), 自监督学习 (Vol 6), 基本的概率论
 **依赖库 (Dependencies):** `torch>=2.1.0`, `transformers>=4.36.0`, `numpy>=1.24.0`
 **Code companion:** [`code/llm_inference.py`](code/llm_inference.py)
 
@@ -104,7 +107,7 @@ SentencePiece 将分词视为一个统一的子词分割问题，直接处理原
 | 特征 | BPE | SentencePiece (Unigram) |
 |:-----|:---:|:----------------------:|
 | 是否需要预分词 | 是 (Moses tokenizer) | 否 (直接处理原始文本) |
-| 训练算法 | 贪心合并 | EM 算法 + 正则化 |
+| 训练算法 | 贪心合并 | EM 算法 + 正则化（regularization /ˌreɡjələraɪˈzeɪʃən/） |
 | 词汇表优化 | 无 | 基于似然的子词剪枝 |
 | 典型使用者 | GPT-2, GPT-3, GPT-4 | LLaMA, Mistral, Gemma |
 | 处理多语言 | 字节级好，纯字符级差 | 原生支持 |
@@ -131,8 +134,8 @@ Loss
 ```
 
 **主要原因：**
-1. **梯度爆炸 (Gradient Explosion):** 某些 batch 产生异常大的梯度
-2. **Attention 坍塌 (Attention Collapse):** Softmax 数值溢出导致注意力分布失效
+1. **梯度（gradient /ˈɡreɪdiənt/）爆炸 (Gradient Explosion):** 某些 batch 产生异常大的梯度
+2. **Attention（/əˈtenʃən/） 坍塌 (Attention Collapse):** Softmax（/sɒftˈmæks/） 数值溢出导致注意力分布失效
 3. **数据异常 (Data Anomaly):** batch 中包含异常数据点
 
 **缓解措施：**
@@ -155,7 +158,7 @@ $$ \theta_{t+1} = \theta_t - \eta \nabla \mathcal{L}(\theta_t) - \eta \lambda \t
 
 - 在 AdamW 中，weight decay 与学习率解耦：$\theta_{t+1} = \theta_t - \eta \nabla \mathcal{L}(\theta_t) - \lambda \theta_t$
 - 典型值：$\lambda = 0.1$ (LLaMA), $\lambda = 0.01$ (GPT-3)
-- **实际作用：** 在 LLM 训练中，weight decay 主要施加于**未参与 LayerNorm 的权重**和**偏置项**之外的所有参数。对 embedding 层通常不使用 weight decay。
+- **实际作用：** 在 LLM 训练中，weight decay 主要施加于**未参与 LayerNorm 的权重**和**偏置项**之外的所有参数（parameter /pəˈræmɪtər/）。对 embedding（/ɪmˈbedɪŋ/） 层通常不使用 weight decay。
 
 #### Learning Rate Schedule
 
@@ -234,7 +237,7 @@ Phase 1: SFT                    Phase 2: Reward Model          Phase 3: PPO
 
 #### Reward Model Training (奖励模型训练)
 
-奖励模型 $r_\phi(x, y)$ 输出一个标量，表示输出 $y$ 在给定输入 $x$ 下的"质量"。
+奖励模型 $r_\phi(x, y)$ 输出一个标量（scalar /ˈskeɪlər/），表示输出 $y$ 在给定输入 $x$ 下的"质量"。
 
 **训练数据：** 人工标注者对同一 prompt 的多个输出进行排序：
 
@@ -387,7 +390,7 @@ Answer:"
 | Chunk size | 128-1024 tokens | 小 → 精确；大 → 上下文丰富 |
 | Top-k | 3-20 documents | 少 → 可能遗漏；多 → 噪音 + 成本 |
 | Embedding model | BGE, E5, OpenAI ada-002 | 质量直接影响检索准确性 |
-| Reranking | Cross-encoder after retrieval | 可提升 5-10% 准确率 |
+| Reranking | Cross-encoder（/ɪnˈkoʊdər/） after retrieval | 可提升 5-10% 准确率 |
 
 ### 3.4 Long-Context (长上下文)
 
@@ -429,7 +432,7 @@ $$ \theta_i^{\text{YaRN}} = \theta_i \cdot s^{\frac{2i}{d-2}} \quad\text{and}\qu
 
 ### 4.1 KV Cache
 
-**KV Cache** 是 LLM 推理中最基础的加速技术。在自回归生成中，每个新 token 的注意力计算需要关注所有之前的 token。如果不缓存，每次都要重新计算所有之前的 Key 和 Value。
+**KV Cache** 是 LLM 推理中最基础的加速技术。在自回归（regression /rɪˈɡreʃən/）生成中，每个新 token 的注意力计算需要关注所有之前的 token。如果不缓存，每次都要重新计算所有之前的 Key 和 Value。
 
 ```
 Without KV Cache (O(n² · d) per step):
@@ -554,7 +557,7 @@ Q8_0:   8-bit, ~8.5 bits/weight (near-lossless)
 
 #### 问题: KV Cache 的内存碎片
 
-传统系统中，KV cache 被预先分配为一个连续的张量：
+传统系统中，KV cache 被预先分配为一个连续的张量（tensor /ˈtensər/）：
 ```
 传统 KV Cache 分配:
 ┌──────────────────────────────────────────────┐
@@ -685,3 +688,8 @@ $ python llm_inference.py
 - Lin et al. (2024). "AWQ: Activation-aware Weight Quantization for LLM Compression and Acceleration." — AWQ
 - Su et al. (2021). "RoFormer: Enhanced Transformer with Rotary Position Embedding." — RoPE
 - Leviathan et al. (2023). "Fast Inference from Transformers via Speculative Decoding." — Speculative Decoding
+
+## 参考文献 (References)
+
+1. **Ouyang, L. et al.** (2022). Training language models to follow instructions with human feedback. *NeurIPS*. — InstructGPT / RLHF。
+2. **Rafailov, R. et al.** (2023). Direct preference optimization: Your language model is secretly a reward model. *NeurIPS*. — DPO。

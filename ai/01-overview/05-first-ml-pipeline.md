@@ -5,7 +5,7 @@
 
 We'll build a classifier that identifies **Iris flower species** (setosa, versicolor, virginica) based on 4 measurements. This is the "Hello World" of ML.
 
-我们将训练一个分类器，根据 4 个测量值识别 **鸢尾花种类**（setosa、versicolor、virginica）。这是机器学习界的 "Hello World"。
+我们将训练一个分类（classification /ˌklæsɪfɪˈkeɪʃən/）器，根据 4 个测量值识别 **鸢尾花种类**（setosa、versicolor、virginica）。这是机器学习界的 "Hello World"。
 
 ---
 
@@ -122,7 +122,7 @@ After:   sepal_length=0.1,  petal_width=-1.2 (comparable scales)
 
 **Why standardize? / 为什么需要标准化？**
 
-Many ML models (including Logistic Regression) are sensitive to the **scale** of features. A feature measured in millimeters (like petal width: 0.2 cm) would have tiny numerical values compared to sepal length (5.1 cm). The model might incorrectly treat the larger-numbered feature as "more important."
+Many ML models (including Logistic Regression（/rɪˈɡreʃən/）) are sensitive to the **scale** of features. A feature measured in millimeters (like petal width: 0.2 cm) would have tiny numerical values compared to sepal length (5.1 cm). The model might incorrectly treat the larger-numbered feature as "more important."
 
 很多 ML 模型（包括逻辑回归）对特征的 **尺度** 敏感。如果花瓣宽度 0.2 cm，花萼长度 5.1 cm，数值差距很大，模型可能会错误地认为数值大的特征"更重要"。
 
@@ -151,7 +151,7 @@ model.fit(X_train_scaled, y_train)
 
 **Training = finding the best parameters.** The model starts with random parameters and iteratively adjusts them to make better predictions on the training data.
 
-**训练 = 找到最佳参数。** 模型从随机参数开始，反复调整，使在训练数据上的预测越来越好。
+**训练 = 找到最佳参数（parameter /pəˈræmɪtər/）。** 模型从随机（stochastic /stəˈkæstɪk/）参数开始，反复调整，使在训练数据上的预测越来越好。
 
 > Think of tuning a guitar: you don't get the perfect pitch on the first try. You pluck, listen, adjust, pluck again — until each string sounds right.
 
@@ -271,7 +271,7 @@ Training is done. We **serialize** the trained model to disk so we can:
 |---|---|---|
 | 1. Load Data | `load_iris()` | Get data into Python |
 | 2. EDA | `print(X.shape, ...)` | Understand what you're working with |
-| 3. Split | `train_test_split()` | Prevent overfitting by holding out test data |
+| 3. Split | `train_test_split()` | Prevent overfitting（/ˈoʊvərˈfɪtɪŋ/） by holding out test data |
 | 4. Standardize | `StandardScaler()` | Put all features on the same scale |
 | 5. Train | `model.fit()` | Learn patterns from training data |
 | 6. Predict | `model.predict()` | Apply learned patterns to new data |

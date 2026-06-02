@@ -1,6 +1,10 @@
 # 05 — 无监督学习（Unsupervised Learning）
 
 > **无监督学习（Unsupervised Learning）** 是在没有标签（labels）的情况下，从数据中发现隐藏结构的一类方法。与监督学习不同，我们只有输入 $X$，没有输出 $y$。目标可以是聚类（clustering）、降维（dimensionality reduction）或密度估计（density estimation）。
+> > **时间线**:
+> > - **1901**: Pearson 提出 PCA（主成分分析）
+> > - **1957**: Lloyd 提出 K-Means 聚类算法（1982 年正式发表）
+> - **2008**: van der Maaten & Hinton 提出 t-SNE 可视化算法
 >
 > **Unsupervised Learning** discovers hidden structure in data without labels. Unlike supervised learning, we only have inputs $X$ but no outputs $y$. Goals include clustering, dimensionality reduction, and density estimation.
 
@@ -32,7 +36,7 @@ K-Means 是一个迭代式算法：
 
 **Algorithm 1: K-Means 聚类**
 
-1. **初始化**：随机选择 $k$ 个样本作为初始质心 $\{\boldsymbol{\mu}_1, \boldsymbol{\mu}_2, \ldots, \boldsymbol{\mu}_k\}$
+1. **初始化**：随机（stochastic /stəˈkæstɪk/）选择 $k$ 个样本作为初始质心 $\{\boldsymbol{\mu}_1, \boldsymbol{\mu}_2, \ldots, \boldsymbol{\mu}_k\}$
 2. **分配步骤 (Assignment Step)**：每个点分配给最近的质心
 
    $$c^{(i)} = \arg\min_j \|\mathbf{x}^{(i)} - \boldsymbol{\mu}_j\|_2^2$$
@@ -143,7 +147,7 @@ $$\mathbf{C} = \frac{1}{m} \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} = \frac{1}
 
 ### 2.4 应用场景 (Applications)
 
-- **降维（Dimensionality Reduction）：** 用更少的特征训练模型，减少过拟合
+- **降维（Dimensionality Reduction）：** 用更少的特征训练模型，减少过拟合（overfitting /ˈoʊvərˈfɪtɪŋ/）
 - **可视化（Visualization）：** 将高维数据投影到 2D/3D 平面
 - **去噪（Noise Reduction）：** 丢弃小奇异值对应的成分可以滤除噪声
 - **特征工程（Feature Engineering）：** PCA 成分可以作为新特征
@@ -177,7 +181,7 @@ PCA 是**线性**降维方法——它假设数据的主要变化方向是线性
 
 t-SNE 是一种**非线性**降维方法，特别擅长**可视化高维数据**。
 
-**核心思想：** 在高维空间中定义点之间的概率相似度，然后在低维空间中找到一个分布，使两者之间的 KL 散度（KL divergence）最小。
+**核（kernel /ˈkɜːrnl/）心思想：** 在高维空间中定义点之间的概率相似度，然后在低维空间中找到一个分布，使两者之间的 KL 散度（KL divergence）最小。
 
 $$P_{j|i} = \frac{\exp(-\|\mathbf{x}_i - \mathbf{x}_j\|^2 / 2\sigma_i^2)}{\sum_{k \neq i} \exp(-\|\mathbf{x}_i - \mathbf{x}_k\|^2 / 2\sigma_i^2)}$$
 
@@ -208,7 +212,7 @@ UMAP 是一个更新的方法，比 t-SNE 更快，且能更好地保留**全局
 1. **非确定性映射：** 每次运行结果不同
 2. **距离无意义：** 特别是 t-SNE 中，簇之间的距离**不代表**高维空间中的真实距离
 3. **无法泛化到新样本：** 需要重新运行整个算法
-4. **超参数敏感：** perplexity 等参数对结果影响很大
+4. **超参数（hyperparameter /ˈhaɪpərpəˈræmɪtər/）敏感：** perplexity（/pərˈpleksəti/） 等参数（parameter /pəˈræmɪtər/）对结果影响很大
 
 ```python
 from sklearn.manifold import TSNE
@@ -243,7 +247,7 @@ $$p(\mathbf{x}) = \sum_{j=1}^{k} \pi_j \, \mathcal{N}(\mathbf{x} \mid \boldsymbo
 
 GMM 的参数 $\{\pi_j, \boldsymbol{\mu}_j, \boldsymbol{\Sigma}_j\}_{j=1}^{k}$ 通过**期望最大化（Expectation-Maximization, EM）** 算法学习。
 
-EM 是处理**隐变量（latent variables）** 问题的一般框架。在 GMM 中，隐变量 $z^{(i)}$ 表示样本 $\mathbf{x}^{(i)}$ 来自哪个高斯成分。
+EM 是处理**隐变量（latent（/ˈleɪtənt/） variables）** 问题的一般框架。在 GMM 中，隐变量 $z^{(i)}$ 表示样本 $\mathbf{x}^{(i)}$ 来自哪个高斯成分。
 
 **E 步（E-step）：** 估计每个点属于每个簇的概率（责任，responsibility）
 
@@ -292,7 +296,7 @@ $$\text{AIC} = -2 \ln \hat{L} + 2d, \quad \text{BIC} = -2 \ln \hat{L} + d \ln m$
 |:---|:---|:---|:---|:---|
 | **K-Means** | 聚类（硬） | 最小化 inertia | 簇分配 | 客户分群、图像分割 |
 | **PCA** | 降维（线性） | 最大化方差方向 | 主成分 | 可视化、去噪、特征提取 |
-| **t-SNE / UMAP** | 降维（非线性） | 保留邻域结构 | 2D/3D 嵌入 | 🔍 仅用于可视化 |
+| **t-SNE / UMAP** | 降维（非线性） | 保留邻域结构 | 2D/3D 嵌入（embedding /ɪmˈbedɪŋ/） | 🔍 仅用于可视化 |
 | **GMM** | 聚类（软） | 概率混合模型 | 概率分配 | 密度估计、异常检测 |
 
 ### 关键概念速查 (Key Concepts)
@@ -318,3 +322,9 @@ $$\text{AIC} = -2 \ln \hat{L} + 2d, \quad \text{BIC} = -2 \ln \hat{L} + d \ln m$
 ---
 
 > **下一章预告:** [模型评估与选择](./06-model-evaluation.md) — 交叉验证、偏差-方差权衡、ROC 曲线，用严谨的方法论评估 ML 模型。
+
+## 参考文献 (References)
+
+1. **Pearson, K.** (1901). On lines and planes of closest fit to systems of points in space. *Philosophical Magazine*, 2(11), 559–572. — PCA 的首次提出。
+2. **Lloyd, S. P.** (1982). Least squares quantization in PCM. *IEEE Trans. Inform. Theory*, 28(2), 129–137. — K-Means 算法。
+3. **van der Maaten, L. & Hinton, G.** (2008). Visualizing data using t-SNE. *JMLR*, 9, 2579–2605. — t-SNE 的提出。

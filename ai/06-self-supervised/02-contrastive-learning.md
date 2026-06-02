@@ -1,11 +1,14 @@
 # 第2章 对比学习 — 无需标签的表征学习
 # Chapter 2: Contrastive Learning — Representation Learning Without Labels
 
-> **对比学习 (Contrastive Learning) 是自监督学习的核心范式之一。** 它的核心思想极其简洁：在表征空间中拉近相似样本（正样本对），推远不相似样本（负样本对）。本章从这一直觉出发，依次讲解 SimCLR、InfoNCE 损失函数（及其与互信息的深层联系）、MoCo 动量编码器，以及里程碑式的 CLIP 模型。
+> **对比学习 (Contrastive Learning) 是自监督学习的核（kernel /ˈkɜːrnl/）心范式之一。** 它的核心思想极其简洁：在表征空间中拉近相似样本（正样本对），推远不相似样本（负样本对）。本章从这一直觉出发，依次讲解 SimCLR、InfoNCE 损失函数（及其与互信息的深层联系）、MoCo 动量（momentum /məˈmentəm/）编码器（encoder /ɪnˈkoʊdər/），以及里程碑式的 CLIP 模型。
+> > **时间线**:
+> > - **2020**: Chen et al. 提出 SimCLR; He et al. 提出 MoCo
+> - **2021**: Radford et al. 提出 CLIP
 >
-> **Contrastive Learning is one of the central paradigms of self-supervised learning.** Its core idea is remarkably simple: pull similar samples (positive pairs) together in the embedding space while pushing dissimilar samples (negative pairs) apart. This chapter starts from this intuition and progressively covers SimCLR, the InfoNCE loss (with its deep connection to mutual information), the MoCo momentum encoder, and the landmark CLIP model.
+> **Contrastive Learning is one of the central paradigms of self-supervised learning.** Its core idea is remarkably simple: pull similar samples (positive pairs) together in the embedding（/ɪmˈbedɪŋ/） space while pushing dissimilar samples (negative pairs) apart. This chapter starts from this intuition and progressively covers SimCLR, the InfoNCE loss (with its deep connection to mutual information), the MoCo momentum encoder, and the landmark CLIP model.
 
-**前置知识 (Prerequisites):** 深度学习基础（前向/反向传播）、卷积神经网络、信息论基础（详见第 2 卷 第 4 章）
+**前置知识 (Prerequisites):** 深度学习基础（前向/反向传播）、卷积（convolution /ˌkɒnvəˈluːʃən/）神经网络、信息论基础（详见第 2 卷 第 4 章）
 
 **依赖库 (Dependencies):** `torch>=2.1.0`, `torchvision`, `numpy`, `matplotlib`, `scikit-learn`
 
@@ -25,7 +28,7 @@
 3. [InfoNCE 损失函数](#3-infonce-损失函数-infonce-loss)
    - 3.1 [定义与公式](#31-定义与公式-definition)
    - 3.2 [从互信息的角度理解](#32-从互信息的角度理解-derivation-from-mutual-information)
-   - 3.3 [温度参数 τ 的作用](#33-温度参数-τ-的作用-role-of-temperature)
+   - 3.3 [温度参数（parameter /pəˈræmɪtər/） τ 的作用](#33-温度参数-τ-的作用-role-of-temperature)
 4. [MoCo：动量对比学习](#4-moco动量对比学习-momentum-contrast)
    - 4.1 [MoCo 的核心挑战](#41-moco-的核心挑战-the-core-challenge)
    - 4.2 [动量编码器与队列](#42-动量编码器与队列-momentum-encoder--queue)
@@ -81,7 +84,7 @@ SimCLR 的架构可以分解为三个组件：
   (原始图片)    (增强)        (ResNet)    (表征)     (MLP)    (对比空间)
 ```
 
-1. **数据增强 (Augmentation)**：对每个输入 $x$ 随机应用两种增强变换，得到正样本对 $(\tilde{x}_i, \tilde{x}_j)$
+1. **数据增强 (Augmentation)**：对每个输入 $x$ 随机（stochastic /stəˈkæstɪk/）应用两种增强变换，得到正样本对 $(\tilde{x}_i, \tilde{x}_j)$
 2. **编码器 (Encoder) $f(\cdot)$**：通常是 ResNet，将增强后的图像映射到表征空间 $h \in \mathbb{R}^{d}$
 3. **投影头 (Projection Head) $g(\cdot)$**：一个小型 MLP，将 $h$ 映射到对比损失空间 $z \in \mathbb{R}^{d_p}$，仅在训练时使用
 
@@ -187,7 +190,7 @@ $$
 p(\text{positive} = y | x, \{y_k\}_1^K) = \frac{f(x, y)}{\sum_{k=1}^K f(x, y_k)}
 $$
 
-将这个概率代入交叉熵损失并对期望进行推导，可以得到：
+将这个概率代入交叉熵（entropy /ˈentrəpi/）损失并对期望进行推导，可以得到：
 
 $$
 \mathcal{L}_{\text{InfoNCE}} \approx -\mathbb{E} \left[ \log \frac{p(y|x)}{p(y)} \right] = -I(x; y) + \text{const}
@@ -248,7 +251,7 @@ MoCo 的架构包括三个关键组件：
 
 **1. 动量编码器 (Momentum Encoder)：**
 
-key 编码器 $f_k$ 不是直接通过梯度更新，而是作为 query 编码器 $f_q$ 的**滑动平均**：
+key 编码器 $f_k$ 不是直接通过梯度（gradient /ˈɡreɪdiənt/）更新，而是作为 query 编码器 $f_q$ 的**滑动平均**：
 
 $$
 \theta_k \leftarrow m \cdot \theta_k + (1 - m) \cdot \theta_q
@@ -299,7 +302,7 @@ CLIP 的核心架构：
 
 1. 从网络上收集 4 亿个 (图片, 文本) 对
 2. 图像编码器（ResNet 或 ViT）将图片编码为 $I \in \mathbb{R}^{d}$
-3. 文本编码器（Transformer）将文本编码为 $T \in \mathbb{R}^{d}$
+3. 文本编码器（Transformer（/trænsˈfɔːrmər/））将文本编码为 $T \in \mathbb{R}^{d}$
 4. 对于一个批次中的 $N$ 对数据，计算 $N \times N$ 的相似度矩阵
 5. **对角线元素**是正样本对（匹配的图文对），**非对角线元素**是负样本对
 6. 分别对图像和文本两个方向计算 InfoNCE 损失，然后取平均
@@ -312,7 +315,7 @@ $$
 
 CLIP 最令人惊叹的特性是其**零样本 (zero-shot) 迁移能力**：训练完成后，无需任何微调，CLIP 可以直接用于各种视觉任务。
 
-**零样本图像分类**的工作原理：
+**零样本图像分类（classification /ˌklæsɪfɪˈkeɪʃən/）**的工作原理：
 
 1. 准备所有类别名称的文本描述，如 `"a photo of a dog"`, `"a photo of a cat"`
 2. 用文本编码器将所有类别文本编码为文本特征

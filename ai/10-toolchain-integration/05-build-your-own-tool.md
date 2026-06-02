@@ -1,7 +1,7 @@
 # 第5章 毕业项目：构建你的迷你 AI 编码助手
 # Chapter 5: Graduation Project — Build Your Mini AI Coding Assistant
 
-> **You've come a long way.** From understanding how LLMs generate tokens to mastering Agent harnesses, MCP protocols, skill systems, and prompt engineering. Now it's time to bring it all together. In this graduation project, you will build a **Mini AI Coding Assistant** — a simplified but fully functional agent that can understand natural language instructions, read and write files, execute shell commands, and interact with MCP tools.
+> **You've come a long way.** From understanding how LLMs generate tokens to mastering Agent（/ˈeɪdʒənt/） harnesses, MCP protocols, skill systems, and prompt engineering. Now it's time to bring it all together. In this graduation project, you will build a **Mini AI Coding Assistant** — a simplified but fully functional agent that can understand natural language instructions, read and write files, execute shell commands, and interact with MCP tools.
 >
 > **你已经走了很远。** 从理解 LLM 如何生成 Token 到掌握 Agent Harness、MCP 协议、技能系统和提示词工程。现在是把所有知识融会贯通的时候了。在这个毕业项目中，你将构建一个**迷你 AI 编码助手**——一个简化但功能完整的 Agent，能够理解自然语言指令、读写文件、执行 Shell 命令以及与 MCP 工具交互。
 
@@ -27,7 +27,7 @@
 
 Your Mini AI Coding Assistant is a **local agent runtime** that connects an LLM to the developer's environment. It mimics the core loop of production assistants like OpenCode, Claude Code, or Cursor Agent — but simplified so you can understand every moving part.
 
-你的迷你 AI 编码助手是一个**本地 Agent 运行时**，将 LLM 连接到开发者的环境。它模仿了 OpenCode、Claude Code、Cursor Agent 等生产级助手的核心循环——但经过简化，让你能够理解每一个运动部件。
+你的迷你 AI 编码助手是一个**本地 Agent 运行时**，将 LLM 连接到开发者的环境。它模仿了 OpenCode、Claude Code、Cursor Agent 等生产级助手的核（kernel /ˈkɜːrnl/）心循环——但经过简化，让你能够理解每一个运动部件。
 
 ### 架构总览 (Architecture Overview)
 
@@ -195,7 +195,7 @@ llm:
 
 The Agent loop is a **ReAct-style** (Reasoning + Acting) cycle:
 
-Agent 循环是一个 **ReAct 风格**（推理 + 行动）的循环：
+Agent 循环是一个 **ReAct 风格**（推理（inference /ˈɪnfərəns/） + 行动）的循环：
 
 ```mermaid
 sequenceDiagram

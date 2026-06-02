@@ -1,7 +1,7 @@
 # 第1章 线性模型 — 机器学习的基石
 # Chapter 1: Linear Models — The Foundation of Machine Learning
 
-> **线性模型是机器学习的起点。** 从最简单的线性回归到逻辑回归，再到支撑向量机，线性模型构成了理解和构建更复杂模型的基础。本章的核心是理解 **参数 (Parameters)、损失 (Loss)、梯度 (Gradient)** 这三个概念——它们将贯穿本书所有后续模型。
+> **线性模型是机器学习的起点。** 从最简单的线性回归（regression /rɪˈɡreʃən/）到逻辑回归，再到支撑向量机，线性模型构成了理解和构建更复杂模型的基础。本章的核（kernel /ˈkɜːrnl/）心是理解 **参数（parameter /pəˈræmɪtər/） (Parameters)、损失 (Loss)、梯度（gradient /ˈɡreɪdiənt/） (Gradient)** 这三个概念——它们将贯穿本书所有后续模型。
 >
 > **Linear models are where Machine Learning begins.** From the simplest linear regression to logistic regression and beyond, linear models form the foundation for understanding and building more complex models. The core of this chapter is understanding three concepts — **Parameters, Loss, Gradient** — that will appear in every single model throughout this book.
 
@@ -21,13 +21,13 @@
    - 1.4 [梯度下降解法](#14-梯度下降解法-gradient-descent-solution)
    - 1.5 [实现与可视化](#15-实现与可视化-implementation--visualization)
 2. [逻辑回归 (Logistic Regression)](#2-逻辑回归-logistic-regression)
-   - 2.1 [从线性回归到分类](#21-从线性回归到分类-from-linear-regression-to-classification)
-   - 2.2 [Sigmoid 函数](#22-sigmoid-函数-sigmoid-function)
-   - 2.3 [似然与交叉熵损失](#23-似然与交叉熵损失-likelihood--cross-entropy-loss)
+   - 2.1 [从线性回归到分类（classification /ˌklæsɪfɪˈkeɪʃən/）](#21-从线性回归到分类-from-linear-regression-to-classification)
+   - 2.2 [Sigmoid（/ˈsɪɡmɔɪd/） 函数](#22-sigmoid-函数-sigmoid-function)
+   - 2.3 [似然与交叉熵（entropy /ˈentrəpi/）损失](#23-似然与交叉熵损失-likelihood--cross-entropy-loss)
    - 2.4 [决策边界](#24-决策边界-decision-boundary)
    - 2.5 [实现与可视化](#25-实现与可视化-implementation--visualization)
-3. [正则化 (Regularization)](#3-正则化-regularization)
-   - 3.1 [过拟合与欠拟合](#31-过拟合与欠-fitting-vs-overfitting)
+3. [正则化（regularization /ˌreɡjələraɪˈzeɪʃən/） (Regularization)](#3-正则化-regularization)
+   - 3.1 [过拟合（overfitting /ˈoʊvərˈfɪtɪŋ/）与欠拟合（underfitting /ˈʌndərˈfɪtɪŋ/）](#31-过拟合与欠-fitting-vs-overfitting)
    - 3.2 [L2 正则化 / Ridge](#32-l2-正则化--ridge-ridge-regression)
    - 3.3 [L1 正则化 / Lasso](#33-l1-正则化--lasso-lasso-regression)
    - 3.4 [L1 vs L2 — 稀疏性的几何直觉](#34-l1-vs-l2--稀疏性的几何直觉-geometric-intuition-for-sparsity)
@@ -42,6 +42,10 @@
 
 线性回归是**监督学习**中最基本的模型。给定 $n$ 个样本 $\{(x_i, y_i)\}_{i=1}^n$，其中 $x_i \in \mathbb{R}^d$ 是 $d$ 维特征向量，$y_i \in \mathbb{R}$ 是连续目标值，我们希望找到 $x$ 与 $y$ 的线性关系：
 
+> **时间线**:
+> - **1805**: Legendre 在《Nouvelles méthodes pour la détermination des orbites des comètes》中首次发表最小二乘法
+> - **1809**: Gauss 在《Theoria motus corporum coelestium》中独立提出最小二乘
+> - **1958**: Cox 提出逻辑回归（Logistic Regression）,
 $$ y = w_1 x_1 + w_2 x_2 + \cdots + w_d x_d + b + \epsilon $$
 
 用向量形式简洁表示为：
@@ -143,7 +147,7 @@ $$ \nabla \mathcal{L}(\mathbf{w}) = \frac{2}{n} X^T (X\mathbf{w} - \mathbf{y}) $
 #### 三种变体
 
 - **批量梯度下降 (Batch GD):** 每次用所有 $n$ 个样本计算梯度 → 准确但慢
-- **随机梯度下降 (SGD):** 每次用 1 个样本 → 快但波动大
+- **随机（stochastic /stəˈkæstɪk/）梯度下降 (SGD):** 每次用 1 个样本 → 快但波动大
 - **小批量梯度下降 (Mini-batch GD):** 每次用 $m$ 个样本（实用中最常见）
 
 ### 1.5 实现与可视化 (Implementation & Visualization)
@@ -397,8 +401,8 @@ lasso = Lasso(alpha=0.1).fit(X_train, y_train)
 | 线性回归 | $\mathbf{w}, b$ — 权重和偏置 |
 | 逻辑回归 | $\mathbf{w}, b$ — 同上，只是经过 Sigmoid |
 | 神经网络 | 每层的权重矩阵 $W^{[l]}$ 和偏置 $b^{[l]}$ |
-| CNN | 卷积核权重 + 全连接层权重 |
-| Transformer | $W_Q, W_K, W_V, W_O$ 以及 MLP 权重 |
+| CNN | 卷积（convolution /ˌkɒnvəˈluːʃən/）核权重 + 全连接层权重 |
+| Transformer（/trænsˈfɔːrmər/） | $W_Q, W_K, W_V, W_O$ 以及 MLP 权重 |
 
 **核心洞察：** 几乎所有机器学习模型的结构都可以概括为：
 
@@ -428,8 +432,8 @@ $$ \hat{y} = f(\mathbf{x}; \boldsymbol{\theta}) $$
 $$ \boldsymbol{\theta}^{(t+1)} = \boldsymbol{\theta}^{(t)} - \eta \cdot \nabla_{\boldsymbol{\theta}} \mathcal{L}(\boldsymbol{\theta}^{(t)}) $$
 
 这个简单的公式是所有深度学习训练的核心。在后续章节中，我们会看到：
-- **反向传播 (Backpropagation)** 如何高效计算深度网络的梯度
-- **动量 (Momentum)**、**Adam** 等如何改进梯度下降
+- **反向传播（backpropagation /ˌbækprəpəˈɡeɪʃən/） (Backpropagation)** 如何高效计算深度网络的梯度
+- **动量（momentum /məˈmentəm/） (Momentum)**、**Adam** 等如何改进梯度下降
 - **学习率调度**如何影响收敛
 
 ### 4.4 三者的关系
@@ -468,7 +472,7 @@ $$ \boldsymbol{\theta}^{(t+1)} = \boldsymbol{\theta}^{(t)} - \eta \cdot \nabla_{
 | 决策树 / 随机森林 | 非线性模型，不使用梯度 |
 | 神经网络 | 多层逻辑回归 + 非线性激活函数 |
 | CNN | 用卷积核替代全连接权重 |
-| Transformer | 自注意力机制 + 位置编码 |
+| Transformer | 自注意力（attention /əˈtenʃən/）机制 + 位置编码 |
 | 生成模型 (GAN/VAE) | 更复杂的参数结构和损失函数 |
 
 ### 5.3 动手练习
@@ -485,3 +489,9 @@ $$ \boldsymbol{\theta}^{(t+1)} = \boldsymbol{\theta}^{(t)} - \eta \cdot \nabla_{
 ---
 
 *Last updated: 2026-06-01*
+
+## 参考文献 (References)
+
+1. **Legendre, A. M.** (1805). *Nouvelles méthodes pour la détermination des orbites des comètes*. Courcier, Paris. — 首次提出最小二乘法。
+2. **Gauss, C. F.** (1809). *Theoria motus corporum coelestium*. — 独立提出最小二乘。
+3. **Cox, D. R.** (1958). The regression analysis of binary sequences. *J. R. Statist. Soc. B*, 20(2), 215–232. — 逻辑回归的开创性论文。

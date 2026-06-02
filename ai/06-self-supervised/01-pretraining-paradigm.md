@@ -1,11 +1,16 @@
 # 第1章：预训练范式 — 自监督学习的基石
 # Chapter 1: The Pretraining Paradigm — Foundation of Self-Supervised Learning
 
-> **为什么互联网上数十亿的文本和图像不需要人工标注就能教会模型理解世界？答案藏在预训练（Pretraining）与微调（Finetuning）的两阶段范式中。** 本章深入剖析自监督学习的核心思想：如何从无标注数据中构造监督信号，以及为什么"先预训练、再微调"的策略如此有效。
+> **为什么互联网上数十亿的文本和图像不需要人工标注就能教会模型理解世界？答案藏在预训练（Pretraining）与微调（Finetuning）的两阶段范式中。** 本章深入剖析自监督学习的核（kernel /ˈkɜːrnl/）心思想：如何从无标注数据中构造监督信号，以及为什么"先预训练、再微调"的策略如此有效。
+> > **时间线**:
+> > - **2013**: Mikolov et al. 提出 Word2Vec
+> > - **2018**: Devlin et al. 提出 BERT（MLM 预训练）
+> > - **2020**: Chen et al. 提出 SimCLR; He et al. 提出 MoCo
+> - **2021**: Radford et al. 提出 CLIP（多模态对比学习）
 >
 > **Why can billions of text and images on the internet teach models to understand the world without human annotations? The answer lies in the two-stage paradigm of pretraining and finetuning.** This chapter dissects the core idea of self-supervised learning: how to construct supervisory signals from unlabeled data, and why the "pretrain then finetune" strategy works so well.
 
-**前置知识 (Prerequisites):** 基础机器学习概念（第3卷）、神经网络基础（第4卷）、Transformer 基础（第5卷）
+**前置知识 (Prerequisites):** 基础机器学习概念（第3卷）、神经网络基础（第4卷）、Transformer（/trænsˈfɔːrmər/） 基础（第5卷）
 
 ---
 
@@ -68,10 +73,10 @@ quadrantChart
 
 | 范式 | Paradigm | 标注需求 | 核心思想 | 代表方法 |
 |:---|:---|:---|:---|:---|
-| **监督学习** | Supervised | 全标注 | 输入→标签的直接映射 | CNN分类、物体检测 |
+| **监督学习** | Supervised | 全标注 | 输入→标签的直接映射 | CNN分类（classification /ˌklæsɪfɪˈkeɪʃən/）、物体检测 |
 | **无监督学习** | Unsupervised | 无标注 | 发现数据内在结构 | K-Means、PCA、GMM |
 | **自监督学习** | Self-Supervised | 无标注 | 从数据构造伪标签 | BERT、SimCLR、MAE |
-| **半监督学习** | Semi-Supervised | 少量标注+大量未标注 | 利用未标注数据辅助 | 一致性正则化、伪标签 |
+| **半监督学习** | Semi-Supervised | 少量标注+大量未标注 | 利用未标注数据辅助 | 一致性正则化（regularization /ˌreɡjələraɪˈzeɪʃən/）、伪标签 |
 
 ### 关键区别 (Key Distinction)
 
@@ -118,13 +123,13 @@ Stage 2: 微调 (Finetuning)
 └─────────────────────────────────────────────────┘
 ```
 
-**预训练阶段**：在大量无标注数据上训练一个自监督任务，模型学会通用的语言/视觉/语音表征。**微调阶段**：用预训练的参数初始化模型，然后在少量标注数据上针对特定任务继续训练。
+**预训练阶段**：在大量无标注数据上训练一个自监督任务，模型学会通用的语言/视觉/语音表征。**微调阶段**：用预训练的参数（parameter /pəˈræmɪtər/）初始化模型，然后在少量标注数据上针对特定任务继续训练。
 
 **Pretraining phase**: Train a self-supervised task on large amounts of unlabeled data. The model learns general-purpose representations of language, vision, or speech. **Finetuning phase**: Initialize the model with pretrained parameters, then continue training on a small labeled dataset for a specific task.
 
 ### 3.2 为什么两阶段？(Why Two Stages?)
 
-单一阶段训练（直接在目标任务上训练）受限于标注数据量，模型容易过拟合。两阶段设计解决了这个问题：
+单一阶段训练（直接在目标任务上训练）受限于标注数据量，模型容易过拟合（overfitting /ˈoʊvərˈfɪtɪŋ/）。两阶段设计解决了这个问题：
 
 - **预训练阶段**：数据充足，模型学习通用模式，不会过拟合。
 - **微调阶段**：标注需求骤降，100-1000 条标注即可在预训练模型上取得不错的效果。
@@ -149,7 +154,7 @@ The remarkable effectiveness of pretraining is no accident. Researchers have pro
 
 ### 4.1 好的初始化 (Good Initialization)
 
-深度神经网络的训练高度依赖初始点。随机初始化落在损失景观（Loss Landscape）的"坏区域"，而预训练提供了接近最优解的起点。微调只需在局部范围内调整，而不是从头探索整个参数空间。
+深度神经网络的训练高度依赖初始点。随机（stochastic /stəˈkæstɪk/）初始化落在损失景观（Loss Landscape）的"坏区域"，而预训练提供了接近最优解的起点。微调只需在局部范围内调整，而不是从头探索整个参数空间。
 
 Deep neural network training is highly dependent on the starting point. Random initialization often lands in "bad regions" of the loss landscape, while pretraining provides a starting point near a good solution. Finetuning only needs to adjust locally, rather than exploring the entire parameter space from scratch.
 
@@ -243,7 +248,7 @@ BERT (Base) pretrained on 3.3B words and achieved SOTA on 11 NLP benchmarks afte
 
 ### 5.4 生成式预训练 (Generative Pretraining)
 
-**GPT 系列 (Radford et al., 2018, 2019; Brown et al., 2020)** 走了另一条路：使用**自回归语言建模**（Autoregressive Language Modeling）——给定前文预测下一个词。
+**GPT 系列 (Radford et al., 2018, 2019; Brown et al., 2020)** 走了另一条路：使用**自回归（regression /rɪˈɡreʃən/）语言建模**（Autoregressive Language Modeling）——给定前文预测下一个词。
 
 **GPT 的关键洞察**：如果模型参数量足够大、训练数据足够多，自回归预训练不仅能让模型学会语言，还能让模型**隐式地学会执行各种任务**，而无需显式的微调。
 
@@ -291,7 +296,7 @@ All three methods are grounded in the pretraining-finetuning paradigm but differ
 > - 四种学习范式（监督/无监督/自监督/半监督）在标注需求和目标上各有不同。
 > - 预训练-微调是两阶段流程：先在大数据上学习通用表征，再在小数据上适应特定任务。
 > - 预训练有效的三大解释：好的初始化、特征复用、正则化效应。
-> - 历史脉络从静态词向量（Word2Vec）到上下文嵌入（ELMo），再到双向微调（BERT）和生成式预训练（GPT）。
+> - 历史脉络从静态词向量（Word2Vec）到上下文嵌入（embedding /ɪmˈbedɪŋ/）（ELMo），再到双向微调（BERT）和生成式预训练（GPT）。
 > - 后续章节将深入对比学习、掩码预测和自回归生成三种具体方法。
 >
 > - The labeling bottleneck drove the rise of SSL. The pretraining-finetuning paradigm leverages internet-scale unlabeled data.
@@ -308,3 +313,12 @@ All three methods are grounded in the pretraining-finetuning paradigm but differ
 - 上一章：无 (本卷起点)
 - 本章：01-pretraining-paradigm.md (当前 / Current)
 - 下一章：02-contrastive-learning.md (对比学习 / Contrastive Learning)
+
+## 参考文献 (References)
+
+1. **Mikolov, T. et al.** (2013). Distributed representations of words and phrases. *NeurIPS*.
+2. **Devlin, J. et al.** (2019). BERT: Pre-training of deep bidirectional transformers. *NAACL*.
+3. **Chen, T. et al.** (2020). SimCLR: A simple framework for contrastive learning. *ICML*.
+4. **He, K. et al.** (2020). Momentum contrast for unsupervised visual representation learning. *CVPR*.
+5. **Radford, A. et al.** (2021). Learning transferable visual models from natural language supervision. *ICML*.
+6. **He, K. et al.** (2022). Masked autoencoders are scalable vision learners. *CVPR*.

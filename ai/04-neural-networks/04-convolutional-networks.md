@@ -1,7 +1,12 @@
 # 第4章 卷积神经网络 — 让网络"看见"图像
 # Chapter 4: Convolutional Neural Networks — Teaching Networks to "See" Images
 
-> **卷积神经网络（Convolutional Neural Network, CNN）** 是深度学习在计算机视觉领域取得突破性进展的核心引擎。从手写数字识别到自动驾驶，从医疗影像诊断到人脸识别，CNN 无处不在。本章将深入卷积操作的数学本质，理解 CNN 为何天生适合图像，并沿着经典架构的演进路线，一步步走向现代 CNN 设计思想。
+> **卷积（convolution /ˌkɒnvəˈluːʃən/）神经网络（Convolutional Neural Network, CNN）** 是深度学习在计算机视觉领域取得突破性进展的核（kernel /ˈkɜːrnl/）心引擎。从手写数字识别到自动驾驶，从医疗影像诊断到人脸识别，CNN 无处不在。本章将深入卷积操作的数学本质，理解 CNN 为何天生适合图像，并沿着经典架构的演进路线，一步步走向现代 CNN 设计思想。
+> > **时间线**:
+> > - **1989**: LeCun 提出卷积神经网络（CNN）
+> > - **1998**: LeCun et al. 提出 LeNet-5
+> > - **2012**: AlexNet 赢得 ImageNet 竞赛，深度学习革命开始
+> - **2015**: He et al. 提出 ResNet（残差网络）
 >
 > **CNNs are the engine behind deep learning's breakthrough in computer vision.** From handwritten digit recognition to autonomous driving, from medical imaging to face recognition, CNNs are everywhere. This chapter dives into the mathematics of convolution, explains why CNNs are inherently suited for images, and traces the evolution from LeNet to modern ConvNeXt.
 
@@ -16,7 +21,7 @@
 
 1. [卷积运算的数学定义](#1-卷积运算的数学定义-mathematical-definition-of-convolution)
 2. [为什么 CNN 适合图像](#2-为什么-cnn-适合图像-why-cnns-are-suited-for-images)
-3. [池化 (Pooling)](#3-池化-pooling)
+3. [池化（pooling /ˈpuːlɪŋ/） (Pooling)](#3-池化-pooling)
 4. [经典架构演进](#4-经典架构演进-architecture-evolution)
 5. [小结 (Summary)](#5-小结-summary)
 
@@ -54,7 +59,7 @@ $$ S(i, j) = (I * K)(i, j) = \sum_{m} \sum_{n} I(i+m, j+n) K(m, n) $$
 
 ### 1.3 关键参数 (Key Parameters)
 
-| 参数 | 符号 | 含义 | 公式 |
+| 参数（parameter /pəˈræmɪtər/） | 符号 | 含义 | 公式 |
 |:---|:---|:---|:---|
 | **核大小** | $k$ | 卷积窗口的尺寸（如 $3\times3$） | — |
 | **步长** | $s$ | 核每次滑动的像素数 | — |
@@ -220,12 +225,12 @@ flowchart LR
 由 Alex Krizhevsky 于 2012 年提出，在 ImageNet 上以巨大优势夺冠，标志着深度学习时代的到来。
 
 **关键创新:**
-- **ReLU 激活函数:** $f(x) = \max(0, x)$，解决了饱和激活函数的梯度消失问题
-- **Dropout:** 随机丢弃神经元，防止过拟合
+- **ReLU 激活函数:** $f(x) = \max(0, x)$，解决了饱和激活函数的梯度（gradient /ˈɡreɪdiənt/）消失问题
+- **Dropout（/ˈdrɒpaʊt/）:** 随机（stochastic /stəˈkæstɪk/）丢弃神经元，防止过拟合（overfitting /ˈoʊvərˈfɪtɪŋ/）
 - **数据增强:** 随机裁剪、水平翻转、颜色变换
 - **GPU 训练:** 使用两块 GTX 580 GPU 并行训练
 
-**为什么 ReLU 比 Sigmoid/Tanh 好?**
+**为什么 ReLU 比 Sigmoid（/ˈsɪɡmɔɪd/）/Tanh 好?**
 
 $$ \text{Sigmoid: } \sigma(x) = \frac{1}{1 + e^{-x}} \quad \text{梯度: } \sigma'(x) \leq 0.25 $$
 
@@ -296,7 +301,7 @@ $$ H(x) = F(x) + x \quad\Longrightarrow\quad \text{学习 } F(x) = H(x) - x $$
 
 **视角 1: 梯度流动**
 
-在前向传播中，信息可以沿着恒等捷径（identity shortcut）直接流动。在反向传播中，梯度也可以直接流过捷径，到达前层：
+在前向传播中，信息可以沿着恒等捷径（identity shortcut）直接流动。在反向传播（backpropagation /ˌbækprəpəˈɡeɪʃən/）中，梯度也可以直接流过捷径，到达前层：
 
 $$ \frac{\partial \mathcal{L}}{\partial x} = \frac{\partial \mathcal{L}}{\partial H} \cdot \frac{\partial H}{\partial x} = \frac{\partial \mathcal{L}}{\partial H} \cdot \left(1 + \frac{\partial F}{\partial x}\right) $$
 
@@ -338,12 +343,12 @@ $$ \text{深度}: d = \alpha^\phi, \quad \text{宽度}: w = \beta^\phi, \quad \t
 
 #### ConvNeXt (2022)
 
-ConvNeXt 对 ResNet 进行"现代化改造"，吸收了 Swin Transformer 的设计经验：
+ConvNeXt 对 ResNet 进行"现代化改造"，吸收了 Swin Transformer（/trænsˈfɔːrmər/） 的设计经验：
 
 | 改造项 | ResNet | ConvNeXt | 效果 |
 |:---|:---|:---|:---:|
 | 激活函数 | ReLU | GELU | 更平滑的梯度 |
-| 归一化 | BatchNorm | LayerNorm | 更好的稳定性 |
+| 归一化（normalization /ˌnɔːrmələˈzeɪʃən/） | BatchNorm | LayerNorm | 更好的稳定性 |
 | 下采样 | MaxPool | 步长卷积 | 可学习下采样 |
 | 核大小 | $3\times3$ | $7\times7$ | 更大感受野 |
 | 阶段设计 | 堆叠 | 倒置瓶颈 | 更高效 |
@@ -464,3 +469,9 @@ Done!
 2. **残差连接的有效性:** ResNet-20 只有 272K 参数（约 0.27M），远小于 VGG-16 的 138M 参数，但性能相当。这说明残差连接显著提升了参数效率和梯度流动。
 3. **梯度流动顺畅:** 与不包含残差连接的普通网络相比，ResNet 在训练初期就能快速降低损失（从 1.5459→0.8730），梯度可以高效地通过捷径传播到网络的前层。
 4. **训练/测试差距很小:** 第 3 个 epoch 时，训练和测试准确率相差不到 2 个百分点，说明模型没有过拟合，仍有进一步提升空间。
+
+## 参考文献 (References)
+
+1. **LeCun, Y. et al.** (1998). Gradient-based learning applied to document recognition. *Proc. IEEE*, 86(11), 2278–2324.
+2. **Krizhevsky, A., Sutskever, I. & Hinton, G. E.** (2012). ImageNet classification with deep convolutional neural networks. *NeurIPS*.
+3. **He, K. et al.** (2016). Deep residual learning for image recognition. *CVPR*.
