@@ -19,3 +19,5 @@ wandb/
 .trash/
 .mypy_cache/
 .pytest_cache/
+data/
+cloud/
