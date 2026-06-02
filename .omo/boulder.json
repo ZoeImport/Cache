@@ -201,8 +201,10 @@
       "agent": "Sisyphus-Junior",
       "category": "deep",
       "started_at": "2026-06-02T01:56:06.056Z",
-      "status": "running",
-      "updated_at": "2026-06-02T02:46:14.994Z"
+      "status": "completed",
+      "updated_at": "2026-06-02T03:07:03.103Z",
+      "ended_at": "2026-06-02T03:07:03.103Z",
+      "elapsed_ms": 4257047
     }
   },
   "schema_version": 2,
@@ -212,7 +214,7 @@
       "active_plan": "/home/zoe/CodeSpace/love-story/.omo/plans/ai-ml-compendium-execution.md",
       "plan_name": "ai-ml-compendium-execution",
       "started_at": "2026-06-01T09:55:27.593Z",
-      "updated_at": "2026-06-02T02:46:29.073Z",
+      "updated_at": "2026-06-02T03:07:03.103Z",
       "session_ids": [
         "opencode:ses_17d891ac1ffelMGf0nmZQwAVJC",
         "opencode:ses_17d60e32cffeKrneVfMbOCkB0B",
@@ -412,12 +414,14 @@
           "agent": "Sisyphus-Junior",
           "category": "deep",
           "started_at": "2026-06-02T01:56:06.056Z",
-          "status": "running",
-          "updated_at": "2026-06-02T02:46:14.994Z"
+          "status": "completed",
+          "updated_at": "2026-06-02T03:07:03.103Z",
+          "ended_at": "2026-06-02T03:07:03.103Z",
+          "elapsed_ms": 4257047
         }
       }
     }
   },
   "active_work_id": "ai-ml-compendium-execution-legacy",
-  "updated_at": "2026-06-02T02:46:29.073Z"
+  "updated_at": "2026-06-02T03:07:03.103Z"
 }

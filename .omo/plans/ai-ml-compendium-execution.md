@@ -49,12 +49,12 @@
 - `ai/00-README.md` 总入口 + 学习路径图
 
 ### Definition of Done
-- [ ] 所有 `.py` 文件通过 `python -m py_compile` 语法验证
-- [ ] 所有 Mermaid 图表语法正确
-- [ ] Oracle 校对报告无 ERR 级问题
-- [ ] Momus 审查对每章返回 OKAY
-- [ ] 交叉引用完整性检查通过
-- [ ] 无伪代码或不可运行代码片段
+- [x] 所有 `.py` 文件通过 `python -m py_compile` 语法验证
+- [x] 所有 Mermaid 图表语法正确
+- [x] Oracle 校对报告无 ERR 级问题
+- [x] Momus 审查对每章返回 OKAY
+- [x] 交叉引用完整性检查通过
+- [x] 无伪代码或不可运行代码片段
 
 ### Must Have
 - 理论概念100%准确（经过 Oracle 逐段验证）
@@ -734,7 +734,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: YES（Wave 5）
   - **Blocked By**: Task 24（必须先理解架构才能实现）
 
-- [ ] 27. **Vol 6/Ch 0: 预训练范式总览 — pretraining-paradigm.md**
+- [x] 27. **Vol 6/Ch 0: 预训练范式总览 — pretraining-paradigm.md**
 
   **What to do**:
   - 标注数据的瓶颈 → SSL 的动机
@@ -749,7 +749,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 6）
   - **Blocked By**: Task 24（Transformer 是 SSL 的架构基础）, Task 25
 
-- [ ] 28. **Vol 6/Ch 1: 对比学习 — contrastive-learning.md**
+- [x] 28. **Vol 6/Ch 1: 对比学习 — contrastive-learning.md**
 
   **What to do**:
   - 核心思想：拉近正样本、推远负样本
@@ -765,7 +765,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 6）
   - **Blocked By**: Task 27
 
-- [ ] 29. **Vol 6/Ch 2: 掩码建模 — masked-modeling.md**
+- [x] 29. **Vol 6/Ch 2: 掩码建模 — masked-modeling.md**
 
   **What to do**:
   - BERT：Masked Language Model
@@ -780,7 +780,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 6）
   - **Blocked By**: Task 27
 
-- [ ] 30. **Vol 6/Ch 3: 自回归建模 — autoregressive-modeling.md**
+- [x] 30. **Vol 6/Ch 3: 自回归建模 — autoregressive-modeling.md**
 
   **What to do**:
   - 自回归语言模型的核心：next token prediction
@@ -795,7 +795,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 6）
   - **Blocked By**: Task 27
 
-- [ ] 31. **Vol 6/Ch 4: 预训练-微调流程 — pretrain-finetune.py**
+- [x] 31. **Vol 6/Ch 4: 预训练-微调流程 — pretrain-finetune.py**
 
   **What to do**:
   - 使用 HuggingFace Transformers 生态系统
@@ -809,7 +809,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 6）
   - **Blocked By**: Task 27
 
-- [ ] 32. **Vol 7/Ch 1: VAE — vae.md**
+- [x] 32. **Vol 7/Ch 1: VAE — vae.md**
 
   **What to do**:
   - 自编码器的局限 → 需要概率生成
@@ -829,7 +829,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: YES（Wave 7）
   - **Blocked By**: Task 8（概率论）, Task 19（反向传播理解梯度）
 
-- [ ] 33. **Vol 7/Ch 2: GAN — gan.md**
+- [x] 33. **Vol 7/Ch 2: GAN — gan.md**
 
   **What to do**:
   - 对抗训练框架：生成器 vs 判别器
@@ -844,7 +844,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 7）
   - **Blocked By**: Task 18（NN 基础）
 
-- [ ] 34. **Vol 7/Ch 3: 扩散模型 — diffusion-models.md** ⭐
+- [x] 34. **Vol 7/Ch 3: 扩散模型 — diffusion-models.md** ⭐
 
   **What to do**:
   - 前向扩散过程：逐步加噪的数学定义
@@ -864,7 +864,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: YES（Wave 7）
   - **Blocked By**: Task 32（VAE 的变分推导是扩散模型的前置）
 
-- [ ] 35. **Vol 7/Ch 4: 大语言模型 — large-language-models.md** ⭐⭐
+- [x] 35. **Vol 7/Ch 4: 大语言模型 — large-language-models.md** ⭐⭐
 
   **What to do**:
   - **第一部分：预训练**
@@ -896,7 +896,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Blocked By**: Task 24（Transformer）, Task 30（Scaling Laws 等前置概念）
   - **Note**: 这一章可能超长，如果超过 3000 行，拆分为 `04a-pretraining.md`, `04b-alignment.md`, `04c-inference.md`
 
-- [ ] 36. **Vol 7/Ch 5: 高效微调 — lora-and-finetuning.md**
+- [x] 36. **Vol 7/Ch 5: 高效微调 — lora-and-finetuning.md**
 
   **What to do**:
   - 全量微调 vs 参数高效微调（对比分析）
@@ -911,7 +911,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 7）
   - **Blocked By**: Task 35（需要 LLM 基础理解）
 
-- [ ] 37. **Vol 8/Ch 1: PyTorch 深入 — pytorch-deep-dive.md**
+- [x] 37. **Vol 8/Ch 1: PyTorch 深入 — pytorch-deep-dive.md**
 
   **What to do**:
   - Tensor 底层机制：Storage / Stride
@@ -927,7 +927,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 8）
   - **Blocked By**: Task 18（理解自动微分需要先懂反向传播）
 
-- [ ] 38. **Vol 8/Ch 2: 训练循环精通 — training-loop-mastery.md**
+- [x] 38. **Vol 8/Ch 2: 训练循环精通 — training-loop-mastery.md**
 
   **What to do**:
   - 标准训练循环模板（可复用于任何项目）
@@ -944,7 +944,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 8）
   - **Blocked By**: Task 37
 
-- [ ] 39. **Vol 8/Ch 3: 分布式训练 — distributed-training.md**
+- [x] 39. **Vol 8/Ch 3: 分布式训练 — distributed-training.md**
 
   **What to do**:
   - 数据并行 DDP：原理与实现
@@ -959,7 +959,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 8）
   - **Blocked By**: Task 37
 
-- [ ] 40. **Vol 8/Ch 4: 数据管线工程 — data-pipeline.md**
+- [x] 40. **Vol 8/Ch 4: 数据管线工程 — data-pipeline.md**
 
   **What to do**:
   - 大规模数据加载优化
@@ -974,7 +974,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 8）
   - **Blocked By**: Task 37
 
-- [ ] 41. **Vol 8/Ch 5: 模型部署基础 — deployment-basics.md**
+- [x] 41. **Vol 8/Ch 5: 模型部署基础 — deployment-basics.md**
 
   **What to do**:
   - 模型导出：TorchScript / ONNX
@@ -989,7 +989,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 8）
   - **Blocked By**: Task 37
 
-- [ ] 42. **Vol 8/Ch 6: Python ML 生态全景 — python-ml-ecosystem.md**
+- [x] 42. **Vol 8/Ch 6: Python ML 生态全景 — python-ml-ecosystem.md**
 
   **What to do**:
   - HuggingFace Transformers / Datasets / PEFT
@@ -1005,7 +1005,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 8）
   - **Blocked By**: Task 37
 
-- [ ] 43. **Vol 9/Ch 1: Prompt Engineering — prompt-engineering.md**
+- [x] 43. **Vol 9/Ch 1: Prompt Engineering — prompt-engineering.md**
 
   **What to do**:
   - 基础模式：角色/指令/格式/示例
@@ -1023,7 +1023,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 9）
   - **Blocked By**: Task 35（LLM 基础理解）
 
-- [ ] 44. **Vol 9/Ch 2: RAG — rag.md**
+- [x] 44. **Vol 9/Ch 2: RAG — rag.md**
 
   **What to do**:
   - 为什么需要 RAG：知识截止、幻觉、私有数据
@@ -1041,7 +1041,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 9）
   - **Blocked By**: Task 35（需要 LLM 理解）
 
-- [ ] 45. **Vol 9/Ch 3: Function Calling — tool-calling.md**
+- [x] 45. **Vol 9/Ch 3: Function Calling — tool-calling.md**
 
   **What to do**:
   - Tool Calling 协议：OpenAI / Anthropic 格式详解
@@ -1056,7 +1056,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 9）
   - **Blocked By**: Task 35
 
-- [ ] 46. **Vol 9/Ch 4: Agent 系统 — agent-systems.md** ⭐
+- [x] 46. **Vol 9/Ch 4: Agent 系统 — agent-systems.md** ⭐
 
   **What to do**:
   - Agent = LLM + 工具 + 循环（核心公式）
@@ -1080,7 +1080,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: YES（Wave 9）
   - **Blocked By**: Task 43, Task 45（需要 Prompt + Tool Calling）
 
-- [ ] 47. **Vol 9/Ch 5: LLM 评估与监控 — evaluation-and-monitoring.md**
+- [x] 47. **Vol 9/Ch 5: LLM 评估与监控 — evaluation-and-monitoring.md**
 
   **What to do**:
   - 评估指标：准确率/相关性/安全性
@@ -1095,7 +1095,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 9）
   - **Blocked By**: Task 35
 
-- [ ] 48. **Vol 10/Ch 1: AI 编程助手内部机制 — ai-coding-assistants.md** ⭐
+- [x] 48. **Vol 10/Ch 1: AI 编程助手内部机制 — ai-coding-assistants.md** ⭐
 
   **What to do**:
   - 自动补全 vs Chat vs Agent 三种模式
@@ -1113,7 +1113,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 10）
   - **Blocked By**: Task 46（需要 Agent 系统理解）
 
-- [ ] 49. **Vol 10/Ch 2: Agent Harness 架构 — agent-harness-deep-dive.md**
+- [x] 49. **Vol 10/Ch 2: Agent Harness 架构 — agent-harness-deep-dive.md**
 
   **What to do**:
   - 调度系统：任务规划 → 子代理分配
@@ -1132,7 +1132,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 10）
   - **Blocked By**: Task 48
 
-- [ ] 50. **Vol 10/Ch 3: MCP 协议与工具生态 — mcp-and-tools.md**
+- [x] 50. **Vol 10/Ch 3: MCP 协议与工具生态 — mcp-and-tools.md**
 
   **What to do**:
   - Model Context Protocol (MCP) 详解
@@ -1147,7 +1147,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 10）
   - **Blocked By**: Task 48
 
-- [ ] 51. **Vol 10/Ch 4: 技能系统与 Prompt 架构 — skill-and-prompt-system.md**
+- [x] 51. **Vol 10/Ch 4: 技能系统与 Prompt 架构 — skill-and-prompt-system.md**
 
   **What to do**:
   - 技能（Skill）的设计模式
@@ -1162,7 +1162,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 10）
   - **Blocked By**: Task 48
 
-- [ ] 52. **Vol 10/Ch 5: 毕业项目 — build-your-own-tool.md** ⭐⭐
+- [x] 52. **Vol 10/Ch 5: 毕业项目 — build-your-own-tool.md** ⭐⭐
 
   **What to do**:
   - 终极目标：综合运用前九卷所有知识
@@ -1190,7 +1190,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: NO（Part A→B→C→D 有依赖关系）
   - **Blocked By**: Task 46, Task 49-51
 
-- [ ] 53. **Vol 10/Ch 6: 持续成长路线图 — conclusion-and-roadmap.md**
+- [x] 53. **Vol 10/Ch 6: 持续成长路线图 — conclusion-and-roadmap.md**
 
   **What to do**:
   - 学习路径总结（回顾 10 卷的思维导图）
@@ -1209,19 +1209,19 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
 
 > 4 review agents run in PARALLEL. ALL must APPROVE. Present consolidated results to user and get explicit "okay" before completing.
 
-- [ ] F1. **Plan Compliance Audit** — `oracle`
+- [x] F1. **Plan Compliance Audit** — `oracle`
   Read the plan end-to-end. For each "Must Have": verify implementation exists (read file). For each "Must NOT Have": search for forbidden patterns — reject with file:line if found. Check evidence files exist. Compare deliverables against plan.
   Output: `Must Have [N/N] | Must NOT Have [N/N] | Tasks [N/N] | VERDICT: APPROVE/REJECT`
 
-- [ ] F2. **Code Quality Review** — `unspecified-high`
+- [x] F2. **Code Quality Review** — `unspecified-high`
   Run `python -m py_compile` on all .py files. Review for: bare-except, unused imports, hardcoded paths, print() in library code. Check AI slop: excessive comments, over-abstraction, generic names.
   Output: `Compile [PASS/FAIL] | Files [N clean/N issues] | VERDICT`
 
-- [ ] F3. **Real Manual QA** — `unspecified-high`
+- [x] F3. **Real Manual QA** — `unspecified-high`
   Start from clean venv. Execute ALL code from ALL chapters. Test cross-chapter integration. Save to `.omo/evidence/final-qa/`.
   Output: `Scripts [N/N pass] | Integration [N/N] | VERDICT`
 
-- [ ] F4. **Scope Fidelity Check** — `deep`
+- [x] F4. **Scope Fidelity Check** — `deep`
   For each task: read "What to do", read actual output. Verify 1:1 — everything in spec was built (no missing), nothing beyond spec was built (no creep). Check "Must NOT do" compliance.
   Output: `Tasks [N/N compliant] | Unaccounted [CLEAN/N files] | VERDICT`
 
@@ -1238,9 +1238,9 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
 ## Success Criteria
 
 ### Final Checklist
-- [ ] All "Must Have" present in `/ai/`
-- [ ] All "Must NOT Have" absent
-- [ ] Every chapter has Oracle + Momus approval record
-- [ ] All Python scripts runnable
-- [ ] All internal links resolve
-- [ ] Mermaid diagrams render correctly
+- [x] All "Must Have" present in `/ai/`
+- [x] All "Must NOT Have" absent
+- [x] Every chapter has Oracle + Momus approval record
+- [x] All Python scripts runnable
+- [x] All internal links resolve
+- [x] Mermaid diagrams render correctly
