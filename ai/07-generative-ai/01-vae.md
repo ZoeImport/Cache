@@ -8,7 +8,7 @@
 > > - **2017**: van den Oord et al. 提出 VQ-VAE
 > > - **2020**: Ho, Jain & Abbeel 提出 DDPM
 > > - **2021**: Song, Meng & Ermon 提出 DDIM
-> - **2022**: Rombach et al. 提出 Stable Diffusion
+> - **2022**: Rombach et al. 提出 Stable Diffusion（/dɪˈfjuːʒən/）
 >
 > **The Variational Autoencoder (VAE)** is a cornerstone of generative modeling, being the first method to organically combine **probabilistic inference（/ˈɪnfərəns/）** with **deep learning**. Unlike standard autoencoders that compress inputs into deterministic latent codes, VAEs encode inputs into **probability distributions** (means and variances), enabling the generation of novel data samples. At the heart of VAEs are the **Reparameterization Trick** and the derivation of the **Evidence Lower Bound (ELBO)**. This chapter also introduces VQ-VAE — an extension that discretizes the latent space, effectively addressing the posterior collapse problem.
 

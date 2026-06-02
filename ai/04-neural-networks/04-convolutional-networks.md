@@ -473,5 +473,5 @@ Done!
 ## 参考文献 (References)
 
 1. **LeCun, Y. et al.** (1998). Gradient-based learning applied to document recognition. *Proc. IEEE*, 86(11), 2278–2324.
-2. **Krizhevsky, A., Sutskever, I. & Hinton, G. E.** (2012). ImageNet classification with deep convolutional neural networks. *NeurIPS*.
+2. **Krizhevsky, A., Sutskever, I. & Hinton, G. E.** (2012). ImageNet classification（/ˌklæsɪfɪˈkeɪʃən/） with deep convolutional neural networks. *NeurIPS*.
 3. **He, K. et al.** (2016). Deep residual learning for image recognition. *CVPR*.

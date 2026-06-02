@@ -165,8 +165,10 @@ def _has_term_annotation(text, term_en, term_zh):
         pat = re.escape(term_zh) + r'[（(]' + re.escape(term_en) + r'\s*/'
         if re.search(pat, text, re.IGNORECASE):
             return True
-    pat = r'(?<![a-zA-Z])' + re.escape(term_en) + r'(?![a-zA-Z])[（(]/'
-    if re.search(pat, text, re.IGNORECASE):
+    # English match already annotated: "word（/ipa/" or "word /ipa/"
+    pat1 = r'(?<![a-zA-Z])' + re.escape(term_en) + r'(?![a-zA-Z])[（(]/'
+    pat2 = r'(?<![a-zA-Z])' + re.escape(term_en) + r'(?![a-zA-Z]) \s*/'
+    if re.search(pat1, text, re.IGNORECASE) or re.search(pat2, text, re.IGNORECASE):
         return True
     return False
 

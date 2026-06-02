@@ -319,6 +319,6 @@ All three methods are grounded in the pretraining-finetuning paradigm but differ
 1. **Mikolov, T. et al.** (2013). Distributed representations of words and phrases. *NeurIPS*.
 2. **Devlin, J. et al.** (2019). BERT: Pre-training of deep bidirectional transformers. *NAACL*.
 3. **Chen, T. et al.** (2020). SimCLR: A simple framework for contrastive learning. *ICML*.
-4. **He, K. et al.** (2020). Momentum contrast for unsupervised visual representation learning. *CVPR*.
+4. **He, K. et al.** (2020). Momentum（/məˈmentəm/） contrast for unsupervised visual representation learning. *CVPR*.
 5. **Radford, A. et al.** (2021). Learning transferable visual models from natural language supervision. *ICML*.
 6. **He, K. et al.** (2022). Masked autoencoders are scalable vision learners. *CVPR*.
