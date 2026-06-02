@@ -585,7 +585,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: YES（Wave 4）
   - **Blocked By**: Task 7（线性代数）, Task 9（微积分）
 
-- [ ] 19. **Vol 4/Ch 2: 反向传播 — backpropagation.md** ⭐
+- [x] 19. **Vol 4/Ch 2: 反向传播 — backpropagation.md** ⭐
 
   **What to do**:
   - 计算图：Autograd 的底层原理
@@ -658,7 +658,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 4）
   - **Blocked By**: Task 18, Task 19
 
-- [ ] 23. **Vol 5/Ch 1: 注意力机制 — attention-mechanism.md** ⭐
+- [x] 23. **Vol 5/Ch 1: 注意力机制 — attention-mechanism.md** ⭐
 
   **What to do**:
   - Query / Key / Value 的直观理解（从检索系统类比）
@@ -676,7 +676,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: YES（Wave 5）
   - **Blocked By**: Task 22（RNN 的局限是注意力机制的动机）
 
-- [ ] 24. **Vol 5/Ch 2: Transformer 完整架构 — transformer-architecture.md** ⭐
+- [x] 24. **Vol 5/Ch 2: Transformer 完整架构 — transformer-architecture.md** ⭐
 
   **What to do**:
   - Encoder-Decoder 总览架构图（Mermaid）
@@ -697,7 +697,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: YES（Wave 5）
   - **Blocked By**: Task 23（注意力机制）
 
-- [ ] 25. **Vol 5/Ch 3: Transformer 进化史 — variants-evolution.md**
+- [x] 25. **Vol 5/Ch 3: Transformer 进化史 — variants-evolution.md**
 
   **What to do**:
   - Decoder-only 分支：GPT-1/2/3 → ChatGPT → LLaMA
@@ -716,7 +716,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: YES（Wave 5）
   - **Blocked By**: Task 24
 
-- [ ] 26. **Vol 5/Ch 4: 从零实现 nanoGPT — implement-transformer.py**
+- [x] 26. **Vol 5/Ch 4: 从零实现 nanoGPT — implement-transformer.py**
 
   **What to do**:
   - 逐组件实现微型 GPT（参考 Andrej Karpathy 的 nanoGPT 风格）
