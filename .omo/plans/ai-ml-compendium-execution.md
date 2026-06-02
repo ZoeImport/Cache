@@ -567,7 +567,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: YES（Wave 3）
   - **Blocked By**: Task 12-16（整合前三卷的知识）
 
-- [ ] 18. **Vol 4/Ch 1: 感知机与 MLP — perceptron-and-mlp.md**
+- [x] 18. **Vol 4/Ch 1: 感知机与 MLP — perceptron-and-mlp.md**
 
   **What to do**:
   - 感知机：历史上第一个学习算法
@@ -607,7 +607,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: YES（Wave 4）
   - **Blocked By**: Task 18
 
-- [ ] 20. **Vol 4/Ch 3: 训练技巧 — training-techniques.md**
+- [x] 20. **Vol 4/Ch 3: 训练技巧 — training-techniques.md**
 
   **What to do**:
   - 权重初始化：Xavier → Kaiming → LLaMA 的 init 方案
@@ -623,7 +623,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Parallelization**: YES（Wave 4）
   - **Blocked By**: Task 18, Task 19（需要反向传播理解优化器）
 
-- [ ] 21. **Vol 4/Ch 4: 卷积神经网络 — convolutional-networks.md**
+- [x] 21. **Vol 4/Ch 4: 卷积神经网络 — convolutional-networks.md**
 
   **What to do**:
   - 卷积运算的数学定义（连续→离散）
@@ -642,7 +642,7 @@ Critical Path: Wave 0 → Wave 1 → Wave 2 → ... → Wave 10 → F1-F4 → us
   - **Can Run In Parallel**: YES（Wave 4）
   - **Blocked By**: Task 18（MLP 基础）
 
-- [ ] 22. **Vol 4/Ch 5: RNN 与序列模型 — rnn-and-sequence.md**
+- [x] 22. **Vol 4/Ch 5: RNN 与序列模型 — rnn-and-sequence.md**
 
   **What to do**:
   - RNN 循环计算图 + BPTT
