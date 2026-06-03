@@ -257,8 +257,121 @@ $$\mathbf{C} = \frac{1}{m} \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} = \frac{1}
 3. 取 $\mathbf{V}$ 的前 $k$ 列作为主成分方向：$\mathbf{W}_k = \mathbf{V}_{[:, :k]}$
 4. 投影数据：$\mathbf{Z} = \tilde{\mathbf{X}} \mathbf{W}_k = \mathbf{U}_k \boldsymbol{\Sigma}_k$
 
+::: details 🔍 完整演算：PCA via SVD 手算 - 4x2 到 1D 降维
 
+**📐 公式**
 
+PCA 通过对中心化数据矩阵的 SVD 实现降维：
+
+$$ \tilde{\mathbf{X}} = \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^\top $$
+
+其中 $\tilde{\mathbf{X}} \in \mathbb{R}^{m \times n}$。取前 $k$ 个右奇异向量作为主成分方向：
+
+$$ \mathbf{W}_k = \mathbf{V}_{[:, :k]} $$
+
+将数据投影到 $k$ 维子空间：
+
+$$ \mathbf{Z} = \tilde{\mathbf{X}} \mathbf{W}_k = \mathbf{U}_k \boldsymbol{\Sigma}_k $$
+
+---
+
+**📖 参数含义**
+
+| 符号 | 名称 | 含义 |
+|:---|:---|:---|
+| $\tilde{\mathbf{X}}$ | 中心化数据矩阵 | 每列减去均值后的 $m \times n$ 矩阵，本例 $m=4, n=2$ |
+| $\mathbf{U} \in \mathbb{R}^{m \times m}$ | 左奇异向量矩阵 | 每列是 $\tilde{\mathbf{X}}\tilde{\mathbf{X}}^\top$ 的特征向量，反映样本在主方向上的关系 |
+| $\boldsymbol{\Sigma} \in \mathbb{R}^{m \times n}$ | 奇异值矩阵 | 对角元素 $\sigma_i$ 为奇异值，$\sigma_1 \geq \sigma_2 \geq \cdots \geq 0$ |
+| $\mathbf{V} \in \mathbb{R}^{n \times n}$ | 右奇异向量矩阵 | 每列是 $\tilde{\mathbf{X}}^\top\tilde{\mathbf{X}}$ 的特征向量 = **主成分方向** |
+| $\mathbf{W}_k$ | 投影矩阵 | 前 $k$ 个主成分方向组成的 $n \times k$ 矩阵 |
+| $\mathbf{Z} \in \mathbb{R}^{m \times k}$ | 主成分得分 | 数据在 $k$ 维子空间中的表示 |
+
+---
+
+**📝 公式来源**
+
+SVD 与 PCA 的等价关系来自协方差矩阵的分解：
+
+$$ \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} = (\mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^\top)^\top(\mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^\top) = \mathbf{V} \boldsymbol{\Sigma}^\top \boldsymbol{\Sigma} \mathbf{V}^\top $$
+
+因此 $\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}$ 的特征分解等价于 $\mathbf{V} \boldsymbol{\Sigma}^2 \mathbf{V}^\top$，其中 $\boldsymbol{\Sigma}^2$ 由奇异值的平方（即特征值）构成。
+
+**核心等价关系**：
+- $\mathbf{V}$ 的列 = $\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}$ 的特征向量 = 主成分方向
+- $\sigma_i^2$ = 第 $i$ 个主成分方向上的特征值（方差贡献）
+- $\mathbf{U}\boldsymbol{\Sigma}$ 的列 = 主成分得分（投影后的坐标）
+
+> **为什么用 SVD 更好？** 直接计算 $\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}$ 会平方条件数（condition number），导致数值不稳定。SVD 直接作用于 $\tilde{\mathbf{X}}$，数值更稳定且更高效。
+
+---
+
+**✏️ 手算演示**
+
+给定数据集 $\mathbf{X} = \begin{bmatrix} 1 & 2 \\ 2 & 3 \\ 4 & 5 \\ 5 & 4 \end{bmatrix}$（4 个样本，2 个特征），目标：降至 1 维。
+
+**Step 1: 中心化数据**
+
+$$ \mu_1 = \frac{1+2+4+5}{4} = 3,\quad \mu_2 = \frac{2+3+5+4}{4} = 3.5 $$
+
+$$ \tilde{\mathbf{X}} = \begin{bmatrix} -2 & -1.5 \\ -1 & -0.5 \\ 1 & 1.5 \\ 2 & 0.5 \end{bmatrix} $$
+
+**Step 2: 计算 $\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}$**
+
+$$ \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} = \begin{bmatrix} 4+1+1+4 & 3+0.5+1.5+1 \\ 3+0.5+1.5+1 & 2.25+0.25+2.25+0.25 \end{bmatrix} = \begin{bmatrix} 10 & 6 \\ 6 & 5 \end{bmatrix} $$
+
+**Step 3: 求解特征值和特征向量**
+
+特征方程：
+
+$$ \det(\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} - \lambda \mathbf{I}) = \det\begin{bmatrix} 10-\lambda & 6 \\ 6 & 5-\lambda \end{bmatrix} = (10-\lambda)(5-\lambda) - 36 = 0 $$
+
+$$ \lambda^2 - 15\lambda + 14 = 0 \implies (\lambda - 14)(\lambda - 1) = 0 $$
+
+$$ \lambda_1 = 14,\quad \lambda_2 = 1 $$
+
+奇异值：$\sigma_1 = \sqrt{14} \approx 3.742$，$\sigma_2 = 1$
+
+**Step 4: 求右奇异向量（主成分方向）**
+
+对于 $\lambda_1 = 14$：
+
+$$ \begin{bmatrix} -4 & 6 \\ 6 & -9 \end{bmatrix} \begin{bmatrix} v_{11} \\ v_{21} \end{bmatrix} = \mathbf{0} \;\Longrightarrow\; -4v_{11} + 6v_{21} = 0 \;\Longrightarrow\; v_{11} = 1.5v_{21} $$
+
+取 $v_{21} = 2$，得 $v_{11} = 3$。归一化：$\|\mathbf{v}_1\| = \sqrt{9 + 4} = \sqrt{13} \approx 3.606$
+
+$$ \mathbf{v}_1 = \begin{bmatrix} 3/\sqrt{13} \\ 2/\sqrt{13} \end{bmatrix} \approx \begin{bmatrix} 0.832 \\ 0.555 \end{bmatrix} $$
+
+对于 $\lambda_2 = 1$：
+
+$$ \begin{bmatrix} 9 & 6 \\ 6 & 4 \end{bmatrix} \begin{bmatrix} v_{12} \\ v_{22} \end{bmatrix} = \mathbf{0} \;\Longrightarrow\; 9v_{12} + 6v_{22} = 0 \;\Longrightarrow\; v_{12} = -\frac{2}{3}v_{22} $$
+
+取 $v_{22} = 3$，得 $v_{12} = -2$。归一化：$\|\mathbf{v}_2\| = \sqrt{4 + 9} = \sqrt{13}$
+
+$$ \mathbf{v}_2 = \begin{bmatrix} -2/\sqrt{13} \\ 3/\sqrt{13} \end{bmatrix} \approx \begin{bmatrix} -0.555 \\ 0.832 \end{bmatrix} $$
+
+因此：
+
+$$ \mathbf{V} = \begin{bmatrix} 3/\sqrt{13} & -2/\sqrt{13} \\ 2/\sqrt{13} & 3/\sqrt{13} \end{bmatrix} $$
+
+**Step 5: 取第一主成分（$k=1$）投影到 1 维子空间**
+
+$$ \mathbf{w}_1 = \mathbf{v}_1 = \begin{bmatrix} 3/\sqrt{13} \\ 2/\sqrt{13} \end{bmatrix} $$
+
+$$ \mathbf{Z} = \tilde{\mathbf{X}} \mathbf{w}_1 = \begin{bmatrix} -2 & -1.5 \\ -1 & -0.5 \\ 1 & 1.5 \\ 2 & 0.5 \end{bmatrix} \begin{bmatrix} 3/\sqrt{13} \\ 2/\sqrt{13} \end{bmatrix} = \frac{1}{\sqrt{13}} \begin{bmatrix} -9 \\ -4 \\ 6 \\ 7 \end{bmatrix} \approx \begin{bmatrix} -2.497 \\ -1.110 \\ 1.664 \\ 1.942 \end{bmatrix} $$
+
+验证：$\mathbf{Z} = \mathbf{U}_1 \sigma_1$，其中 $\mathbf{U}_1$ 是 $\mathbf{U}$ 的第一列：
+
+$$ \mathbf{U}_1 = \frac{\tilde{\mathbf{X}} \mathbf{v}_1}{\sigma_1} = \frac{1}{\sqrt{14}} \begin{bmatrix} -9/\sqrt{13} \\ -4/\sqrt{13} \\ 6/\sqrt{13} \\ 7/\sqrt{13} \end{bmatrix} = \begin{bmatrix} -9/\sqrt{182} \\ -4/\sqrt{182} \\ 6/\sqrt{182} \\ 7/\sqrt{182} \end{bmatrix} $$
+
+---
+
+**🌍 实际意义**
+
+- **降维**：PCA 通过 SVD 将 $n$ 维数据投影到 $k$ 维子空间，保留最大方差方向（$k \ll n$）
+- **去噪**：丢弃小奇异值对应的成分相当于滤除噪声——噪声通常在各方向上均匀分布，而信号集中在大奇异值方向
+- **可视化的桥梁**：SVD 分解清晰地展示了"方向"（$\mathbf{V}$）、"强度"（$\boldsymbol{\Sigma}$）和"样本坐标"（$\mathbf{U}\boldsymbol{\Sigma}$）三个核心元素
+
+:::
 
 ### 2.4 应用场景 (Applications)
 
@@ -368,6 +481,8 @@ $$ R_2 = r_1 + r_2 = \frac{14}{15} + \frac{1}{15} = 1 \;(100\%) $$
 - **低秩数据**：如果前几个奇异值远大于其余，说明数据本质上是低秩的（low-rank），可以用很少的维度近似表示
 
 :::
+
+---
 
 ## 3. t-SNE 与 UMAP
 
@@ -526,123 +641,6 @@ $$\text{AIC} = -2 \ln \hat{L} + 2d, \quad \text{BIC} = -2 \ln \hat{L} + d \ln m$
 - [EM 算法深入理解 (Bishop PRML Ch 9)](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf)
 
 ---
-
-<details>
-<summary>🔍 完整演算：PCA via SVD 手算 - 4x2 到 1D 降维</summary>
-
-**📐 公式**
-
-PCA 通过对中心化数据矩阵的 SVD 实现降维：
-
-$$ \tilde{\mathbf{X}} = \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^\top $$
-
-其中 $\tilde{\mathbf{X}} \in \mathbb{R}^{m \times n}$。取前 $k$ 个右奇异向量作为主成分方向：
-
-$$ \mathbf{W}_k = \mathbf{V}_{[:, :k]} $$
-
-将数据投影到 $k$ 维子空间：
-
-$$ \mathbf{Z} = \tilde{\mathbf{X}} \mathbf{W}_k = \mathbf{U}_k \boldsymbol{\Sigma}_k $$
-
----
-
-**📖 参数含义**
-
-| 符号 | 名称 | 含义 |
-|:---|:---|:---|
-| $\tilde{\mathbf{X}}$ | 中心化数据矩阵 | 每列减去均值后的 $m \times n$ 矩阵，本例 $m=4, n=2$ |
-| $\mathbf{U} \in \mathbb{R}^{m \times m}$ | 左奇异向量矩阵 | 每列是 $\tilde{\mathbf{X}}\tilde{\mathbf{X}}^\top$ 的特征向量，反映样本在主方向上的关系 |
-| $\boldsymbol{\Sigma} \in \mathbb{R}^{m \times n}$ | 奇异值矩阵 | 对角元素 $\sigma_i$ 为奇异值，$\sigma_1 \geq \sigma_2 \geq \cdots \geq 0$ |
-| $\mathbf{V} \in \mathbb{R}^{n \times n}$ | 右奇异向量矩阵 | 每列是 $\tilde{\mathbf{X}}^\top\tilde{\mathbf{X}}$ 的特征向量 = **主成分方向** |
-| $\mathbf{W}_k$ | 投影矩阵 | 前 $k$ 个主成分方向组成的 $n \times k$ 矩阵 |
-| $\mathbf{Z} \in \mathbb{R}^{m \times k}$ | 主成分得分 | 数据在 $k$ 维子空间中的表示 |
-
----
-
-**📝 公式来源**
-
-SVD 与 PCA 的等价关系来自协方差矩阵的分解：
-
-$$ \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} = (\mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^\top)^\top(\mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^\top) = \mathbf{V} \boldsymbol{\Sigma}^\top \boldsymbol{\Sigma} \mathbf{V}^\top $$
-
-因此 $\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}$ 的特征分解等价于 $\mathbf{V} \boldsymbol{\Sigma}^2 \mathbf{V}^\top$，其中 $\boldsymbol{\Sigma}^2$ 由奇异值的平方（即特征值）构成。
-
-**核心等价关系**：
-- $\mathbf{V}$ 的列 = $\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}$ 的特征向量 = 主成分方向
-- $\sigma_i^2$ = 第 $i$ 个主成分方向上的特征值（方差贡献）
-- $\mathbf{U}\boldsymbol{\Sigma}$ 的列 = 主成分得分（投影后的坐标）
-
-> **为什么用 SVD 更好？** 直接计算 $\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}$ 会平方条件数（condition number），导致数值不稳定。SVD 直接作用于 $\tilde{\mathbf{X}}$，数值更稳定且更高效。
-
----
-
-**✏️ 手算演示**
-
-给定数据集 $\mathbf{X} = \begin{bmatrix} 1 & 2 \\ 2 & 3 \\ 4 & 5 \\ 5 & 4 \end{bmatrix}$（4 个样本，2 个特征），目标：降至 1 维。
-
-**Step 1: 中心化数据**
-
-$$ \mu_1 = \frac{1+2+4+5}{4} = 3,\quad \mu_2 = \frac{2+3+5+4}{4} = 3.5 $$
-
-$$ \tilde{\mathbf{X}} = \begin{bmatrix} -2 & -1.5 \\ -1 & -0.5 \\ 1 & 1.5 \\ 2 & 0.5 \end{bmatrix} $$
-
-**Step 2: 计算 $\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}$**
-
-$$ \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} = \begin{bmatrix} 4+1+1+4 & 3+0.5+1.5+1 \\ 3+0.5+1.5+1 & 2.25+0.25+2.25+0.25 \end{bmatrix} = \begin{bmatrix} 10 & 6 \\ 6 & 5 \end{bmatrix} $$
-
-**Step 3: 求解特征值和特征向量**
-
-特征方程：
-
-$$ \det(\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} - \lambda \mathbf{I}) = \det\begin{bmatrix} 10-\lambda & 6 \\ 6 & 5-\lambda \end{bmatrix} = (10-\lambda)(5-\lambda) - 36 = 0 $$
-
-$$ \lambda^2 - 15\lambda + 14 = 0 \implies (\lambda - 14)(\lambda - 1) = 0 $$
-
-$$ \lambda_1 = 14,\quad \lambda_2 = 1 $$
-
-奇异值：$\sigma_1 = \sqrt{14} \approx 3.742$，$\sigma_2 = 1$
-
-**Step 4: 求右奇异向量（主成分方向）**
-
-对于 $\lambda_1 = 14$：
-
-$$ \begin{bmatrix} -4 & 6 \\ 6 & -9 \end{bmatrix} \begin{bmatrix} v_{11} \\ v_{21} \end{bmatrix} = \mathbf{0} \;\Longrightarrow\; -4v_{11} + 6v_{21} = 0 \;\Longrightarrow\; v_{11} = 1.5v_{21} $$
-
-取 $v_{21} = 2$，得 $v_{11} = 3$。归一化：$\|\mathbf{v}_1\| = \sqrt{9 + 4} = \sqrt{13} \approx 3.606$
-
-$$ \mathbf{v}_1 = \begin{bmatrix} 3/\sqrt{13} \\ 2/\sqrt{13} \end{bmatrix} \approx \begin{bmatrix} 0.832 \\ 0.555 \end{bmatrix} $$
-
-对于 $\lambda_2 = 1$：
-
-$$ \begin{bmatrix} 9 & 6 \\ 6 & 4 \end{bmatrix} \begin{bmatrix} v_{12} \\ v_{22} \end{bmatrix} = \mathbf{0} \;\Longrightarrow\; 9v_{12} + 6v_{22} = 0 \;\Longrightarrow\; v_{12} = -\frac{2}{3}v_{22} $$
-
-取 $v_{22} = 3$，得 $v_{12} = -2$。归一化：$\|\mathbf{v}_2\| = \sqrt{4 + 9} = \sqrt{13}$
-
-$$ \mathbf{v}_2 = \begin{bmatrix} -2/\sqrt{13} \\ 3/\sqrt{13} \end{bmatrix} \approx \begin{bmatrix} -0.555 \\ 0.832 \end{bmatrix} $$
-
-因此：
-
-$$ \mathbf{V} = \begin{bmatrix} 3/\sqrt{13} & -2/\sqrt{13} \\ 2/\sqrt{13} & 3/\sqrt{13} \end{bmatrix} $$
-
-**Step 5: 取第一主成分（$k=1$）投影到 1 维子空间**
-
-$$ \mathbf{w}_1 = \mathbf{v}_1 = \begin{bmatrix} 3/\sqrt{13} \\ 2/\sqrt{13} \end{bmatrix} $$
-
-$$ \mathbf{Z} = \tilde{\mathbf{X}} \mathbf{w}_1 = \begin{bmatrix} -2 & -1.5 \\ -1 & -0.5 \\ 1 & 1.5 \\ 2 & 0.5 \end{bmatrix} \begin{bmatrix} 3/\sqrt{13} \\ 2/\sqrt{13} \end{bmatrix} = \frac{1}{\sqrt{13}} \begin{bmatrix} -9 \\ -4 \\ 6 \\ 7 \end{bmatrix} \approx \begin{bmatrix} -2.497 \\ -1.110 \\ 1.664 \\ 1.942 \end{bmatrix} $$
-
-验证：$\mathbf{Z} = \mathbf{U}_1 \sigma_1$，其中 $\mathbf{U}_1$ 是 $\mathbf{U}$ 的第一列：
-
-$$ \mathbf{U}_1 = \frac{\tilde{\mathbf{X}} \mathbf{v}_1}{\sigma_1} = \frac{1}{\sqrt{14}} \begin{bmatrix} -9/\sqrt{13} \\ -4/\sqrt{13} \\ 6/\sqrt{13} \\ 7/\sqrt{13} \end{bmatrix} = \begin{bmatrix} -9/\sqrt{182} \\ -4/\sqrt{182} \\ 6/\sqrt{182} \\ 7/\sqrt{182} \end{bmatrix} $$
-
----
-
-**🌍 实际意义**
-
-- **降维**：PCA 通过 SVD 将 $n$ 维数据投影到 $k$ 维子空间，保留最大方差方向（$k \ll n$）
-- **去噪**：丢弃小奇异值对应的成分相当于滤除噪声——噪声通常在各方向上均匀分布，而信号集中在大奇异值方向
-- **可视化的桥梁**：SVD 分解清晰地展示了"方向"（$\mathbf{V}$）、"强度"（$\boldsymbol{\Sigma}$）和"样本坐标"（$\mathbf{U}\boldsymbol{\Sigma}$）三个核心元素
-
-</details>
 
 > **下一章预告:** [模型评估与选择](./06-model-evaluation.md) — 交叉验证、偏差-方差权衡、ROC 曲线，用严谨的方法论评估 ML 模型。
 

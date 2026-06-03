@@ -28,7 +28,7 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm install
-      - run: rm -rf node_modules/.vite
+      - run: rm -rf node_modules/.vite node_modules/.cache docs/.vitepress/cache
       - run: npm run docs:build
         env:
           NODE_OPTIONS: "--max-old-space-size=8192"
