@@ -1,0 +1,33 @@
+{
+  "name": "love-story",
+  "version": "1.0.0",
+  "description": "| 目录 | 说明 | |------|------| | 📘 [AI/ML 技术百科全书](ai/) | 10 卷 46 章，从零基础到工具链集成 | | 🐧 [Arch Linux 安装与配置](archlinux/) | 从零开始的 Arch Linux 实战笔记 | | ☯ [周易 & 奇门遁甲](qimen/) | 烟波钓叟赋全文注释与基础 |",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "NODE_OPTIONS=\"--max-old-space-size=4096\" vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZoeImport/Cache.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ZoeImport/Cache/issues"
+  },
+  "homepage": "https://github.com/ZoeImport/Cache#readme",
+  "dependencies": {
+    "markdown-it-mathjax3": "^4.3.2",
+    "mermaid": "^11.15.0",
+    "vitepress": "^1.6.4",
+    "vitepress-plugin-mermaid": "^2.0.17"
+  }
+}
