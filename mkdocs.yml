@@ -1,0 +1,180 @@
+site_name: Cache — AI/ML 技术百科
+site_description: 从零基础到 OpenCode 全栈的 AI 学习路径（10 卷 46 章）
+site_url: https://zoeimport.github.io/Cache/
+repo_url: https://github.com/ZoeImport/Cache
+repo_name: ZoeImport/Cache
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ZoeImport/Cache
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.keys
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+  - admonition
+  - footnotes
+  - attr_list
+  - md_in_html
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+
+plugins:
+  - search:
+      lang: zh
+  - exclude:
+      glob:
+        - "*.py"
+        - "*.png"
+        - "*.jpg"
+        - "*.jpeg"
+        - "*.gif"
+        - "*.svg"
+        - "*.sh"
+        - "Cargo.*"
+        - ".venv/**"
+        - "ai/.venv/**"
+        - "ai/*/pip-unpack-*/**"
+        - "ai/*/code/**"
+        - "ai/01-overview/code/**"
+        - "ai/02-mathematics/code/**"
+        - "ai/03-classical-ml/code/**"
+        - "ai/04-neural-networks/code/**"
+        - "ai/05-transformer/code/**"
+        - "ai/06-self-supervised/code/**"
+        - "ai/07-generative-ai/code/**"
+        - "ai/08-model-training/code/**"
+        - "ai/09-llm-application/code/**"
+        - "ai/10-toolchain-integration/code/**"
+        - "ai/07-generative-ai/.venv/**"
+        - ".omo/**"
+        - ".vscode/**"
+        - ".idea/**"
+        - ".git/**"
+
+nav:
+  - "🏠 首页": index.md
+  - "📖 术语表": ai/00-GLOSSARY.md
+
+  - "📘 卷1: AI全景图 + Python":
+    - "第1章: AI世界全景图": ai/01-overview/01-intro-to-ai-world.md
+    - "第2章: Python快速入门": ai/01-overview/02-python-quickstart.md
+    - "第3章: NumPy与张量思维": ai/01-overview/03-numpy-and-linalg.md
+    - "第4章: 数据可视化入门": ai/01-overview/04-visualization.md
+    - "第5章: 第一个ML项目": ai/01-overview/05-first-ml-pipeline.md
+
+  - "📘 卷2: 数学基础":
+    - "第1章: 线性代数": ai/02-mathematics/01-linear-algebra.md
+    - "第2章: 概率论": ai/02-mathematics/02-probability.md
+    - "第3章: 微积分与优化": ai/02-mathematics/03-calculus-and-optimization.md
+    - "第4章: 信息论": ai/02-mathematics/04-information-theory.md
+    - "第5章: 统计学基础": ai/02-mathematics/05-statistics-basics.md
+
+  - "📘 卷3: 经典机器学习":
+    - "第1章: 线性模型": ai/03-classical-ml/01-linear-models.md
+    - "第2章: 模型评估": ai/03-classical-ml/02-model-evaluation.md
+    - "第3章: 树模型与集成": ai/03-classical-ml/03-tree-and-ensemble.md
+    - "第4章: SVM与核方法": ai/03-classical-ml/04-svm-and-kernel.md
+    - "第5章: 无监督学习": ai/03-classical-ml/05-unsupervised-learning.md
+    - "第6章: ML项目模板": ai/03-classical-ml/06-ml-project-template.md
+
+  - "📘 卷4: 神经网络":
+    - "第1章: 感知机与MLP": ai/04-neural-networks/01-perceptron-and-mlp.md
+    - "第2章: 反向传播": ai/04-neural-networks/02-backpropagation.md
+    - "第3章: 训练技巧": ai/04-neural-networks/03-training-techniques.md
+    - "第4章: 卷积网络": ai/04-neural-networks/04-convolutional-networks.md
+    - "第5章: RNN与序列模型": ai/04-neural-networks/05-rnn-and-sequence.md
+
+  - "📘 卷5: Transformer":
+    - "第1章: 注意力机制": ai/05-transformer/01-attention-mechanism.md
+    - "第2章: Transformer架构": ai/05-transformer/02-transformer-architecture.md
+    - "第3章: 变体与演进": ai/05-transformer/03-variants-evolution.md
+    - "第4章: 动手实现Transformer": ai/05-transformer/04-implement-transformer.md
+
+  - "📘 卷6: 自监督学习":
+    - "第1章: 预训练范式": ai/06-self-supervised/01-pretraining-paradigm.md
+    - "第2章: 对比学习": ai/06-self-supervised/02-contrastive-learning.md
+    - "第3章: 掩码建模": ai/06-self-supervised/03-masked-modeling.md
+    - "第4章: 自回归建模": ai/06-self-supervised/04-autoregressive-modeling.md
+    - "第5章: 预训练与微调": ai/06-self-supervised/05-pretrain-finetune.md
+
+  - "📘 卷7: 生成式AI/LLM":
+    - "第1章: 变分自编码器(VAE)": ai/07-generative-ai/01-vae.md
+    - "第2章: 生成对抗网络(GAN)": ai/07-generative-ai/02-gan.md
+    - "第3章: 扩散模型": ai/07-generative-ai/03-diffusion-models.md
+    - "第4章: 大语言模型": ai/07-generative-ai/04-large-language-models.md
+    - "第5章: LoRA与微调": ai/07-generative-ai/05-lora-and-finetuning.md
+
+  - "📘 卷8: 模型训练工程":
+    - "第1章: PyTorch深入": ai/08-model-training/01-pytorch-deep-dive.md
+    - "第2章: 训练循环精通": ai/08-model-training/02-training-loop-mastery.md
+    - "第3章: 分布式训练": ai/08-model-training/03-distributed-training.md
+    - "第4章: 数据管道": ai/08-model-training/04-data-pipeline.md
+    - "第5章: 部署基础": ai/08-model-training/05-deployment-basics.md
+    - "第6章: Python ML生态": ai/08-model-training/06-python-ml-ecosystem.md
+
+  - "📘 卷9: LLM应用开发":
+    - "第1章: 提示工程": ai/09-llm-application/01-prompt-engineering.md
+    - "第2章: RAG": ai/09-llm-application/02-rag.md
+    - "第3章: 工具调用": ai/09-llm-application/03-tool-calling.md
+    - "第4章: 智能体系统": ai/09-llm-application/04-agent-systems.md
+    - "第5章: 评估与监控": ai/09-llm-application/05-evaluation-and-monitoring.md
+
+  - "📘 卷10: 工具链集成":
+    - "第1章: AI编程助手": ai/10-toolchain-integration/01-ai-coding-assistants.md
+    - "第2章: Agent Harness深入": ai/10-toolchain-integration/02-agent-harness-deep-dive.md
+    - "第3章: MCP与工具": ai/10-toolchain-integration/03-mcp-and-tools.md
+    - "第4章: 技能与提示系统": ai/10-toolchain-integration/04-skill-and-prompt-system.md
+    - "第5章: 构建自己的工具": ai/10-toolchain-integration/05-build-your-own-tool.md
+    - "第6章: 总结与路线图": ai/10-toolchain-integration/06-conclusion-and-roadmap.md
+
+  - "🐧 Arch Linux":
+    - "安装与配置": archlinux/README.md
+
+  - "☯ 周易 & 奇门遁甲":
+    - "奇门遁甲": qimen/README.md

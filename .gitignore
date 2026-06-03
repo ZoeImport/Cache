@@ -21,3 +21,5 @@ wandb/
 .pytest_cache/
 data/
 cloud/
+site/
+docs/
