@@ -259,7 +259,6 @@ $$\mathbf{C} = \frac{1}{m} \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} = \frac{1}
 
 
 
----
 
 ### 2.4 应用场景 (Applications)
 

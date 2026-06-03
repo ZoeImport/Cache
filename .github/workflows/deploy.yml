@@ -27,7 +27,8 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - run: npm ci
+      - run: npm install
+      - run: rm -rf node_modules/.vite
       - run: npm run docs:build
         env:
           NODE_OPTIONS: "--max-old-space-size=8192"
