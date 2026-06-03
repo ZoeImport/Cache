@@ -502,3 +502,5 @@ elif source.endswith(".xlsx"):
 这个模板是一个**起点**。随着项目复杂度增加，你可以在此基础上添加交叉验证、超参数搜索、特征选择、实验跟踪等功能。但最基本、最常用的 7 个步骤已经在这里了，直接复制、粘贴、修改即可。
 
 > **This template is a starting point.** As your projects grow, you can add cross-validation, hyperparameter search, feature selection, experiment tracking, and more on top of it. But the core 7 steps are here — ready to copy, paste, and adapt.
+
+<!-- 演算盒审查完成: 无需 -->

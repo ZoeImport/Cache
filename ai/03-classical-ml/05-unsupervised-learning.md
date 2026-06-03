@@ -16,7 +16,7 @@
 ## 目录 (Table of Contents)
 
 1. [K-Means 聚类 (K-Means Clustering)](#1-k-means-聚类-k-means-clustering)
-2. [PCA 主成分分析 (Principal Component Analysis)](#2-pca-主成分分析-principal-component-analysis)
+2. [PCA 主成分分析 (Principal Component Analysis)](#2-pca-主成分分析-principal-component-analysis) 📐
 3. [t-SNE 与 UMAP](#3-t-sne-与-umap)
 4. [高斯混合模型 GMM (Gaussian Mixture Models)](#4-高斯混合模型-gmm-gaussian-mixture-models)
 
@@ -95,7 +95,119 @@ inertia = kmeans.inertia_        # 最终 inertia 值
 
 PCA 寻找数据中**方差最大的方向（directions of maximum variance）**，将高维数据投影到低维子空间，同时尽可能保留数据的变异信息。
 
-### 2.2 数学推导 (Mathematical Derivation)
+::: details 🔍 完整演算：协方差矩阵手算 — 4×3 数据集
+
+**📐 公式**
+
+协方差矩阵 (Covariance Matrix) 衡量数据集中每对特征之间的线性关系：
+
+$$ \mathbf{C} = \frac{1}{n-1} \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} $$
+
+其中 $\tilde{\mathbf{X}} = \mathbf{X} - \boldsymbol{\mu}$ 是中心化后的数据矩阵，$n$ 是样本数。
+
+矩阵形式的完整定义：
+
+$$ \mathbf{C} = \frac{1}{n-1} \sum_{i=1}^{n} (\mathbf{x}^{(i)} - \boldsymbol{\mu})(\mathbf{x}^{(i)} - \boldsymbol{\mu})^\top $$
+
+即每个样本的外积（outer product）之和除以 $(n-1)$。
+
+---
+
+**📖 参数含义**
+
+| 符号 | 名称 | 含义 |
+|:---|:---|:---|
+| $\mathbf{X} \in \mathbb{R}^{n \times d}$ | 数据矩阵 | $n$ 个样本，$d$ 个特征，本例 $n=4, d=3$ |
+| $\tilde{\mathbf{X}}$ | 中心化数据矩阵 | 每列减去该列均值后的结果 |
+| $\boldsymbol{\mu} \in \mathbb{R}^{d}$ | 均值向量 | 每个特征的样本均值 |
+| $\mathbf{C} \in \mathbb{R}^{d \times d}$ | 协方差矩阵 | $C_{ij} = \text{Cov}(X_i, X_j)$，对称半正定矩阵 |
+| $C_{ij}$ | 协方差 | 特征 $i$ 与特征 $j$ 之间的协方差；$i=j$ 时为方差 |
+
+---
+
+**📝 公式来源**
+
+协方差矩阵的定义来自方差概念的推广。单个特征的方差为：
+
+$$ \text{Var}(X) = E[(X - \mu)^2] = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \mu)^2 $$
+
+将其推广到多个特征，就得到协方差矩阵：
+
+$$ \text{Var}(\mathbf{X}) = E[(\mathbf{X} - \boldsymbol{\mu})(\mathbf{X} - \boldsymbol{\mu})^\top] $$
+
+矩阵 $\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}$ 的每个元素 $(i,j)$ 恰好是特征 $i$ 和特征 $j$ 的中心化观测值的点积，除以 $(n-1)$ 后即为协方差。
+
+> **协方差矩阵是 PCA 的起点**——它的特征向量指明了数据方差最大的方向，这是全书第一次出现这一核心概念。
+
+---
+
+**✏️ 手算演示**
+
+给定数据集 $\mathbf{X} = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 3 & 6 & 9 \\ 4 & 8 & 12 \end{bmatrix}$（4 个样本，3 个特征）
+
+**Step 1: 计算列均值**
+
+$$ \mu_1 = \frac{1+2+3+4}{4} = 2.5,\quad \mu_2 = \frac{2+4+6+8}{4} = 5,\quad \mu_3 = \frac{3+6+9+12}{4} = 7.5 $$
+
+**Step 2: 中心化数据**（每列减去对应均值）
+
+$$ \tilde{\mathbf{X}} = \begin{bmatrix}
+-1.5 & -3 & -4.5 \\
+-0.5 & -1 & -1.5 \\
+0.5 & 1 & 1.5 \\
+1.5 & 3 & 4.5
+\end{bmatrix} $$
+
+验证：每列之和为 $0$ ✓
+
+**Step 3: 计算 $\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}$（外积和）**
+
+$\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}$ 是 $3 \times 3$ 矩阵，第 $(i,j)$ 个元素是第 $i$ 列与第 $j$ 列的内积：
+
+$$ \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}_{11} = (-1.5)^2 + (-0.5)^2 + 0.5^2 + 1.5^2 = 2.25 + 0.25 + 0.25 + 2.25 = 5 $$
+
+$$ \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}_{12} = (-1.5)(-3) + (-0.5)(-1) + 0.5(1) + 1.5(3) = 4.5 + 0.5 + 0.5 + 4.5 = 10 $$
+
+$$ \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}_{13} = (-1.5)(-4.5) + (-0.5)(-1.5) + 0.5(1.5) + 1.5(4.5) = 6.75 + 0.75 + 0.75 + 6.75 = 15 $$
+
+$$ \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}_{22} = (-3)^2 + (-1)^2 + 1^2 + 3^2 = 9 + 1 + 1 + 9 = 20 $$
+
+$$ \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}_{23} = (-3)(-4.5) + (-1)(-1.5) + 1(1.5) + 3(4.5) = 13.5 + 1.5 + 1.5 + 13.5 = 30 $$
+
+$$ \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}_{33} = (-4.5)^2 + (-1.5)^2 + 1.5^2 + 4.5^2 = 20.25 + 2.25 + 2.25 + 20.25 = 45 $$
+
+由对称性得 $\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}_{21} = \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}_{12} = 10$，$\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}_{31} = 15$，$\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}_{32} = 30$。因此：
+
+$$ \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} = \begin{bmatrix} 5 & 10 & 15 \\ 10 & 20 & 30 \\ 15 & 30 & 45 \end{bmatrix} $$
+
+**Step 4: 除以 $(n-1)$ 得到协方差矩阵**
+
+$$ \mathbf{C} = \frac{1}{3} \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} =
+\begin{bmatrix}
+5/3 & 10/3 & 5 \\
+10/3 & 20/3 & 10 \\
+5 & 10 & 15
+\end{bmatrix}
+\approx
+\begin{bmatrix}
+1.667 & 3.333 & 5 \\
+3.333 & 6.667 & 10 \\
+5 & 10 & 15
+\end{bmatrix} $$
+
+**验证**：本例中 $X_2 = 2X_1$、$X_3 = 3X_1$，因此 $\text{Cov}(X_1,X_2) = 2 \times \text{Var}(X_1) = 2 \times \frac{5}{3} = \frac{10}{3}$ ✓，且 $\text{Cov}(X_1,X_3) = 3 \times \text{Var}(X_1) = 3 \times \frac{5}{3} = 5$ ✓。
+
+---
+
+**🌍 实际意义**
+
+- **PCA 的基石**：协方差矩阵的特征分解直接给出主成分方向。特征值最大的特征向量对应数据方差最大的方向，这就是**全书第一次出现协方差矩阵**的原因——它是后续所有降维技术的数学起点
+- **对角化**：PCA 的本质就是找到一组正交基，使得协方差矩阵在这组基下变为对角矩阵（各特征不再相关）
+- **与 SVD 的关系**：$\mathbf{C} = \frac{1}{n-1} \mathbf{V} \boldsymbol{\Sigma}^\top \boldsymbol{\Sigma} \mathbf{V}^\top$，右奇异向量 $\mathbf{V}$ 就是特征向量，奇异值的平方对应特征值
+
+:::
+
+### 2.2 数学推导 (Mathematical Derivation) 📐
 
 假设数据矩阵 $\mathbf{X} \in \mathbb{R}^{m \times n}$（$m$ 个样本，$n$ 个特征）。
 
@@ -138,12 +250,128 @@ $$\mathbf{C} = \frac{1}{m} \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} = \frac{1}
 
 > **💡 为什么用 SVD 而不是协方差矩阵？** 计算 $\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}$ 会平方条件数（condition number），导致数值不稳定。SVD 直接作用于 $\tilde{\mathbf{X}}$，数值更稳定，且不需要在样本数很大时计算 $n \times n$ 的协方差矩阵。
 
-### 2.3 PCA 算法步骤 (Algorithm Steps)
+### 2.3 PCA 算法步骤 (Algorithm Steps) 📐
 
 1. 中心化数据 $\tilde{\mathbf{X}} = \mathbf{X} - \boldsymbol{\mu}$
 2. 对 $\tilde{\mathbf{X}}$ 计算 SVD：$\tilde{\mathbf{X}} = \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^\top$
 3. 取 $\mathbf{V}$ 的前 $k$ 列作为主成分方向：$\mathbf{W}_k = \mathbf{V}_{[:, :k]}$
 4. 投影数据：$\mathbf{Z} = \tilde{\mathbf{X}} \mathbf{W}_k = \mathbf{U}_k \boldsymbol{\Sigma}_k$
+
+::: details 🔍 完整演算：PCA via SVD 手算 — 4×2→1D 降维
+
+**📐 公式**
+
+PCA 通过对中心化数据矩阵的 SVD 实现降维：
+
+$$ \tilde{\mathbf{X}} = \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^\top $$
+
+其中 $\tilde{\mathbf{X}} \in \mathbb{R}^{m \times n}$。取前 $k$ 个右奇异向量作为主成分方向：
+
+$$ \mathbf{W}_k = \mathbf{V}_{[:, :k]} $$
+
+将数据投影到 $k$ 维子空间：
+
+$$ \mathbf{Z} = \tilde{\mathbf{X}} \mathbf{W}_k = \mathbf{U}_k \boldsymbol{\Sigma}_k $$
+
+---
+
+**📖 参数含义**
+
+| 符号 | 名称 | 含义 |
+|:---|:---|:---|
+| $\tilde{\mathbf{X}}$ | 中心化数据矩阵 | 每列减去均值后的 $m \times n$ 矩阵，本例 $m=4, n=2$ |
+| $\mathbf{U} \in \mathbb{R}^{m \times m}$ | 左奇异向量矩阵 | 每列是 $\tilde{\mathbf{X}}\tilde{\mathbf{X}}^\top$ 的特征向量，反映样本在主方向上的关系 |
+| $\boldsymbol{\Sigma} \in \mathbb{R}^{m \times n}$ | 奇异值矩阵 | 对角元素 $\sigma_i$ 为奇异值，$\sigma_1 \geq \sigma_2 \geq \cdots \geq 0$ |
+| $\mathbf{V} \in \mathbb{R}^{n \times n}$ | 右奇异向量矩阵 | 每列是 $\tilde{\mathbf{X}}^\top\tilde{\mathbf{X}}$ 的特征向量 = **主成分方向** |
+| $\mathbf{W}_k$ | 投影矩阵 | 前 $k$ 个主成分方向组成的 $n \times k$ 矩阵 |
+| $\mathbf{Z} \in \mathbb{R}^{m \times k}$ | 主成分得分 | 数据在 $k$ 维子空间中的表示 |
+
+---
+
+**📝 公式来源**
+
+SVD 与 PCA 的等价关系来自协方差矩阵的分解：
+
+$$ \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} = (\mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^\top)^\top(\mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^\top) = \mathbf{V} \boldsymbol{\Sigma}^\top \boldsymbol{\Sigma} \mathbf{V}^\top $$
+
+因此 $\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}$ 的特征分解等价于 $\mathbf{V} \boldsymbol{\Sigma}^2 \mathbf{V}^\top$，其中 $\boldsymbol{\Sigma}^2$ 由奇异值的平方（即特征值）构成。
+
+**核心等价关系**：
+- $\mathbf{V}$ 的列 = $\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}$ 的特征向量 = 主成分方向
+- $\sigma_i^2$ = 第 $i$ 个主成分方向上的特征值（方差贡献）
+- $\mathbf{U}\boldsymbol{\Sigma}$ 的列 = 主成分得分（投影后的坐标）
+
+> **为什么用 SVD 更好？** 直接计算 $\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}$ 会平方条件数（condition number），导致数值不稳定。SVD 直接作用于 $\tilde{\mathbf{X}}$，数值更稳定且更高效。
+
+---
+
+**✏️ 手算演示**
+
+给定数据集 $\mathbf{X} = \begin{bmatrix} 1 & 2 \\ 2 & 3 \\ 4 & 5 \\ 5 & 4 \end{bmatrix}$（4 个样本，2 个特征），目标：降至 1 维。
+
+**Step 1: 中心化数据**
+
+$$ \mu_1 = \frac{1+2+4+5}{4} = 3,\quad \mu_2 = \frac{2+3+5+4}{4} = 3.5 $$
+
+$$ \tilde{\mathbf{X}} = \begin{bmatrix} -2 & -1.5 \\ -1 & -0.5 \\ 1 & 1.5 \\ 2 & 0.5 \end{bmatrix} $$
+
+**Step 2: 计算 $\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}}$**
+
+$$ \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} = \begin{bmatrix} 4+1+1+4 & 3+0.5+1.5+1 \\ 3+0.5+1.5+1 & 2.25+0.25+2.25+0.25 \end{bmatrix} = \begin{bmatrix} 10 & 6 \\ 6 & 5 \end{bmatrix} $$
+
+**Step 3: 求解特征值和特征向量**
+
+特征方程：
+
+$$ \det(\tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} - \lambda \mathbf{I}) = \det\begin{bmatrix} 10-\lambda & 6 \\ 6 & 5-\lambda \end{bmatrix} = (10-\lambda)(5-\lambda) - 36 = 0 $$
+
+$$ \lambda^2 - 15\lambda + 14 = 0 \implies (\lambda - 14)(\lambda - 1) = 0 $$
+
+$$ \lambda_1 = 14,\quad \lambda_2 = 1 $$
+
+奇异值：$\sigma_1 = \sqrt{14} \approx 3.742$，$\sigma_2 = 1$
+
+**Step 4: 求右奇异向量（主成分方向）**
+
+对于 $\lambda_1 = 14$：
+
+$$ \begin{bmatrix} -4 & 6 \\ 6 & -9 \end{bmatrix} \begin{bmatrix} v_{11} \\ v_{21} \end{bmatrix} = \mathbf{0} \;\Longrightarrow\; -4v_{11} + 6v_{21} = 0 \;\Longrightarrow\; v_{11} = 1.5v_{21} $$
+
+取 $v_{21} = 2$，得 $v_{11} = 3$。归一化：$\|\mathbf{v}_1\| = \sqrt{9 + 4} = \sqrt{13} \approx 3.606$
+
+$$ \mathbf{v}_1 = \begin{bmatrix} 3/\sqrt{13} \\ 2/\sqrt{13} \end{bmatrix} \approx \begin{bmatrix} 0.832 \\ 0.555 \end{bmatrix} $$
+
+对于 $\lambda_2 = 1$：
+
+$$ \begin{bmatrix} 9 & 6 \\ 6 & 4 \end{bmatrix} \begin{bmatrix} v_{12} \\ v_{22} \end{bmatrix} = \mathbf{0} \;\Longrightarrow\; 9v_{12} + 6v_{22} = 0 \;\Longrightarrow\; v_{12} = -\frac{2}{3}v_{22} $$
+
+取 $v_{22} = 3$，得 $v_{12} = -2$。归一化：$\|\mathbf{v}_2\| = \sqrt{4 + 9} = \sqrt{13}$
+
+$$ \mathbf{v}_2 = \begin{bmatrix} -2/\sqrt{13} \\ 3/\sqrt{13} \end{bmatrix} \approx \begin{bmatrix} -0.555 \\ 0.832 \end{bmatrix} $$
+
+因此：
+
+$$ \mathbf{V} = \begin{bmatrix} 3/\sqrt{13} & -2/\sqrt{13} \\ 2/\sqrt{13} & 3/\sqrt{13} \end{bmatrix} $$
+
+**Step 5: 取第一主成分（$k=1$）投影到 1 维子空间**
+
+$$ \mathbf{w}_1 = \mathbf{v}_1 = \begin{bmatrix} 3/\sqrt{13} \\ 2/\sqrt{13} \end{bmatrix} $$
+
+$$ \mathbf{Z} = \tilde{\mathbf{X}} \mathbf{w}_1 = \begin{bmatrix} -2 & -1.5 \\ -1 & -0.5 \\ 1 & 1.5 \\ 2 & 0.5 \end{bmatrix} \begin{bmatrix} 3/\sqrt{13} \\ 2/\sqrt{13} \end{bmatrix} = \frac{1}{\sqrt{13}} \begin{bmatrix} -9 \\ -4 \\ 6 \\ 7 \end{bmatrix} \approx \begin{bmatrix} -2.497 \\ -1.110 \\ 1.664 \\ 1.942 \end{bmatrix} $$
+
+验证：$\mathbf{Z} = \mathbf{U}_1 \sigma_1$，其中 $\mathbf{U}_1$ 是 $\mathbf{U}$ 的第一列：
+
+$$ \mathbf{U}_1 = \frac{\tilde{\mathbf{X}} \mathbf{v}_1}{\sigma_1} = \frac{1}{\sqrt{14}} \begin{bmatrix} -9/\sqrt{13} \\ -4/\sqrt{13} \\ 6/\sqrt{13} \\ 7/\sqrt{13} \end{bmatrix} = \begin{bmatrix} -9/\sqrt{182} \\ -4/\sqrt{182} \\ 6/\sqrt{182} \\ 7/\sqrt{182} \end{bmatrix} $$
+
+---
+
+**🌍 实际意义**
+
+- **降维**：PCA 通过 SVD 将 $n$ 维数据投影到 $k$ 维子空间，保留最大方差方向（$k \ll n$）
+- **去噪**：丢弃小奇异值对应的成分相当于滤除噪声——噪声通常在各方向上均匀分布，而信号集中在大奇异值方向
+- **可视化的桥梁**：SVD 分解清晰地展示了"方向"（$\mathbf{V}$）、"强度"（$\boldsymbol{\Sigma}$）和"样本坐标"（$\mathbf{U}\boldsymbol{\Sigma}$）三个核心元素
+
+:::
 
 ### 2.4 应用场景 (Applications)
 
@@ -152,7 +380,7 @@ $$\mathbf{C} = \frac{1}{m} \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} = \frac{1}
 - **去噪（Noise Reduction）：** 丢弃小奇异值对应的成分可以滤除噪声
 - **特征工程（Feature Engineering）：** PCA 成分可以作为新特征
 
-### 2.5 保留方差比例 (Explained Variance Ratio)
+### 2.5 保留方差比例 (Explained Variance Ratio) 📐
 
 第 $i$ 个主成分解释的方差比例为：
 
@@ -168,6 +396,91 @@ X_pca = pca.fit_transform(X)           # 投影到 2D
 explained_ratio = pca.explained_variance_ratio_  # 每个成分解释的方差比例
 components = pca.components_            # 主成分方向（V 的列）
 ```
+
+::: details 🔍 完整演算：保留方差比例手算
+
+**📐 公式**
+
+第 $i$ 个主成分解释的方差比例（Explained Variance Ratio）：
+
+$$ r_i = \frac{\sigma_i^2}{\sum_{j=1}^{r} \sigma_j^2} $$
+
+其中 $\sigma_i$ 是第 $i$ 个奇异值，$r = \min(m, n)$ 是非零奇异值的个数。
+
+前 $k$ 个主成分的**累计方差比例**（Cumulative Explained Variance Ratio）：
+
+$$ R_k = \sum_{i=1}^{k} r_i = \frac{\sum_{i=1}^{k} \sigma_i^2}{\sum_{j=1}^{r} \sigma_j^2} $$
+
+---
+
+**📖 参数含义**
+
+| 符号 | 名称 | 含义 |
+|:---|:---|:---|
+| $\sigma_i$ | 第 $i$ 个奇异值 | 来自 $\tilde{\mathbf{X}} = \mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^\top$，$\sigma_1 \geq \sigma_2 \geq \cdots$ |
+| $\sigma_i^2$ | 特征值 | 等于协方差矩阵 $\mathbf{C}$ 的第 $i$ 大特征值 $\lambda_i$ |
+| $r_i$ | 单成分方差比例 | 第 $i$ 个主成分解释的方差占总方差的比例 |
+| $R_k$ | 累计方差比例 | 前 $k$ 个主成分累计解释的方差比例 |
+| $r$ | 矩阵的秩 | 非零奇异值的个数（最多 $\min(m,n)$） |
+
+---
+
+**📝 公式来源**
+
+协方差矩阵的迹（trace）等于总方差：
+
+$$ \text{tr}(\mathbf{C}) = \sum_{i=1}^{n} C_{ii} = \sum_{i=1}^{n} \text{Var}(X_i) $$
+
+由于协方差矩阵的特征值之和等于迹（$\sum \lambda_i = \text{tr}(\mathbf{C})$），且 $\lambda_i = \sigma_i^2$（忽略 $n-1$ 因子），因此：
+
+$$ \text{总方差} = \sum \sigma_j^2 $$
+
+第 $i$ 个主成分贡献的方差比例即为 $\sigma_i^2 / \sum \sigma_j^2$。
+
+> **95% 经验法则**：通常选择最小的 $k$ 使得 $R_k \geq 0.95$，即保留 95% 以上的方差信息。这个阈值是降维中最常用的经验规则。
+
+---
+
+**✏️ 手算演示**
+
+从 Box B 中我们已经得到奇异值：
+
+$$ \sigma_1 = \sqrt{14} \approx 3.742,\quad \sigma_2 = 1 $$
+
+**Step 1: 计算总方差**
+
+$$ \sigma_1^2 + \sigma_2^2 = 14 + 1 = 15 $$
+
+**Step 2: 计算各成分的方差比例**
+
+第一主成分：
+
+$$ r_1 = \frac{\sigma_1^2}{\sigma_1^2 + \sigma_2^2} = \frac{14}{15} \approx 0.933 \;(93.3\%) $$
+
+第二主成分：
+
+$$ r_2 = \frac{\sigma_2^2}{\sigma_1^2 + \sigma_2^2} = \frac{1}{15} \approx 0.067 \;(6.7\%) $$
+
+**Step 3: 计算累计方差比例**
+
+$$ R_1 = r_1 = \frac{14}{15} \approx 0.933 \;(93.3\%) $$
+
+$$ R_2 = r_1 + r_2 = \frac{14}{15} + \frac{1}{15} = 1 \;(100\%) $$
+
+**Step 4: 降维决策**
+
+- 若按 **95% 阈值**：$R_1 = 93.3\% < 95\%$，需要保留 $k = 2$ 个主成分
+- 若按 **90% 阈值**：$R_1 = 93.3\% > 90\%$，仅需保留 $k = 1$ 个主成分
+
+---
+
+**🌍 实际意义**
+
+- **降维决策**：保留方差比例是选择 $k$ 的主要依据。典型阈值 95% 意味着我们接受 5% 的信息损失来换取维度的大幅降低
+- **Scree Plot**：绘制 $r_i$ 的降序条形图（Scree Plot），寻找"肘部"——拐点之后的主成分贡献很小，可视为噪声
+- **低秩数据**：如果前几个奇异值远大于其余，说明数据本质上是低秩的（low-rank），可以用很少的维度近似表示
+
+:::
 
 ---
 
@@ -310,6 +623,14 @@ $$\text{AIC} = -2 \ln \hat{L} + 2d, \quad \text{BIC} = -2 \ln \hat{L} + d \ln m$
 | **KL 散度** | t-SNE 的优化目标，衡量两个分布之间的差异 |
 | **Responsibility** | GMM 中一个点属于某个成分的后验概率 |
 | **AIC / BIC** | 模型选择准则，平衡拟合度与复杂度 |
+
+## 本章演算盒索引
+
+| 位置 | 演算盒 | 跳转 |
+|:---|:---|:---:|
+| §2.2 | 🔍 协方差矩阵手算 — 4×3 数据集 | [跳转](#22-数学推导-mathematical-derivation) |
+| §2.3 | 🔍 PCA via SVD 手算 — 4×2→1D | [跳转](#23-pca-算法步骤-algorithm-steps) |
+| §2.5 | 🔍 保留方差比例手算 | [跳转](#25-保留方差比例-explained-variance-ratio) |
 
 ## 进一步阅读 (Further Reading)
 

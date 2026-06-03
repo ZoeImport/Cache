@@ -87,7 +87,7 @@ $$
 
 ---
 
-## 2. 对偶问题（Dual Problem）
+## 2. 对偶问题（Dual Problem） 📐
 
 ### 2.1 为什么要转对偶？
 
@@ -153,6 +153,110 @@ $$
 
 ---
 
+::: details 🔍 完整演算：拉格朗日对偶推导 — 4 样本手算
+
+**📐 公式**
+
+原始问题（Primal Problem）：
+
+$$ \min_{w, b} \frac{1}{2} \|w\|^2 \quad \text{s.t.} \quad y_i (w^T \mathbf{x}_i + b) \geq 1, \; \forall i $$
+
+拉格朗日函数（Lagrangian）：
+
+$$ \mathcal{L}(w, b, \alpha) = \frac{1}{2} \|w\|^2 - \sum_{i=1}^n \alpha_i \big[y_i (w^T \mathbf{x}_i + b) - 1\big] $$
+
+对偶问题（Dual Problem）：
+
+$$ \max_{\alpha} \sum_{i=1}^n \alpha_i - \frac{1}{2} \sum_{i=1}^n \sum_{j=1}^n \alpha_i \alpha_j y_i y_j \langle \mathbf{x}_i, \mathbf{x}_j \rangle $$
+
+$$ \text{s.t.} \quad \alpha_i \geq 0, \; \sum_{i=1}^n \alpha_i y_i = 0 $$
+
+---
+
+**📖 参数含义**
+
+| 符号 | 名称 | 含义 |
+|:---|:---|:---|
+| $w$ | 权重向量 | 超平面的法向量，决定决策边界方向 |
+| $b$ | 偏置 | 超平面到原点的偏移量 |
+| $\alpha_i$ | 拉格朗日乘子 | 第 $i$ 个约束对应的对偶变量，$\alpha_i \geq 0$ |
+| $\mathbf{x}_i$ | 输入样本 | 第 $i$ 个数据点的特征向量 |
+| $y_i$ | 类别标签 | $\{-1, +1\}$，正负类的标识 |
+| $\langle \mathbf{x}_i, \mathbf{x}_j \rangle$ | 内积 | $\mathbf{x}_i^T \mathbf{x}_j$，衡量两个样本的相似度 |
+
+---
+
+**📝 公式来源**
+
+对偶推导分三步：
+
+1. **构造 Lagrangian**: 将约束 $y_i(w^T \mathbf{x}_i + b) - 1 \geq 0$ 以 $\alpha_i$ 为权重加入目标函数
+2. **对 $w, b$ 求极小**: 令偏导为零得到 $w$ 的表达式和 $\alpha_i$ 的约束条件
+3. **回代消去 $w, b$**: 代入 Lagrangian 后得到只含 $\alpha_i$ 的对偶目标
+
+核心公式 $w = \sum \alpha_i y_i \mathbf{x}_i$ 代入后，内积 $\langle \mathbf{x}_i, \mathbf{x}_j \rangle$ 自然出现——这是核技巧的数学基础。
+
+---
+
+**✏️ 手算演示**
+
+给定 4 个样本：正类 $(+1)$ 两个，负类 $(-1)$ 两个。
+
+| 样本 | 特征 $\mathbf{x}_i$ | 标签 $y_i$ |
+|:---|:---|:---:|
+| $x_1$ | $[1, 2]$ | $+1$ |
+| $x_2$ | $[2, 1]$ | $+1$ |
+| $x_3$ | $[5, 5]$ | $-1$ |
+| $x_4$ | $[6, 4]$ | $-1$ |
+
+**Step 1: 计算核矩阵（内积矩阵）**
+
+$$ K_{ij} = \langle \mathbf{x}_i, \mathbf{x}_j \rangle = \mathbf{x}_i^T \mathbf{x}_j $$
+
+$$ K = \begin{bmatrix}
+5 & 4 & 15 & 14 \\
+4 & 5 & 15 & 16 \\
+15 & 15 & 50 & 50 \\
+14 & 16 & 50 & 52
+\end{bmatrix} $$
+
+**Step 2: 写出对偶目标**
+
+$$ \max_{\alpha} \; \sum_{i=1}^4 \alpha_i - \frac{1}{2} \sum_{i=1}^4 \sum_{j=1}^4 \alpha_i \alpha_j y_i y_j K_{ij} $$
+
+其中 $y = [+1, +1, -1, -1]$，即 $y_i y_j = +1$ 同类、$-1$ 异类。
+
+展开二次项：
+
+$$
+\begin{aligned}
+\text{Obj}(\alpha) = &\alpha_1 + \alpha_2 + \alpha_3 + \alpha_4 \\
+&- \frac{1}{2} \Big[ 5\alpha_1^2 + 5\alpha_2^2 + 50\alpha_3^2 + 52\alpha_4^2 \\
+&\quad + 8\alpha_1\alpha_2 - 30\alpha_1\alpha_3 - 28\alpha_1\alpha_4 \\
+&\quad - 30\alpha_2\alpha_3 - 32\alpha_2\alpha_4 + 100\alpha_3\alpha_4 \Big]
+\end{aligned}
+$$
+
+**Step 3: 约束条件**
+
+$$ \alpha_1 + \alpha_2 - \alpha_3 - \alpha_4 = 0, \quad \alpha_i \geq 0 $$
+
+**Step 4: 求解（示意）**
+
+解此二次规划可得最优 $\alpha^*$。通常只有支持向量（间隔边界上的样本）的 $\alpha_i > 0$，其余为 $0$。本例中 $x_1$, $x_2$, $x_3$ 可能为支持向量。
+
+---
+
+**🌍 实际意义**
+
+- **对偶形式** 是核技巧的入口——目标函数只依赖样本内积，替换为核函数即得非线性 SVM
+- **稀疏性**：$\alpha_i > 0$ 仅对支持向量成立，使得模型在推理时只计算少数样本的核函数
+- **实际库**：LIBSVM、scikit-learn 的 SVC 均使用对偶形式求解，内部通过 SMO 算法高效迭代
+
+:::
+
+---
+
 ## 3. 核技巧（Kernel Trick）⭐
 
 ### 3.1 核心问题
@@ -205,7 +309,7 @@ $$
 | **RBF 核（高斯核）** | $K(\mathbf{x}_i, \mathbf{x}_j) = \exp(-\gamma \|\mathbf{x}_i - \mathbf{x}_j\|^2)$ | $\gamma$ | 映射到无穷维，最常用 |
 | **Sigmoid（/ˈsɪɡmɔɪd/） 核** | $K(\mathbf{x}_i, \mathbf{x}_j) = \tanh(\kappa \mathbf{x}_i^T \mathbf{x}_j + \theta)$ | $\kappa, \theta$ | 类似两层神经网络的激活 |
 
-### 3.4 RBF 核详解
+### 3.4 RBF 核详解 📐
 
 **RBF（Radial Basis Function）核**，也称为**高斯核（Gaussian Kernel）**，是实践中使用最广泛的核函数：
 
@@ -243,6 +347,81 @@ $$
 这意味着 $\phi(x)$ 实际上是一个**无穷维向量**：$\phi(x) = \exp(-\gamma x^2) \cdot \left[1, \sqrt{2\gamma}\, x, \frac{2\gamma}{\sqrt{2!}}\, x^2, \ldots \right]$。
 
 > 这就是核技巧的威力：我们在原始空间中用一行代码计算 $K(\mathbf{x}_i, \mathbf{x}_j)$，却等价于在无穷维空间中计算了两个向量的内积。
+
+::: details 🔍 完整演算：RBF 核手算 — 两样本不同 $\gamma$ 对比
+
+**📐 公式**
+
+RBF 核（高斯核）定义：
+
+$$ K(\mathbf{x}_i, \mathbf{x}_j) = \exp\left(-\gamma \|\mathbf{x}_i - \mathbf{x}_j\|^2\right) $$
+
+其中 $\|\mathbf{x}_i - \mathbf{x}_j\|^2 = \sum_{k=1}^d (x_{ik} - x_{jk})^2$ 是欧氏距离的平方。
+
+---
+
+**📖 参数含义**
+
+| 符号 | 名称 | 含义 |
+|:---|:---|:---|
+| $\mathbf{x}_i, \mathbf{x}_j$ | 输入样本 | 两个数据点的特征向量 |
+| $\|\mathbf{x}_i - \mathbf{x}_j\|^2$ | 欧氏距离平方 | 两点在原始空间中的距离 |
+| $\gamma$ | 核宽度参数 | 控制核函数的衰减速度，$\gamma > 0$ |
+| $\exp(\cdot)$ | 指数函数 | 将距离映射到 $(0, 1]$ 区间 |
+
+---
+
+**📝 公式来源**
+
+RBF 核来源于高斯函数的形状：
+
+$$ \exp\left(-\frac{\| \mathbf{x}_i - \mathbf{x}_j \|^2}{2\sigma^2}\right) $$
+
+其中 $\sigma$ 是高斯分布的标准差。令 $\gamma = \frac{1}{2\sigma^2}$ 即得常用形式 $K(\mathbf{x}_i, \mathbf{x}_j) = \exp(-\gamma \|\mathbf{x}_i - \mathbf{x}_j\|^2)$。
+
+核函数值域为 $(0, 1]$：
+- 当 $\mathbf{x}_i = \mathbf{x}_j$ 时取最大值 $1$
+- 距离越远，值越接近 $0$
+
+---
+
+**✏️ 手算演示**
+
+给定两点：$x_1 = [1, 2]$, $x_2 = [4, 6]$
+
+**Step 1: 计算欧氏距离平方**
+
+$$ \|x_1 - x_2\|^2 = (1-4)^2 + (2-6)^2 = (-3)^2 + (-4)^2 = 9 + 16 = 25 $$
+
+**Step 2: 分别计算两种 $\gamma$ 下的核值**
+
+**情形一：$\gamma = 0.1$（小 $\gamma$，平滑边界）**
+
+$$ K(x_1, x_2) = \exp(-0.1 \times 25) = \exp(-2.5) \approx 0.0821 $$
+
+**情形二：$\gamma = 1.0$（大 $\gamma$，曲折边界）**
+
+$$ K(x_1, x_2) = \exp(-1.0 \times 25) = \exp(-25) \approx 1.389 \times 10^{-11} $$
+
+**Step 3: 对比分析**
+
+| $\gamma$ | $- \gamma \cdot d^2$ | $K(x_1, x_2)$ | 含义 |
+|:---|:---:|:---:|:---|
+| $0.1$ | $-2.5$ | $0.0821$ | 距离 5 个单位时仍有 8% 的"相似度" |
+| $1.0$ | $-25$ | $\approx 0$ | 距离 5 个单位时几乎完全不相似 |
+
+---
+
+**🌍 实际意义**
+
+- $\gamma$ **控制每个支持向量的影响半径**：$\gamma$ 越小，每个点的影响范围越大；$\gamma$ 越大，每个点只影响其极近邻
+- **参数选择直接影响泛化**：
+  - $\gamma$ 太小（如 $0.01$）：每个点影响全局，边界过于平滑，**欠拟合**
+  - $\gamma$ 适中（如 $0.1$）：边界合理，**泛化良好**
+  - $\gamma$ 太大（如 $10$）：每个点只影响自身附近，边界围绕每个样本，**过拟合**
+- **实际调参**：常用网格搜索（Grid Search）配合交叉验证选择最优 $\gamma$，典型范围 $[10^{-3}, 10^3]$
+
+:::
 
 ### 3.5 Mercer 条件
 
@@ -290,6 +469,15 @@ $$
 - **最后一个隐藏层的输出**可以看作神经网络学习的特征表示 $\phi(\mathbf{x})$，而输出层则类似于线性 SVM
 
 > 2012 年之前，SVM 是机器学习的主导范式。深度学习崛起后，SVM 在大规模任务上被取代，但它在小样本场景、核方法理论以及可解释性方面的价值仍然不可替代。
+
+---
+
+## 本章演算盒索引
+
+| 位置 | 演算盒 | 跳转 |
+|:---|:---|:---:|
+| §2 | 🔍 拉格朗日对偶推导 — 4 样本 | [跳转](#2-对偶问题-dual-problem) |
+| §3.4 | 🔍 RBF 核手算 — 不同 γ 对比 | [跳转](#34-rbf-核详解) |
 
 ---
 

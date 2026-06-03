@@ -342,3 +342,5 @@ GBDT / XGBoost
 3. **Freund, Y. & Schapire, R. E.** (1997). A decision-theoretic generalization of on-line learning and an application to boosting. *JCSS*, 55(1), 119–139. — AdaBoost 算法。
 4. **Breiman, L.** (2001). Random forests. *Machine Learning*, 45(1), 5–32. — 随机森林。
 5. **Chen, T. & Guestrin, C.** (2016). XGBoost: A scalable tree boosting system. *KDD*, 785–794. — XGBoost。
+
+<!-- 演算盒审查完成: 无需 -->
