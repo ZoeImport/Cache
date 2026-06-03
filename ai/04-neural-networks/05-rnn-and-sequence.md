@@ -139,6 +139,106 @@ $$ \frac{\partial h_t}{\partial h_k} = \prod_{j=k+1}^{t} \frac{\partial h_j}{\pa
 
 $$ \frac{\partial \mathcal{L}}{\partial W_{hh}} = \sum_{t=1}^{T} \sum_{k=1}^{t} \frac{\partial \mathcal{L}_t}{\partial h_t} \left( \prod_{j=k+1}^{t} \frac{\partial h_j}{\partial h_{j-1}} \right) \frac{\partial h_k}{\partial W_{hh}} $$
 
+::: details 🔍 完整演算：BPTT 梯度链 — 3 步标量 RNN 手算
+
+**📐 公式**
+
+随时间反向传播（BPTT）中，损失 $\mathcal{L}_t$ 对循环权重 $W_{hh}$ 的梯度为：
+
+$$ \frac{\partial \mathcal{L}_t}{\partial W_{hh}} = \sum_{k=1}^{t} \frac{\partial \mathcal{L}_t}{\partial h_t} \left( \prod_{j=k+1}^{t} \frac{\partial h_j}{\partial h_{j-1}} \right) \frac{\partial h_k}{\partial W_{hh}} $$
+
+其中梯度链的核心传递因子为：
+
+$$ \frac{\partial h_j}{\partial h_{j-1}} = \text{diag}(1 - h_j^2) \cdot W_{hh} $$
+
+对标量 RNN（$d_h = 1$），上式简化为：
+
+$$ \frac{\partial h_j}{\partial h_{j-1}} = (1 - h_j^2) \cdot W_{hh} $$
+
+---
+
+**📖 参数含义**
+
+| 符号 | 名称 | 含义 |
+|:---|:---|:---|
+| $\mathcal{L}_t$ | 时间步 $t$ 的损失 | 模型预测与真实值的误差 |
+| $W_{hh}$ | 循环权重矩阵 | 控制隐藏状态在时间步间的传递 |
+| $h_j$ | 时间步 $j$ 的隐藏状态 | RNN 的"记忆"载体 |
+| $\partial h_j / \partial h_{j-1}$ | 梯度传递因子 | 衡量误差信号在相邻时间步的衰减或放大 |
+| $1 - h_j^2$ | $\tanh$ 的导数 | 值域 $(0, 1]$，$h_j=0$ 时取最大值 1 |
+
+---
+
+**📝 公式来源**
+
+从 RNN 前向公式 $h_t = \tanh(W_{hh} h_{t-1} + W_{xh} x_t + b_h)$ 出发，对 $h_{t-1}$ 求导：
+
+$$ \frac{\partial h_t}{\partial h_{t-1}} = \frac{\partial}{\partial h_{t-1}} \tanh(W_{hh} h_{t-1} + \text{其它项}) $$
+
+由链式法则和 $\tanh'(x) = 1 - \tanh^2(x)$：
+
+$$ \frac{\partial h_t}{\partial h_{t-1}} = (1 - h_t^2) \cdot W_{hh} $$
+
+当时间步跨度 $t-k$ 较大时，梯度需连乘 $t-k$ 个这样的因子——这正是梯度消失/爆炸的数学根源。
+
+---
+
+**✏️ 手算演示**
+
+考虑一个标量 RNN（输入维度 $d=1$，隐藏维度 $d_h=1$），给定参数与输入序列：
+
+$$ W_{hh} = 0.5, \quad W_{xh} = 1.0, \quad b_h = 0.0, \quad h_0 = 0.0 $$
+
+$$ x_1 = 1.0, \quad x_2 = 0.5, \quad x_3 = -0.2 $$
+
+**Step 1: 前向传播**
+
+$$ h_1 = \tanh(0.5 \times 0.0 + 1.0 \times 1.0) = \tanh(1.000) = 0.7616 $$
+
+$$ h_2 = \tanh(0.5 \times 0.7616 + 1.0 \times 0.5) = \tanh(0.8808) = 0.7064 $$
+
+$$ h_3 = \tanh(0.5 \times 0.7064 + 1.0 \times (-0.2)) = \tanh(0.1532) = 0.1520 $$
+
+**Step 2: 计算相邻时间步的梯度传递因子**
+
+$$ \frac{\partial h_2}{\partial h_1} = (1 - h_2^2) \times W_{hh} = (1 - 0.7064^2) \times 0.5 = (1 - 0.4990) \times 0.5 = 0.2505 $$
+
+$$ \frac{\partial h_3}{\partial h_2} = (1 - h_3^2) \times W_{hh} = (1 - 0.1520^2) \times 0.5 = (1 - 0.0231) \times 0.5 = 0.4885 $$
+
+**Step 3: 计算远距离梯度链（$h_1 \to h_3$，跨越 2 步）**
+
+$$ \frac{\partial h_3}{\partial h_1} = \frac{\partial h_3}{\partial h_2} \times \frac{\partial h_2}{\partial h_1} = 0.4885 \times 0.2505 = 0.1224 $$
+
+**结果**：仅跨越 2 步，梯度就衰减到了约 12%。若序列长度 $T=100$（这在 NLP 中很常见），梯度必然消失到 0。
+
+**Step 4: 代入不同 $W_{hh}$ 观察影响**
+
+| $W_{hh}$ | $\partial h_2/\partial h_1$ | $\partial h_3/\partial h_2$ | $\partial h_3/\partial h_1$（2 步累积）|
+|:---|:---|:---|:---|
+| **0.5** | 0.2505 | 0.4885 | **0.1224** — ✅ 梯度消失 |
+| **0.9** | 0.4509 | 0.8792 | **0.3965** — ⚠️ 长序列仍会消失 |
+| **2.0** | 1.0020 | 1.9538 | **1.9581** — ❌ 梯度爆炸 |
+
+梯度爆炸验证（$W_{hh}=2.0$）：
+
+$$ \frac{\partial h_2}{\partial h_1} = (1 - 0.7064^2) \times 2.0 = 0.5010 \times 2.0 = 1.002 $$
+
+$$ \frac{\partial h_3}{\partial h_2} = (1 - 0.1520^2) \times 2.0 = 0.9769 \times 2.0 = 1.954 $$
+
+$$ \frac{\partial h_3}{\partial h_1} = 1.002 \times 1.954 = 1.958 $$
+
+经过 20 步，梯度将达到约 $1.002^{20} \times 1.954^{19} \approx 2.5 \times 10^5$，完全不可训练。
+
+---
+
+**🌍 实际意义**
+
+- **梯度消失是 vanilla RNN 无法学习长程依赖的根本原因**：理论分析（Bengio et al., 1994）表明，vanilla RNN 在实践中很难捕捉超过 5—10 步的依赖关系。
+- **梯度爆炸导致训练不稳定（NaN 损失）**，实际解决方案是梯度裁剪（Gradient Clipping）——将梯度模长限制在阈值以内，详见 §1.5。
+- **LSTM 的核心贡献**就是通过加性细胞状态替代乘性梯度路径，从根本上解决梯度消失问题（详见 §2.6）。
+
+:::
+
 ### 1.5 梯度消失与梯度爆炸
 
 从上面的推导，我们得到：
@@ -304,6 +404,117 @@ $$
 **参数数量**：LSTM 有 4 组权重矩阵（$W_f, W_i, W_C, W_o$）+ 4 组偏置，每组大小为 $W \in \mathbb{R}^{d_h \times (d_h + d)}$，$b \in \mathbb{R}^{d_h}$。
 
 $$ \text{参数量} = 4 \times \left[ d_h \times (d_h + d) + d_h \right] $$
+
+::: details 🔍 完整演算：LSTM 门控计算 — 2 步标量 LSTM 手算与梯度对比
+
+**📐 公式**
+
+LSTM 前向传播的完整公式组：
+
+$$ \begin{aligned}
+f_t &= \sigma(W_f \cdot [h_{t-1}, x_t] + b_f) \\
+i_t &= \sigma(W_i \cdot [h_{t-1}, x_t] + b_i) \\
+\tilde{C}_t &= \tanh(W_C \cdot [h_{t-1}, x_t] + b_C) \\
+C_t &= f_t \odot C_{t-1} + i_t \odot \tilde{C}_t \\
+o_t &= \sigma(W_o \cdot [h_{t-1}, x_t] + b_o) \\
+h_t &= o_t \odot \tanh(C_t)
+\end{aligned} $$
+
+其中 $\sigma(x) = 1/(1+e^{-x})$ 为 sigmoid 函数，输出值域 $(0,1)$。
+
+---
+
+**📖 参数含义**
+
+| 符号 | 名称 | 含义 |
+|:---|:---|:---|
+| $f_t$ | 遗忘门 | 控制保留 $C_{t-1}$ 的比例，值域 $(0,1)$ |
+| $i_t$ | 输入门 | 控制写入新信息的比例，值域 $(0,1)$ |
+| $\tilde{C}_t$ | 候选细胞状态 | 可能写入细胞的新信息，值域 $(-1,1)$ |
+| $C_t$ | 细胞状态 | LSTM 的"记忆线"，信息传递主干道 |
+| $o_t$ | 输出门 | 控制从 $C_t$ 输出到 $h_t$ 的比例，值域 $(0,1)$ |
+| $h_t$ | 隐藏状态 | LSTM 的输出（给上层和下一时间步） |
+| $\odot$ | Hadamard 积 | 逐元素乘法 |
+
+---
+
+**📝 公式来源**
+
+LSTM 的设计动机源于解决 RNN 梯度消失问题。核心思想是用**加性**的细胞状态更新 $C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t$ 替代 RNN 的乘性隐藏状态更新 $h_t = \tanh(W_{hh} h_{t-1} + \ldots)$。
+
+梯度从 $C_t$ 到 $C_{t-1}$ 的传递为 $\partial C_t / \partial C_{t-1} = \text{diag}(f_t) + \text{(其它项)}$，主导项 $\text{diag}(f_t)$ 是逐元素缩放而非矩阵乘法——当 $f_t \approx 1$ 时，梯度几乎无损。
+
+---
+
+**✏️ 手算演示**
+
+考虑一个标量 LSTM（$d = d_h = 1$），给定参数：
+
+$$ \begin{aligned}
+W_f &= [0.1,\; 0.9],\; b_f = 0.5 \quad &\text{(遗忘门偏向"记住")} \\
+W_i &= [0.3,\; 0.7],\; b_i = -0.2 \quad &\text{(输入门偏向"筛选")} \\
+W_C &= [0.2,\; 0.8],\; b_C = 0.1 \quad &\text{(候选细胞)} \\
+W_o &= [0.4,\; 0.6],\; b_o = 0.0 \quad &\text{(输出门)}
+\end{aligned} $$
+
+初始状态：$h_0 = 0.0$，$C_0 = 0.0$
+
+输入序列：$x_1 = 1.0$（重要信息），$x_2 = 0.0$（中性输入）
+
+**Step 1: 时间步 $t=1$**
+
+$$ f_1 = \sigma(0.1 \times 0.0 + 0.9 \times 1.0 + 0.5) = \sigma(1.400) = 0.802 $$
+
+$$ i_1 = \sigma(0.3 \times 0.0 + 0.7 \times 1.0 - 0.2) = \sigma(0.500) = 0.622 $$
+
+$$ \tilde{C}_1 = \tanh(0.2 \times 0.0 + 0.8 \times 1.0 + 0.1) = \tanh(0.900) = 0.716 $$
+
+$$ C_1 = 0.802 \times 0.0 + 0.622 \times 0.716 = 0.445 $$
+
+$$ o_1 = \sigma(0.4 \times 0.0 + 0.6 \times 1.0 + 0.0) = \sigma(0.600) = 0.646 $$
+
+$$ h_1 = 0.646 \times \tanh(0.445) = 0.646 \times 0.418 = 0.270 $$
+
+**Step 2: 时间步 $t=2$**
+
+$$ f_2 = \sigma(0.1 \times 0.270 + 0.9 \times 0.0 + 0.5) = \sigma(0.527) = 0.629 $$
+
+$$ i_2 = \sigma(0.3 \times 0.270 + 0.7 \times 0.0 - 0.2) = \sigma(-0.119) = 0.470 $$
+
+$$ \tilde{C}_2 = \tanh(0.2 \times 0.270 + 0.8 \times 0.0 + 0.1) = \tanh(0.154) = 0.153 $$
+
+$$ C_2 = 0.629 \times 0.445 + 0.470 \times 0.153 = 0.280 + 0.072 = 0.352 $$
+
+$$ o_2 = \sigma(0.4 \times 0.270 + 0.6 \times 0.0 + 0.0) = \sigma(0.108) = 0.527 $$
+
+$$ h_2 = 0.527 \times \tanh(0.352) = 0.527 \times 0.338 = 0.178 $$
+
+**关键观察：信息保留**
+
+$C_1 = 0.445$ 中有 $62.9\%$（$f_2 = 0.629$）被保留到了 $C_2$。即使 $x_2 = 0.0$ 不携带新信息，细胞状态仍保留了 $C_2 = 0.352$（$C_1$ 的 $79\%$），远未被"清零"。
+
+**梯度对比：LSTM vs Vanilla RNN**
+
+考虑从时间步 2 到时间步 1 的梯度传播：
+
+| 架构 | 梯度传递因子 | 值 | 10 步累积 |
+|:---|:---|:---:|:---:|
+| LSTM | $\partial C_2 / \partial C_1 \approx f_2$ | **0.629** | $0.629^{10} \approx 0.010$ |
+| Vanilla RNN | $\partial h_2 / \partial h_1 = (1-h_2^2)W_{hh}$ | **0.434** | $0.434^{10} \approx 0.0002$ |
+
+（Vanilla RNN 的 $W_{hh}$ 设为 0.5，与 LSTM 遗忘门处于相近量级）
+
+LSTM 经过 10 步仍保留约 1% 的梯度信号，而 RNN 的梯度已几乎完全消失（0.02%）。这正是 LSTM 能学习长程依赖（如"France $\to$ French"跨越 10+ 词）的根本原因。
+
+---
+
+**🌍 实际意义**
+
+- LSTM 解决了 NLP 中**长距离依赖**的核心难题：机器翻译中的性别一致、代词的远距离指代、情感分析中的转折词等。
+- $f_t$ 的可学习性使 LSTM 能根据上下文动态决定"记忆多久"，这比固定衰减的 RNN 灵活得多。
+- 1997 年提出至今，LSTM 仍是时间序列预测、语音识别等领域的强力基线模型。
+
+:::
 
 ---
 

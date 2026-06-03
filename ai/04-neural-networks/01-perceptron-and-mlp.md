@@ -31,7 +31,7 @@
    - 2.3 [ReLU](#23-relu)
    - 2.4 [GELU](#24-gelu)
    - 2.5 [对比总结表](#25-对比总结表-comparison-table)
-3. [多层感知机 (Multi-Layer Perceptron)](#3-多层感知机-multi-layer-perceptron-mlp)
+3. [多层感知机 (Multi-Layer Perceptron)](#3-多层感知机-multi-layer-perceptron-mlp) 📐
    - 3.1 [前向传播](#31-前向传播-forward-pass)
    - 3.2 [为什么需要深度？](#32-为什么需要深度-why-depth)
    - 3.3 [MLP 解决 XOR](#33-mlp-解决-xor-mlp-solves-xor)
@@ -550,6 +550,106 @@ Section 3.1: Layer-by-Layer Forward Pass
 
 **层次化计算验证：** 输入 $\mathbf{x} = [0.5, -0.3]$ 经过第一层线性变换得到 $\mathbf{z}^{(1)} = [0.3186, 0.0011, -0.1499, 0.5313]$，ReLU 将负值清零得到 $\mathbf{a}^{(1)} = [0.3186, 0.0011, 0.0000, 0.5313]$。第二层线性组合后得到标量（scalar /ˈskeɪlər/）输出 $z^{(2)} = -0.2803$，再经 ReLU 得最终输出 $0$。
 
+::: details 🔍 完整演算：MLP 前向传播手算 — 2→2→1
+
+**📐 公式**
+
+MLP 的每一层依次进行线性变换和非线性激活：
+
+$$ \mathbf{z}^{(l)} = \mathbf{W}^{(l)} \mathbf{a}^{(l-1)} + \mathbf{b}^{(l)} $$
+
+$$ \mathbf{a}^{(l)} = \sigma(\mathbf{z}^{(l)}) $$
+
+对于本演算采用的 ReLU 激活函数：
+
+$$ \text{ReLU}(z) = \max(0, z) $$
+
+输出层采用 Sigmoid 激活函数：
+
+$$ \sigma(z) = \frac{1}{1 + e^{-z}} $$
+
+---
+
+**📖 参数含义**
+
+| 符号 | 名称 | 含义 |
+|:---|:---|:---|
+| $\mathbf{W}^{(l)}$ | 权重矩阵 | 第 $l$ 层的权重参数，形状 $n_l \times n_{l-1}$（输出 $\times$ 输入） |
+| $\mathbf{b}^{(l)}$ | 偏置向量 | 第 $l$ 层的偏置参数，形状 $n_l \times 1$ |
+| $\mathbf{z}^{(l)}$ | 线性输出 | 激活前的线性组合 $\mathbf{z}^{(l)} = \mathbf{W}^{(l)} \mathbf{a}^{(l-1)} + \mathbf{b}^{(l)}$ |
+| $\mathbf{a}^{(l)}$ | 激活值 | 非线性激活后的输出 $\mathbf{a}^{(l)} = \sigma(\mathbf{z}^{(l)})$ |
+| $\sigma(\cdot)$ | 激活函数 | 引入非线性的函数，本例隐藏层用 ReLU，输出层用 Sigmoid |
+
+---
+
+**📝 公式来源**
+
+前向传播逐层递归定义：每一层的输出是上一层输出的线性变换再经非线性激活。
+
+$$ \mathbf{a}^{(0)} = \mathbf{x} \quad \text{(输入层)} $$
+
+$$ \mathbf{z}^{(1)} = \mathbf{W}^{(1)} \mathbf{a}^{(0)} + \mathbf{b}^{(1)},\quad \mathbf{a}^{(1)} = \text{ReLU}(\mathbf{z}^{(1)}) $$
+
+$$ \mathbf{z}^{(2)} = \mathbf{W}^{(2)} \mathbf{a}^{(1)} + \mathbf{b}^{(2)},\quad \hat{y} = \mathbf{a}^{(2)} = \sigma(\mathbf{z}^{(2)}) $$
+
+**关键洞察：** 如果没有非线性激活函数，多层线性变换可合并为单层——网络退化为感知机。ReLU 将负值清零（$\max(0, z)$），引入非线性，使网络能学习复杂决策边界；同时正半轴梯度恒为 1，避免了 Sigmoid/Tanh 的梯度消失问题。
+
+---
+
+**✏️ 手算演示**
+
+给定网络结构 **2→2→1**（2 个输入 → 2 个隐藏神经元 → 1 个输出）及单样本 $\mathbf{x} = [1, -1]$。
+
+**参数设定：**
+
+$$ \mathbf{W}^{(1)} = \begin{bmatrix} 0.5 & -0.3 \\ 0.8 & 0.2 \end{bmatrix},\quad \mathbf{b}^{(1)} = \begin{bmatrix} 0.1 \\ -0.2 \end{bmatrix} $$
+
+$$ \mathbf{W}^{(2)} = \begin{bmatrix} 0.4 \\ -0.6 \end{bmatrix},\quad \mathbf{b}^{(2)} = 0.3 $$
+
+**Step 1: 第一层线性变换**
+
+使用行向量约定（与代码实现一致）：
+
+$$ \mathbf{z}^{(1)} = \mathbf{x} \cdot \mathbf{W}^{(1)} + \mathbf{b}^{(1)} = [1, -1] \cdot \begin{bmatrix} 0.5 & -0.3 \\ 0.8 & 0.2 \end{bmatrix} + [0.1, -0.2] $$
+
+$$ z^{(1)}_1 = 1 \times 0.5 + (-1) \times 0.8 + 0.1 = -0.2 $$
+
+$$ z^{(1)}_2 = 1 \times (-0.3) + (-1) \times 0.2 + (-0.2) = -0.7 $$
+
+$$ \mathbf{z}^{(1)} = [-0.2, -0.7] $$
+
+**Step 2: 第一层 ReLU 激活**
+
+$$ \mathbf{a}^{(1)} = \text{ReLU}(\mathbf{z}^{(1)}) = [\max(0, -0.2),\; \max(0, -0.7)] = [0, 0] $$
+
+**Step 3: 第二层线性变换**
+
+$$ z^{(2)} = \mathbf{a}^{(1)} \cdot \mathbf{W}^{(2)} + b^{(2)} = [0, 0] \cdot \begin{bmatrix} 0.4 \\ -0.6 \end{bmatrix} + 0.3 = 0.3 $$
+
+**Step 4: 输出层 Sigmoid 激活**
+
+$$ \hat{y} = \sigma(z^{(2)}) = \sigma(0.3) = \frac{1}{1 + e^{-0.3}} \approx \frac{1}{1 + 0.7408} \approx 0.574 $$
+
+**汇总验证：**
+
+| 步骤 | 变量 | 值 |
+|:---|:---|:---:|
+| 输入 | $\mathbf{x}$ | $[1, -1]$ |
+| 第一层线性 | $\mathbf{z}^{(1)}$ | $[-0.2, -0.7]$ |
+| 第一层激活 (ReLU) | $\mathbf{a}^{(1)}$ | $[0, 0]$ |
+| 第二层线性 | $z^{(2)}$ | $0.3$ |
+| 最终输出 (Sigmoid) | $\hat{y}$ | $\approx 0.574$ |
+
+---
+
+**🌍 实际意义**
+
+- **前向传播是一切推理的基础：** 无论多复杂的深度网络（GPT、ResNet、ViT），其推理过程本质上都是逐层前向传播——线性变换加非线性激活
+- **手算的价值：** 反向传播的每一步都需要前向传播的中间值。只有亲手动算一遍，才能真正理解梯度是如何从输出层逐层回传的
+- **ReLU 的关键作用：** 本例中负值被清零，这正是 ReLU 引入的非线性——它让网络可以学习分段的线性决策边界，理论上可以通过足够的片段逼近任意复杂函数
+
+:::
+
 ### 3.2 为什么需要深度？(Why Depth?)
 
 **层组合创造层次化特征 (Layer Composition Creates Hierarchical Features):**
@@ -666,6 +766,14 @@ $$
 $$
 
 每个隐藏神经元 $\tanh(w_i x + b_i)$ 可以看作一个**可学习的基函数**。$N$ 个基函数的加权和可以逼近任意形状的函数。更多神经元 → 更精细的逼近。
+
+---
+
+## 本章演算盒索引
+
+| 位置 | 演算盒 | 跳转 |
+|:---|:---|:---:|
+| §3 | 🔍 MLP 前向传播手算 — 2→2→1 | [跳转](#3-多层感知机-multi-layer-perceptron-mlp) |
 
 ---
 
