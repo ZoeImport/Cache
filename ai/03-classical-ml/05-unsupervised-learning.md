@@ -257,7 +257,8 @@ $$\mathbf{C} = \frac{1}{m} \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} = \frac{1}
 3. 取 $\mathbf{V}$ 的前 $k$ 列作为主成分方向：$\mathbf{W}_k = \mathbf{V}_{[:, :k]}$
 4. 投影数据：$\mathbf{Z} = \tilde{\mathbf{X}} \mathbf{W}_k = \mathbf{U}_k \boldsymbol{\Sigma}_k$
 
-::: details 🔍 完整演算：PCA via SVD 手算 - 4x2 到 1D 降维
+<details>
+<summary>🔍 完整演算：PCA via SVD 手算 - 4x2 到 1D 降维</summary>
 
 **📐 公式**
 
@@ -371,7 +372,9 @@ $$ \mathbf{U}_1 = \frac{\tilde{\mathbf{X}} \mathbf{v}_1}{\sigma_1} = \frac{1}{\s
 - **去噪**：丢弃小奇异值对应的成分相当于滤除噪声——噪声通常在各方向上均匀分布，而信号集中在大奇异值方向
 - **可视化的桥梁**：SVD 分解清晰地展示了"方向"（$\mathbf{V}$）、"强度"（$\boldsymbol{\Sigma}$）和"样本坐标"（$\mathbf{U}\boldsymbol{\Sigma}$）三个核心元素
 
-:::
+</details>
+
+---
 
 ### 2.4 应用场景 (Applications)
 
@@ -481,8 +484,6 @@ $$ R_2 = r_1 + r_2 = \frac{14}{15} + \frac{1}{15} = 1 \;(100\%) $$
 - **低秩数据**：如果前几个奇异值远大于其余，说明数据本质上是低秩的（low-rank），可以用很少的维度近似表示
 
 :::
-
----
 
 ## 3. t-SNE 与 UMAP
 
