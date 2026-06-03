@@ -58,7 +58,7 @@ flowchart LR
 
 ```
 ai/
-├── 00-README.md          ← 你在这里
+├── index.md              ← 你在这里
 ├── requirements.txt      ← 全局 Python 依赖
 ├── 01-overview/          ← 卷1: AI全景图+Python
 │   ├── 00-index.md       ← 本卷学习目标
