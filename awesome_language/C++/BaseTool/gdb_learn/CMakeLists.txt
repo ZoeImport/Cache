@@ -1,5 +1,0 @@
-cmake_minimum_required(VERSION 3.0)
-project(gdb_learn)
-aux_source_directory(. DIR_SRCS)
-add_executable(gdb_learn ${DIR_SRCS})
-target_compile_options(gdb_learn PUBLIC -g)

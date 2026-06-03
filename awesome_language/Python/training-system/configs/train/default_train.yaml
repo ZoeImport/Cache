@@ -1,5 +1,0 @@
-output_dir: "/app/outputs/checkpoints" # 容器内路径
-batch_size: 1        # 1650 只能扛住 Batch Size 1
-gradient_accumulation_steps: 4 # 累积梯度，模拟 Batch Size 4
-max_steps: 50
-learning_rate: 2e-4

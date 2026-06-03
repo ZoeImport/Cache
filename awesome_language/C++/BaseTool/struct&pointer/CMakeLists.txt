@@ -1,5 +1,0 @@
-cmake_minimum_required(VERSION 3.0)
-project(structAndPointer)
-aux_source_directory(. DIR_SRCS)
-add_executable(structAndPointer ${DIR_SRCS})
-# target_include_directories(structAndPointer PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

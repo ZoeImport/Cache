@@ -1,6 +1,0 @@
-# GTX 1650 专用配置
-# 1.5B 参数量，配合 4bit 量化，4GB 显存刚好能跑
-name: "unsloth/Qwen2.5-1.5B-Instruct-bnb-4bit"
-max_seq_length: 1024  # 显存不够，适当降低上下文长度 (2048 -> 1024)
-load_in_4bit: true
-lora_rank: 8          # 降低秩，省显存
