@@ -257,7 +257,7 @@ $$\mathbf{C} = \frac{1}{m} \tilde{\mathbf{X}}^\top \tilde{\mathbf{X}} = \frac{1}
 3. 取 $\mathbf{V}$ 的前 $k$ 列作为主成分方向：$\mathbf{W}_k = \mathbf{V}_{[:, :k]}$
 4. 投影数据：$\mathbf{Z} = \tilde{\mathbf{X}} \mathbf{W}_k = \mathbf{U}_k \boldsymbol{\Sigma}_k$
 
-::: details 🔍 完整演算：PCA via SVD 手算 — 4×2→1D 降维
+::: details 🔍 完整演算：PCA via SVD 手算 - 4x2 到 1D 降维
 
 **📐 公式**
 
