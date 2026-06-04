@@ -5,6 +5,10 @@ export default defineConfig({
   title: 'Cache 知识库',
   description: 'AI/ML 技术百科 · Arch Linux 实战 · 周易与奇门遁甲',
   ignoreDeadLinks: true,
+  srcExclude: ['**/.venv/**'],
+  markdown: {
+    math: true
+  },
   head: [
     ['style', {}, `
 details {
