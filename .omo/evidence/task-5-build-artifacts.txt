@@ -1,0 +1,16 @@
+total 60
+drwxr-xr-x 1 zoe zoe   428 Jun  4 11:00 .
+drwxr-xr-x 1 zoe zoe    80 Jun  4 11:00 ..
+-rw-r--r-- 1 zoe zoe 15780 Jun  4 11:00 00-GLOSSARY.html
+drwxr-xr-x 1 zoe zoe   248 Jun  4 11:00 01-overview
+drwxr-xr-x 1 zoe zoe   258 Jun  4 11:00 02-mathematics
+drwxr-xr-x 1 zoe zoe   304 Jun  4 11:00 03-classical-ml
+drwxr-xr-x 1 zoe zoe   268 Jun  4 11:00 04-neural-networks
+drwxr-xr-x 1 zoe zoe   236 Jun  4 11:00 05-transformer
+drwxr-xr-x 1 zoe zoe   278 Jun  4 11:00 06-self-supervised
+drwxr-xr-x 1 zoe zoe   212 Jun  4 11:00 07-generative-ai
+drwxr-xr-x 1 zoe zoe   318 Jun  4 11:00 08-model-training
+drwxr-xr-x 1 zoe zoe   230 Jun  4 11:00 09-llm-application
+drwxr-xr-x 1 zoe zoe   344 Jun  4 11:00 10-toolchain-integration
+-rw-r--r-- 1 zoe zoe 19554 Jun  4 11:00 99-演算盒模板.html
+-rw-r--r-- 1 zoe zoe 21516 Jun  4 11:00 index.html
