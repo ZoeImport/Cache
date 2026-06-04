@@ -86,8 +86,7 @@ $$
 
 当我们堆叠多层时，这个模式会递归应用，形成**误差反向传播**（errors backpropagating from output to input）。
 
-<details>
-<summary>🔍 完整演算：单神经元梯度计算 — w=2,x=3,y=0</summary>
+::: details 🔍 完整演算：单神经元梯度计算 — w=2,x=3,y=0
 
 **📐 公式**
 
@@ -173,7 +172,7 @@ $$ \frac{\partial L}{\partial w} = \frac{\partial L}{\partial a} \cdot \frac{\pa
 - **Sigmoid 的梯度消失现象**：当 $z$ 很大（$7$）时，$\sigma'(z) \approx 0.0009$ 非常小。深层网络中多个小梯度连乘会导致梯度消失（Vanishing Gradient）——这就是为什么现代网络更倾向使用 ReLU 的原因。
 - **$\delta$（误差信号）的概念**：$\delta = \partial L/\partial z$ 衡量了该神经元对最终误差的"责任"，是反向传播中最核心的中间量。
 
-</details>
+:::
 
 ---
 
@@ -307,8 +306,7 @@ $$
 
 其中 $\sigma'$ 是当前层激活函数的导数。
 
-<details>
-<summary>🔍 完整演算：2 层网络反向传播手算 — 2→2→1</summary>
+::: details 🔍 完整演算：2 层网络反向传播手算 — 2→2→1
 
 **📐 公式**
 
@@ -457,7 +455,7 @@ $$ \frac{\partial L}{\partial b_1} = \delta_1 = \begin{bmatrix} -0.184 & 0.135 \
 - **梯度流动的可视化**：从 $\hat{y}$ 往 $W_1$ 方向，误差信号 $\delta$ 经历"输出层 → 权重回传 → 激活函数门控"的标准三步曲，每一步都乘以一个局部梯度。
 - **现实训练中的应用**：实际训练时（如第 4 节的代码实现），上述手算过程以矩阵形式对批量数据一次性完成。梯度检查（第 3 节）本质上就是用数值近似验证上述每一组梯度的正确性。
 
-</details>
+:::
 
 ---
 
